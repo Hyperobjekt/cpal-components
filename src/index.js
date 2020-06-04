@@ -1,9 +1,13 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
+
+import Header from "./modules/Header";
 
 export default class extends Component {
   render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
+    return (
+      <div>
+        <Header></Header>
+      </div>
+    );
   }
 }
