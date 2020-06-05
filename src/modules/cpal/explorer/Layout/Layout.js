@@ -5,7 +5,7 @@ import { Button } from 'reactstrap'
 
 const Layout = ({ children, ...props }) => {
   return (
-    <div className="layout">
+    <div className="layout" {...props}>
       <Header>
         <h1>
           <a href="/">Community Resource Explorer</a>
