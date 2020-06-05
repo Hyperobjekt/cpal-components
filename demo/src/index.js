@@ -1,15 +1,14 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
 
-import Example from '../../src'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import Explorer from '../../src'
 
 export default class Demo extends Component {
   render() {
-    return <div>
-      <h1>cpal-components Demo</h1>
-      <Example/>
-    </div>
+    return <Explorer />
   }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo />, document.querySelector('#demo'))

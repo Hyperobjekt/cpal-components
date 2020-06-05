@@ -1,16 +1,25 @@
-# cpal-components
+# CPAL Components
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+## Using components from this library
 
-Describe cpal-components here.
+To use components from this library, first add the repo
+using npm:
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+```
+npm install git+ssh://git@github.com:Hyperobjekt/cpal-components.git
+```
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+You can then import any components into your project.
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+```jsx
+import { Header } from 'cpal-components'
+
+function AppHeader() {
+  return (
+    <div className="page">
+      <Header />
+      <div className="body">Sample page</div>
+    </div>
+  )
+}
+```

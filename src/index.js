@@ -1,13 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import Header from "./modules/Header";
+import { Explorer } from './modules/cpal'
 
-export default class extends Component {
-  render() {
-    return (
-      <div>
-        <Header></Header>
-      </div>
-    );
-  }
-}
+export default Explorer
