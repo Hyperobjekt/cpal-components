@@ -5,6 +5,7 @@ import useStore from './../store.js'
 import { Header } from '../../../core'
 import { Logo } from '../../../core'
 import MenuButton from './../MenuButton/MenuButton'
+import MenuSearch from './../MenuSearch/MenuSearch'
 import { Button } from 'reactstrap'
 
 const Layout = ({ children, ...props }) => {
@@ -18,8 +19,8 @@ const Layout = ({ children, ...props }) => {
     <div className="layout" {...props}>
       <Header>
         <Logo {...logoProps} />
+        <MenuSearch />
         <MenuButton />
-        <Button>Menu</Button>
       </Header>
       <main>{children}</main>
     </div>

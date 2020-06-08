@@ -2,15 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useState } from 'zustand'
 import useStore from './../store.js'
-import { Button } from 'reactstrap'
+import { CoreButton } from './../../../core'
+import { FiMenu } from 'react-icons/fi'
 
+/**
+ * MenuButton Menu toggle for header
+ */
 const MenuButton = () => {
   const store = useStore()
-  // const buttonProps = {
-  //   label: store.menuButtonLabel,
-  // }
   const label = store.menuButtonLabel
-  return <Button>{label}</Button>
+  const handleClick = e => {
+    // console.log('Menu button clicked')
+    e.preventDefault()
+  }
+  return (
+    <CoreButton
+      className="float-right"
+      aria-label={label}
+      onClick={handleClick}
+    >
+      <FiMenu />
+    </CoreButton>
+  )
 }
 
 MenuButton.propTypes = {}
