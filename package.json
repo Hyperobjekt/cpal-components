@@ -24,7 +24,8 @@
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "clsx": "^1.1.1",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "zustand": "^2.2.3"
   },
   "peerDependencies": {
     "react": "16.x"
