@@ -11,7 +11,9 @@ import './MenuSearch.css'
  */
 const MenuSearch = () => {
   const store = useStore()
-  const label = store.menuButtonLabel
+  const inputLabel = store.searchInputLabel
+  const buttonLabel = store.searchButtonLabel
+  const placeholder = store.searchPlaceholder
   const classes = `menu-search`
   const colorClass = `secondary`
   const handleSearch = e => {
@@ -22,7 +24,8 @@ const MenuSearch = () => {
     <Search
       parentClasses={classes}
       colorClass={colorClass}
-      label={label}
+      inputLabel={inputLabel}
+      buttonLabel={buttonLabel}
       handleSearch={handleSearch}
     />
   )

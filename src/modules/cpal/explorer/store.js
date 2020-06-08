@@ -14,6 +14,9 @@ const [useStore] = create(set => ({
     baseInverted: ``,
   },
   menuButtonLabel: `Menu`,
+  searchInputLabel: `Enter search criteria`,
+  searchButtonLabel: `Select to search`,
+  searchPlaceholder: `Search... `,
 }))
 
 export default useStore

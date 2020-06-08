@@ -56,6 +56,8 @@ Search.propTypes = {
   inputLabel: PropTypes.string,
   /** Label for search button */
   buttonLabel: PropTypes.string,
+  /** Placeholder for search input */
+  placeholder: PropTypes.string,
   /** Href for home link */
   handleSearch: PropTypes.string,
 }

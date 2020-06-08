@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'reactstrap'
 import { useState } from 'zustand'
 import useStore from './../store.js'
 import { Header } from '../../../core'
 import { Logo } from '../../../core'
 import MenuButton from './../MenuButton/MenuButton'
 import MenuSearch from './../MenuSearch/MenuSearch'
-import { Button } from 'reactstrap'
+import ControlPanel from './../ControlPanel/ControlPanel'
 
 const Layout = ({ children, ...props }) => {
   const store = useStore()
@@ -22,7 +23,10 @@ const Layout = ({ children, ...props }) => {
         <MenuSearch />
         <MenuButton />
       </Header>
-      <main>{children}</main>
+      <main>
+        <ControlPanel></ControlPanel>
+        {children}
+      </main>
     </div>
   )
 }
