@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 
-import './Canvas.css'
+import './Canvas.scss'
 
 /**
  * Canvas is the base container for visible elements not header or footer.
@@ -10,11 +10,11 @@ import './Canvas.css'
  * @param {[type]} children      [description]
  */
 const Canvas = ({ parentClasses, children }) => {
-  return (
-    <div className={`canvas ${parentClasses}`}>
-      {children}
-    </div>
-  )
+  const classes =
+    !!parentClasses && parentClasses.length > 0
+      ? `canvas ${parentClasses}`
+      : `canvas`
+  return <div className={classes}>{children}</div>
 }
 
 Canvas.propTypes = {}

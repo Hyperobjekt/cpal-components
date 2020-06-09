@@ -19,9 +19,9 @@ const MenuButton = () => {
   }
   return (
     <CoreButton
-      className="float-right"
       aria-label={label}
       onClick={handleClick}
+      parentClasses="button-toggle-menu"
     >
       <FiMenu />
     </CoreButton>

@@ -13,7 +13,7 @@ import './ViewSelect.css'
  */
 const ViewSelect = () => {
   const store = useStore()
-  const parentClasses = `view-select`
+  const parentClasses = `select-view`
   const label = store.viewSelectLabel
   const items = store.viewSelect
   const handleSelect = e => {

@@ -19,10 +19,10 @@ const WeightButton = () => {
   }
   return (
     <CoreButton
-      className="float-right"
       aria-label={label}
       onClick={handleClick}
       bsColor="light"
+      parentClasses="button-view-weights"
     >
       <MdCallSplit />
     </CoreButton>

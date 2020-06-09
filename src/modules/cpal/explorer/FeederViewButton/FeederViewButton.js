@@ -19,10 +19,10 @@ const FeederViewButton = () => {
   }
   return (
     <CoreButton
-      className="button-feeder"
       aria-label={label}
       onClick={handleClick}
       bsColor="light"
+      parentClasses="button-view-feeder"
     >
       <FiList />
     </CoreButton>

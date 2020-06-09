@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Layout from '../Layout/Layout'
+
+import './App.scss'
 
 /**
  * App is the base component for the explorer.

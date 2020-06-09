@@ -26,13 +26,16 @@ const Select = ({
   handleSelect,
 }) => {
   // console.log('Logo')
-  const classes = `select `
+  const classes =
+    !!parentClasses && parentClasses.length > 0
+      ? `select ${parentClasses}`
+      : `select`
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const toggle = () =>
     setDropdownOpen(prevState => !prevState)
   return (
     <Dropdown
-      className={classes + parentClasses}
+      className={classes}
       isOpen={dropdownOpen}
       toggle={toggle}
     >

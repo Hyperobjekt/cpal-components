@@ -24,6 +24,7 @@
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "clsx": "^1.1.1",
+    "node-sass": "^4.14.1",
     "react-icons": "^3.10.0",
     "reactstrap": "^8.4.1",
     "zustand": "^2.2.3"
@@ -35,6 +36,7 @@
     "bootstrap": "^4.5.0",
     "eslint-config-react-app": "^5.2.1",
     "nwb": "0.25.x",
+    "nwb-sass": "^0.10.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-styleguidist": "^11.0.8"

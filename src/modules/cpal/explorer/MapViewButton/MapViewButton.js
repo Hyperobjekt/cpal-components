@@ -10,7 +10,7 @@ import './MapViewButton.css'
 /**
  * MapViewButton Toggles map view
  */
-const MapViewButton = () => {
+const MapViewButton = ({ parentClasses }) => {
   const store = useStore()
   const label = store.mapViewButtonLabel
   const handleClick = e => {
@@ -19,10 +19,10 @@ const MapViewButton = () => {
   }
   return (
     <CoreButton
-      className="float-right"
       aria-label={label}
       onClick={handleClick}
       bsColor="light"
+      parentClasses="button-view-map"
     >
       <FiMap />
     </CoreButton>

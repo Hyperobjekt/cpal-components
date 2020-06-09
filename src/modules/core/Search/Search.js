@@ -28,9 +28,12 @@ const Search = ({
   handleSearch,
 }) => {
   // console.log('Logo')
-  const classes = `input-search `
+  const classes =
+    !!parentClasses && parentClasses.length > 0
+      ? `input-search ${parentClasses}`
+      : `input-search`
   return (
-    <InputGroup className={classes + parentClasses}>
+    <InputGroup className={classes}>
       <Input
         placeholder={placeholder}
         aria-label="inputLabel"
@@ -40,6 +43,7 @@ const Search = ({
           color={colorClass}
           onClick={handleSearch}
           aria-label={buttonLabel}
+          parentClasses={`button-search`}
         >
           <FiSearch />
         </Button>

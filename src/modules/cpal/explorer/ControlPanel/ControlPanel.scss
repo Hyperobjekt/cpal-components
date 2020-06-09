@@ -1,0 +1,60 @@
+/* Extra small devices (phones, 767px and down) */
+.layout-control-panel {
+  display: flex;
+  width: 100%;
+  background: #fff;
+  padding: 16px;
+  // Hide the map and feeder buttons at the smaller views.
+  hr,
+  .button-view-map,
+  .button-view-feeder {
+    display: none;
+  }
+  .select-view {
+    margin-right: 16px;
+  }
+  .button-view-filters {
+    margin-right: 8px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .layout-control-panel {
+    display: flex;
+    width: auto;
+    hr,
+    .button-view-map,
+    .button-view-feeder {
+      display: none;
+    }
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1024px) {
+  .layout-control-panel {
+    width: 80px;
+    height: calc(100vh - 80px);
+    flex-direction: column;
+    .select-view {
+      display: none;
+    }
+    hr,
+    .button-view-map,
+    .button-view-feeder {
+      display: block;
+    }
+    hr {
+      width: 100%;
+      margin-top: 0;
+    }
+    button {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1280px) {
+}

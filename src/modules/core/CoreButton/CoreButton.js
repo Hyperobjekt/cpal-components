@@ -14,6 +14,7 @@ import './CoreButton.css'
  * @param Function onClick  Click handler for button
  */
 const CoreButton = ({
+  parentClasses,
   label,
   onClick,
   bsColor,
@@ -25,6 +26,7 @@ const CoreButton = ({
       aria-label={label}
       onClick={onClick}
       color={bsColor}
+      className={parentClasses}
     >
       {children}
     </Button>

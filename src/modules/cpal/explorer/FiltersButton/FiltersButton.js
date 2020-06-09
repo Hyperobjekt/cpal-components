@@ -19,10 +19,10 @@ const FiltersButton = () => {
   }
   return (
     <CoreButton
-      className="float-right"
       aria-label={label}
       onClick={handleClick}
       bsColor="light"
+      parentClasses="button-view-filters"
     >
       <FiFilter />
     </CoreButton>

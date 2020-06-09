@@ -22,6 +22,8 @@ import FiltersButton from './../FiltersButton/FiltersButton'
 import WeightButton from './../WeightButton/WeightButton'
 import ViewSelect from './../ViewSelect/ViewSelect'
 
+import './Layout.scss'
+
 /**
  * Layout sets up the basic layout for the explorer.
  * @param Object children Child elements
@@ -46,8 +48,8 @@ const Layout = ({ children, ...props }) => {
         <Canvas>
           <ControlPanel>
             <ViewSelect />
-            <MapViewButton />
-            <FeederViewButton />
+            <MapViewButton parentClasses="button_view-map" />
+            <FeederViewButton parentClasses="button_view-feeder" />
             <Divider />
             <FiltersButton />
             <WeightButton />
