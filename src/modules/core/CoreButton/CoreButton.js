@@ -5,7 +5,10 @@ import { Button } from 'reactstrap'
 import './CoreButton.css'
 
 /**
- * MenuButton Menu toggle for header
+ * CoreButton is a core button for the library.
+ *
+ * To add contents like text or icons, simply pass them as children inside the `<CoreButton>` component.
+ *
  * @param String label      Used as aria-label for button
  * @param String bsColor    Bootstrap color type for button, see https://reactstrap.github.io/components/buttons/
  * @param Function onClick  Click handler for button

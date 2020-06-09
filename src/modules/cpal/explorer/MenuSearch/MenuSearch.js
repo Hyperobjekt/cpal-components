@@ -7,7 +7,7 @@ import { Search } from './../../../core'
 import './MenuSearch.css'
 
 /**
- * MenuSearch: Search input and button for header
+ * MenuSearch: Search input and button for header.
  */
 const MenuSearch = () => {
   const store = useStore()

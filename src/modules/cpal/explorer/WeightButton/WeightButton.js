@@ -8,7 +8,7 @@ import { MdCallSplit } from 'react-icons/md'
 import './WeightButton.css'
 
 /**
- * WeightButton toggles weight selection options
+ * WeightButton toggles weighting options panel.
  */
 const WeightButton = () => {
   const store = useStore()

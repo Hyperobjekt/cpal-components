@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './Logo.css'
 
 /**
- * Renders site logo with image and site name as screen-reader only h1 content
+ * Renders site logo with image and site name as screen-reader only h1 content.
  * @param String siteName Site name text string, read by screen readers
  * @param String homeHref Site root href, defaults to '/'
  * @param String logoSrc  SVG string for logo

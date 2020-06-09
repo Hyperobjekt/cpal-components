@@ -22,6 +22,11 @@ import FiltersButton from './../FiltersButton/FiltersButton'
 import WeightButton from './../WeightButton/WeightButton'
 import ViewSelect from './../ViewSelect/ViewSelect'
 
+/**
+ * Layout sets up the basic layout for the explorer.
+ * @param Object children Child elements
+ * @param Object props    Props passed from parent
+ */
 const Layout = ({ children, ...props }) => {
   const store = useStore()
   const logoProps = {

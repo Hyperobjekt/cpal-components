@@ -6,7 +6,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import './Header.css'
 
 /**
- * Displays the site header
+ * Displays the site header.
  */
 export default function Header({
   className,

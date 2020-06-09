@@ -10,12 +10,14 @@ import {
 import './Select.css'
 
 /**
- * Search input group
+ * Select element.
+ *
+ * Accepts an array of items, each of which serves as a dropdown item.
+ *
  * @param String parentClasses   Parent classes for component
- * @param String colorClass   Bootstrap color class
- * @param String inputLabel   Label for search input
- * @param String buttonLabel  Label for search button
- * @param Function handleSearch Handler for search button selected
+ * @param String label   Label for select
+ * @param Array items  Array of dropdown items for select
+ * @param Function handleSelect Handler for dropdown item selected
  */
 const Select = ({
   parentClasses,
@@ -34,7 +36,7 @@ const Select = ({
       isOpen={dropdownOpen}
       toggle={toggle}
     >
-      <DropdownToggle caret>Dropdown</DropdownToggle>
+      <DropdownToggle caret>{label}</DropdownToggle>
       <DropdownMenu>
         {items.map(el => {
           return (

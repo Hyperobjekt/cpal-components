@@ -5,6 +5,9 @@ import useStore from './../store.js'
 
 import './FeederView.css'
 
+/**
+ * FeederView contains the feeder schools view.
+ */
 const FeederView = () => {
   return <div className="view-feeder"></div>
 }

@@ -12,6 +12,7 @@ import './Search.css'
 
 /**
  * Search input group
+ *
  * @param String parentClasses   Parent classes for component
  * @param String colorClass   Bootstrap color class
  * @param String inputLabel   Label for search input

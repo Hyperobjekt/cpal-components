@@ -6,6 +6,11 @@ import { Select } from './../../../core'
 
 import './ViewSelect.css'
 
+/**
+ * ViewSelect provides for the selection among view options.
+ *
+ * View options are provided from within the data store.
+ */
 const ViewSelect = () => {
   const store = useStore()
   const parentClasses = `view-select`

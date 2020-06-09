@@ -3,9 +3,13 @@
 Default Canvas Element:
 
 ```js
-<Canvas>{children}</Canvas>
+<Canvas>
+  <p>some content</p>
+</Canvas>
 ```
 
 ### Classes and Styling
 
-None specified.
+This component accepts classes passed in from the parent in
+the `parentClasses` string (for example, to distinguish it
+from another of the same type of component in the view).

@@ -8,7 +8,7 @@ import { FiMenu } from 'react-icons/fi'
 import './MenuButton.css'
 
 /**
- * MenuButton Menu toggle for header
+ * MenuButton toggles the menu.
  */
 const MenuButton = () => {
   const store = useStore()

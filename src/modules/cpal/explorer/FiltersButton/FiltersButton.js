@@ -8,7 +8,7 @@ import { FiFilter } from 'react-icons/fi'
 import './FiltersButton.css'
 
 /**
- * FiltersButton toggles filter options
+ * FiltersButton toggles filter option panel.
  */
 const FiltersButton = () => {
   const store = useStore()

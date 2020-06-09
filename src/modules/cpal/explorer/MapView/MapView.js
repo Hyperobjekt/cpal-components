@@ -5,6 +5,9 @@ import useStore from './../store.js'
 
 import './MapView.css'
 
+/**
+ * MapView contains the Explorer map.
+ */
 const MapView = () => {
   return <div className="view-map"></div>
 }

@@ -3,13 +3,19 @@
 Default Search:
 
 ```js
-<Logo
-  siteTitle={`Site Title`}
-  homeHref={`https://example.com`}
-  logoSrc={`<svg>...</svg>`}
-/>
+<Search
+  parentClasses={`string`}
+  colorClass={`string`}
+  inputLabel={`string`}
+  buttonLabel={`string`}
+  handleSearch={e => {
+    console.log('Search button clicked.')
+  }}
+></Search>
 ```
 
 ### Classes and Styling
 
-None specified.
+This component accepts classes passed in from the parent in
+the `parentClasses` string (for example, to distinguish it
+from another search component in the view).

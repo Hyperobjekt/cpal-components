@@ -3,7 +3,9 @@
 Default View Element:
 
 ```js
-<View displayedView={displayedView}>{children}</view>
+<View displayedView={`string`}>
+  <p>children</p>
+</View>
 ```
 
 ### Classes and Styling

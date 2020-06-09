@@ -8,7 +8,7 @@ import { FiList } from 'react-icons/fi'
 import './FeederViewButton.css'
 
 /**
- * FeederViewButton Toggles feeder view
+ * FeederViewButton Toggles feeder view.
  */
 const FeederViewButton = () => {
   const store = useStore()
