@@ -32,7 +32,7 @@ CoreButton.propTypes = {
   /** Button label */
   label: PropTypes.string,
   /** Click handler */
-  onClick: PropTypes.function,
+  onClick: PropTypes.func,
   /** Bootstrap button color type */
   bsColor: PropTypes.string,
 }

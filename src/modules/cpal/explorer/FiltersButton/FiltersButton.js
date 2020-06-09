@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import { useState } from 'zustand'
 import useStore from './../store.js'
 import { CoreButton } from './../../../core'
-import { FiMenu } from 'react-icons/fi'
+import { FiFilter } from 'react-icons/fi'
 
-import './MenuButton.css'
+import './FiltersButton.css'
 
 /**
- * MenuButton Menu toggle for header
+ * FiltersButton toggles filter options
  */
-const MenuButton = () => {
+const FiltersButton = () => {
   const store = useStore()
-  const label = store.menuButtonLabel
+  const label = store.filtersButtonLabel
   const handleClick = e => {
-    console.log('Menu button clicked')
+    console.log('Filters button clicked')
     e.preventDefault()
   }
   return (
@@ -22,12 +22,13 @@ const MenuButton = () => {
       className="float-right"
       aria-label={label}
       onClick={handleClick}
+      bsColor="light"
     >
-      <FiMenu />
+      <FiFilter />
     </CoreButton>
   )
 }
 
-MenuButton.propTypes = {}
+FiltersButton.propTypes = {}
 
-export default MenuButton
+export default FiltersButton

@@ -14,7 +14,7 @@ const Logo = ({ siteTitle, homeHref, logoSrc }) => {
   return (
     <h1>
       <a href={homeHref}>
-        <span class="sr-only">{siteTitle}</span>
+        <span className="sr-only">{siteTitle}</span>
         <div
           className="logo"
           dangerouslySetInnerHTML={{ __html: logoSrc }}

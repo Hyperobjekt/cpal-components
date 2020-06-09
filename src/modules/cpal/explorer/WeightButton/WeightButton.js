@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import { useState } from 'zustand'
 import useStore from './../store.js'
 import { CoreButton } from './../../../core'
-import { FiMenu } from 'react-icons/fi'
+import { MdCallSplit } from 'react-icons/md'
 
-import './MenuButton.css'
+import './WeightButton.css'
 
 /**
- * MenuButton Menu toggle for header
+ * WeightButton toggles weight selection options
  */
-const MenuButton = () => {
+const WeightButton = () => {
   const store = useStore()
-  const label = store.menuButtonLabel
+  const label = store.weightButtonLabel
   const handleClick = e => {
-    console.log('Menu button clicked')
+    console.log('Weight button clicked')
     e.preventDefault()
   }
   return (
@@ -22,12 +22,13 @@ const MenuButton = () => {
       className="float-right"
       aria-label={label}
       onClick={handleClick}
+      bsColor="light"
     >
-      <FiMenu />
+      <MdCallSplit />
     </CoreButton>
   )
 }
 
-MenuButton.propTypes = {}
+WeightButton.propTypes = {}
 
-export default MenuButton
+export default WeightButton

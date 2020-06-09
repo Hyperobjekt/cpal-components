@@ -3,7 +3,7 @@
 Default Canvas Element:
 
 ```js
-<Canvas />
+<Canvas>{children}</Canvas>
 ```
 
 ### Classes and Styling

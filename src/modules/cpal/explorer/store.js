@@ -17,6 +17,22 @@ const [useStore] = create(set => ({
   searchInputLabel: `Enter search criteria`,
   searchButtonLabel: `Select to search`,
   searchPlaceholder: `Search... `,
+  viewDefault: `map`,
+  feederViewButtonLabel: `Toggle feeder view`,
+  mapViewButtonLabel: `Toggle map view`,
+  filtersButtonLabel: `Access filters`,
+  weightButtonLabel: `Access weights`,
+  viewSelectLabel: `Select a view`,
+  viewSelect: [
+    {
+      label: `Map View`,
+      id: `map`,
+    },
+    {
+      label: `Feeder View`,
+      id: `feed`,
+    },
+  ],
 }))
 
 export default useStore

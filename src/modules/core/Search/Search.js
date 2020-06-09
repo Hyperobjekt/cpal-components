@@ -59,7 +59,7 @@ Search.propTypes = {
   /** Placeholder for search input */
   placeholder: PropTypes.string,
   /** Href for home link */
-  handleSearch: PropTypes.string,
+  handleSearch: PropTypes.func,
 }
 
 Search.defaultProps = {

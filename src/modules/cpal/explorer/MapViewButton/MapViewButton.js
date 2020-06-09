@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import { useState } from 'zustand'
 import useStore from './../store.js'
 import { CoreButton } from './../../../core'
-import { FiMenu } from 'react-icons/fi'
+import { FiMap } from 'react-icons/fi'
 
-import './MenuButton.css'
+import './MapViewButton.css'
 
 /**
- * MenuButton Menu toggle for header
+ * MapViewButton Toggles map view
  */
-const MenuButton = () => {
+const MapViewButton = () => {
   const store = useStore()
-  const label = store.menuButtonLabel
+  const label = store.mapViewButtonLabel
   const handleClick = e => {
-    console.log('Menu button clicked')
+    console.log('MapView button clicked')
     e.preventDefault()
   }
   return (
@@ -22,12 +22,13 @@ const MenuButton = () => {
       className="float-right"
       aria-label={label}
       onClick={handleClick}
+      bsColor="light"
     >
-      <FiMenu />
+      <FiMap />
     </CoreButton>
   )
 }
 
-MenuButton.propTypes = {}
+MapViewButton.propTypes = {}
 
-export default MenuButton
+export default MapViewButton

@@ -3,11 +3,24 @@ import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 import { useState } from 'zustand'
 import useStore from './../store.js'
-import { Header } from '../../../core'
-import { Logo } from '../../../core'
+
+import {
+  Header,
+  Logo,
+  Canvas,
+  View,
+  Divider,
+} from '../../../core'
 import MenuButton from './../MenuButton/MenuButton'
 import MenuSearch from './../MenuSearch/MenuSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
+import FeederView from './../FeederView/FeederView'
+import FeederViewButton from './../FeederViewButton/FeederViewButton'
+import MapView from './../MapView/MapView'
+import MapViewButton from './../MapViewButton/MapViewButton'
+import FiltersButton from './../FiltersButton/FiltersButton'
+import WeightButton from './../WeightButton/WeightButton'
+import ViewSelect from './../ViewSelect/ViewSelect'
 
 const Layout = ({ children, ...props }) => {
   const store = useStore()
@@ -16,6 +29,7 @@ const Layout = ({ children, ...props }) => {
     siteHref: store.siteHref,
     logoSrc: store.logoSrc,
   }
+  const displayView = store.viewDefault
   return (
     <div className="layout" {...props}>
       <Header>
@@ -24,8 +38,20 @@ const Layout = ({ children, ...props }) => {
         <MenuButton />
       </Header>
       <main>
-        <ControlPanel></ControlPanel>
-        {children}
+        <Canvas>
+          <ControlPanel>
+            <ViewSelect />
+            <MapViewButton />
+            <FeederViewButton />
+            <Divider />
+            <FiltersButton />
+            <WeightButton />
+          </ControlPanel>
+          <View displayView={displayView}>
+            <MapView />
+            <FeederView />
+          </View>
+        </Canvas>
       </main>
     </div>
   )

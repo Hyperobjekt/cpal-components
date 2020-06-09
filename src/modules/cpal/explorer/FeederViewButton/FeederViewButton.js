@@ -3,31 +3,32 @@ import PropTypes from 'prop-types'
 import { useState } from 'zustand'
 import useStore from './../store.js'
 import { CoreButton } from './../../../core'
-import { FiMenu } from 'react-icons/fi'
+import { FiList } from 'react-icons/fi'
 
-import './MenuButton.css'
+import './FeederViewButton.css'
 
 /**
- * MenuButton Menu toggle for header
+ * FeederViewButton Toggles feeder view
  */
-const MenuButton = () => {
+const FeederViewButton = () => {
   const store = useStore()
-  const label = store.menuButtonLabel
+  const label = store.feederViewButtonLabel
   const handleClick = e => {
-    console.log('Menu button clicked')
     e.preventDefault()
+    console.log('Feeder button clicked')
   }
   return (
     <CoreButton
-      className="float-right"
+      className="button-feeder"
       aria-label={label}
       onClick={handleClick}
+      bsColor="light"
     >
-      <FiMenu />
+      <FiList />
     </CoreButton>
   )
 }
 
-MenuButton.propTypes = {}
+FeederViewButton.propTypes = {}
 
-export default MenuButton
+export default FeederViewButton

@@ -16,4 +16,4 @@ Canvas.propTypes = {}
 
 Canvas.defaultProps = {}
 
-export default CoreButton
+export default Canvas
