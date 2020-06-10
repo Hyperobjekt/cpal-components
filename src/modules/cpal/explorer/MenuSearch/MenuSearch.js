@@ -4,7 +4,7 @@ import { useState } from 'zustand'
 import useStore from './../store.js'
 import { Search } from './../../../core'
 
-import './MenuSearch.css'
+import './MenuSearch.scss'
 
 /**
  * MenuSearch: Search input and button for header.

@@ -37,7 +37,7 @@ Logo.defaultProps = {
   siteTitle: `Site Name`,
   homeHref: `/`,
   logoSrc: `<svg width="150" height="50">
-            <rect width="150" height="50" style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(255,0,0)" />
+            <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />
           </svg>`,
 }
 
