@@ -1,3 +1,7 @@
+.canvas {
+  position: relative;
+}
+
 /* Extra small devices (phones, 767px and down) */
 .layout-control-panel {
   display: flex;
@@ -23,6 +27,9 @@
   .layout-control-panel {
     display: flex;
     width: 280px;
+    position: absolute;
+    left: 16px;
+    top: 16px;
     hr,
     .button-view-map,
     .button-view-feeder {
@@ -37,6 +44,9 @@
     width: 80px;
     height: calc(100vh - 80px);
     flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 0;
     .select-view {
       display: none;
     }
