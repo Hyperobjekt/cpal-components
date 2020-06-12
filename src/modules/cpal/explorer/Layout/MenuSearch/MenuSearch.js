@@ -1,32 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useState } from 'zustand'
-import useStore from './../store.js'
-import { Search } from './../../../core'
+import clsx from 'clsx'
+import { Search } from './../../../../core'
 
 import './MenuSearch.scss'
 
 /**
  * MenuSearch: Search input and button for header.
  */
-const MenuSearch = () => {
-  const store = useStore()
-  const inputLabel = store.searchInputLabel
-  const buttonLabel = store.searchButtonLabel
-  const placeholder = store.searchPlaceholder
+const MenuSearch = ({ ...props }) => {
+  const inputLabel = props.i18n.translate(`INPUT_SEARCH`)
+  const buttonLabel = props.i18n.translate(`BUTTON_SEARCH`)
+  const placeholder = props.i18n.translate(
+    `INPUT_PLACEHOLDER_SEARCH`,
+  )
   const classes = `menu-search`
   const colorClass = `secondary`
   const handleSearch = e => {
-    console.log('Search button clicked')
+    console.log('Menu search button clicked')
     e.preventDefault()
   }
   return (
     <Search
-      parentClasses={classes}
+      className={classes}
       colorClass={colorClass}
       inputLabel={inputLabel}
       buttonLabel={buttonLabel}
       handleSearch={handleSearch}
+      data={{}}
     />
   )
 }

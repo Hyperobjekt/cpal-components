@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
+import clsx from 'clsx'
 
 import './CoreButton.css'
 
@@ -13,20 +14,14 @@ import './CoreButton.css'
  * @param String bsColor    Bootstrap color type for button, see https://reactstrap.github.io/components/buttons/
  * @param Function onClick  Click handler for button
  */
-const CoreButton = ({
-  parentClasses,
-  label,
-  onClick,
-  bsColor,
-  children,
-  ...props
-}) => {
+const CoreButton = ({ children, ...props }) => {
   return (
     <Button
-      aria-label={label}
-      onClick={onClick}
-      color={bsColor}
-      className={parentClasses}
+      id={props.id}
+      aria-label={props.label}
+      onClick={props.onClick}
+      color={props.bsColor}
+      className={clsx('button-core', props.className)}
     >
       {children}
     </Button>

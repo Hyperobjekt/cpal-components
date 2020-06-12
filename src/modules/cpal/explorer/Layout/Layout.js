@@ -3,6 +3,14 @@ import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 import { useState } from 'zustand'
 import useStore from './../store.js'
+import i18n from '@pureartisan/simple-i18n'
+import {
+  FiFilter,
+  FiMap,
+  FiList,
+  FiMenu,
+} from 'react-icons/fi'
+import { MdCallSplit } from 'react-icons/md'
 
 import {
   Header,
@@ -10,17 +18,14 @@ import {
   Canvas,
   View,
   Divider,
+  CoreButton,
+  Select,
 } from '../../../core'
-import MenuButton from './../MenuButton/MenuButton'
-import MenuSearch from './../MenuSearch/MenuSearch'
+import MenuSearch from './MenuSearch/MenuSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'
-import FeederViewButton from './../FeederViewButton/FeederViewButton'
 import MapView from './../MapView/MapView'
-import MapViewButton from './../MapViewButton/MapViewButton'
-import FiltersButton from './../FiltersButton/FiltersButton'
-import WeightButton from './../WeightButton/WeightButton'
-import ViewSelect from './../ViewSelect/ViewSelect'
+import en_US from './../../../../constants/en_US'
 
 import './Layout.scss'
 
@@ -30,29 +35,100 @@ import './Layout.scss'
  * @param Object props    Props passed from parent
  */
 const Layout = ({ children, ...props }) => {
+  i18n.init({
+    locale: 'en_US',
+    languages: {
+      en_US: en_US,
+    },
+  })
   const store = useStore()
   const logoProps = {
-    siteName: store.siteTitle,
-    siteHref: store.siteHref,
-    logoSrc: store.logoSrc,
+    siteName: i18n.translate(`SITE_TITLE`),
+    siteHref: useStore(state => state.siteHref),
+    logoSrc: useStore(state => state.logoSrc),
   }
-  const displayView = store.viewDefault
+  let viewSelectItems = useStore(state => state.viewSelect)
+  viewSelectItems.map(el => {
+    el.label = i18n.translate(el.label)
+  })
+  const displayView = useStore(state => state.viewDefault)
+  const handleClick = e => {
+    e.preventDefault()
+    console.log('Button clicked, ', e.currentTarget.id)
+  }
+  const handleSelect = e => {
+    e.preventDefault()
+    console.log('View selected, ', e.currentTarget.id)
+  }
   return (
     <div className="layout" {...props}>
       <Header>
         <Logo {...logoProps} />
-        <MenuSearch />
-        <MenuButton />
+        <MenuSearch i18n={i18n} />
+        <CoreButton
+          id="button_toggle_menu"
+          aria-label={i18n.translate(`BUTTON_MENU`)}
+          onClick={handleClick}
+          bsColor="secondary"
+          className="button-toggle-menu"
+        >
+          <FiMenu />
+        </CoreButton>
       </Header>
       <main>
         <Canvas>
           <ControlPanel>
-            <ViewSelect />
-            <MapViewButton parentClasses="button_view-map" />
-            <FeederViewButton parentClasses="button_view-feeder" />
+            <Select
+              id="select_view"
+              color="primary"
+              className={`select-view`}
+              label={i18n.translate(`SELECT_VIEW`)}
+              items={viewSelectItems}
+              handleSelect={handleSelect}
+            />
+            <CoreButton
+              id="button_view_map"
+              aria-label={i18n.translate(`BUTTON_VIEW_MAP`)}
+              onClick={handleClick}
+              bsColor="light"
+              className="button-view-map"
+            >
+              <FiMap />
+            </CoreButton>
+            <CoreButton
+              id="button_view_feeder"
+              aria-label={i18n.translate(
+                `BUTTON_VIEW_FEEDER`,
+              )}
+              onClick={handleClick}
+              bsColor="light"
+              className="button-view-feeder"
+            >
+              <FiList />
+            </CoreButton>
             <Divider />
-            <FiltersButton />
-            <WeightButton />
+            <CoreButton
+              id="button_toggle_filters"
+              aria-label={i18n.translate(
+                `BUTTON_TOGGLE_FILTERS`,
+              )}
+              onClick={handleClick}
+              bsColor="light"
+              className="button-view-filters"
+            >
+              <FiFilter />
+            </CoreButton>
+            <CoreButton
+              id="button_toggle_weight"
+              aria-label={i18n.translate(
+                `BUTTON_TOGGLE_WEIGHT`,
+              )}
+              onClick={handleClick}
+              bsColor="light"
+              className="button-view-weights"
+            >
+              <MdCallSplit />
+            </CoreButton>
           </ControlPanel>
           <View displayView={displayView}>
             <MapView />

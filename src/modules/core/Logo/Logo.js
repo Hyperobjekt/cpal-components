@@ -9,15 +9,17 @@ import './Logo.css'
  * @param String homeHref Site root href, defaults to '/'
  * @param String logoSrc  SVG string for logo
  */
-const Logo = ({ siteTitle, homeHref, logoSrc }) => {
+const Logo = ({ ...props }) => {
   // console.log('Logo')
   return (
     <h1>
-      <a href={homeHref}>
-        <span className="sr-only">{siteTitle}</span>
+      <a href={props.siteHref}>
+        <span className="sr-only">{props.siteName}</span>
         <div
           className="logo"
-          dangerouslySetInnerHTML={{ __html: logoSrc }}
+          dangerouslySetInnerHTML={{
+            __html: props.logoSrc,
+          }}
         ></div>
       </a>
     </h1>
@@ -26,7 +28,7 @@ const Logo = ({ siteTitle, homeHref, logoSrc }) => {
 
 Logo.propTypes = {
   /** Site name string */
-  siteTitle: PropTypes.string,
+  siteName: PropTypes.string,
   /** Href for home link */
   homeHref: PropTypes.string,
   /** Image source for site logo */
@@ -34,7 +36,7 @@ Logo.propTypes = {
 }
 
 Logo.defaultProps = {
-  siteTitle: `Site Name`,
+  siteName: `Site Name`,
   homeHref: `/`,
   logoSrc: `<svg width="150" height="50">
             <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />

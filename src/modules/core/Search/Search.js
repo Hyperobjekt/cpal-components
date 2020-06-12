@@ -6,6 +6,7 @@ import {
   InputGroupAddon,
   Button,
 } from 'reactstrap'
+import clsx from 'clsx'
 import { FiSearch } from 'react-icons/fi'
 
 import './Search.css'
@@ -13,37 +14,27 @@ import './Search.css'
 /**
  * Search input group
  *
- * @param String parentClasses   Parent classes for component
  * @param String colorClass   Bootstrap color class
  * @param String inputLabel   Label for search input
  * @param String buttonLabel  Label for search button
  * @param Function handleSearch Handler for search button selected
  */
-const Search = ({
-  parentClasses,
-  colorClass,
-  inputLabel,
-  buttonLabel,
-  placeholder,
-  handleSearch,
-}) => {
-  // console.log('Logo')
-  const classes =
-    !!parentClasses && parentClasses.length > 0
-      ? `input-search ${parentClasses}`
-      : `input-search`
+const Search = ({ ...props }) => {
+  // console.log('Search')
   return (
-    <InputGroup className={classes}>
+    <InputGroup
+      className={clsx('input-search', props.className)}
+    >
       <Input
-        placeholder={placeholder}
+        placeholder={props.placeholder}
         aria-label="inputLabel"
       />
       <InputGroupAddon addonType="append">
         <Button
-          color={colorClass}
-          onClick={handleSearch}
-          aria-label={buttonLabel}
-          parentClasses={`button-search`}
+          color={props.colorClass}
+          onClick={props.handleSearch}
+          aria-label={props.buttonLabel}
+          className={`button-search`}
         >
           <FiSearch />
         </Button>
@@ -53,8 +44,6 @@ const Search = ({
 }
 
 Search.propTypes = {
-  /** Classes passed down from parent */
-  parentClasses: PropTypes.string,
   /** Bootstrap color class */
   colorClass: PropTypes.string,
   /** Label for input */
@@ -68,7 +57,6 @@ Search.propTypes = {
 }
 
 Search.defaultProps = {
-  parentClasses: ``,
   colorClass: `secondary`,
   inputLabel: `Enter search criteria`,
   buttonLabel: `Select to search`,

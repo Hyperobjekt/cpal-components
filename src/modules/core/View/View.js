@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 
 import './View.css'
 
@@ -8,10 +9,12 @@ import './View.css'
  * @param String displayView ID of view to display
  * @param Object children    Children (views)
  */
-const View = ({ displayView, children }) => {
-  const classes = `view-parent`
+const View = ({ children, ...props }) => {
   return (
-    <div className={classes} data-display={displayView}>
+    <div
+      className={clsx(`view-parent`, props.className)}
+      data-display={props.displayView}
+    >
       {children}
     </div>
   )

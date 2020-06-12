@@ -1,20 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
+import clsx from 'clsx'
 
 import './Canvas.scss'
 
 /**
  * Canvas is the base container for visible elements not header or footer.
- * @param {[type]} parentClasses [description]
- * @param {[type]} children      [description]
+ * @param Object children   Child elements to render
+ * @param Object props      Props passed down from parent
  */
-const Canvas = ({ parentClasses, children }) => {
-  const classes =
-    !!parentClasses && parentClasses.length > 0
-      ? `canvas ${parentClasses}`
-      : `canvas`
-  return <div className={classes}>{children}</div>
+const Canvas = ({ children, ...props }) => {
+  return (
+    <div className={clsx('canvas', props.className)}>
+      {children}
+    </div>
+  )
 }
 
 Canvas.propTypes = {}

@@ -5,7 +5,6 @@ Default Search:
 ```js
 <Select
   color="primary"
-  parentClasses={`class-1 class-2`}
   label={`Dropdown label`}
   items={[
     {
@@ -24,7 +23,3 @@ Default Search:
 ```
 
 ### Classes and Styling
-
-This component accepts classes passed in from the parent in
-the `parentClasses` string (for example, to distinguish it
-from another select component in the view).

@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
+import clsx from 'clsx'
 
 import './Select.css'
 
@@ -14,38 +15,29 @@ import './Select.css'
  *
  * Accepts an array of items, each of which serves as a dropdown item.
  *
- * @param String parentClasses   Parent classes for component
  * @param String label   Label for select
  * @param Array items  Array of dropdown items for select
  * @param Function handleSelect Handler for dropdown item selected
  */
-const Select = ({
-  parentClasses,
-  label,
-  items,
-  handleSelect,
-}) => {
+const Select = ({ ...props }) => {
   // console.log('Logo')
-  const classes =
-    !!parentClasses && parentClasses.length > 0
-      ? `select ${parentClasses}`
-      : `select`
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const toggle = () =>
     setDropdownOpen(prevState => !prevState)
   return (
     <Dropdown
-      className={classes}
+      className={clsx(`select`, props.className)}
       isOpen={dropdownOpen}
       toggle={toggle}
     >
-      <DropdownToggle caret>{label}</DropdownToggle>
+      <DropdownToggle caret>{props.label}</DropdownToggle>
       <DropdownMenu>
-        {items.map(el => {
+        {props.items.map(el => {
           return (
             <DropdownItem
               key={el.id}
-              onClick={handleSelect}
+              id={el.id}
+              onClick={props.handleSelect}
             >
               {el.label}
             </DropdownItem>
@@ -57,8 +49,6 @@ const Select = ({
 }
 
 Select.propTypes = {
-  /** Classes passed down from parent */
-  parentClasses: PropTypes.string,
   /** String for select label */
   label: PropTypes.string,
   /** Array of items to use in select */
@@ -68,7 +58,6 @@ Select.propTypes = {
 }
 
 Select.defaultProps = {
-  parentClasses: ``,
   label: `Select an option`,
   items: [],
   handleSelect: null,
