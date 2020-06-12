@@ -22,6 +22,7 @@ const CoreButton = ({ children, ...props }) => {
       onClick={props.onClick}
       color={props.bsColor}
       className={clsx('button-core', props.className)}
+      {...props}
     >
       {children}
     </Button>

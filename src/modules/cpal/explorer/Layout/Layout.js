@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'reactstrap'
 import { useState } from 'zustand'
 import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
@@ -41,7 +40,6 @@ const Layout = ({ children, ...props }) => {
       en_US: en_US,
     },
   })
-  const store = useStore()
   const logoProps = {
     siteName: i18n.translate(`SITE_TITLE`),
     siteHref: useStore(state => state.siteHref),
