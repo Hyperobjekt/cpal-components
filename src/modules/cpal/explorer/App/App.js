@@ -1,9 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Layout from '../Layout/Layout'
 
+import './App.scss'
+
+/**
+ * App is the base component for the explorer.
+ * @param Object props Any props passed into the component
+ */
 const App = props => {
-  return <Layout>page content</Layout>
+  return <Layout></Layout>
 }
 
 App.propTypes = {}
