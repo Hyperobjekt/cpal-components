@@ -1,5 +1,5 @@
 const en_US = {
-  SITE_TITLE: `Site Title BLAH TEST`,
+  SITE_TITLE: `Site Title`,
   BUTTON_VIEW_FEEDER: `Toggle feeder view`,
   BUTTON_VIEW_MAP: `Toggle map view`,
   BUTTON_MENU: `Menu`,
