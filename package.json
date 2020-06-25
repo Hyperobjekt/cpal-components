@@ -35,7 +35,9 @@
   },
   "devDependencies": {
     "bootstrap": "^4.5.0",
+    "dotenv-webpack": "^1.8.0",
     "eslint-config-react-app": "^5.2.1",
+    "fs": "0.0.1-security",
     "nwb": "0.25.x",
     "nwb-sass": "^0.10.2",
     "react": "^16.13.1",
