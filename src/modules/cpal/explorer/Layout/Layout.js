@@ -67,7 +67,7 @@ const Layout = ({ children, ...props }) => {
           id="button_toggle_menu"
           aria-label={i18n.translate(`BUTTON_MENU`)}
           onClick={handleClick}
-          bsColor="secondary"
+          color="secondary"
           className="button-toggle-menu"
         >
           <FiMenu />
@@ -88,7 +88,7 @@ const Layout = ({ children, ...props }) => {
               id="button_view_map"
               aria-label={i18n.translate(`BUTTON_VIEW_MAP`)}
               onClick={handleClick}
-              bsColor="light"
+              color="light"
               className="button-view-map"
             >
               <FiMap />
@@ -99,7 +99,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_VIEW_FEEDER`,
               )}
               onClick={handleClick}
-              bsColor="light"
+              color="light"
               className="button-view-feeder"
             >
               <FiList />
@@ -111,7 +111,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_TOGGLE_FILTERS`,
               )}
               onClick={handleClick}
-              bsColor="light"
+              color="light"
               className="button-view-filters"
             >
               <FiFilter />
@@ -122,7 +122,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_TOGGLE_WEIGHT`,
               )}
               onClick={handleClick}
-              bsColor="light"
+              color="light"
               className="button-view-weights"
             >
               <MdCallSplit />

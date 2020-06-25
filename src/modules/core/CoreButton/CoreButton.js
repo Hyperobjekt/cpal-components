@@ -20,7 +20,7 @@ const CoreButton = ({ children, ...props }) => {
       id={props.id}
       aria-label={props.label}
       onClick={props.onClick}
-      color={props.bsColor}
+      color={props.color}
       className={clsx('button-core', props.className)}
       {...props}
     >
@@ -35,13 +35,13 @@ CoreButton.propTypes = {
   /** Click handler */
   onClick: PropTypes.func,
   /** Bootstrap button color type */
-  bsColor: PropTypes.string,
+  color: PropTypes.string,
 }
 
 CoreButton.defaultProps = {
   label: ``,
   onClick: null,
-  bsColor: `secondary`,
+  color: `secondary`,
 }
 
 export default CoreButton
