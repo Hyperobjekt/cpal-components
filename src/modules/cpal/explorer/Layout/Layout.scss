@@ -1,6 +1,16 @@
 .layout {
-  height: 100vh;
+  height: 100%; // 100vh;
+  // max-height: 100vh;
 }
 main {
   height: calc(100vh - 80px);
+  // display: none;
+}
+.view-parent {
+  // width: calc(100% - 80px);
+  // height: 100vh;
+  height: 100%;
+  padding-left: 80px;
+  // position: absolute;
+  // right: 0;
 }
