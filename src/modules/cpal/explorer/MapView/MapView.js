@@ -1,30 +1,11 @@
-// import React, { useMemo, useEffect, useRef } from 'react'
-// import PropTypes from 'prop-types'
-
-// import Map from './../Map/Map'
-
-import './MapView.scss'
-
-/**
- * MapView contains the Explorer map.
- */
-// const MapView = ({ ...props }) => {
-//   return (
-//     <div className="view-map">
-//       <Map></Map>
-//     </div>
-//   )
-//
-//   // return <div className="view-map"></div>
-// }
-
-// MapView.propTypes = {}
-//
-// export default MapView
-
 import React, { useMemo, useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core'
-import { getLayers, SEDA_SOURCES } from './selectors'
+import {
+  getLayers,
+  // SEDA_SOURCES,
+  CPAL_SOURCES,
+} from './selectors'
+import {} from './selectors'
 import MapBase, {
   useFlyToState,
   useFlyToFeature,
@@ -50,6 +31,8 @@ import {
 import { REGION_TO_ID_LENGTH } from './../../../../constants/regions'
 import useData from './../hooks/useData'
 
+import './MapView.scss'
+
 const selectedColors = getSelectedColors()
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const SedaMap = props => {
+const MapView = props => {
   /** current options for the map */
   const [metric, demographic, region] = useActiveOptionIds()
   /** currently active data filters */
@@ -150,7 +133,7 @@ const SedaMap = props => {
   return (
     <MapBase
       selectedColors={selectedColors}
-      sources={SEDA_SOURCES}
+      sources={CPAL_SOURCES}
       layers={layers}
       idMap={idMap}
       selectedIds={locationIds}
@@ -165,4 +148,4 @@ const SedaMap = props => {
   )
 }
 
-export default SedaMap
+export default MapView

@@ -52,47 +52,47 @@ const getFeatureFromCollection = (id, collection) => {
  * @param {number} lon
  * @returns {string}
  */
-const getTilequeryUrl = (region, lat, lon) =>
-  'https://api.mapbox.com/v4/' +
-  process.env.REACT_APP_MAPBOX_USER +
-  '.' +
-  region +
-  '-' +
-  // TODO: update to prod when it's available
-  (process.env.NODE_ENV === 'production' ? 'dev' : 'dev') +
-  '/tilequery/' +
-  lon +
-  ',' +
-  lat +
-  '.json?radius=10000&access_token=' +
-  process.env.REACT_APP_MAPBOX_ACCESS_TOKEN // process.env.MAPBOX_API_TOKEN
-
-/**
- * Loads a feature from a location object containing a feature ID,
- * latitude, and longitude
- * @param {object} location
- * @returns {Promise<Feature>}
- */
-export const loadFeatureFromCoords = ({ id, lat, lon }) => {
-  const region =
-    id.length === 5
-      ? 'counties'
-      : id.length === 12
-      ? 'schools'
-      : 'districts'
-  return axios
-    .get(getTilequeryUrl(region, lat, lon))
-    .then(res => {
-      return getFeatureFromCollection(id, res.data.features)
-    })
-}
-
-/**
- * Loads map features based on a string of locations
- * @param {string} locations locations formed as `{id},{lat},{lon}` separated by a `+`
- * @returns {Promise<Array<Feature>>}
- */
-export const loadFeaturesFromCoords = locationsArray =>
-  Promise.all(
-    locationsArray.map(l => loadFeatureFromCoords(l)),
-  )
+// const getTilequeryUrl = (region, lat, lon) =>
+//   'https://api.mapbox.com/v4/' +
+//   process.env.REACT_APP_MAPBOX_USER +
+//   '.' +
+//   region +
+//   '-' +
+//   // TODO: update to prod when it's available
+//   (process.env.NODE_ENV === 'production' ? 'dev' : 'dev') +
+//   '/tilequery/' +
+//   lon +
+//   ',' +
+//   lat +
+//   '.json?radius=10000&access_token=' +
+//   process.env.REACT_APP_MAPBOX_ACCESS_TOKEN // process.env.MAPBOX_API_TOKEN
+//
+// /**
+//  * Loads a feature from a location object containing a feature ID,
+//  * latitude, and longitude
+//  * @param {object} location
+//  * @returns {Promise<Feature>}
+//  */
+// export const loadFeatureFromCoords = ({ id, lat, lon }) => {
+//   const region =
+//     id.length === 5
+//       ? 'counties'
+//       : id.length === 12
+//       ? 'schools'
+//       : 'districts'
+//   return axios
+//     .get(getTilequeryUrl(region, lat, lon))
+//     .then(res => {
+//       return getFeatureFromCollection(id, res.data.features)
+//     })
+// }
+//
+// /**
+//  * Loads map features based on a string of locations
+//  * @param {string} locations locations formed as `{id},{lat},{lon}` separated by a `+`
+//  * @returns {Promise<Array<Feature>>}
+//  */
+// export const loadFeaturesFromCoords = locationsArray =>
+//   Promise.all(
+//     locationsArray.map(l => loadFeatureFromCoords(l)),
+//   )

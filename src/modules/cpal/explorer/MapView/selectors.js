@@ -2,11 +2,14 @@ import { fromJS } from 'immutable'
 import {
   getRegionFromLocationId,
   getChoroplethColors,
+  getMetricColors,
   getDemographicIdFromVarName,
   getMetricIdFromVarName,
   getMetricRange,
   isGapVarName,
 } from './../selectors'
+import { redlines } from './../../../../data/TXDallas1937Redline.js'
+import { districts } from './../../../../data/districts.js'
 
 const noDataFill = '#ccc'
 
@@ -35,7 +38,39 @@ export const getStopsForVarName = (
   return colors.map((c, i) => [min + i * stepSize, c])
 }
 
+const getSchoolFillStyle = (varName, region, colors) => {
+  console.log(
+    'getSchoolFillStyle, ',
+    varName,
+    region,
+    colors,
+  )
+  const stops = getStopsForVarName(
+    varName,
+    region,
+    colors,
+  ).reduce((acc, curr) => [...acc, ...curr], [])
+  return [
+    'case',
+    [
+      '==',
+      ['get', 'metric_' + getMetricIdFromVarName(varName)],
+      -999,
+    ],
+    noDataFill,
+    ['has', 'metric_' + getMetricIdFromVarName(varName)],
+    [
+      'interpolate',
+      ['linear'],
+      ['get', 'metric_' + getMetricIdFromVarName(varName)],
+      ...stops,
+    ],
+    noDataFill,
+  ]
+}
+
 const getFillStyle = (varName, region, colors) => {
+  console.log('getFillStyle, ', varName, region, colors)
   const stops = getStopsForVarName(
     varName,
     region,
@@ -98,8 +133,51 @@ export const getCircleHighlightLayer = ({
 }) =>
   fromJS({
     id: layerId || region + '-circle-highlight',
-    source: 'seda',
+    source: 'testpoint',
     'source-layer': 'schools',
+    type: 'circle',
+    minzoom: getCircleMinZoom(region),
+    interactive: false,
+    layout: {
+      visibility: 'visible',
+    },
+    paint: {
+      'circle-color': 'rgba(0,0,0,0)',
+      'circle-opacity': 1,
+      'circle-radius': getCircleRadius(region, -3),
+      'circle-stroke-opacity': 1,
+      'circle-stroke-color': [
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        '#f00',
+        [
+          'string',
+          ['feature-state', 'selected'],
+          'rgba(0,0,0,0)',
+        ],
+      ],
+      'circle-stroke-width': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        4,
+        2,
+        6,
+        2,
+        14,
+        4,
+      ],
+    },
+  })
+
+export const getSchoolCircleHighlightLayer = ({
+  layerId,
+  region,
+}) =>
+  fromJS({
+    id: layerId || region + '-circle-highlight',
+    source: 'testpoint',
+    // 'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
     interactive: false,
@@ -142,12 +220,20 @@ export const getCircleLayer = ({
   demographic,
   colors,
 }) => {
+  console.log(
+    'getCircleLayer, layerId = ',
+    layerId,
+    region,
+    metric,
+    demographic,
+    colors,
+  )
   return fromJS({
     id: layerId || 'schools-circle',
-    source: 'seda',
+    source: 'testpoint',
     'source-layer': 'schools',
     type: 'circle',
-    minzoom: getCircleMinZoom(region),
+    minzoom: 1, // getCircleMinZoom(region),
     // interactive: region === 'schools',
     interactive: true,
     layout: {
@@ -160,9 +246,68 @@ export const getCircleLayer = ({
         'schools',
         colors,
       ),
-      'circle-opacity': getCircleOpacity(region),
-      'circle-radius': getCircleRadius(region),
-      'circle-stroke-opacity': getCircleOpacity(region),
+      'circle-opacity': 1, // getCircleOpacity(region),
+      'circle-radius': 4, // getCircleRadius(region),
+      'circle-stroke-opacity': 1, // getCircleOpacity(region),
+      'circle-stroke-color': '#fff',
+      'circle-stroke-width': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        4,
+        0,
+        6,
+        0.5,
+        14,
+        2,
+      ],
+    },
+  })
+}
+
+export const getSchoolCircleLayer = ({
+  layerId,
+  region,
+  metric,
+  demographic,
+  colors,
+}) => {
+  console.log(
+    'getSchoolCircleLayer, layerId = ',
+    layerId,
+    region,
+    metric,
+    demographic,
+    colors,
+  )
+  console.log(
+    'logging out fill test',
+    getSchoolFillStyle(
+      [demographic, metric].join('_'),
+      'schools',
+      getMetricColors(metric),
+    ),
+  )
+  return fromJS({
+    id: layerId || 'schools-circle',
+    source: 'testpoint',
+    // 'source-layer': 'schools',
+    type: 'circle',
+    minzoom: 1, // getCircleMinZoom(region),
+    // interactive: region === 'schools',
+    interactive: true,
+    layout: {
+      visibility: 'visible',
+    },
+    paint: {
+      'circle-color': getSchoolFillStyle(
+        [demographic, metric].join('_'),
+        'schools',
+        getMetricColors(metric),
+      ),
+      'circle-opacity': 1, // getCircleOpacity(region),
+      'circle-radius': 4, // getCircleRadius(region),
+      'circle-stroke-opacity': 1, // getCircleOpacity(region),
       'circle-stroke-color': '#fff',
       'circle-stroke-width': [
         'interpolate',
@@ -186,7 +331,7 @@ export const getCircleCasingLayer = ({
 }) =>
   fromJS({
     id: layerId || region + '-circle-casing',
-    source: 'seda',
+    source: 'testpoint',
     'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
@@ -225,7 +370,7 @@ export const getCircleCasingLayer = ({
 export const getChoroplethOutline = ({ layerId, region }) =>
   fromJS({
     id: layerId || region + '-choropleth-outline',
-    source: 'seda',
+    source: 'redlines',
     'source-layer': region,
     type: 'line',
     interactive: false,
@@ -263,7 +408,7 @@ export const getChoroplethOutlineCasing = ({
 }) =>
   fromJS({
     id: layerId || region + '-choropleth-outline-casing',
-    source: 'seda',
+    source: 'schools',
     'source-layer': region,
     type: 'line',
     interactive: false,
@@ -330,7 +475,7 @@ export const getChoroplethLayer = ({
 }) =>
   fromJS({
     id: layerId || region + '-choropleth',
-    source: 'seda',
+    source: 'redlines',
     'source-layer':
       region === 'schools' ? 'districts' : region,
     type: 'fill',
@@ -363,6 +508,7 @@ export const getChoroplethLayer = ({
  * @param {*} context { metric, demographic, region}
  */
 export const getChoroplethLayers = context => {
+  console.log('getChoroplethLayers', context)
   return [
     {
       z: 1,
@@ -374,37 +520,119 @@ export const getChoroplethLayers = context => {
   ]
 }
 
+// export const getCircleLayers = context => {
+//   console.log('getCircleLayers', context)
+//   return [
+//     { z: 50, style: getCircleHighlightLayer(context) },
+//     {
+//       z: 50,
+//       style: getCircleLayer(context),
+//       idMap: true,
+//       hasFeatureId: isCircleId,
+//     },
+//     { z: 50, style: getCircleCasingLayer(context) },
+//   ]
+// }
+//
+//
+//
+
 export const getCircleLayers = context => {
+  console.log('getCircleLayers', context)
   return [
-    { z: 50, style: getCircleHighlightLayer(context) },
     {
-      z: 50,
-      style: getCircleLayer(context),
+      z: 150,
+      style: getSchoolCircleHighlightLayer(context),
+    },
+    {
+      z: 150,
+      style: getSchoolCircleLayer(context),
       idMap: true,
       hasFeatureId: isCircleId,
     },
-    { z: 50, style: getCircleCasingLayer(context) },
+    // { z: 50, style: getCircleCasingLayer(context) },
   ]
 }
 
 export const getLayers = context => {
+  console.log('getLayers', context)
   return [
-    ...getChoroplethLayers(context),
+    // ...getChoroplethLayers(context),
+    // ...getCircleLayers(context),
     ...getCircleLayers(context),
   ]
 }
 
-export const SEDA_SOURCES = fromJS({
-  seda: {
-    url:
-      'mapbox://hyperobjekt.states-v4-' +
-      process.env.REACT_APP_BUILD_ID +
-      ',hyperobjekt.counties-v4-' +
-      process.env.REACT_APP_BUILD_ID +
-      ',hyperobjekt.districts-v4-' +
-      process.env.REACT_APP_BUILD_ID +
-      ',hyperobjekt.schools-v4-' +
-      process.env.REACT_APP_BUILD_ID,
-    type: 'vector',
+// export const SEDA_SOURCES = fromJS({
+//   seda: {
+//     url:
+//       'mapbox://hyperobjekt.states-v4-' +
+//       process.env.REACT_APP_BUILD_ID +
+//       ',hyperobjekt.counties-v4-' +
+//       process.env.REACT_APP_BUILD_ID +
+//       ',hyperobjekt.districts-v4-' +
+//       process.env.REACT_APP_BUILD_ID +
+//       ',hyperobjekt.schools-v4-' +
+//       process.env.REACT_APP_BUILD_ID,
+//     type: 'vector',
+//   },
+// })
+
+export const CPAL_SOURCES = fromJS({
+  // schools: {
+  //   type: `geojson`,
+  //   data: {},
+  // },
+  districts: {
+    type: `geojson`,
+    data: districts,
+  },
+  redlines: {
+    type: `geojson`,
+    data: redlines,
+  },
+  testpoint: {
+    type: `geojson`,
+    data: {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          properties: {
+            name: 'School Name A',
+            metric_cri: 20,
+            metric_econ: 15,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-97.011731, 32.8203525],
+          },
+        },
+        {
+          type: 'Feature',
+          properties: {
+            name: 'School Name B',
+            metric_cri: 120,
+            metric_econ: 150,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-97.012831, 32.8403625],
+          },
+        },
+        {
+          type: 'Feature',
+          properties: {
+            name: 'School Name C',
+            metric_cri: 80,
+            metric_econ: 15,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-97.022831, 32.8903625],
+          },
+        },
+      ],
+    },
   },
 })

@@ -1,6 +1,7 @@
 import create from 'zustand'
 import {
-  loadFeatureFromCoords, loadFeaturesFromRoute,
+  // loadFeatureFromCoords,
+  loadFeaturesFromRoute,
 } from '../utils'
 
 /**
@@ -26,8 +27,8 @@ const [useData] = create((set, get) => ({
       const newState = {
         data: {
           ...state.data,
-          [featureData.id]: featureData
-        }
+          [featureData.id]: featureData,
+        },
       }
       return newState
     })
@@ -37,19 +38,23 @@ const [useData] = create((set, get) => ({
     if (get().data[id]) return get().data[id]
     // load the feature
     set({ loading: true })
-    const feature = await loadFeatureFromCoords({ id, lat, lon })
+    const feature = await loadFeatureFromCoords({
+      id,
+      lat,
+      lon,
+    })
     set(state => {
       return {
         data: {
           ...state.data,
-          ...getFeatureData([feature])
+          ...getFeatureData([feature]),
         },
-        loading: false
+        loading: false,
       }
     })
     return feature
   },
-  loadDataFromRoute: async (route) => {
+  loadDataFromRoute: async route => {
     // load the features
     set({ loading: true })
     const features = await loadFeaturesFromRoute(route)
@@ -58,11 +63,11 @@ const [useData] = create((set, get) => ({
     set(state => ({
       data: {
         ...state.data,
-        ...getFeatureData(features)
+        ...getFeatureData(features),
       },
-      loading: false
+      loading: false,
     }))
-    return features;
+    return features
   },
 }))
 

@@ -49,10 +49,10 @@ const getUpdatedLocations = (locations, features) => {
   }, locations)
 }
 
-const defaultMetric = 'avg'
+const defaultMetric = 'cri' // 'avg'
 const defaultSecondary = 'ses'
 const defaultDemographic = 'all'
-const defaultRegion = 'counties'
+const defaultRegion = 'schools'
 
 /**
  * Gets state changes required to activate location

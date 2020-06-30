@@ -9,11 +9,23 @@ export const getHighLow = (value, metric) => {
   }
   switch (metric) {
     case 'avg':
-      return value > 0.3 ? 'HIGH' : value < -0.3 ? 'LOW' : 'MID'
+      return value > 0.3
+        ? 'HIGH'
+        : value < -0.3
+        ? 'LOW'
+        : 'MID'
     case 'coh':
-      return value > 0.1 ? 'HIGH' : value < -0.1 ? 'LOW' : 'MID'
+      return value > 0.1
+        ? 'HIGH'
+        : value < -0.1
+        ? 'LOW'
+        : 'MID'
     case 'grd':
-      return value > 1.09 ? 'HIGH' : value < 0.91 ? 'LOW' : 'MID'
+      return value > 1.09
+        ? 'HIGH'
+        : value < 0.91
+        ? 'LOW'
+        : 'MID'
     default:
       return ''
   }
@@ -48,7 +60,9 @@ export const isFeature = feature => {
 }
 
 export const getFeatureFromArray = (features, id) => {
-  return features.find(l => getFeatureProperty(l, 'id') === id)
+  return features.find(
+    l => getFeatureProperty(l, 'id') === id,
+  )
 }
 
 /**
@@ -65,7 +79,8 @@ export {
   isColorInvertedForVarName,
   getChoroplethColorAtValue,
   getChoroplethColors,
-  getSelectedColors
+  getMetricColors,
+  getSelectedColors,
 } from './colors'
 export {
   getDemographicForVarNames,
@@ -78,7 +93,7 @@ export {
   getGapById,
   getDemographicById,
   getGaps,
-  getDemographics
+  getDemographics,
 } from './demographics'
 export {
   valueToLowMidHigh,
@@ -89,7 +104,7 @@ export {
   getMetrics,
   getMetricRange,
   getKeyMetrics,
-  getSecondaryForDemographic
+  getSecondaryForDemographic,
 } from './metrics'
 export {
   getRegionFromFeature,
@@ -100,7 +115,7 @@ export {
   getSingularRegions,
   getRegions,
   getLocationIdsForRegion,
-  getSizesForRegion
+  getSizesForRegion,
 } from './regions'
 export {
   getPositionForVarNameValue,
@@ -109,12 +124,12 @@ export {
   getMidpointForVarName,
   getMetricRangeFromVarName,
   getVarNames,
-  getDataForId
+  getDataForId,
 } from './data'
 export {
   getRegionLabel,
   getMetricLabel,
   getDemographicLabel,
   getLabelFromVarName,
-  getLabelsFromVarNames
+  getLabelsFromVarNames,
 } from './lang'
