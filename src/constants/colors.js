@@ -99,4 +99,16 @@ export const COMM_COLORS = [
   '#136e4a',
 ]
 
+export const DISTRICT_COLORS = {
+  57916: 'green',
+  57905: 'red',
+}
+
+export const REDLINE_COLORS = {
+  A: 'blue',
+  B: 'yellow',
+  C: 'orange',
+  D: 'red',
+}
+
 export const NO_DATA_COLOR = '#ccc'

@@ -4,6 +4,7 @@ import {
   CRI_COLORS,
   ECON_COLORS,
   NO_DATA_COLOR,
+  DISTRICT_COLORS,
 } from './../../../../constants/colors'
 import { interpolateRgbBasis } from 'd3-interpolate'
 import { isGapVarName } from './demographics'
@@ -34,6 +35,11 @@ export const getMetricColors = metric => {
     case 'comm':
       return COMM_COLORS
   }
+}
+
+export const getDistrictColor = id => {
+  console.log('getDistrictColor, ', id)
+  return DISTRICT_COLORS[id]
 }
 
 /**

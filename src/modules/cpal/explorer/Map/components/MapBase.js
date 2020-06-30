@@ -20,10 +20,12 @@ import useMapStore from '../store'
  * Returns an array of layer ids for layers that have the
  * interactive property set to true
  */
-const getInteractiveLayerIds = layers =>
+const getInteractiveLayerIds = layers => {
+  console.log('getInteractiveLayerIds', layers)
   layers
     .filter(l => l.style.get('interactive'))
     .map(l => l.style.get('id'))
+}
 
 /**
  * Returns the map style with the provided layers inserted

@@ -7,7 +7,12 @@ import {
   getMetricIdFromVarName,
   getMetricRange,
   isGapVarName,
+  getDistrictColor,
 } from './../selectors'
+import {
+  DISTRICT_COLORS,
+  REDLINE_COLORS,
+} from './../../../../constants/colors'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
 
@@ -170,7 +175,7 @@ export const getCircleHighlightLayer = ({
     },
   })
 
-export const getSchoolCircleHighlightLayer = ({
+export const getSchoolCircleHoverLayer = ({
   layerId,
   region,
 }) =>
@@ -180,7 +185,7 @@ export const getSchoolCircleHighlightLayer = ({
     // 'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
-    interactive: false,
+    interactive: true,
     layout: {
       visibility: 'visible',
     },
@@ -192,12 +197,9 @@ export const getSchoolCircleHighlightLayer = ({
       'circle-stroke-color': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
-        '#f00',
-        [
-          'string',
-          ['feature-state', 'selected'],
-          'rgba(0,0,0,0)',
-        ],
+
+        ['string', ['feature-state', 'selected'], '#fff'],
+        'rgba(0,0,0,0)',
       ],
       'circle-stroke-width': [
         'interpolate',
@@ -272,28 +274,12 @@ export const getSchoolCircleLayer = ({
   demographic,
   colors,
 }) => {
-  console.log(
-    'getSchoolCircleLayer, layerId = ',
-    layerId,
-    region,
-    metric,
-    demographic,
-    colors,
-  )
-  console.log(
-    'logging out fill test',
-    getSchoolFillStyle(
-      [demographic, metric].join('_'),
-      'schools',
-      getMetricColors(metric),
-    ),
-  )
   return fromJS({
     id: layerId || 'schools-circle',
     source: 'testpoint',
     // 'source-layer': 'schools',
     type: 'circle',
-    minzoom: 1, // getCircleMinZoom(region),
+    minzoom: getCircleMinZoom(region),
     // interactive: region === 'schools',
     interactive: true,
     layout: {
@@ -305,9 +291,15 @@ export const getSchoolCircleLayer = ({
         'schools',
         getMetricColors(metric),
       ),
-      'circle-opacity': 1, // getCircleOpacity(region),
-      'circle-radius': 4, // getCircleRadius(region),
-      'circle-stroke-opacity': 1, // getCircleOpacity(region),
+      'circle-opacity': 1,
+      // 4,
+      'circle-radius': [
+        'case',
+        ['boolean', ['feature-state', 'hover'], true],
+        4,
+        7,
+      ],
+      'circle-stroke-opacity': 1,
       'circle-stroke-color': '#fff',
       'circle-stroke-width': [
         'interpolate',
@@ -397,6 +389,84 @@ export const getChoroplethOutline = ({ layerId, region }) =>
       ],
     },
   })
+
+export const getDistrictOutline = ({ layerId, region }) => {
+  console.log('getDistrictOutline(), ', region)
+  return fromJS({
+    id: region + '-district-outline', // layerId || region + '-district-outline',
+    source: 'districts',
+    // 'source-layer': region,
+    type: 'line',
+    layout: {
+      visibility: 'visible',
+    },
+    interactive: false,
+    paint: {
+      'line-color': [
+        'string',
+        [
+          'get',
+          ['get', 'tea_id'],
+          ['literal', DISTRICT_COLORS],
+        ],
+        'blue',
+      ],
+      'line-width': 2,
+    },
+  })
+}
+
+export const getRedlineShapes = ({ layerId, region }) => {
+  console.log('getRedlineShapes(), ', region)
+  return fromJS({
+    id: region + '-redline-shapes', // layerId || region + '-district-outline',
+    source: 'redlines',
+    // 'source-layer': region,
+    type: 'fill',
+    layout: {
+      visibility: 'visible',
+    },
+    interactive: false,
+    paint: {
+      'fill-color': [
+        'string',
+        [
+          'get',
+          ['get', 'holc_grade'],
+          ['literal', REDLINE_COLORS],
+        ],
+        'blue',
+      ],
+      'fill-opacity': 0.2,
+    },
+  })
+}
+
+export const getRedlineLines = ({ layerId, region }) => {
+  console.log('getRedlineLines(), ', region)
+  return fromJS({
+    id: region + '-redline-lines', // layerId || region + '-district-outline',
+    source: 'redlines',
+    // 'source-layer': region,
+    type: 'line',
+    layout: {
+      visibility: 'visible',
+    },
+    interactive: false,
+    paint: {
+      'line-color': [
+        'string',
+        [
+          'get',
+          ['get', 'holc_grade'],
+          ['literal', REDLINE_COLORS],
+        ],
+        'blue',
+      ],
+      'line-width': 2,
+    },
+  })
+}
 
 /**
  * Gets the mapboxgl layer for the choropleth outline
@@ -537,13 +607,41 @@ export const getChoroplethLayers = context => {
 //
 //
 
-export const getCircleLayers = context => {
-  console.log('getCircleLayers', context)
+export const getDistrictLayers = context => {
+  console.log('getDistrictLayers', context)
   return [
     {
-      z: 150,
-      style: getSchoolCircleHighlightLayer(context),
+      z: 100,
+      style: getDistrictOutline(context),
     },
+  ]
+}
+
+export const getRedlineLayers = context => {
+  console.log('getRedlineLayers', context)
+  return [
+    {
+      z: 140,
+      style: getRedlineShapes(context),
+    },
+    {
+      z: 141,
+      style: getRedlineLines(context),
+    },
+  ]
+}
+
+export const getAssetLayers = context => {
+  console.log('getCircleLayers', context)
+}
+
+export const getCircleLayers = context => {
+  // console.log('getCircleLayers', context)
+  return [
+    // {
+    //   z: 150,
+    //   style: getSchoolCircleHoverLayer(context),
+    // },
     {
       z: 150,
       style: getSchoolCircleLayer(context),
@@ -560,6 +658,8 @@ export const getLayers = context => {
     // ...getChoroplethLayers(context),
     // ...getCircleLayers(context),
     ...getCircleLayers(context),
+    ...getDistrictLayers(context),
+    ...getRedlineLayers(context),
   ]
 }
 

@@ -81,6 +81,7 @@ export {
   getChoroplethColors,
   getMetricColors,
   getSelectedColors,
+  getDistrictColor,
 } from './colors'
 export {
   getDemographicForVarNames,
