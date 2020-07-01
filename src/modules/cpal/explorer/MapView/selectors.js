@@ -138,7 +138,7 @@ export const getCircleHighlightLayer = ({
 }) =>
   fromJS({
     id: layerId || region + '-circle-highlight',
-    source: 'testpoint',
+    source: 'schools',
     'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
@@ -181,7 +181,7 @@ export const getSchoolCircleHoverLayer = ({
 }) =>
   fromJS({
     id: layerId || region + '-circle-highlight',
-    source: 'testpoint',
+    source: 'schools',
     // 'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
@@ -222,17 +222,9 @@ export const getCircleLayer = ({
   demographic,
   colors,
 }) => {
-  console.log(
-    'getCircleLayer, layerId = ',
-    layerId,
-    region,
-    metric,
-    demographic,
-    colors,
-  )
   return fromJS({
     id: layerId || 'schools-circle',
-    source: 'testpoint',
+    source: 'schools',
     'source-layer': 'schools',
     type: 'circle',
     minzoom: 1, // getCircleMinZoom(region),
@@ -276,7 +268,7 @@ export const getSchoolCircleLayer = ({
 }) => {
   return fromJS({
     id: layerId || 'schools-circle',
-    source: 'testpoint',
+    source: 'schools',
     // 'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
@@ -323,7 +315,7 @@ export const getCircleCasingLayer = ({
 }) =>
   fromJS({
     id: layerId || region + '-circle-casing',
-    source: 'testpoint',
+    source: 'schools',
     'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
@@ -391,7 +383,7 @@ export const getChoroplethOutline = ({ layerId, region }) =>
   })
 
 export const getDistrictOutline = ({ layerId, region }) => {
-  console.log('getDistrictOutline(), ', region)
+  // console.log('getDistrictOutline(), ', region)
   return fromJS({
     id: region + '-district-outline', // layerId || region + '-district-outline',
     source: 'districts',
@@ -417,7 +409,7 @@ export const getDistrictOutline = ({ layerId, region }) => {
 }
 
 export const getRedlineShapes = ({ layerId, region }) => {
-  console.log('getRedlineShapes(), ', region)
+  // console.log('getRedlineShapes(), ', region)
   return fromJS({
     id: region + '-redline-shapes', // layerId || region + '-district-outline',
     source: 'redlines',
@@ -443,7 +435,7 @@ export const getRedlineShapes = ({ layerId, region }) => {
 }
 
 export const getRedlineLines = ({ layerId, region }) => {
-  console.log('getRedlineLines(), ', region)
+  // console.log('getRedlineLines(), ', region)
   return fromJS({
     id: region + '-redline-lines', // layerId || region + '-district-outline',
     source: 'redlines',
@@ -691,7 +683,7 @@ export const CPAL_SOURCES = fromJS({
     type: `geojson`,
     data: redlines,
   },
-  testpoint: {
+  schools: {
     type: `geojson`,
     data: {
       type: 'FeatureCollection',
@@ -705,7 +697,7 @@ export const CPAL_SOURCES = fromJS({
           },
           geometry: {
             type: 'Point',
-            coordinates: [-97.011731, 32.8203525],
+            coordinates: [-96.705731, 32.6403525],
           },
         },
         {
@@ -717,7 +709,7 @@ export const CPAL_SOURCES = fromJS({
           },
           geometry: {
             type: 'Point',
-            coordinates: [-97.012831, 32.8403625],
+            coordinates: [-96.705731, 32.7403525],
           },
         },
         {
@@ -729,7 +721,43 @@ export const CPAL_SOURCES = fromJS({
           },
           geometry: {
             type: 'Point',
-            coordinates: [-97.022831, 32.8903625],
+            coordinates: [-96.705731, 32.8403525],
+          },
+        },
+        {
+          type: 'Feature',
+          properties: {
+            name: 'School Name D',
+            metric_cri: 40,
+            metric_econ: 15,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-96.735731, 32.6403525],
+          },
+        },
+        {
+          type: 'Feature',
+          properties: {
+            name: 'School Name E',
+            metric_cri: 150,
+            metric_econ: 150,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-96.735731, 32.7403525],
+          },
+        },
+        {
+          type: 'Feature',
+          properties: {
+            name: 'School Name F',
+            metric_cri: 200,
+            metric_econ: 15,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-96.735731, 32.8403525],
           },
         },
       ],

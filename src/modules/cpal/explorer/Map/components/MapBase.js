@@ -14,7 +14,7 @@ import usePrevious from './../../../../../shared/hooks/usePrevious'
 import { defaultMapStyle } from '../selectors'
 import { getClosest } from '../utils'
 import { useMapViewport, useFlyToReset } from '../store'
-import ZoomToControl from './ZoomToControl'
+// import ZoomToControl from './ZoomToControl'
 import useMapStore from '../store'
 /**
  * Returns an array of layer ids for layers that have the
@@ -319,10 +319,6 @@ const MapBase = ({
             <NavigationControl
               showCompass={false}
               onViewportChange={setViewport}
-            />
-            <ZoomToControl
-              title="Reset Zoom"
-              onClick={handleResetViewport}
             />
           </div>
           {children}
