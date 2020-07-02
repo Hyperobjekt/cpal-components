@@ -19,7 +19,6 @@ import {
   getVarNames,
   getDataForId,
 } from '../selectors/data'
-import useScatterplotStore from './../scatterplot/store'
 import useData from './useData'
 
 /**
