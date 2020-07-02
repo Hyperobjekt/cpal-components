@@ -83,6 +83,7 @@ const MapView = props => {
 
   /** handler for map hover */
   const handleHover = (feature, coords) => {
+    console.log('handleHover, ', feature, coords)
     const id = getFeatureProperty(feature, 'id')
     if (id && id !== hoveredId) {
       addFeatureData(feature.properties)
