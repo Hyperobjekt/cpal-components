@@ -8,17 +8,26 @@ const [useUiStore] = create(set => ({
   hovered: null,
   setHovered: (
     hoveredId,
+    hoveredType,
     coords,
-    options = { showTooltip: true, showMarkers: true }
-  ) =>
+    options = { showTooltip: true, showMarkers: true },
+  ) => {
+    console.log(
+      'setHovered',
+      hoveredId,
+      hoveredType,
+      coords,
+    )
     hoveredId
       ? set(state => ({
           hovered: hoveredId,
+          type: hoveredType,
           coords: coords ? coords : state.coords,
           showTooltip: options.showTooltip,
-          showMarkers: options.showMarkers
+          showMarkers: options.showMarkers,
         }))
-      : set({ showTooltip: false, showMarkers: false }),
+      : set({ showTooltip: true, showMarkers: false })
+  },
   // x, y coords of tooltip
   coords: [0, 0],
   setCoords: coords => set({ coords }),
@@ -35,11 +44,15 @@ const [useUiStore] = create(set => ({
   // boolean determining if link dialog is open
   showLinkDialog: false,
   toggleLinkDialog: () =>
-    set(state => ({ showLinkDialog: !state.showLinkDialog })),
+    set(state => ({
+      showLinkDialog: !state.showLinkDialog,
+    })),
   // boolean determining if link dialog is open
   showEmbedDialog: false,
   toggleEmbedDialog: () =>
-    set(state => ({ showEmbedDialog: !state.showEmbedDialog })),
+    set(state => ({
+      showEmbedDialog: !state.showEmbedDialog,
+    })),
   // boolean determining if help is open
   showHelp: false,
   toggleHelp: () =>
@@ -62,7 +75,7 @@ const [useUiStore] = create(set => ({
   setFilterPanel: filterPanel => set({ filterPanel }),
   setViewFromRoute: params => {
     set({ view: params.view })
-  }
+  },
 }))
 
 export default useUiStore

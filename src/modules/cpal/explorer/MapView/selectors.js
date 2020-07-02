@@ -157,11 +157,12 @@ export const getCircleHighlightLayer = ({
         'case',
         ['boolean', ['feature-state', 'hover'], false],
         '#f00',
-        [
-          'string',
-          ['feature-state', 'selected'],
-          'rgba(0,0,0,0)',
-        ],
+        '#000',
+        // [
+        //   'string',
+        //   ['feature-state', 'selected'],
+        //   'rgba(0,0,0,0)',
+        // ],
       ],
       'circle-stroke-width': [
         'interpolate',
@@ -292,7 +293,12 @@ export const getSchoolCircleLayer = ({
         5,
       ],
       'circle-stroke-opacity': 1,
-      'circle-stroke-color': '#fff',
+      'circle-stroke-color': [
+        'case',
+        ['boolean', ['feature-state', 'hover'], true],
+        '#fff',
+        '#000',
+      ],
       'circle-stroke-width': [
         'interpolate',
         ['linear'],
@@ -549,6 +555,16 @@ const isCircleId = id => {
   return featureRegion === 'schools'
 }
 
+const isSchoolCircleId = id => {
+  console.log('isSchoolCircleId')
+  if (!id) {
+    return false
+  }
+  // const featureRegion = getRegionFromLocationId(id)
+  // return featureRegion === 'schools'
+  return 'schools'
+}
+
 export const getChoroplethLayer = ({
   layerId,
   region,
@@ -626,6 +642,9 @@ export const getDistrictLayers = context => {
     {
       z: 150,
       style: getDistrictOutline(context),
+      idMap: true,
+      hasFeatureId: true, // isCircleId,
+      type: `districts`,
     },
   ]
 }
@@ -636,10 +655,16 @@ export const getRedlineLayers = context => {
     {
       z: 140,
       style: getRedlineShapes(context),
+      idMap: true,
+      hasFeatureId: true, // isCircleId,
+      type: `redlineShapes`,
     },
     {
       z: 141,
       style: getRedlineLines(context),
+      idMap: true,
+      hasFeatureId: true, // isCircleId,
+      type: `redlineLines`,
     },
   ]
 }
@@ -671,7 +696,8 @@ export const getCircleLayers = context => {
       z: 150,
       style: getSchoolCircleLayer(context),
       idMap: true,
-      hasFeatureId: isCircleId,
+      hasFeatureId: isSchoolCircleId,
+      type: `schools`,
     },
     // { z: 50, style: getCircleCasingLayer(context) },
   ]

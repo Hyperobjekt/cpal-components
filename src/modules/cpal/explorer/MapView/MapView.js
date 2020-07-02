@@ -51,7 +51,7 @@ const MapView = props => {
   /** currently selected location ids */
   const [locations] = useLocations()
   /** id of the currently hovered location */
-  const [hoveredId, setHovered] = useHovered()
+  const [hoveredId, hoveredType, setHovered] = useHovered()
   /** id of the active location */
   const activeFeature = useActiveLocationFeature()
   /** boolean determining if the hovered location should show */
@@ -85,12 +85,14 @@ const MapView = props => {
   const handleHover = (feature, coords) => {
     // console.log('handleHover, ', feature, coords)
     const id = getFeatureProperty(feature, 'id')
+    let type = null
     if (
       feature &&
       feature.layer &&
       feature.layer.id === 'schools-districts-outline'
     ) {
       console.log('District border hovered.')
+      type = `district`
     }
     if (
       feature &&
@@ -98,16 +100,18 @@ const MapView = props => {
       feature.layer.id === 'schools-circle'
     ) {
       console.log('School circle hovered.')
+      type = `school`
     }
 
-    // console.log('handleHover, ', feature.layer.id, id)
-    if (id && id !== hoveredId) {
+    // console.log('handleHover, ', id)
+    if (id && id !== hoveredId && !!type) {
       addFeatureData(feature.properties)
       // add schools to the ID map
       // id.length === REGION_TO_ID_LENGTH['schools'] &&
       //   addToIdMap(feature.id, id)
+      setHovered(id, type, coords)
     }
-    setHovered(id, coords)
+    // setHovered(id, type, coords)
   }
 
   /** handler for map click */
@@ -154,9 +158,8 @@ const MapView = props => {
       layers={layers}
       idMap={idMap}
       selectedIds={locationIds}
-      hoveredId={
-        showHovered && hoveredId ? hoveredId : undefined
-      }
+      hoveredId={hoveredId ? hoveredId : undefined}
+      hoveredType={hoveredType ? hoveredType : undefined}
       ariaLabel={ariaLabel}
       onHover={handleHover}
       onLoad={handleLoad}

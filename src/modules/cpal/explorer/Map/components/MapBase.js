@@ -27,6 +27,10 @@ const getInteractiveLayerIds = layers => {
     .map(l => l.style.get('id'))
 }
 
+const matchFeatureId = (layer, id) => {
+  return
+}
+
 /**
  * Returns the map style with the provided layers inserted
  * @param {Map} style immutable Map of the base mapboxgl style
@@ -52,6 +56,7 @@ const MapBase = ({
   style,
   attributionControl,
   hoveredId,
+  hoveredType,
   selectedIds,
   layers,
   sources,
@@ -107,7 +112,13 @@ const MapBase = ({
    * @param {object} state
    */
   const setFeatureState = useCallback(
-    (featureId, state) => {
+    (featureId, type, state) => {
+      console.log(
+        'setFeatureState()',
+        featureId,
+        type,
+        state,
+      )
       if (
         !loaded ||
         !featureId ||
@@ -115,10 +126,17 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      console.log('setFeatureState()', featureId, state)
+      console.log(
+        'setFeatureState()',
+        featureId,
+        type,
+        state,
+      )
+      console.log('layers', layers)
       const layer = layers.find(
         l => l.hasFeatureId && l.hasFeatureId(featureId),
       )
+      console.log('layer = ', layer)
       const id = idMap[featureId]
         ? idMap[featureId]
         : featureId
@@ -251,12 +269,16 @@ const MapBase = ({
 
   // set hovered outline when hoveredId changes
   useEffect(() => {
+    console.log('hoveredId changed')
     prev &&
       prev.hoveredId &&
-      setFeatureState(prev.hoveredId, {
+      setFeatureState(prev.hoveredId, hoveredType, {
         hover: false,
       })
-    hoveredId && setFeatureState(hoveredId, { hover: true })
+    hoveredId &&
+      setFeatureState(hoveredId, hoveredType, {
+        hover: true,
+      })
     // eslint-disable-next-line
   }, [hoveredId, loaded]) // update only when hovered id changes
 
