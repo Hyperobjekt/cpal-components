@@ -115,6 +115,7 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
+      console.log('setFeatureState()', featureId, state)
       const layer = layers.find(
         l => l.hasFeatureId && l.hasFeatureId(featureId),
       )
@@ -124,7 +125,7 @@ const MapBase = ({
       if (layer) {
         const source = {
           source: layer.style.get('source'),
-          sourceLayer: layer.style.get('source-layer'),
+          // sourceLayer: layer.style.get('source-layer'),
           id,
         }
         currentMap.setFeatureState(source, state)
@@ -260,19 +261,19 @@ const MapBase = ({
   }, [hoveredId, loaded]) // update only when hovered id changes
 
   // set selected outlines when selected IDs change
-  useEffect(() => {
-    prev &&
-      prev.selectedIds &&
-      prev.selectedIds.forEach(id =>
-        setFeatureState(id, { selected: false }),
-      )
-    selectedIds.forEach((id, i) =>
-      setFeatureState(id, {
-        selected: selectedColors[i % selectedColors.length],
-      }),
-    )
-    // eslint-disable-next-line
-  }, [selectedIds, loaded]) // update only when selected ids change
+  // useEffect(() => {
+  //   prev &&
+  //     prev.selectedIds &&
+  //     prev.selectedIds.forEach(id =>
+  //       setFeatureState(id, { selected: false }),
+  //     )
+  //   selectedIds.forEach((id, i) =>
+  //     setFeatureState(id, {
+  //       selected: selectedColors[i % selectedColors.length],
+  //     }),
+  //   )
+  //   // eslint-disable-next-line
+  // }, [selectedIds, loaded]) // update only when selected ids change
 
   /** handler for resetting the viewport */
   const handleResetViewport = e => {

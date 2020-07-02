@@ -83,13 +83,29 @@ const MapView = props => {
 
   /** handler for map hover */
   const handleHover = (feature, coords) => {
-    console.log('handleHover, ', feature, coords)
+    // console.log('handleHover, ', feature, coords)
     const id = getFeatureProperty(feature, 'id')
+    if (
+      feature &&
+      feature.layer &&
+      feature.layer.id === 'schools-districts-outline'
+    ) {
+      console.log('District border hovered.')
+    }
+    if (
+      feature &&
+      feature.layer &&
+      feature.layer.id === 'schools-circle'
+    ) {
+      console.log('School circle hovered.')
+    }
+
+    // console.log('handleHover, ', feature.layer.id, id)
     if (id && id !== hoveredId) {
       addFeatureData(feature.properties)
       // add schools to the ID map
-      id.length === REGION_TO_ID_LENGTH['schools'] &&
-        addToIdMap(feature.id, id)
+      // id.length === REGION_TO_ID_LENGTH['schools'] &&
+      //   addToIdMap(feature.id, id)
     }
     setHovered(id, coords)
   }
