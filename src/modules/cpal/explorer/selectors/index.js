@@ -126,7 +126,6 @@ export {
   getMetricRangeFromVarName,
   getVarNames,
   getDataForId,
-  getSchoolData,
   getSchoolZones,
   getSchoolGeojson,
 } from './data'

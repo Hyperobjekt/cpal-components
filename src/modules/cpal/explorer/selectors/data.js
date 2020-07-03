@@ -1,3 +1,4 @@
+import circle from '@turf/circle'
 import {
   getMetricIdFromVarName,
   getMetricRange,
@@ -241,8 +242,7 @@ export const getDataForId = (
 
 /**
  * Generates geojson object with school zones (2 mile radius)
- * @param  {[type]} schools [description]
- * @return {[type]}         [description]
+ * @return  Object   GeoJSON Object of all schools in client-supplied data
  */
 export const getSchoolGeojson = () => {
   const data = schools
@@ -259,6 +259,7 @@ export const getSchoolGeojson = () => {
     // console.log('isInList, ', isInList)
     if (!!found) {
       // Add data to the properties.
+      el.properties.tea_id = found.tea_id
       el.properties.metric_cri = found.cri
       el.properties.metric_com_index = found.com_index
       el.properties.metric_econ_index = found.econ_index
@@ -272,24 +273,54 @@ export const getSchoolGeojson = () => {
   return newJson
 }
 
-export const getSchoolData = () => {
-  // console.log('getSchoolData')
+// export const getSchoolData = () => {
+//   // console.log('getSchoolData')
+//   const data = schools
+//   const features = schoolsGeojson.features
+//   data.forEach(el => {
+//     const feature = features.find(
+//       o => o.properties.SLN === el.TEA_ID,
+//     )
+//     // console.log('feature found ', feature)
+//     if (!!feature) {
+//       el.lat = feature.geometry.coordinates[1]
+//       el.lng = feature.geometry.coordinates[0]
+//     }
+//   })
+//   return data
+// }
+
+export const getSchoolZones = () => {
+  console.log('getSchoolZones')
   const data = schools
-  const features = schoolsGeojson.features
-  data.forEach(el => {
-    const feature = features.find(
-      o => o.properties.SLN === el.TEA_ID,
+  const origJson = schoolsGeojson
+  const newJson = {
+    type: 'FeatureCollection',
+    features: [],
+  }
+  const features = origJson.features
+  features.forEach(el => {
+    const found = data.find(
+      school => school.TEA_ID === el.properties.SLN,
     )
-    // console.log('feature found ', feature)
-    if (!!feature) {
-      el.lat = feature.geometry.coordinates[1]
-      el.lng = feature.geometry.coordinates[0]
+    if (!!found) {
+      // Add data to the properties.
+      var center = el.geometry.coordinates
+      console.log('center', center)
+      var radius = 2
+      var options = {
+        steps: 64,
+        units: 'miles',
+        properties: {
+          tea_id: found.TEA_ID,
+          metric_cri: found.cri,
+        },
+      }
+      const cir = circle(center, radius, options)
+      // Insert into new json object.
+      newJson.features.push(cir)
     }
   })
-  return data
-}
-
-export const getSchoolZones = data => {
-  console.log('getSchoolZones, ', data)
-  return {}
+  console.log('newJson', newJson)
+  return newJson
 }

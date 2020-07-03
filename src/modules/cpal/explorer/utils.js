@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { parseLocationsString } from './selectors/router'
-import Papa from 'papaparse'
 
 const FLAGGED_ENDPOINT =
   process.env.REACT_APP_DATA_ENDPOINT + 'flagged/'

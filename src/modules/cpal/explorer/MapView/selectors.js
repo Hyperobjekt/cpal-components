@@ -8,7 +8,6 @@ import {
   getMetricRange,
   isGapVarName,
   getDistrictColor,
-  getSchoolData,
   getSchoolZones,
   getSchoolGeojson,
 } from './../selectors'
@@ -200,7 +199,6 @@ export const getSchoolCircleHoverLayer = ({
       'circle-stroke-color': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
-
         ['string', ['feature-state', 'selected'], '#fff'],
         'rgba(0,0,0,0)',
       ],
@@ -407,6 +405,27 @@ export const getDistrictOutline = ({ layerId, region }) => {
         'blue',
       ],
       'line-width': 2,
+    },
+  })
+}
+
+export const getSchoolZoneShapes = ({
+  layerId,
+  region,
+}) => {
+  console.log('getSchoolZoneShapes(), ', region)
+  return fromJS({
+    id: region + '-school-zone-shapes', // layerId || region + '-district-outline',
+    source: 'schoolzones',
+    // 'source-layer': region,
+    type: 'fill',
+    layout: {
+      visibility: 'visible',
+    },
+    interactive: false,
+    paint: {
+      'fill-color': 'orange',
+      'fill-opacity': 0.2,
     },
   })
 }
@@ -627,7 +646,19 @@ export const getRedlineLayers = context => {
 }
 
 export const getAssetLayers = context => {
-  console.log('getCircleLayers', context)
+  console.log('getAssetLayers', context)
+}
+
+export const getSchoolZoneLayers = context => {
+  // console.log('getCircleLayers', context)
+  return [
+    {
+      z: 160,
+      style: getSchoolZoneShapes(context),
+      idMap: true,
+      hasFeatureId: true,
+    },
+  ]
 }
 
 export const getCircleLayers = context => {
@@ -650,34 +681,14 @@ export const getCircleLayers = context => {
 export const getLayers = context => {
   console.log('getLayers', context)
   return [
-    // ...getChoroplethLayers(context),
-    // ...getCircleLayers(context),
     ...getCircleLayers(context),
     ...getDistrictLayers(context),
     ...getRedlineLayers(context),
+    ...getSchoolZoneLayers(context),
   ]
 }
 
-// export const SEDA_SOURCES = fromJS({
-//   seda: {
-//     url:
-//       'mapbox://hyperobjekt.states-v4-' +
-//       process.env.REACT_APP_BUILD_ID +
-//       ',hyperobjekt.counties-v4-' +
-//       process.env.REACT_APP_BUILD_ID +
-//       ',hyperobjekt.districts-v4-' +
-//       process.env.REACT_APP_BUILD_ID +
-//       ',hyperobjekt.schools-v4-' +
-//       process.env.REACT_APP_BUILD_ID,
-//     type: 'vector',
-//   },
-// })
-
 export const CPAL_SOURCES = fromJS({
-  // schools: {
-  //   type: `geojson`,
-  //   data: {},
-  // },
   districts: {
     type: `geojson`,
     data: districts,
@@ -686,89 +697,12 @@ export const CPAL_SOURCES = fromJS({
     type: `geojson`,
     data: redlines,
   },
-  schoolZones: {
+  schoolzones: {
     type: `geojson`,
-    data: getSchoolZones(getSchoolData()),
+    data: getSchoolZones(),
   },
   schools: {
     type: `geojson`,
     data: getSchoolGeojson(),
-    // {
-    //   type: 'FeatureCollection',
-    //   features: [
-    //     {
-    //       type: 'Feature',
-    //       properties: {
-    //         name: 'School Name A',
-    //         metric_cri: 20,
-    //         metric_econ: 15,
-    //       },
-    //       geometry: {
-    //         type: 'Point',
-    //         coordinates: [-96.705731, 32.6403525],
-    //       },
-    //     },
-    //     {
-    //       type: 'Feature',
-    //       properties: {
-    //         name: 'School Name B',
-    //         metric_cri: 120,
-    //         metric_econ: 150,
-    //       },
-    //       geometry: {
-    //         type: 'Point',
-    //         coordinates: [-96.705731, 32.7403525],
-    //       },
-    //     },
-    //     {
-    //       type: 'Feature',
-    //       properties: {
-    //         name: 'School Name C',
-    //         metric_cri: 80,
-    //         metric_econ: 15,
-    //       },
-    //       geometry: {
-    //         type: 'Point',
-    //         coordinates: [-96.705731, 32.8403525],
-    //       },
-    //     },
-    //     {
-    //       type: 'Feature',
-    //       properties: {
-    //         name: 'School Name D',
-    //         metric_cri: 40,
-    //         metric_econ: 15,
-    //       },
-    //       geometry: {
-    //         type: 'Point',
-    //         coordinates: [-96.735731, 32.6403525],
-    //       },
-    //     },
-    //     {
-    //       type: 'Feature',
-    //       properties: {
-    //         name: 'School Name E',
-    //         metric_cri: 150,
-    //         metric_econ: 150,
-    //       },
-    //       geometry: {
-    //         type: 'Point',
-    //         coordinates: [-96.735731, 32.7403525],
-    //       },
-    //     },
-    //     {
-    //       type: 'Feature',
-    //       properties: {
-    //         name: 'School Name F',
-    //         metric_cri: 200,
-    //         metric_econ: 15,
-    //       },
-    //       geometry: {
-    //         type: 'Point',
-    //         coordinates: [-96.735731, 32.8403525],
-    //       },
-    //     },
-    // ],
-    // },
   },
 })
