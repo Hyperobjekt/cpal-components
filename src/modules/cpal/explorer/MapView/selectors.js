@@ -625,7 +625,7 @@ export const getDistrictLayers = context => {
   console.log('getDistrictLayers', context)
   return [
     {
-      z: 100,
+      z: 150,
       style: getDistrictOutline(context),
     },
   ]
@@ -681,10 +681,10 @@ export const getCircleLayers = context => {
 export const getLayers = context => {
   console.log('getLayers', context)
   return [
+    ...getSchoolZoneLayers(context),
     ...getCircleLayers(context),
     ...getDistrictLayers(context),
     ...getRedlineLayers(context),
-    ...getSchoolZoneLayers(context),
   ]
 }
 
