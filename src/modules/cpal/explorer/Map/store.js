@@ -9,25 +9,32 @@ import { DEFAULT_VIEWPORT } from './constants'
 import { getStateViewportByFips } from './utils'
 
 const getFeatureGeometryType = feature => {
-  if (!feature.geometry || !feature.geometry.type) return null
+  if (!feature.geometry || !feature.geometry.type)
+    return null
   return feature.geometry.type
 }
 
-const getViewportForFeature = (feature, initialViewport) => {
+const getViewportForFeature = (
+  feature,
+  initialViewport,
+) => {
   const type = getFeatureGeometryType(feature)
   if (!type) return {}
   if (type === 'Point') {
-    const [longitude, latitude] = feature.geometry.coordinates
+    const [
+      longitude,
+      latitude,
+    ] = feature.geometry.coordinates
     return {
       latitude,
       longitude,
-      zoom: 14
+      zoom: 14,
     }
   }
   const featureBbox = bbox(feature)
   const bounds = [
     [featureBbox[0], featureBbox[1]],
-    [featureBbox[2], featureBbox[3]]
+    [featureBbox[2], featureBbox[3]],
   ]
   return getViewportForBounds(bounds, initialViewport)
 }
@@ -35,20 +42,20 @@ const getViewportForFeature = (feature, initialViewport) => {
 const getViewportForBounds = (
   bounds,
   baseViewport,
-  options = {}
+  options = {},
 ) => {
   const width = baseViewport.width
   const height = baseViewport.height
   const padding = options.padding || 20
   const vp = new WebMercatorViewport({
     width,
-    height
+    height,
   }).fitBounds(bounds, { padding })
   return {
     ...baseViewport,
     latitude: vp.latitude,
     longitude: vp.longitude,
-    zoom: vp.zoom
+    zoom: vp.zoom,
   }
 }
 
@@ -59,7 +66,7 @@ const [useMapStore] = create((set, get) => ({
   idMap: {},
   setViewport: viewport =>
     set(state => ({
-      viewport: { ...state.viewport, ...viewport }
+      viewport: { ...state.viewport, ...viewport },
     })),
   setResetViewport: resetViewport => set({ resetViewport }),
   setLoaded: loaded => set({ loaded }),
@@ -68,8 +75,8 @@ const [useMapStore] = create((set, get) => ({
     set(state => ({
       idMap: {
         ...state.idMap,
-        [locationId]: featureId
-      }
+        [locationId]: featureId,
+      },
     }))
   },
   flyToFeature: feature => {
@@ -77,7 +84,7 @@ const [useMapStore] = create((set, get) => ({
       ...getViewportForFeature(feature, get().viewport),
       transitionDuration: 3000,
       transitionInterpolator: new FlyToInterpolator(),
-      transitionEasing: ease.easeCubic
+      transitionEasing: ease.easeCubic,
     }
     set(state => ({ viewport }))
   },
@@ -87,8 +94,8 @@ const [useMapStore] = create((set, get) => ({
         ...getViewportForBounds(bounds, state.viewport),
         transitionDuration: 3000,
         transitionInterpolator: new FlyToInterpolator(),
-        transitionEasing: ease.easeCubic
-      }
+        transitionEasing: ease.easeCubic,
+      },
     }))
   },
   flyToLatLon: (lat, lon, zoom) => {
@@ -100,8 +107,8 @@ const [useMapStore] = create((set, get) => ({
         zoom: zoom,
         transitionDuration: 3000,
         transitionInterpolator: new FlyToInterpolator(),
-        transitionEasing: ease.easeCubic
-      }
+        transitionEasing: ease.easeCubic,
+      },
     }))
   },
   flyToState: stateId => {
@@ -111,8 +118,8 @@ const [useMapStore] = create((set, get) => ({
         ...getStateViewportByFips(stateId, state.viewport),
         transitionDuration: 3000,
         transitionInterpolator: new FlyToInterpolator(),
-        transitionEasing: ease.easeCubic
-      }
+        transitionEasing: ease.easeCubic,
+      },
     }))
   },
   flyToReset: () => {
@@ -122,8 +129,8 @@ const [useMapStore] = create((set, get) => ({
         ...state.resetViewport,
         transitionDuration: 3000,
         transitionInterpolator: new FlyToInterpolator(),
-        transitionEasing: ease.easeCubic
-      }
+        transitionEasing: ease.easeCubic,
+      },
     }))
   },
   setViewportFromRoute: params => {
@@ -132,10 +139,10 @@ const [useMapStore] = create((set, get) => ({
         ...state.viewport,
         zoom: params.zoom,
         latitude: params.lat,
-        longitude: params.lon
-      }
+        longitude: params.lon,
+      },
     }))
-  }
+  },
 }))
 
 /**
@@ -145,7 +152,7 @@ const [useMapStore] = create((set, get) => ({
 export const useMapSize = () => {
   return useMapStore(
     state => [state.viewport.width, state.viewport.height],
-    shallow
+    shallow,
   )
 }
 
@@ -156,7 +163,7 @@ export const useMapSize = () => {
 export const useMapViewport = () => {
   return useMapStore(
     state => [state.viewport, state.setViewport],
-    shallow
+    shallow,
   )
 }
 
@@ -167,7 +174,7 @@ export const useMapViewport = () => {
 export const useIdMap = () => {
   return useMapStore(
     state => [state.idMap, state.addToIdMap],
-    shallow
+    shallow,
   )
 }
 

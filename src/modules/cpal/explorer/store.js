@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-const [useStore] = create(set => ({
+const [useStore] = create((set, get) => ({
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
   activeDistrict: ``,
@@ -49,6 +49,13 @@ const [useStore] = create(set => ({
     set(state => ({
       viewport: { ...state.viewport, ...viewport },
     })),
+  // Cursor for map
+  mapCursor: ``,
+  setMapCursor: newCursor => set({ mapCursor: newCursor }),
+  // Boolean is a school hovered
+  schoolHovering: false,
+  setSchoolHovering: newBool =>
+    set({ schoolHovering: newBool }),
 }))
 
 export default useStore

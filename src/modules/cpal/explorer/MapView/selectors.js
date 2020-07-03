@@ -269,7 +269,7 @@ export const getSchoolCircleLayer = ({
   colors,
 }) => {
   return fromJS({
-    id: layerId || 'schools-circle',
+    id: 'schools-circle', // layerId || 'schools-circle',
     source: 'schools',
     // 'source-layer': 'schools',
     type: 'circle',
@@ -289,15 +289,15 @@ export const getSchoolCircleLayer = ({
       'circle-radius': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
-        7,
-        5,
+        7, // Hover size
+        5, // Normal size
       ],
       'circle-stroke-opacity': 1,
       'circle-stroke-color': [
         'case',
-        ['boolean', ['feature-state', 'hover'], true],
-        '#fff',
-        '#000',
+        ['boolean', ['feature-state', 'hover'], false],
+        '#1e0370', // Hover color
+        '#fff', // Normal color
       ],
       'circle-stroke-width': [
         'interpolate',
@@ -418,19 +418,20 @@ export const getSchoolZoneShapes = ({
   layerId,
   region,
 }) => {
-  console.log('getSchoolZoneShapes(), ', region)
+  // console.log('getSchoolZoneShapes(), ', region)
   return fromJS({
-    id: region + '-school-zone-shapes', // layerId || region + '-district-outline',
+    id: region + '-zone-shapes', // layerId || region + '-district-outline',
     source: 'schoolzones',
     // 'source-layer': region,
     type: 'fill',
     layout: {
       visibility: 'visible',
     },
-    interactive: false,
+    interactive: true,
     paint: {
       'fill-color': 'orange',
       'fill-opacity': 0.2,
+      'fill-outline-color': '#000',
     },
   })
 }
@@ -643,7 +644,7 @@ export const getDistrictLayers = context => {
       z: 150,
       style: getDistrictOutline(context),
       idMap: true,
-      hasFeatureId: true, // isCircleId,
+      hasFeatureId: null, // isCircleId,
       type: `districts`,
     },
   ]
@@ -653,17 +654,17 @@ export const getRedlineLayers = context => {
   console.log('getRedlineLayers', context)
   return [
     {
-      z: 140,
+      z: 100,
       style: getRedlineShapes(context),
       idMap: true,
-      hasFeatureId: true, // isCircleId,
+      hasFeatureId: null, // isCircleId,
       type: `redlineShapes`,
     },
     {
-      z: 141,
+      z: 101,
       style: getRedlineLines(context),
       idMap: true,
-      hasFeatureId: true, // isCircleId,
+      hasFeatureId: null, // isCircleId,
       type: `redlineLines`,
     },
   ]
@@ -680,7 +681,8 @@ export const getSchoolZoneLayers = context => {
       z: 160,
       style: getSchoolZoneShapes(context),
       idMap: true,
-      hasFeatureId: true,
+      hasFeatureId: null,
+      type: `schoolzones`,
     },
   ]
 }
@@ -707,9 +709,9 @@ export const getLayers = context => {
   console.log('getLayers', context)
   return [
     ...getSchoolZoneLayers(context),
-    ...getCircleLayers(context),
     ...getDistrictLayers(context),
     ...getRedlineLayers(context),
+    ...getCircleLayers(context),
   ]
 }
 

@@ -259,7 +259,8 @@ export const getSchoolGeojson = () => {
     // console.log('isInList, ', isInList)
     if (!!found) {
       // Add data to the properties.
-      el.properties.tea_id = found.tea_id
+      el.id = found.TEA_ID
+      el.properties.tea_id = found.TEA_ID
       el.properties.metric_cri = found.cri
       el.properties.metric_com_index = found.com_index
       el.properties.metric_econ_index = found.econ_index
@@ -306,7 +307,6 @@ export const getSchoolZones = () => {
     if (!!found) {
       // Add data to the properties.
       var center = el.geometry.coordinates
-      console.log('center', center)
       var radius = 2
       var options = {
         steps: 64,
@@ -317,6 +317,7 @@ export const getSchoolZones = () => {
         },
       }
       const cir = circle(center, radius, options)
+      cir.id = 'zone_' + found.TEA_ID
       // Insert into new json object.
       newJson.features.push(cir)
     }

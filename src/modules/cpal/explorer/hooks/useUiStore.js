@@ -12,21 +12,22 @@ const [useUiStore] = create(set => ({
     coords,
     options = { showTooltip: true, showMarkers: true },
   ) => {
-    console.log(
-      'setHovered',
-      hoveredId,
-      hoveredType,
-      coords,
-    )
-    hoveredId
-      ? set(state => ({
-          hovered: hoveredId,
-          type: hoveredType,
-          coords: coords ? coords : state.coords,
-          showTooltip: options.showTooltip,
-          showMarkers: options.showMarkers,
-        }))
-      : set({ showTooltip: true, showMarkers: false })
+    // console.log(
+    //   'setHovered',
+    //   hoveredId,
+    //   hoveredType,
+    //   coords,
+    // )
+    // hoveredId
+    //   ?
+    set(state => ({
+      hovered: hoveredId,
+      type: hoveredType,
+      coords: coords ? coords : state.coords,
+      showTooltip: options.showTooltip,
+      showMarkers: options.showMarkers,
+    }))
+    // : set({ showTooltip: true, showMarkers: false })
   },
   // x, y coords of tooltip
   coords: [0, 0],

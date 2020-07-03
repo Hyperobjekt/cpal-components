@@ -21,7 +21,7 @@ import useMapStore from '../store'
  * interactive property set to true
  */
 const getInteractiveLayerIds = layers => {
-  console.log('getInteractiveLayerIds', layers)
+  // console.log('getInteractiveLayerIds', layers)
   layers
     .filter(l => l.style.get('interactive'))
     .map(l => l.style.get('id'))
@@ -55,6 +55,7 @@ const getUpdatedMapStyle = (
 const MapBase = ({
   style,
   attributionControl,
+  hovering,
   hoveredId,
   hoveredType,
   selectedIds,
@@ -68,6 +69,7 @@ const MapBase = ({
   onHover,
   onClick,
   onLoad,
+  mapCursor,
   ...rest
 }) => {
   const [loaded, setLoaded] = useState(false)
@@ -113,12 +115,12 @@ const MapBase = ({
    */
   const setFeatureState = useCallback(
     (featureId, type, state) => {
-      console.log(
-        'setFeatureState()',
-        featureId,
-        type,
-        state,
-      )
+      // console.log(
+      //   'setFeatureState()',
+      //   featureId,
+      //   type,
+      //   state,
+      // )
       if (
         !loaded ||
         !featureId ||
@@ -141,6 +143,7 @@ const MapBase = ({
         ? idMap[featureId]
         : featureId
       if (layer) {
+        console.log('layer exists')
         const source = {
           source: layer.style.get('source'),
           // sourceLayer: layer.style.get('source-layer'),
@@ -267,9 +270,9 @@ const MapBase = ({
     })
   }, [sizes, setViewport])
 
-  // set hovered outline when hoveredId changes
+  // set hovered feature state when hoveredId changes
   useEffect(() => {
-    console.log('hoveredId changed')
+    // console.log('hoveredId changed, hoveredId', hoveredId)
     prev &&
       prev.hoveredId &&
       setFeatureState(prev.hoveredId, hoveredType, {
@@ -303,6 +306,10 @@ const MapBase = ({
     flyToReset()
   }
 
+  const getCursor = () => {
+    return !!hoveredId ? 'pointer' : 'grab'
+  }
+
   return (
     <>
       <div
@@ -312,6 +319,7 @@ const MapBase = ({
           position: 'absolute',
           width: '100%',
           height: '100%',
+          cursor: `${mapCursor} !important`,
         }}
         ref={mapEl}
         onMouseLeave={() =>
@@ -333,6 +341,7 @@ const MapBase = ({
           interactiveLayerIds={interactiveLayerIds}
           onViewportChange={handleViewportChange}
           onHover={handleHover}
+          getCursor={getCursor}
           onClick={handleClick}
           onLoad={handleLoad}
           {...viewport}
