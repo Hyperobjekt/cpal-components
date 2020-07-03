@@ -16,6 +16,8 @@ import {
 } from './../../../../shared/utils'
 import { getStateAbbr } from './../../../../shared/utils/states'
 import { getRegionFromLocationId } from './regions'
+import { schools } from './../../../../data/schools'
+import { schoolsGeojson } from './../../../../data/schoolsGeojson'
 
 // values provided by SEDA team for calulation distance from regression
 const FUNC_VARS = {
@@ -235,4 +237,59 @@ export const getDataForId = (
     }
     return acc
   }, base)
+}
+
+/**
+ * Generates geojson object with school zones (2 mile radius)
+ * @param  {[type]} schools [description]
+ * @return {[type]}         [description]
+ */
+export const getSchoolGeojson = () => {
+  const data = schools
+  const origJson = schoolsGeojson
+  const newJson = {
+    type: 'FeatureCollection',
+    features: [],
+  }
+  const features = origJson.features
+  features.forEach(el => {
+    const found = data.find(
+      school => school.TEA_ID === el.properties.SLN,
+    )
+    // console.log('isInList, ', isInList)
+    if (!!found) {
+      // Add data to the properties.
+      el.properties.metric_cri = found.cri
+      el.properties.metric_com_index = found.com_index
+      el.properties.metric_econ_index = found.econ_index
+      el.properties.metric_edu_index = found.edu_index
+      el.properties.metric_health_index = found.health_index
+      el.properties.metric_fam_index = found.fam_index
+      // Insert into new json object.
+      newJson.features.push(el)
+    }
+  })
+  return newJson
+}
+
+export const getSchoolData = () => {
+  // console.log('getSchoolData')
+  const data = schools
+  const features = schoolsGeojson.features
+  data.forEach(el => {
+    const feature = features.find(
+      o => o.properties.SLN === el.TEA_ID,
+    )
+    // console.log('feature found ', feature)
+    if (!!feature) {
+      el.lat = feature.geometry.coordinates[1]
+      el.lng = feature.geometry.coordinates[0]
+    }
+  })
+  return data
+}
+
+export const getSchoolZones = data => {
+  console.log('getSchoolZones, ', data)
+  return {}
 }

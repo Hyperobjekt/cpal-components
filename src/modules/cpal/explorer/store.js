@@ -3,18 +3,11 @@ import create from 'zustand'
 const [useStore] = create(set => ({
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
-  districtDataDallas: {},
-  setDistrictDataDallas: newObj =>
-    set({ districtDataDallas: newObj }),
-  districtDataRichardson: {},
-  setDistrictDataRichardson: newObj =>
-    set({ districtDataDallas: newObj }),
-  districtPolyDallas: {},
-  setDistrictPolyDallas: newObj =>
-    set({ districtPolyDallas: newObj }),
-  districtPolyRichardson: {},
-  setDistrictPolyRichardson: newObj =>
-    set({ districtPolyRichardson: newObj }),
+  activeDistrict: ``,
+  setActiveDistrict: newDistrict =>
+    set({ activeDistrict: newDistrict }),
+  schoolsData: {},
+  setSchoolsData: newObj => set({ schoolsData: newObj }),
   logoSrc: `<svg width="150" height="50">
             <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />
             <text x="25" y="40" fill="white">LOGO</text>

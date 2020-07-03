@@ -37,7 +37,7 @@ export const METRICS = [
       'map_*_gap': [-6, 6],
       map_counties: [-3, 3],
       map_districts: [-3.5, 3.5],
-      map_schools: [0, 200],
+      map_schools: [0, 100],
       '*_counties_np': [-4, 3],
       '*_counties_wh': [-1.5, 4.5],
       '*_districts_wh': [-1.5, 5],

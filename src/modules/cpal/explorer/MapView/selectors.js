@@ -8,6 +8,9 @@ import {
   getMetricRange,
   isGapVarName,
   getDistrictColor,
+  getSchoolData,
+  getSchoolZones,
+  getSchoolGeojson,
 } from './../selectors'
 import {
   DISTRICT_COLORS,
@@ -683,84 +686,89 @@ export const CPAL_SOURCES = fromJS({
     type: `geojson`,
     data: redlines,
   },
+  schoolZones: {
+    type: `geojson`,
+    data: getSchoolZones(getSchoolData()),
+  },
   schools: {
     type: `geojson`,
-    data: {
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          properties: {
-            name: 'School Name A',
-            metric_cri: 20,
-            metric_econ: 15,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [-96.705731, 32.6403525],
-          },
-        },
-        {
-          type: 'Feature',
-          properties: {
-            name: 'School Name B',
-            metric_cri: 120,
-            metric_econ: 150,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [-96.705731, 32.7403525],
-          },
-        },
-        {
-          type: 'Feature',
-          properties: {
-            name: 'School Name C',
-            metric_cri: 80,
-            metric_econ: 15,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [-96.705731, 32.8403525],
-          },
-        },
-        {
-          type: 'Feature',
-          properties: {
-            name: 'School Name D',
-            metric_cri: 40,
-            metric_econ: 15,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [-96.735731, 32.6403525],
-          },
-        },
-        {
-          type: 'Feature',
-          properties: {
-            name: 'School Name E',
-            metric_cri: 150,
-            metric_econ: 150,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [-96.735731, 32.7403525],
-          },
-        },
-        {
-          type: 'Feature',
-          properties: {
-            name: 'School Name F',
-            metric_cri: 200,
-            metric_econ: 15,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [-96.735731, 32.8403525],
-          },
-        },
-      ],
-    },
+    data: getSchoolGeojson(),
+    // {
+    //   type: 'FeatureCollection',
+    //   features: [
+    //     {
+    //       type: 'Feature',
+    //       properties: {
+    //         name: 'School Name A',
+    //         metric_cri: 20,
+    //         metric_econ: 15,
+    //       },
+    //       geometry: {
+    //         type: 'Point',
+    //         coordinates: [-96.705731, 32.6403525],
+    //       },
+    //     },
+    //     {
+    //       type: 'Feature',
+    //       properties: {
+    //         name: 'School Name B',
+    //         metric_cri: 120,
+    //         metric_econ: 150,
+    //       },
+    //       geometry: {
+    //         type: 'Point',
+    //         coordinates: [-96.705731, 32.7403525],
+    //       },
+    //     },
+    //     {
+    //       type: 'Feature',
+    //       properties: {
+    //         name: 'School Name C',
+    //         metric_cri: 80,
+    //         metric_econ: 15,
+    //       },
+    //       geometry: {
+    //         type: 'Point',
+    //         coordinates: [-96.705731, 32.8403525],
+    //       },
+    //     },
+    //     {
+    //       type: 'Feature',
+    //       properties: {
+    //         name: 'School Name D',
+    //         metric_cri: 40,
+    //         metric_econ: 15,
+    //       },
+    //       geometry: {
+    //         type: 'Point',
+    //         coordinates: [-96.735731, 32.6403525],
+    //       },
+    //     },
+    //     {
+    //       type: 'Feature',
+    //       properties: {
+    //         name: 'School Name E',
+    //         metric_cri: 150,
+    //         metric_econ: 150,
+    //       },
+    //       geometry: {
+    //         type: 'Point',
+    //         coordinates: [-96.735731, 32.7403525],
+    //       },
+    //     },
+    //     {
+    //       type: 'Feature',
+    //       properties: {
+    //         name: 'School Name F',
+    //         metric_cri: 200,
+    //         metric_econ: 15,
+    //       },
+    //       geometry: {
+    //         type: 'Point',
+    //         coordinates: [-96.735731, 32.8403525],
+    //       },
+    //     },
+    // ],
+    // },
   },
 })
