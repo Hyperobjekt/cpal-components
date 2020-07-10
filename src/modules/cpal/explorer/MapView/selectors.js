@@ -46,12 +46,12 @@ export const getStopsForVarName = (
 }
 
 const getSchoolFillStyle = (varName, region, colors) => {
-  console.log(
-    'getSchoolFillStyle, ',
-    varName,
-    region,
-    colors,
-  )
+  // console.log(
+  //   'getSchoolFillStyle, ',
+  //   varName,
+  //   region,
+  //   colors,
+  // )
   const stops = getStopsForVarName(
     varName,
     region,
@@ -158,11 +158,6 @@ export const getCircleHighlightLayer = ({
         ['boolean', ['feature-state', 'hover'], false],
         '#f00',
         '#000',
-        // [
-        //   'string',
-        //   ['feature-state', 'selected'],
-        //   'rgba(0,0,0,0)',
-        // ],
       ],
       'circle-stroke-width': [
         'interpolate',
@@ -430,8 +425,13 @@ export const getSchoolZoneShapes = ({
     interactive: true,
     paint: {
       'fill-color': 'orange',
-      'fill-opacity': 0.2,
       'fill-outline-color': '#000',
+      'fill-opacity': [
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        0.2,
+        0,
+      ],
     },
   })
 }
@@ -566,59 +566,69 @@ const isSchoolCircleId = id => {
   return 'schools'
 }
 
-export const getChoroplethLayer = ({
-  layerId,
-  region,
-  metric,
-  demographic,
-  colors,
-}) =>
-  fromJS({
-    id: layerId || region + '-choropleth',
-    source: 'redlines',
-    'source-layer':
-      region === 'schools' ? 'districts' : region,
-    type: 'fill',
-    interactive: true,
-    paint: {
-      'fill-color': getFillStyle(
-        [demographic, metric].join('_'),
-        region,
-        colors,
-      ),
-      'fill-opacity':
-        region === 'schools'
-          ? [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              3,
-              0,
-              8,
-              0.5,
-              10,
-              0.666,
-            ]
-          : 1,
-    },
-  })
+const isSchoolZoneId = id => {
+  console.log('isSchoolZoneId')
+  if (!id) {
+    return false
+  }
+  // const featureRegion = getRegionFromLocationId(id)
+  // return featureRegion === 'schools'
+  return 'schoolzones'
+}
+
+// export const getChoroplethLayer = ({
+//   layerId,
+//   region,
+//   metric,
+//   demographic,
+//   colors,
+// }) =>
+//   fromJS({
+//     id: layerId || region + '-choropleth',
+//     source: 'redlines',
+//     'source-layer':
+//       region === 'schools' ? 'districts' : region,
+//     type: 'fill',
+//     interactive: true,
+//     paint: {
+//       'fill-color': getFillStyle(
+//         [demographic, metric].join('_'),
+//         region,
+//         colors,
+//       ),
+//       'fill-opacity':
+//         region === 'schools'
+//           ? [
+//               'interpolate',
+//               ['linear'],
+//               ['zoom'],
+//               3,
+//               0,
+//               8,
+//               0.5,
+//               10,
+//               0.666,
+//             ]
+//           : 1,
+//     },
+//   })
 
 /**
  * Gets choropleth layer based on current context
  * @param {*} context { metric, demographic, region}
  */
-export const getChoroplethLayers = context => {
-  console.log('getChoroplethLayers', context)
-  return [
-    {
-      z: 1,
-      style: getChoroplethLayer(context),
-      hasFeatureId: isChoroplethId,
-    },
-    { z: 50, style: getChoroplethOutline(context) },
-    { z: 50, style: getChoroplethOutlineCasing(context) },
-  ]
-}
+// export const getChoroplethLayers = context => {
+//   console.log('getChoroplethLayers', context)
+//   return [
+//     {
+//       z: 1,
+//       style: getChoroplethLayer(context),
+//       hasFeatureId: isChoroplethId,
+//     },
+//     { z: 50, style: getChoroplethOutline(context) },
+//     { z: 50, style: getChoroplethOutlineCasing(context) },
+//   ]
+// }
 
 // export const getCircleLayers = context => {
 //   console.log('getCircleLayers', context)
@@ -638,7 +648,7 @@ export const getChoroplethLayers = context => {
 //
 
 export const getDistrictLayers = context => {
-  console.log('getDistrictLayers', context)
+  // console.log('getDistrictLayers', context)
   return [
     {
       z: 150,
@@ -651,7 +661,7 @@ export const getDistrictLayers = context => {
 }
 
 export const getRedlineLayers = context => {
-  console.log('getRedlineLayers', context)
+  // console.log('getRedlineLayers', context)
   return [
     {
       z: 100,
@@ -671,7 +681,7 @@ export const getRedlineLayers = context => {
 }
 
 export const getAssetLayers = context => {
-  console.log('getAssetLayers', context)
+  // console.log('getAssetLayers', context)
 }
 
 export const getSchoolZoneLayers = context => {
@@ -681,7 +691,7 @@ export const getSchoolZoneLayers = context => {
       z: 160,
       style: getSchoolZoneShapes(context),
       idMap: true,
-      hasFeatureId: null,
+      hasFeatureId: isSchoolZoneId,
       type: `schoolzones`,
     },
   ]
@@ -706,7 +716,7 @@ export const getCircleLayers = context => {
 }
 
 export const getLayers = context => {
-  console.log('getLayers', context)
+  // console.log('getLayers', context)
   return [
     ...getSchoolZoneLayers(context),
     ...getDistrictLayers(context),

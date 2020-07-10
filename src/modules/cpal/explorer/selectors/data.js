@@ -274,25 +274,8 @@ export const getSchoolGeojson = () => {
   return newJson
 }
 
-// export const getSchoolData = () => {
-//   // console.log('getSchoolData')
-//   const data = schools
-//   const features = schoolsGeojson.features
-//   data.forEach(el => {
-//     const feature = features.find(
-//       o => o.properties.SLN === el.TEA_ID,
-//     )
-//     // console.log('feature found ', feature)
-//     if (!!feature) {
-//       el.lat = feature.geometry.coordinates[1]
-//       el.lng = feature.geometry.coordinates[0]
-//     }
-//   })
-//   return data
-// }
-
 export const getSchoolZones = () => {
-  console.log('getSchoolZones')
+  // console.log('getSchoolZones')
   const data = schools
   const origJson = schoolsGeojson
   const newJson = {
@@ -317,11 +300,11 @@ export const getSchoolZones = () => {
         },
       }
       const cir = circle(center, radius, options)
-      cir.id = 'zone_' + found.TEA_ID
+      cir.id = '200' + found.TEA_ID
       // Insert into new json object.
       newJson.features.push(cir)
     }
   })
-  console.log('newJson', newJson)
+  // console.log('newJson', newJson)
   return newJson
 }

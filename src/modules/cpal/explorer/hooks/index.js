@@ -113,6 +113,17 @@ export const useHovered = () => {
 }
 
 /**
+ * Provides the id of the hovered location and setter
+ * @returns {[string, function]} [ hoveredId, setHovered ]
+ */
+export const useHoveredZone = () => {
+  return useUiStore(
+    state => [state.zone, state.type, state.setHoveredZone],
+    shallow,
+  )
+}
+
+/**
  * Provides an object of current filters and setters
  * @returns {[{prefix, largest}, function, function]} [ filters, setFilters, setSingleFilter ]
  */

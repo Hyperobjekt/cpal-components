@@ -69,7 +69,7 @@ const MapBase = ({
   onHover,
   onClick,
   onLoad,
-  mapCursor,
+  schoolZonesAffix,
   ...rest
 }) => {
   const [loaded, setLoaded] = useState(false)
@@ -105,22 +105,12 @@ const MapBase = ({
   // storing previous hover / selected IDs
   const prev = usePrevious({
     hoveredId,
+    hoveredType,
     selectedIds,
   })
 
-  /**
-   * Sets the feature state for rendering styles
-   * @param {string} featureId
-   * @param {object} state
-   */
   const setFeatureState = useCallback(
     (featureId, type, state) => {
-      // console.log(
-      //   'setFeatureState()',
-      //   featureId,
-      //   type,
-      //   state,
-      // )
       if (
         !loaded ||
         !featureId ||
@@ -128,25 +118,21 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      console.log(
-        'setFeatureState()',
-        featureId,
-        type,
-        state,
-      )
-      console.log('layers', layers)
-      const layer = layers.find(
-        l => l.hasFeatureId && l.hasFeatureId(featureId),
-      )
-      console.log('layer = ', layer)
+      // console.log(
+      //   'setFeatureStateNew',
+      //   featureId,
+      //   type,
+      //   state,
+      // )
+      // console.log('layers = ', layers)
+      const layer = layers.find(l => l.type === type)
+      // console.log('layer = ', layer)
       const id = idMap[featureId]
         ? idMap[featureId]
         : featureId
       if (layer) {
-        console.log('layer exists')
         const source = {
           source: layer.style.get('source'),
-          // sourceLayer: layer.style.get('source-layer'),
           id,
         }
         currentMap.setFeatureState(source, state)
@@ -154,6 +140,40 @@ const MapBase = ({
     },
     [layers, idMap, currentMap, loaded],
   )
+
+  /**
+   * Sets the feature state for rendering styles
+   * @param {string} featureId
+   * @param {object} state
+   */
+  // const setFeatureState = useCallback(
+  //   (featureId, type, state) => {
+  //     if (
+  //       !loaded ||
+  //       !featureId ||
+  //       !currentMap ||
+  //       !currentMap.setFeatureState
+  //     )
+  //       return
+  //     console.log('setFeatureState', featureId, type, state)
+  //     const layer = layers.find(
+  //       l => l.hasFeatureId && l.hasFeatureId(featureId),
+  //     )
+  //     console.log('layer = ', layer)
+  //     const id = idMap[featureId]
+  //       ? idMap[featureId]
+  //       : featureId
+  //     if (layer) {
+  //       const source = {
+  //         source: layer.style.get('source'),
+  //         // sourceLayer: layer.style.get('source-layer'),
+  //         id,
+  //       }
+  //       currentMap.setFeatureState(source, state)
+  //     }
+  //   },
+  //   [layers, idMap, currentMap, loaded],
+  // )
 
   // update map style layers when layers change
   const mapStyle = useMemo(
@@ -273,15 +293,34 @@ const MapBase = ({
   // set hovered feature state when hoveredId changes
   useEffect(() => {
     // console.log('hoveredId changed, hoveredId', hoveredId)
-    prev &&
-      prev.hoveredId &&
-      setFeatureState(prev.hoveredId, hoveredType, {
+    if (prev && prev.hoveredId && prev.hoveredType) {
+      // Set state for unhovered school.
+      setFeatureState(prev.hoveredId, prev.hoveredType, {
         hover: false,
       })
-    hoveredId &&
+      // Set state for unhovered school zone.
+      setFeatureState(
+        schoolZonesAffix + prev.hoveredId,
+        'schoolzones',
+        {
+          hover: false,
+        },
+      )
+    }
+    if (hoveredId) {
+      // Set state for hovered school.
       setFeatureState(hoveredId, hoveredType, {
         hover: true,
       })
+      // Set state for hovered school zone.
+      setFeatureState(
+        schoolZonesAffix + hoveredId,
+        'schoolzones',
+        {
+          hover: true,
+        },
+      )
+    }
     // eslint-disable-next-line
   }, [hoveredId, loaded]) // update only when hovered id changes
 
@@ -319,7 +358,6 @@ const MapBase = ({
           position: 'absolute',
           width: '100%',
           height: '100%',
-          cursor: `${mapCursor} !important`,
         }}
         ref={mapEl}
         onMouseLeave={() =>
@@ -372,7 +410,7 @@ MapBase.propTypes = {
   style: PropTypes.object,
   layers: PropTypes.array,
   selectedIds: PropTypes.arrayOf(PropTypes.string),
-  hoveredId: PropTypes.string,
+  hoveredId: PropTypes.number,
   idMap: PropTypes.object,
   selectedColors: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,

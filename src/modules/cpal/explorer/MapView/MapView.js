@@ -24,6 +24,7 @@ import {
   useFilters,
   useLocations,
   useHovered,
+  useHoveredZone,
   useMarkersVisibility,
   useAddLocation,
   useActiveLocationFeature,
@@ -53,15 +54,23 @@ const MapView = props => {
   const [locations] = useLocations()
   /** id of the currently hovered location */
   const [hoveredId, hoveredType, setHovered] = useHovered()
+  const [
+    hoveredZoneId,
+    hoveredZoneType,
+    setHoveredZone,
+  ] = useHoveredZone()
   // map cursor
-  const mapCursor = useStore(state => state.mapCursor)
-  const setMapCursor = useStore(state => state.setMapCursor)
+  // const mapCursor = useStore(state => state.mapCursor)
+  // const setMapCursor = useStore(state => state.setMapCursor)
   //
-  const schoolHovering = useStore(
-    state => state.schoolHovering,
-  )
-  const setSchoolHovering = useStore(
-    state => state.setSchoolHovering,
+  // const schoolHovering = useStore(
+  //   state => state.schoolHovering,
+  // )
+  // const setSchoolHovering = useStore(
+  //   state => state.setSchoolHovering,
+  // )
+  const schoolZonesAffix = useStore(
+    state => state.schoolZonesAffix,
   )
   /** id of the active location */
   const activeFeature = useActiveLocationFeature()
@@ -111,17 +120,9 @@ const MapView = props => {
       feature.layer.id === 'schools-circle'
     ) {
       // console.log('School circle hovered.')
-      type = `school`
+      type = `schools`
       // console.log('handleHover, ', feature, coords)
       id = getFeatureProperty(feature, 'tea_id')
-    }
-    if (type === `school`) {
-      // Set cursor
-      console.log('trying to set cursor to pointer')
-      setMapCursor('pointer')
-      // Setup to also display school zone
-    } else {
-      setMapCursor(null)
     }
 
     // console.log('handleHover, ', id)
@@ -132,6 +133,7 @@ const MapView = props => {
       //   addToIdMap(feature.id, id)
     }
     setHovered(id, type, coords)
+    // setHoveredZone(id, type, coords)
   }
 
   /** handler for map click */
@@ -178,14 +180,13 @@ const MapView = props => {
       layers={layers}
       idMap={idMap}
       selectedIds={locationIds}
-      hovering={schoolHovering}
       hoveredId={hoveredId ? hoveredId : undefined}
       hoveredType={hoveredType ? hoveredType : undefined}
       ariaLabel={ariaLabel}
       onHover={handleHover}
       onLoad={handleLoad}
       onClick={handleClick}
-      mapCursor={mapCursor}
+      schoolZonesAffix={schoolZonesAffix}
     ></MapBase>
   )
 }

@@ -50,12 +50,13 @@ const [useStore] = create((set, get) => ({
       viewport: { ...state.viewport, ...viewport },
     })),
   // Cursor for map
-  mapCursor: ``,
-  setMapCursor: newCursor => set({ mapCursor: newCursor }),
+  // mapCursor: ``,
+  // setMapCursor: newCursor => set({ mapCursor: newCursor }),
   // Boolean is a school hovered
-  schoolHovering: false,
-  setSchoolHovering: newBool =>
-    set({ schoolHovering: newBool }),
+  // schoolHovering: false,
+  // setSchoolHovering: newBool =>
+  //   set({ schoolHovering: newBool }),
+  schoolZonesAffix: `200`,
 }))
 
 export default useStore
