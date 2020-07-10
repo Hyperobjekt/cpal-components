@@ -7,7 +7,10 @@ import React, {
 } from 'react'
 import useResizeAware from 'react-resize-aware'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-import ReactMapGL, { NavigationControl } from 'react-map-gl'
+import ReactMapGL, {
+  NavigationControl,
+  Popup,
+} from 'react-map-gl'
 import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 import usePrevious from './../../../../../shared/hooks/usePrevious'
@@ -58,6 +61,7 @@ const MapBase = ({
   hovering,
   hoveredId,
   hoveredType,
+  hoveredCoords,
   selectedIds,
   layers,
   sources,
@@ -72,6 +76,8 @@ const MapBase = ({
   schoolZonesAffix,
   ...rest
 }) => {
+  console.log('hoveredCoords, ', hoveredCoords)
+
   const [loaded, setLoaded] = useState(false)
 
   const [resizeListener, sizes] = useResizeAware()
@@ -246,6 +252,7 @@ const MapBase = ({
 
   // handler for feature hover
   const handleHover = ({ features, point, srcEvent }) => {
+    // console.log('handleHover, ', features, point)
     const newHoveredFeature =
       features && features.length > 0 ? features[0] : null
     const coords =
@@ -255,7 +262,11 @@ const MapBase = ({
             Math.round(srcEvent.pageY),
           ]
         : null
-    onHover(newHoveredFeature, coords)
+    const geoCoordinates =
+      newHoveredFeature && newHoveredFeature.geometry
+        ? newHoveredFeature.geometry.coordinates
+        : null
+    onHover(newHoveredFeature, coords, geoCoordinates)
   }
 
   // handler for feature click
@@ -385,6 +396,22 @@ const MapBase = ({
           {...viewport}
           {...rest}
         >
+          {!!hoveredId && (
+            <Popup
+              latitude={hoveredCoords[1]}
+              longitude={hoveredCoords[0]}
+              offsetTop={15}
+              closeButton={true}
+              closeOnClick={false}
+              onClose={() =>
+                this.setState({ showPopup: false })
+              }
+              anchor="top"
+            >
+              <div>You are here</div>
+              <PopupContent />
+            </Popup>
+          )}
           <div className="map__zoom">
             <NavigationControl
               showCompass={false}

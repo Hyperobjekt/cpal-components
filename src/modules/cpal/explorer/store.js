@@ -28,12 +28,12 @@ const [useStore] = create((set, get) => ({
       id: `feed`,
     },
   ],
-  GEO: {
-    dallas: {
-      lat: 32.8203525,
-      lng: -97.011731,
-    },
-  },
+  // GEO: {
+  //   dallas: {
+  //     lat: 32.8203525,
+  //     lng: -97.011731,
+  //   },
+  // },
   displayDistricts: [`057905`, `057834`],
   viewport: {
     latitude: 32.8203525,

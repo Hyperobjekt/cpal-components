@@ -107,7 +107,12 @@ export const useRegionFilterSizes = () => {
  */
 export const useHovered = () => {
   return useUiStore(
-    state => [state.hovered, state.type, state.setHovered],
+    state => [
+      state.hovered,
+      state.type,
+      state.coords,
+      state.setHovered,
+    ],
     shallow,
   )
 }
