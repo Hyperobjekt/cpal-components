@@ -76,8 +76,6 @@ const MapBase = ({
   schoolZonesAffix,
   ...rest
 }) => {
-  console.log('hoveredCoords, ', hoveredCoords)
-
   const [loaded, setLoaded] = useState(false)
 
   const [resizeListener, sizes] = useResizeAware()

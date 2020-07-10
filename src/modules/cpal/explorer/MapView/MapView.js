@@ -94,7 +94,7 @@ const MapView = props => {
 
   /** handler for map hover */
   const handleHover = (feature, coords, geoCoords) => {
-    console.log('handleHover, ', feature, coords, geoCoords)
+    // console.log('handleHover, ', feature, coords, geoCoords)
     let type = null
     let id = null
     if (
