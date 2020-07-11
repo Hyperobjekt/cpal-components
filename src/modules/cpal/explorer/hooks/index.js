@@ -111,6 +111,7 @@ export const useHovered = () => {
       state.hovered,
       state.type,
       state.coords,
+      state.feature,
       state.setHovered,
     ],
     shallow,

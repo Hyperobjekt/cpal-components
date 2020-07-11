@@ -14,42 +14,16 @@ const en_US = {
   UI_MAP_SR:
     'Map of $[region] in the United States, with colors showing $[metric] for $[demographic].',
   UI_MAP_CITY: `Dallas`,
-  UI_MAP_METRIC_CRI: {
-    title: `Community Resource Index`,
-    abbrev: `CRI`,
-  },
-  UI_MAP_METRIC_ECON: {
-    title: `Economics`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU: {
-    title: `Education`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_FAM: {
-    title: `Family`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEAL: {
-    title: `Health`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM: {
-    title: `Community`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_CRIMEDENSITY: {
-    title: `Density of part a crimes`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_CRIME: {
-    title: `Count of part a crimes`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_CHURCH: {
-    title: `count of churches`,
-    abbrev: ``,
-  },
+  UI_MAP_METRIC_TITLE_CRI: `Community Resource Index`,
+  UI_MAP_METRIC_ABBREV_CRI: `CRI`,
+  UI_MAP_METRIC_TITLE_ECON: `Economics`,
+  UI_MAP_METRIC_TITLE_EDU: `Education`,
+  UI_MAP_METRIC_TITLE_FAM: `Family`,
+  UI_MAP_METRIC_TITLE_HEAL: `Health`,
+  UI_MAP_METRIC_TITLE_COMM: `Community`,
+  UI_MAP_METRIC_TITLE_COMM_CRIMEDENSITY: `Density of part a crimes`,
+  UI_MAP_METRIC_TITLE_COMM_CRIME: `Count of part a crimes`,
+  UI_MAP_METRIC_TITLE_COMM_CHURCH: `Count of churches`,
   UI_MAP_METRIC_COMM_CHURCHDENSITY: {
     title: `Ensity of churches`,
     abbrev: ``,

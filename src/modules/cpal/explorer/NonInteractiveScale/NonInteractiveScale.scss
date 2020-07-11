@@ -1,0 +1,17 @@
+.n-i-scale {
+  width: 100%;
+  .n-i-scale-value {
+    width: 100%;
+  }
+  .n-i-scale-parent {
+    width: 100%;
+    .n-i-scale {
+      width: 100%;
+      .n-i-scale-quintile {
+        height: 10px;
+        width: 20%;
+        display: inline-block;
+      }
+    }
+  }
+}

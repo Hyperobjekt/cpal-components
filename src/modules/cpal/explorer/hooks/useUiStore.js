@@ -10,6 +10,7 @@ const [useUiStore] = create(set => ({
     hoveredId,
     hoveredType,
     coords,
+    feature,
     options = { showTooltip: true, showMarkers: true },
   ) => {
     // console.log(
@@ -24,6 +25,7 @@ const [useUiStore] = create(set => ({
       hovered: hoveredId,
       type: hoveredType,
       coords: coords ? coords : state.coords,
+      feature: feature,
       showTooltip: options.showTooltip,
       showMarkers: options.showMarkers,
     }))

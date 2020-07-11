@@ -257,7 +257,7 @@ export const getSchoolGeojson = () => {
     const found = data.find(
       school => school.TEA_ID === el.properties.SLN,
     )
-    // console.log('isInList, ', isInList)
+    console.log('found, ', found)
     if (!!found) {
       // Add data to the properties.
       el.id = found.TEA_ID

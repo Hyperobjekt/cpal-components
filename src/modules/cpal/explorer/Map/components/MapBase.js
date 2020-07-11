@@ -19,6 +19,7 @@ import { getClosest } from '../utils'
 import { useMapViewport, useFlyToReset } from '../store'
 // import ZoomToControl from './ZoomToControl'
 import useMapStore from '../store'
+import PopupContent from './PopupContent'
 /**
  * Returns an array of layer ids for layers that have the
  * interactive property set to true
@@ -62,6 +63,7 @@ const MapBase = ({
   hoveredId,
   hoveredType,
   hoveredCoords,
+  hoveredFeature,
   selectedIds,
   layers,
   sources,
@@ -406,8 +408,7 @@ const MapBase = ({
               }
               anchor="top"
             >
-              <div>You are here</div>
-              <PopupContent />
+              <PopupContent feature={hoveredFeature} />
             </Popup>
           )}
           <div className="map__zoom">

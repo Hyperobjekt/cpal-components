@@ -1,5 +1,74 @@
 import LANG from './en'
 
+export const CPAL_METRICS = [
+  {
+    id: 'cri',
+    range: [0, 100],
+    colors: [
+      '#3800D9',
+      '#5225d3',
+      '#795dc9',
+      '#9e90c6',
+      '#b6b0c6',
+    ],
+  },
+  {
+    id: 'econ_index',
+    range: [0, 100],
+    colors: [
+      '#3800D9',
+      '#5225d3',
+      '#795dc9',
+      '#9e90c6',
+      '#b6b0c6',
+    ],
+  },
+  {
+    id: 'edu_index',
+    range: [0, 100],
+    colors: [
+      '#3800D9',
+      '#5225d3',
+      '#795dc9',
+      '#9e90c6',
+      '#b6b0c6',
+    ],
+  },
+  {
+    id: 'fam_index',
+    range: [0, 100],
+    colors: [
+      '#3800D9',
+      '#5225d3',
+      '#795dc9',
+      '#9e90c6',
+      '#b6b0c6',
+    ],
+  },
+  {
+    id: 'heal_index',
+    range: [0, 100],
+    colors: [
+      '#3800D9',
+      '#5225d3',
+      '#795dc9',
+      '#9e90c6',
+      '#b6b0c6',
+    ],
+  },
+  {
+    id: 'comm_index',
+    range: [0, 100],
+    colors: [
+      '#3800D9',
+      '#5225d3',
+      '#795dc9',
+      '#9e90c6',
+      '#b6b0c6',
+    ],
+  },
+]
+
 /**
  * Data metrics in the SEDA data set
  */
