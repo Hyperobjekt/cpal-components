@@ -53,22 +53,14 @@ const MapView = props => {
   /** currently selected location ids */
   const [locations] = useLocations()
   /** id of the currently hovered location */
-  const [hoveredId, hoveredType, setHovered] = useHovered()
   const [
-    hoveredZoneId,
-    hoveredZoneType,
-    setHoveredZone,
-  ] = useHoveredZone()
-  // map cursor
-  // const mapCursor = useStore(state => state.mapCursor)
-  // const setMapCursor = useStore(state => state.setMapCursor)
-  //
-  // const schoolHovering = useStore(
-  //   state => state.schoolHovering,
-  // )
-  // const setSchoolHovering = useStore(
-  //   state => state.setSchoolHovering,
-  // )
+    hoveredId,
+    hoveredType,
+    coords,
+    feature,
+    setHovered,
+  ] = useHovered()
+
   const schoolZonesAffix = useStore(
     state => state.schoolZonesAffix,
   )
@@ -102,8 +94,8 @@ const MapView = props => {
   const classes = useStyles()
 
   /** handler for map hover */
-  const handleHover = (feature, coords) => {
-    // console.log('handleHover, ', feature, coords)
+  const handleHover = (feature, coords, geoCoords) => {
+    // console.log('handleHover, ', feature, coords, geoCoords)
     let type = null
     let id = null
     if (
@@ -123,17 +115,18 @@ const MapView = props => {
       type = `schools`
       // console.log('handleHover, ', feature, coords)
       id = getFeatureProperty(feature, 'tea_id')
+      // setHovered(id, type, geoCoords, feature)
     }
 
     // console.log('handleHover, ', id)
-    if (id && id !== hoveredId) {
-      addFeatureData(feature.properties)
-      // add schools to the ID map
-      // id.length === REGION_TO_ID_LENGTH['schools'] &&
-      //   addToIdMap(feature.id, id)
-    }
-    setHovered(id, type, coords)
-    // setHoveredZone(id, type, coords)
+    // if (id && id !== hoveredId) {
+    //   addFeatureData(feature.properties)
+    //   // add schools to the ID map
+    //   // id.length === REGION_TO_ID_LENGTH['schools'] &&
+    //   //   addToIdMap(feature.id, id)
+    // }
+    // setHovered(id, type, coords)
+    setHovered(id, type, geoCoords, feature)
   }
 
   /** handler for map click */
@@ -182,6 +175,8 @@ const MapView = props => {
       selectedIds={locationIds}
       hoveredId={hoveredId ? hoveredId : undefined}
       hoveredType={hoveredType ? hoveredType : undefined}
+      hoveredCoords={coords ? coords : undefined}
+      hoveredFeature={feature ? feature : undefined}
       ariaLabel={ariaLabel}
       onHover={handleHover}
       onLoad={handleLoad}

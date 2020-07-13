@@ -7,7 +7,10 @@ import React, {
 } from 'react'
 import useResizeAware from 'react-resize-aware'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-import ReactMapGL, { NavigationControl } from 'react-map-gl'
+import ReactMapGL, {
+  NavigationControl,
+  Popup,
+} from 'react-map-gl'
 import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 import usePrevious from './../../../../../shared/hooks/usePrevious'
@@ -16,6 +19,7 @@ import { getClosest } from '../utils'
 import { useMapViewport, useFlyToReset } from '../store'
 // import ZoomToControl from './ZoomToControl'
 import useMapStore from '../store'
+import PopupContent from './PopupContent'
 /**
  * Returns an array of layer ids for layers that have the
  * interactive property set to true
@@ -58,6 +62,8 @@ const MapBase = ({
   hovering,
   hoveredId,
   hoveredType,
+  hoveredCoords,
+  hoveredFeature,
   selectedIds,
   layers,
   sources,
@@ -246,6 +252,7 @@ const MapBase = ({
 
   // handler for feature hover
   const handleHover = ({ features, point, srcEvent }) => {
+    // console.log('handleHover, ', features, point)
     const newHoveredFeature =
       features && features.length > 0 ? features[0] : null
     const coords =
@@ -255,7 +262,11 @@ const MapBase = ({
             Math.round(srcEvent.pageY),
           ]
         : null
-    onHover(newHoveredFeature, coords)
+    const geoCoordinates =
+      newHoveredFeature && newHoveredFeature.geometry
+        ? newHoveredFeature.geometry.coordinates
+        : null
+    onHover(newHoveredFeature, coords, geoCoordinates)
   }
 
   // handler for feature click
@@ -385,6 +396,20 @@ const MapBase = ({
           {...viewport}
           {...rest}
         >
+          {!!hoveredId && (
+            <Popup
+              latitude={hoveredCoords[1]}
+              longitude={hoveredCoords[0]}
+              closeButton={false}
+              closeOnClick={false}
+              onClose={() =>
+                this.setState({ showPopup: false })
+              }
+              anchor="top"
+            >
+              <PopupContent feature={hoveredFeature} />
+            </Popup>
+          )}
           <div className="map__zoom">
             <NavigationControl
               showCompass={false}
