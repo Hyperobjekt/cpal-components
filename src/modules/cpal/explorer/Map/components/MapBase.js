@@ -400,8 +400,7 @@ const MapBase = ({
             <Popup
               latitude={hoveredCoords[1]}
               longitude={hoveredCoords[0]}
-              offsetTop={15}
-              closeButton={true}
+              closeButton={false}
               closeOnClick={false}
               onClose={() =>
                 this.setState({ showPopup: false })

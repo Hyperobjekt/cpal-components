@@ -4,40 +4,48 @@ import './NonInteractiveScale.scss'
 
 const NonInteractiveScale = ({
   metric,
-  value,
   quintile,
+  hashLeft,
   colors,
   showMinMax,
   min,
   max,
 }) => {
-  // console.log('NonInteractiveScale, ', colors)
+  console.log('NonInteractiveScale, quintile', quintile)
   const styles = [
     {
-      backgroundColor: colors[0],
+      backgroundColor:
+        quintile === 0 ? colors[0] : 'transparent',
     },
     {
-      backgroundColor: colors[1],
+      backgroundColor:
+        quintile === 1 ? colors[1] : 'transparent',
     },
     {
-      backgroundColor: colors[2],
+      backgroundColor:
+        quintile === 2 ? colors[2] : 'transparent',
     },
     {
-      backgroundColor: colors[3],
+      backgroundColor:
+        quintile === 3 ? colors[3] : 'transparent',
     },
     {
-      backgroundColor: colors[4],
+      backgroundColor:
+        quintile === 4 ? colors[4] : 'transparent',
     },
   ]
+  const hashStyles = { left: hashLeft + '%' }
   const minMaxStyle = {
     display: !!showMinMax ? 'block' : 'none',
   }
   return (
     <div className="n-i-scale" key={metric}>
-      <div className="n-i-scale-value">{value}</div>
       <div className="n-i-scale-parent">
-        <div className="n-i-scale-hash"></div>
-        <div className="n-i-scale metric-{metric} quintile-{quintile}">
+        <div
+          className="n-i-scale-hash"
+          style={hashStyles}
+        ></div>
+        <div className="n-i-scale-quintiles metric-{metric} quintile-{quintile}">
           <div
             className="n-i-scale-quintile quintile-0"
             style={styles[0]}
@@ -55,7 +63,7 @@ const NonInteractiveScale = ({
             style={styles[3]}
           ></div>
           <div
-            className="n-i-scale-quintile quintile-3"
+            className="n-i-scale-quintile quintile-4"
             style={styles[4]}
           ></div>
         </div>

@@ -257,16 +257,16 @@ export const getSchoolGeojson = () => {
     const found = data.find(
       school => school.TEA_ID === el.properties.SLN,
     )
-    console.log('found, ', found)
+    // console.log('found, ', found)
     if (!!found) {
       // Add data to the properties.
       el.id = found.TEA_ID
       el.properties.tea_id = found.TEA_ID
       el.properties.metric_cri = found.cri
-      el.properties.metric_com_index = found.com_index
+      el.properties.metric_comm_index = found.com_index
       el.properties.metric_econ_index = found.econ_index
       el.properties.metric_edu_index = found.edu_index
-      el.properties.metric_health_index = found.health_index
+      el.properties.metric_heal_index = found.health_index
       el.properties.metric_fam_index = found.fam_index
       // Insert into new json object.
       newJson.features.push(el)

@@ -12,12 +12,13 @@ import {
   COMM_COLORS,
 } from './../../../../../constants/colors'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
+import './PopupContent.scss'
 
 const PopupContent = ({ ...props }) => {
-  if (props.feature) {
-    // console.log('props.feature exists')
-    console.log('props.feature, ', props.feature)
-  }
+  // if (props.feature) {
+  //   console.log('props.feature exists')
+  //   console.log('props.feature, ', props.feature)
+  // }
 
   // Get strings
   i18n.init({
@@ -64,8 +65,42 @@ const PopupContent = ({ ...props }) => {
    * @type {[type]}
    */
   const getQuintile = (value, min, max) => {
-    // const normalizedValue =
-    const span = max - min
+    // console.log('getQuintile()')
+    const standardized = ((value - min) / (max - min)) * 100
+    switch (true) {
+      case standardized >= 80:
+        return 4
+        break
+      case standardized < 80 && standardized >= 60:
+        return 3
+        break
+      case standardized < 60 && standardized >= 40:
+        return 2
+        break
+      case standardized < 40 && standardized >= 20:
+        return 1
+        break
+      case standardized < 20 && standardized >= 0:
+        return 0
+        break
+      default:
+        return 0
+    }
+  }
+
+  /**
+   * Calculates hash position (percent from left/0 based on min/max)
+   * @param  Number value Value of metric
+   * @param  Number min   Minimum of range for metric
+   * @param  Number max   Maximum of range for metric
+   * @return {[type]}       [description]
+   */
+  const getHashLeft = (value, min, max) => {
+    return ((value - min) / (max - min)) * 100
+  }
+
+  const getRoundedValue = (value, min, max) => {
+    return parseFloat(value).toFixed(2)
   }
 
   /**
@@ -99,24 +134,29 @@ const PopupContent = ({ ...props }) => {
         const metricConst = getMetric(metric)
         const min = metricConst.range[0]
         const max = metricConst.range[1]
-        return (
-          <div className="popup-metric">
-            <div className="popup-metric-label">
-              {label}
+        if (value) {
+          return (
+            <div className="popup-metric">
+              <div className="popup-metric-label">
+                {label}&nbsp;
+                {!!value ? getRoundedValue(value) : ''}
+              </div>
+              <div className="popup-metric-scale">
+                <NonInteractiveScale
+                  metric={metric}
+                  hashLeft={getHashLeft(value, min, max)}
+                  quintile={getQuintile(value, min, max)}
+                  colors={metricConst.colors}
+                  showMinMax={true}
+                  min={min}
+                  max={max}
+                />
+              </div>
             </div>
-            <div className="popup-metric-scale">
-              <NonInteractiveScale
-                metric={metric}
-                value={value}
-                quintile={getQuintile(value, min, max)}
-                colors={metricConst.colors}
-                showMinMax={true}
-                min={min}
-                max={max}
-              />
-            </div>
-          </div>
-        )
+          )
+        } else {
+          return ''
+        }
       })}
     </div>
   )

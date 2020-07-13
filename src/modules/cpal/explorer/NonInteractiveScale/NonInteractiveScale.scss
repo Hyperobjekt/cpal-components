@@ -5,13 +5,73 @@
   }
   .n-i-scale-parent {
     width: 100%;
-    .n-i-scale {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    position: relative;
+    // Hash mark on the scale to indicate where value falls.
+    .n-i-scale-hash {
+      position: absolute;
+      height: 18px;
+      width: 1px;
+      background-color: black;
+      top: 4px;
+      left: 0%;
+    }
+    // Quintiles container.
+    .n-i-scale-quintiles {
       width: 100%;
+      &:after {
+        width: 100%;
+        height: 1px;
+        background-color: black;
+        display: block;
+        content: '';
+        position: absolute;
+        top: 13px;
+      }
+      // Quintiles.
       .n-i-scale-quintile {
         height: 10px;
         width: 20%;
         display: inline-block;
+        &.quintile-0:before,
+        &.quintile-4:after {
+          // border-right: 1px solid black;
+          content: '';
+          display: block;
+          width: 1px;
+          height: 10px;
+          position: absolute;
+          top: 8px;
+          background-color: black;
+        }
+        &.quintile-0:before {
+          // border-left: 1px solid black;
+          left: -1px;
+        }
+        &.quintile-4:after {
+          // border-right: 1px solid black;
+          right: -1px;
+        }
       }
+    }
+  }
+  .n-i-scale-minmax {
+    // border: 1px solid red;
+    margin-top: -7px;
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
+    flex-direction: row;
+    // align-items: stretch;
+    flex-wrap: nowrap;
+    & > div {
+      // border: 1px solid blue;
+      flex: 1 1 50%;
+      vertical-align: text-top;
+    }
+    .n-i-scale-max {
+      text-align: right !important;
     }
   }
 }
