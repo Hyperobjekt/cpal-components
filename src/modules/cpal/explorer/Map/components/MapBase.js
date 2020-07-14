@@ -218,14 +218,14 @@ const MapBase = ({
         canvas.setAttribute('aria-label', ariaLabel)
       }
       // add geolocation
-      const geolocateControl = new mapboxgl.GeolocateControl(
-        {
-          positionOptions: {
-            enableHighAccuracy: true,
-          },
-          trackUserLocation: true,
-        },
-      )
+      // const geolocateControl = new mapboxgl.GeolocateControl(
+      //   {
+      //     positionOptions: {
+      //       enableHighAccuracy: true,
+      //     },
+      //     trackUserLocation: true,
+      //   },
+      // )
       const controlContainer = document.querySelector(
         '.map__zoom:first-child',
       )
@@ -245,24 +245,33 @@ const MapBase = ({
   // race errors
   const handleViewportChange = useCallback(
     (vp, options = {}) => {
-      console.log('handleViewportChange, zoom = ', vp.zoom)
-      console.log('vp', vp)
+      // console.log('handleViewportChange, vp = ', vp)
       if (!loaded) return
-      if (vp.zoom && vp.zoom < 3) return
-      if (vp.zoom && vp.zoom > 9) return
-      console.log('vp.zoom, ', vp.zoom)
-      if (vp.longitude < BOUNDS.lng.min) {
+      // If zoom is below min, reset zoom to min.
+      if (vp.zoom && vp.zoom <= BOUNDS.zoom.min) {
+        vp.zoom = BOUNDS.zoom.min
+      }
+      // If zoom is above max, reset zoom to max.
+      if (vp.zoom && vp.zoom >= BOUNDS.zoom.max) {
+        vp.zoom = BOUNDS.zoom.max
+      }
+
+      if (vp.longitude && vp.longitude < BOUNDS.lng.min) {
+        console.log('panned beyond lng.min')
         vp.longitude = BOUNDS.lng.min
-      } else if (viewport.longitude > BOUNDS.lng.max) {
+      }
+      if (vp.longitude && vp.longitude > BOUNDS.lng.max) {
+        console.log('panned beyond lng.max')
         vp.longitude = BOUNDS.lng.max
-      } else if (viewport.latitude < BOUNDS.lat.min) {
+      }
+      if (vp.latitude && vp.latitude < BOUNDS.lat.min) {
+        console.log('panned beyond lat.min')
         vp.latitude = BOUNDS.lat.min
-      } else if (viewport.latitude > BOUNDS.lat.max) {
+      }
+      if (vp.latitude && vp.latitude > BOUNDS.lat.max) {
+        console.log('panned beyond lat.max')
         vp.latitude = BOUNDS.lat.max
       }
-      // this.setState({
-      //   viewport: { ...this.state.viewport, ...viewport },
-      // })
       setViewport(vp)
     },
     [setViewport, loaded],
@@ -289,16 +298,17 @@ const MapBase = ({
 
   // handler for feature click
   const handleClick = ({ features, srcEvent, ...rest }) => {
+    console.log('click')
     // was the click on a control
-    const isControl = getClosest(
-      srcEvent.target,
-      '.mapboxgl-ctrl-group',
-    )
+    // const isControl = getClosest(
+    //   srcEvent.target,
+    //   '.mapboxgl-ctrl-group',
+    // )
     // activate feature if one was clicked and this isn't a control click
-    features &&
-      features.length > 0 &&
-      !isControl &&
-      onClick(features[0])
+    // features &&
+    //   features.length > 0 &&
+    //   !isControl &&
+    //   onClick(features[0])
   }
 
   // set the default / reset viewport when it changes
@@ -383,9 +393,8 @@ const MapBase = ({
   }
 
   const getTooltipOffset = () => {
-    console.log('getTooltipOffset()')
-    const zoom = currentMap.getZoom() / 2.2
-    console.log('zoom, ', zoom)
+    // console.log('getTooltipOffset()')
+    const zoom = currentMap.getZoom()
     // Offset is inverse of zoom level
     const offset = {
       left: 300 / zoom,
