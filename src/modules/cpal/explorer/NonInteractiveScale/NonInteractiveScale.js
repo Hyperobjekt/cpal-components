@@ -11,7 +11,7 @@ const NonInteractiveScale = ({
   min,
   max,
 }) => {
-  console.log('NonInteractiveScale, quintile', quintile)
+  // console.log('NonInteractiveScale, quintile', quintile)
   const styles = [
     {
       backgroundColor:

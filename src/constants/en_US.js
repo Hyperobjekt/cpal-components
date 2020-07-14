@@ -14,6 +14,9 @@ const en_US = {
   UI_MAP_SR:
     'Map of $[region] in the United States, with colors showing $[metric] for $[demographic].',
   UI_MAP_CITY: `Dallas`,
+  UI_MAP_TOGGLE_LAYERS: `TOGGLE LAYERS`,
+  UI_MAP_LAYERS_REDLINING: `Historical redlining`,
+  UI_MAP_LAYERS_DISTRICTS: `District boundaries`,
   UI_MAP_METRIC_TITLE_CRI: `Community Resource Index`,
   UI_MAP_METRIC_ABBREV_CRI: `CRI`,
   UI_MAP_METRIC_TITLE_ECON: `Economics`,

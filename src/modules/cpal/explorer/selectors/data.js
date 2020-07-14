@@ -245,7 +245,7 @@ export const getDataForId = (
  * @return  Object   GeoJSON Object of all schools in client-supplied data
  */
 export const getSchoolGeojson = () => {
-  console.log('getSchoolGeojson()')
+  // console.log('getSchoolGeojson()')
   const data = schools
   const origJson = schoolsGeojson
   const newJson = {
@@ -272,7 +272,7 @@ export const getSchoolGeojson = () => {
       newJson.features.push(el)
     }
   })
-  console.log(newJson)
+  // console.log(newJson)
   return newJson
 }
 

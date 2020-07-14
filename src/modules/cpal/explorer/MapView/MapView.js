@@ -103,7 +103,7 @@ const MapView = props => {
       feature.layer &&
       feature.layer.id === 'schools-districts-outline'
     ) {
-      console.log('District border hovered.')
+      // console.log('District border hovered.')
       type = `district`
     }
     if (

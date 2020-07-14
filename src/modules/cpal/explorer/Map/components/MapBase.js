@@ -17,9 +17,10 @@ import usePrevious from './../../../../../shared/hooks/usePrevious'
 import { defaultMapStyle } from '../selectors'
 import { getClosest } from '../utils'
 import { useMapViewport, useFlyToReset } from '../store'
-// import ZoomToControl from './ZoomToControl'
 import useMapStore from '../store'
 import PopupContent from './PopupContent'
+import MapLayerToggle from './MapLayerToggle'
+
 /**
  * Returns an array of layer ids for layers that have the
  * interactive property set to true
@@ -418,6 +419,7 @@ const MapBase = ({
           </div>
           {children}
         </ReactMapGL>
+        <MapLayerToggle />
       </div>
     </>
   )

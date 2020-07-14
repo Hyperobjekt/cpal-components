@@ -57,6 +57,17 @@ const [useStore] = create((set, get) => ({
   // setSchoolHovering: newBool =>
   //   set({ schoolHovering: newBool }),
   schoolZonesAffix: `200`,
+  activeLayers: [
+    {
+      id: `district_boundaries`,
+      active: false,
+    },
+    {
+      id: `redlining`,
+      active: false,
+    },
+  ],
+  setActiveLayers: newArr => set({ activeLayers: newArr }),
 }))
 
 export default useStore

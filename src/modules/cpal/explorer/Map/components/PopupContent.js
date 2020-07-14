@@ -109,7 +109,7 @@ const PopupContent = ({ ...props }) => {
    * @return {[type]}        [description]
    */
   const getMetric = metric => {
-    console.log('getMetric, ', metric)
+    // console.log('getMetric, ', metric)
     const metricData = CPAL_METRICS.find(m => {
       return m.id === metric
     })
@@ -136,7 +136,10 @@ const PopupContent = ({ ...props }) => {
         const max = metricConst.range[1]
         if (value) {
           return (
-            <div className="popup-metric">
+            <div
+              className="popup-metric"
+              key={`popup-metric-${metric}`}
+            >
               <div className="popup-metric-label">
                 {label}&nbsp;
                 {!!value ? getRoundedValue(value) : ''}
