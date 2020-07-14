@@ -20,6 +20,7 @@ import { useMapViewport, useFlyToReset } from '../store'
 import useMapStore from '../store'
 import PopupContent from './PopupContent'
 import MapLayerToggle from './MapLayerToggle'
+import { BOUNDS } from './../constants'
 
 /**
  * Returns an array of layer ids for layers that have the
@@ -228,11 +229,11 @@ const MapBase = ({
       const controlContainer = document.querySelector(
         '.map__zoom:first-child',
       )
-      if (controlContainer && currentMap) {
-        controlContainer.appendChild(
-          geolocateControl.onAdd(currentMap),
-        )
-      }
+      // if (controlContainer && currentMap) {
+      //   controlContainer.appendChild(
+      //     geolocateControl.onAdd(currentMap),
+      //   )
+      // }
       // trigger load callback
       if (typeof onLoad === 'function') {
         onLoad(e)
@@ -244,8 +245,24 @@ const MapBase = ({
   // race errors
   const handleViewportChange = useCallback(
     (vp, options = {}) => {
+      console.log('handleViewportChange, zoom = ', vp.zoom)
+      console.log('vp', vp)
       if (!loaded) return
-      if (vp.zoom && vp.zoom < 2) return
+      if (vp.zoom && vp.zoom < 3) return
+      if (vp.zoom && vp.zoom > 9) return
+      console.log('vp.zoom, ', vp.zoom)
+      if (vp.longitude < BOUNDS.lng.min) {
+        vp.longitude = BOUNDS.lng.min
+      } else if (viewport.longitude > BOUNDS.lng.max) {
+        vp.longitude = BOUNDS.lng.max
+      } else if (viewport.latitude < BOUNDS.lat.min) {
+        vp.latitude = BOUNDS.lat.min
+      } else if (viewport.latitude > BOUNDS.lat.max) {
+        vp.latitude = BOUNDS.lat.max
+      }
+      // this.setState({
+      //   viewport: { ...this.state.viewport, ...viewport },
+      // })
       setViewport(vp)
     },
     [setViewport, loaded],
@@ -357,8 +374,25 @@ const MapBase = ({
     flyToReset()
   }
 
+  /**
+   * Returns cursor state based on presence or absenced of hovered item
+   * @return {[type]} [description]
+   */
   const getCursor = () => {
     return !!hoveredId ? 'pointer' : 'grab'
+  }
+
+  const getTooltipOffset = () => {
+    console.log('getTooltipOffset()')
+    const zoom = currentMap.getZoom() / 2.2
+    console.log('zoom, ', zoom)
+    // Offset is inverse of zoom level
+    const offset = {
+      left: 300 / zoom,
+      top: -140,
+    }
+    // console.log('offset, ', offset)
+    return offset
   }
 
   return (
@@ -406,7 +440,9 @@ const MapBase = ({
               onClose={() =>
                 this.setState({ showPopup: false })
               }
-              anchor="top"
+              anchor="bottom-left"
+              tipSize={0}
+              offsetLeft={getTooltipOffset().left}
             >
               <PopupContent feature={hoveredFeature} />
             </Popup>

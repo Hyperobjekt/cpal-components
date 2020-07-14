@@ -61,9 +61,13 @@ const MapView = props => {
     setHovered,
   ] = useHovered()
 
+  // Default affix for features in school zones layer
   const schoolZonesAffix = useStore(
     state => state.schoolZonesAffix,
   )
+  // Default viewport
+  const viewport = useStore(state => state.viewport)
+
   /** id of the active location */
   const activeFeature = useActiveLocationFeature()
   /** boolean determining if the hovered location should show */
@@ -181,6 +185,7 @@ const MapView = props => {
       onHover={handleHover}
       onLoad={handleLoad}
       onClick={handleClick}
+      defaultViewport={viewport}
       schoolZonesAffix={schoolZonesAffix}
     ></MapBase>
   )

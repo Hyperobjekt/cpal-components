@@ -36,12 +36,18 @@ const [useStore] = create((set, get) => ({
   // },
   displayDistricts: [`057905`, `057834`],
   viewport: {
-    latitude: 32.8203525,
-    longitude: -97.011731,
-    zoom: 9,
+    latitude: 32.7603525, // 37.39,
+    longitude: -96.791731, // -96.78,
+    zoom: 10,
     bearing: 0,
     pitch: 0,
     dragPan: true,
+    // maxZoom: 8,
+    // minZoom: 3,
+    // maxBounds: [
+    //   [-97.303223, 32.454256], // Southwest coordinates
+    //   [-96.47114, 33.058169], // Northeast coordinates
+    // ],
     touchZoomRotate: { around: 'center' },
     scrollZoom: { around: 'center' },
   },
