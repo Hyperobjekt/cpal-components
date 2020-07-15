@@ -1,14 +1,12 @@
 import React, { useMemo, useEffect, useRef } from 'react'
+import shallow from 'zustand/shallow'
 import { makeStyles } from '@material-ui/core'
-import {
-  getLayers,
-  // SEDA_SOURCES,
-  CPAL_SOURCES,
-} from './selectors'
+import { getLayers, CPAL_SOURCES } from './selectors'
 import {} from './selectors'
 import MapBase, {
   useFlyToState,
   useFlyToFeature,
+  useFlyToReset,
   useIdMap,
 } from './../Map'
 import MapLegend from './../Map'
@@ -67,7 +65,12 @@ const MapView = props => {
   )
   // Default viewport
   const viewport = useStore(state => state.viewport)
-
+  // Active layers
+  // const activeLayers = useStore(state => state.activeLayers)
+  const activeLayers = useStore(
+    state => Object.values(state.activeLayers),
+    shallow,
+  )
   /** id of the active location */
   const activeFeature = useActiveLocationFeature()
   /** boolean determining if the hovered location should show */
@@ -78,7 +81,7 @@ const MapView = props => {
   const [idMap, addToIdMap] = useIdMap()
   const flyToState = useFlyToState()
   const flyToFeature = useFlyToFeature()
-  // const flyToReset = useFlyToReset()
+  const flyToReset = useFlyToReset()
   const isLoaded = useRef(false)
   /** memoized array of choropleth and dot layers */
   const layers = useMemo(() => {
@@ -86,8 +89,9 @@ const MapView = props => {
       return []
     }
     const context = { region, metric, demographic }
-    return getLayers(context)
+    return getLayers(context, activeLayers)
   }, [region, metric, demographic])
+
   /** aria label for screen readers */
   const ariaLabel = getLang('UI_MAP_SR', {
     metric: getLang('LABEL_' + metric),

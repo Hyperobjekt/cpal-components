@@ -3,11 +3,11 @@ import create from 'zustand'
 const [useStore] = create((set, get) => ({
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
-  activeDistrict: ``,
-  setActiveDistrict: newDistrict =>
-    set({ activeDistrict: newDistrict }),
-  schoolsData: {},
-  setSchoolsData: newObj => set({ schoolsData: newObj }),
+  // activeDistrict: ``,
+  // setActiveDistrict: newDistrict =>
+  //   set({ activeDistrict: newDistrict }),
+  // schoolsData: {},
+  // setSchoolsData: newObj => set({ schoolsData: newObj }),
   logoSrc: `<svg width="150" height="50">
             <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />
             <text x="25" y="40" fill="white">LOGO</text>
@@ -28,49 +28,32 @@ const [useStore] = create((set, get) => ({
       id: `feed`,
     },
   ],
-  // GEO: {
-  //   dallas: {
-  //     lat: 32.8203525,
-  //     lng: -97.011731,
-  //   },
-  // },
   displayDistricts: [`057905`, `057834`],
   viewport: {
-    latitude: 32.7603525, // 37.39,
-    longitude: -96.791731, // -96.78,
+    latitude: 32.7603525,
+    longitude: -96.791731,
     zoom: 10,
     bearing: 0,
     pitch: 0,
     dragPan: true,
-    // maxZoom: 8,
-    // minZoom: 3,
-    // maxBounds: [
-    //   [-97.303223, 32.454256], // Southwest coordinates
-    //   [-96.47114, 33.058169], // Northeast coordinates
-    // ],
     touchZoomRotate: { around: 'center' },
-    scrollZoom: { around: 'center' },
+    // scrollZoom: { around: 'center' },
   },
   setViewport: viewport =>
     set(state => ({
       viewport: { ...state.viewport, ...viewport },
     })),
-  // Cursor for map
-  // mapCursor: ``,
-  // setMapCursor: newCursor => set({ mapCursor: newCursor }),
-  // Boolean is a school hovered
-  // schoolHovering: false,
-  // setSchoolHovering: newBool =>
-  //   set({ schoolHovering: newBool }),
   schoolZonesAffix: `200`,
   activeLayers: [
     {
       id: `district_boundaries`,
-      active: false,
+      active: true,
+      types: [`districts`],
     },
     {
       id: `redlining`,
       active: false,
+      types: ['redlineShapes', 'redlineLines'],
     },
   ],
   setActiveLayers: newArr => set({ activeLayers: newArr }),

@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 import i18n from '@pureartisan/simple-i18n'
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-} from 'reactstrap'
+import { Button, Label, Input } from 'reactstrap'
 import { FiLayers } from 'react-icons/fi'
 import clsx from 'clsx'
 
@@ -41,14 +34,29 @@ const MapLayerToggle = ({ ...props }) => {
   }
 
   const updateLayers = e => {
-    // console.log(
-    //   'updateLayers, ',
-    //   e.currentTarget,
-    // )
+    // console.log('updateLayers, ', e.currentTarget)
+    // Get index of map layer.
     const index = activeLayers.findIndex(
       el => el.id === e.currentTarget.id,
     )
-    activeLayers[index].active = e.currentTarget.checked
+    // Update active status in store.
+    activeLayers[index].active = !!e.currentTarget.checked
+      ? true
+      : false
+
+    // Get current visibility for each type
+    activeLayers[index].types.forEach(el => {
+      const visibility = props.currentMap.getLayoutProperty(
+        el,
+        'visibility',
+      )
+      // toggle layer visibility by changing the layout object's visibility property
+      props.currentMap.setLayoutProperty(
+        el,
+        'visibility',
+        !!e.currentTarget.checked ? 'visible' : 'none',
+      )
+    })
   }
 
   const [showPanel, setShowPanel] = useState(false)

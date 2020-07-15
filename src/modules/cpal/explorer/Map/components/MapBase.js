@@ -20,6 +20,7 @@ import { useMapViewport, useFlyToReset } from '../store'
 import useMapStore from '../store'
 import PopupContent from './PopupContent'
 import MapLayerToggle from './MapLayerToggle'
+import MapResetButton from './MapResetButton'
 import { BOUNDS } from './../constants'
 
 /**
@@ -460,11 +461,14 @@ const MapBase = ({
             <NavigationControl
               showCompass={false}
               onViewportChange={setViewport}
+            ></NavigationControl>
+            <MapResetButton
+              resetViewport={handleResetViewport}
             />
           </div>
           {children}
         </ReactMapGL>
-        <MapLayerToggle />
+        <MapLayerToggle currentMap={currentMap} />
       </div>
     </>
   )
