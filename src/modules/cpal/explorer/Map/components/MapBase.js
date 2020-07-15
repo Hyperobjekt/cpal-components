@@ -20,6 +20,8 @@ import { useMapViewport, useFlyToReset } from '../store'
 import useMapStore from '../store'
 import PopupContent from './PopupContent'
 import MapLayerToggle from './MapLayerToggle'
+import MapResetButton from './MapResetButton'
+import { BOUNDS } from './../constants'
 
 /**
  * Returns an array of layer ids for layers that have the
@@ -217,22 +219,22 @@ const MapBase = ({
         canvas.setAttribute('aria-label', ariaLabel)
       }
       // add geolocation
-      const geolocateControl = new mapboxgl.GeolocateControl(
-        {
-          positionOptions: {
-            enableHighAccuracy: true,
-          },
-          trackUserLocation: true,
-        },
-      )
+      // const geolocateControl = new mapboxgl.GeolocateControl(
+      //   {
+      //     positionOptions: {
+      //       enableHighAccuracy: true,
+      //     },
+      //     trackUserLocation: true,
+      //   },
+      // )
       const controlContainer = document.querySelector(
         '.map__zoom:first-child',
       )
-      if (controlContainer && currentMap) {
-        controlContainer.appendChild(
-          geolocateControl.onAdd(currentMap),
-        )
-      }
+      // if (controlContainer && currentMap) {
+      //   controlContainer.appendChild(
+      //     geolocateControl.onAdd(currentMap),
+      //   )
+      // }
       // trigger load callback
       if (typeof onLoad === 'function') {
         onLoad(e)
@@ -244,8 +246,33 @@ const MapBase = ({
   // race errors
   const handleViewportChange = useCallback(
     (vp, options = {}) => {
+      // console.log('handleViewportChange, vp = ', vp)
       if (!loaded) return
-      if (vp.zoom && vp.zoom < 2) return
+      // If zoom is below min, reset zoom to min.
+      if (vp.zoom && vp.zoom <= BOUNDS.zoom.min) {
+        vp.zoom = BOUNDS.zoom.min
+      }
+      // If zoom is above max, reset zoom to max.
+      if (vp.zoom && vp.zoom >= BOUNDS.zoom.max) {
+        vp.zoom = BOUNDS.zoom.max
+      }
+
+      if (vp.longitude && vp.longitude < BOUNDS.lng.min) {
+        console.log('panned beyond lng.min')
+        vp.longitude = BOUNDS.lng.min
+      }
+      if (vp.longitude && vp.longitude > BOUNDS.lng.max) {
+        console.log('panned beyond lng.max')
+        vp.longitude = BOUNDS.lng.max
+      }
+      if (vp.latitude && vp.latitude < BOUNDS.lat.min) {
+        console.log('panned beyond lat.min')
+        vp.latitude = BOUNDS.lat.min
+      }
+      if (vp.latitude && vp.latitude > BOUNDS.lat.max) {
+        console.log('panned beyond lat.max')
+        vp.latitude = BOUNDS.lat.max
+      }
       setViewport(vp)
     },
     [setViewport, loaded],
@@ -272,16 +299,17 @@ const MapBase = ({
 
   // handler for feature click
   const handleClick = ({ features, srcEvent, ...rest }) => {
+    console.log('click')
     // was the click on a control
-    const isControl = getClosest(
-      srcEvent.target,
-      '.mapboxgl-ctrl-group',
-    )
+    // const isControl = getClosest(
+    //   srcEvent.target,
+    //   '.mapboxgl-ctrl-group',
+    // )
     // activate feature if one was clicked and this isn't a control click
-    features &&
-      features.length > 0 &&
-      !isControl &&
-      onClick(features[0])
+    // features &&
+    //   features.length > 0 &&
+    //   !isControl &&
+    //   onClick(features[0])
   }
 
   // set the default / reset viewport when it changes
@@ -357,8 +385,24 @@ const MapBase = ({
     flyToReset()
   }
 
+  /**
+   * Returns cursor state based on presence or absenced of hovered item
+   * @return {[type]} [description]
+   */
   const getCursor = () => {
     return !!hoveredId ? 'pointer' : 'grab'
+  }
+
+  const getTooltipOffset = () => {
+    // console.log('getTooltipOffset()')
+    const zoom = currentMap.getZoom()
+    // Offset is inverse of zoom level
+    const offset = {
+      left: 300 / zoom,
+      top: -140,
+    }
+    // console.log('offset, ', offset)
+    return offset
   }
 
   return (
@@ -406,7 +450,9 @@ const MapBase = ({
               onClose={() =>
                 this.setState({ showPopup: false })
               }
-              anchor="top"
+              anchor="bottom-left"
+              tipSize={0}
+              offsetLeft={getTooltipOffset().left}
             >
               <PopupContent feature={hoveredFeature} />
             </Popup>
@@ -415,11 +461,14 @@ const MapBase = ({
             <NavigationControl
               showCompass={false}
               onViewportChange={setViewport}
+            ></NavigationControl>
+            <MapResetButton
+              resetViewport={handleResetViewport}
             />
           </div>
           {children}
         </ReactMapGL>
-        <MapLayerToggle />
+        <MapLayerToggle currentMap={currentMap} />
       </div>
     </>
   )

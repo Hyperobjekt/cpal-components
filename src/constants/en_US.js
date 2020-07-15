@@ -13,6 +13,7 @@ const en_US = {
   SELECT_ITEM_FEEDER: `Feeder view`,
   UI_MAP_SR:
     'Map of $[region] in the United States, with colors showing $[metric] for $[demographic].',
+  UI_MAP_RESET: `Reset map zoom and pan`,
   UI_MAP_CITY: `Dallas`,
   UI_MAP_TOGGLE_LAYERS: `TOGGLE LAYERS`,
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,

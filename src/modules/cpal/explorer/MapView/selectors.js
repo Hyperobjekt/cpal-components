@@ -17,6 +17,7 @@ import {
 } from './../../../../constants/colors'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
+import useStore from './../store'
 
 const noDataFill = '#ccc'
 
@@ -386,7 +387,7 @@ export const getChoroplethOutline = ({ layerId, region }) =>
 export const getDistrictOutline = ({ layerId, region }) => {
   // console.log('getDistrictOutline(), ', region)
   return fromJS({
-    id: region + '-district-outline', // layerId || region + '-district-outline',
+    id: 'districts', // region + '-district-outline', // layerId || region + '-district-outline',
     source: 'districts',
     // 'source-layer': region,
     type: 'line',
@@ -422,7 +423,7 @@ export const getSchoolZoneShapes = ({
     layout: {
       visibility: 'visible',
     },
-    interactive: true,
+    interactive: false,
     paint: {
       'fill-color': 'orange',
       'fill-outline-color': '#000',
@@ -439,12 +440,12 @@ export const getSchoolZoneShapes = ({
 export const getRedlineShapes = ({ layerId, region }) => {
   // console.log('getRedlineShapes(), ', region)
   return fromJS({
-    id: region + '-redline-shapes', // layerId || region + '-district-outline',
+    id: 'redlineShapes', // region + '-redline-shapes', // layerId || region + '-district-outline',
     source: 'redlines',
     // 'source-layer': region,
     type: 'fill',
     layout: {
-      visibility: 'visible',
+      visibility: 'none',
     },
     interactive: false,
     paint: {
@@ -465,12 +466,12 @@ export const getRedlineShapes = ({ layerId, region }) => {
 export const getRedlineLines = ({ layerId, region }) => {
   // console.log('getRedlineLines(), ', region)
   return fromJS({
-    id: region + '-redline-lines', // layerId || region + '-district-outline',
+    id: 'redlineLines', // region + '-redline-lines', // layerId || region + '-district-outline',
     source: 'redlines',
     // 'source-layer': region,
     type: 'line',
     layout: {
-      visibility: 'visible',
+      visibility: 'none',
     },
     interactive: false,
     paint: {
@@ -613,41 +614,10 @@ const isSchoolZoneId = id => {
 //     },
 //   })
 
-/**
- * Gets choropleth layer based on current context
- * @param {*} context { metric, demographic, region}
- */
-// export const getChoroplethLayers = context => {
-//   console.log('getChoroplethLayers', context)
-//   return [
-//     {
-//       z: 1,
-//       style: getChoroplethLayer(context),
-//       hasFeatureId: isChoroplethId,
-//     },
-//     { z: 50, style: getChoroplethOutline(context) },
-//     { z: 50, style: getChoroplethOutlineCasing(context) },
-//   ]
-// }
-
-// export const getCircleLayers = context => {
-//   console.log('getCircleLayers', context)
-//   return [
-//     { z: 50, style: getCircleHighlightLayer(context) },
-//     {
-//       z: 50,
-//       style: getCircleLayer(context),
-//       idMap: true,
-//       hasFeatureId: isCircleId,
-//     },
-//     { z: 50, style: getCircleCasingLayer(context) },
-//   ]
-// }
-//
-//
-//
-
-export const getDistrictLayers = context => {
+export const getDistrictLayers = (
+  context,
+  activeLayers,
+) => {
   // console.log('getDistrictLayers', context)
   return [
     {
@@ -660,7 +630,7 @@ export const getDistrictLayers = context => {
   ]
 }
 
-export const getRedlineLayers = context => {
+export const getRedlineLayers = (context, activeLayers) => {
   // console.log('getRedlineLayers', context)
   return [
     {
@@ -715,12 +685,12 @@ export const getCircleLayers = context => {
   ]
 }
 
-export const getLayers = context => {
-  // console.log('getLayers', context)
+export const getLayers = (context, activeLayers) => {
+  console.log('getLayers', context, activeLayers)
   return [
     ...getSchoolZoneLayers(context),
-    ...getDistrictLayers(context),
-    ...getRedlineLayers(context),
+    ...getDistrictLayers(context, activeLayers),
+    ...getRedlineLayers(context, activeLayers),
     ...getCircleLayers(context),
   ]
 }
