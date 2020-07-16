@@ -21,11 +21,11 @@ const [useStore] = create((set, get) => ({
   viewSelect: [
     {
       label: `SELECT_ITEM_MAP`,
-      id: `map`,
+      id: `select_view_map`,
     },
     {
       label: `SELECT_ITEM_FEEDER`,
-      id: `feed`,
+      id: `select_view_feed`,
     },
   ],
   displayDistricts: [`057905`, `057834`],

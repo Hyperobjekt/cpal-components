@@ -29,6 +29,7 @@ const MapResetButton = ({ ...props }) => {
       onClick={e => {
         resetViewport(e)
       }}
+      title={i18n.translate(`UI_MAP_RESET`)}
     >
       <FaRedo className="icon" />
       <span className="sr-only">

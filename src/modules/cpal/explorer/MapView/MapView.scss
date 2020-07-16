@@ -2,3 +2,20 @@
   width: 100%;
   height: 100%;
 }
+
+.mapbox-popup {
+  z-index: 5000;
+  width: 300px;
+  &.mapbox-popup-anchor-top {
+  }
+  .mapbox-popup-tip {
+    // Not displayed at present
+  }
+  .mapbox-popup-content {
+    width: 300px !important;
+    border: 3px solid blue;
+    .mapbox-popup-close-button {
+      // Not displayed at present
+    }
+  }
+}

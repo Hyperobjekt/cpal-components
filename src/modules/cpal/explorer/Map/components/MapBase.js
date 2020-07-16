@@ -11,6 +11,8 @@ import ReactMapGL, {
   NavigationControl,
   Popup,
 } from 'react-map-gl'
+// import { point } from '@turf/turf'
+import destination from '@turf/destination'
 import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 import usePrevious from './../../../../../shared/hooks/usePrevious'
@@ -278,9 +280,15 @@ const MapBase = ({
     [setViewport, loaded],
   )
 
+  const [mouseCoords, setMouseCoords] = useState([
+    null,
+    null,
+  ])
+
   // handler for feature hover
   const handleHover = ({ features, point, srcEvent }) => {
     // console.log('handleHover, ', features, point)
+    setMouseCoords(point)
     const newHoveredFeature =
       features && features.length > 0 ? features[0] : null
     const coords =
@@ -364,21 +372,6 @@ const MapBase = ({
     // eslint-disable-next-line
   }, [hoveredId, loaded]) // update only when hovered id changes
 
-  // set selected outlines when selected IDs change
-  // useEffect(() => {
-  //   prev &&
-  //     prev.selectedIds &&
-  //     prev.selectedIds.forEach(id =>
-  //       setFeatureState(id, { selected: false }),
-  //     )
-  //   selectedIds.forEach((id, i) =>
-  //     setFeatureState(id, {
-  //       selected: selectedColors[i % selectedColors.length],
-  //     }),
-  //   )
-  //   // eslint-disable-next-line
-  // }, [selectedIds, loaded]) // update only when selected ids change
-
   /** handler for resetting the viewport */
   const handleResetViewport = e => {
     e.preventDefault()
@@ -393,16 +386,107 @@ const MapBase = ({
     return !!hoveredId ? 'pointer' : 'grab'
   }
 
-  const getTooltipOffset = () => {
-    // console.log('getTooltipOffset()')
+  const getTooltipOffset = hoveredFeature => {
+    // console.log(
+    //   'getTooltipOffset(), hoveredFeature = ',
+    //   hoveredFeature,
+    //   hoveredFeature.x,
+    // )
+    // Get current zoom.
     const zoom = currentMap.getZoom()
-    // Offset is inverse of zoom level
-    const offset = {
-      left: 300 / zoom,
-      top: -140,
+    // console.log('zoom = ', zoom)
+    // Distance = 2 miles.
+    let distance = 2
+    if (zoom >= 12) {
+      distance = 0.2
     }
-    // console.log('offset, ', offset)
-    return offset
+    // Set point for hovered feature.
+    const point = hoveredFeature.geometry.coordinates
+    var options = { units: 'miles' }
+    // Get coords for edge of zone at cardinal directions for hovered feature latlng
+    const offsets = {
+      north: destination(point, distance, 0, options),
+      northeast: destination(point, distance, 45, options),
+      east: destination(point, distance, 90, options),
+      southeast: destination(point, distance, 135, options),
+      south: destination(point, distance, 180, options),
+      southwest: destination(
+        point,
+        distance,
+        -135,
+        options,
+      ),
+      west: destination(point, distance, -90, options),
+      northwest: destination(point, distance, -45, options),
+    }
+    // Defaults to positioning it 2 miles east, at the edge of the zone.
+    let tooltip = {
+      coords: offsets.east.geometry.coordinates,
+      anchor: 'left',
+    }
+    const mapSize = document
+      .getElementById('map')
+      .getBoundingClientRect()
+    // Check for overlap issues
+    // If x is close to right edge, change x to west side.
+    if (mouseCoords[0] > mapSize.width - 350) {
+      // console.log('too close to right edge')
+      tooltip.coords[0] =
+        offsets.west.geometry.coordinates[0]
+      tooltip.anchor = 'right'
+    }
+    // If y is close to top, switch.
+    if (mouseCoords[1] < 250) {
+      // console.log('too close to top edge')
+      tooltip.coords = offsets.south.geometry.coordinates
+      tooltip.anchor = 'top'
+    }
+    // If y is close to bottom, set y to a max.
+    if (mouseCoords[1] > mapSize.height - 250) {
+      // console.log('too close to top edge')
+      tooltip.coords = offsets.north.geometry.coordinates
+      tooltip.anchor = 'bottom'
+    }
+    // If it's in the top right corner
+    if (
+      mouseCoords[0] > mapSize.width - 350 &&
+      mouseCoords[1] < 250
+    ) {
+      // console.log('too close to top right corner')
+      tooltip.coords =
+        offsets.southwest.geometry.coordinates
+      tooltip.anchor = 'top-right'
+    }
+    // If it's in the bottom right corner
+    if (
+      mouseCoords[0] > mapSize.width - 350 &&
+      mouseCoords[1] > mapSize.height - 250
+    ) {
+      // console.log('too close to top right corner')
+      tooltip.coords =
+        offsets.northwest.geometry.coordinates
+      tooltip.anchor = 'bottom-right'
+    }
+    // If it's in the bottom left corner
+    if (
+      mouseCoords[0] < 350 &&
+      mouseCoords[1] > mapSize.height - 250
+    ) {
+      // console.log('too close to bottom left corner')
+      tooltip.coords =
+        offsets.northeast.geometry.coordinates
+      tooltip.anchor = 'bottom-left'
+    }
+    // If it's in the top left corner
+    if (mouseCoords[0] < 350 && mouseCoords[1] < 250) {
+      // console.log('too close to bottom left corner')
+      tooltip.coords =
+        offsets.southeast.geometry.coordinates
+      tooltip.anchor = 'top-left'
+    }
+
+    // console.log('mouseCoords, ', mouseCoords)
+    return tooltip
   }
 
   return (
@@ -443,16 +527,22 @@ const MapBase = ({
         >
           {!!hoveredId && (
             <Popup
-              latitude={hoveredCoords[1]}
-              longitude={hoveredCoords[0]}
+              latitude={
+                getTooltipOffset(hoveredFeature).coords[1]
+              }
+              longitude={
+                getTooltipOffset(hoveredFeature).coords[0]
+              }
               closeButton={false}
               closeOnClick={false}
               onClose={() =>
                 this.setState({ showPopup: false })
               }
-              anchor="bottom-left"
+              anchor={
+                getTooltipOffset(hoveredFeature).anchor
+              }
               tipSize={0}
-              offsetLeft={getTooltipOffset().left}
+              dynamicPosition={false}
             >
               <PopupContent feature={hoveredFeature} />
             </Popup>
