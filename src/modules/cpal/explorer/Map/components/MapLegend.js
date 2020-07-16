@@ -24,7 +24,7 @@ const MapLegend = ({ ...props }) => {
   const intl = useStore(state => state.intl)
   const metricData = getMetric(activeMetric, CPAL_METRICS)
   return (
-    <Card className="map-legend">
+    <div className="map-legend">
       <div className="map-legend-label">
         {i18n.translate(`UI_MAP_LEGEND_TITLE`)}
       </div>
@@ -53,7 +53,7 @@ const MapLegend = ({ ...props }) => {
           {i18n.translate(`UI_MAP_LEGEND_SCHOOL_ZONE`)}
         </div>
       </div>
-    </Card>
+    </div>
   )
 }
 

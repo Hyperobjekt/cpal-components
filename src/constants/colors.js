@@ -23,6 +23,11 @@ export const CHOROPLETH_COLORS = [
   '#136e4a',
 ]
 
+export const SCHOOL_ZONE_COLORS = {
+  border: '#ccc',
+  fill: '#ddd',
+}
+
 /**
  * colors for CRI scale
  */

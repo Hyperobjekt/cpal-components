@@ -549,7 +549,7 @@ const MapBase = ({
               <PopupContent feature={hoveredFeature} />
             </Popup>
           )}
-          <MapLegend />
+
           <div className="map__zoom">
             <NavigationControl
               showCompass={false}
@@ -562,6 +562,7 @@ const MapBase = ({
           </div>
           {children}
         </ReactMapGL>
+        <MapLegend />
         <MapLayerToggle currentMap={currentMap} />
       </div>
     </>
