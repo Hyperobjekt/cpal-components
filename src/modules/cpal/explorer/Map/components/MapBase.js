@@ -23,6 +23,7 @@ import useMapStore from '../store'
 import PopupContent from './PopupContent'
 import MapLayerToggle from './MapLayerToggle'
 import MapResetButton from './MapResetButton'
+import MapCaptureButton from './MapCaptureButton'
 import { BOUNDS } from './../constants'
 
 /**
@@ -556,6 +557,7 @@ const MapBase = ({
             <MapResetButton
               resetViewport={handleResetViewport}
             />
+            <MapCaptureButton currentMap={currentMap} />
           </div>
           {children}
         </ReactMapGL>

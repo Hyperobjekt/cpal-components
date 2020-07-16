@@ -14,6 +14,7 @@ const en_US = {
   UI_MAP_SR:
     'Map of $[region] in the United States, with colors showing $[metric] for $[demographic].',
   UI_MAP_RESET: `Reset map`,
+  UI_MAP_CAPTURE: `Screenshot map`,
   UI_MAP_CITY: `Dallas`,
   UI_MAP_TOGGLE_LAYERS: `TOGGLE LAYERS`,
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,

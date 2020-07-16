@@ -37,6 +37,7 @@ const [useStore] = create((set, get) => ({
     pitch: 0,
     dragPan: true,
     touchZoomRotate: { around: 'center' },
+    preserveDrawingBuffer: true,
     // scrollZoom: { around: 'center' },
   },
   setViewport: viewport =>

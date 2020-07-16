@@ -21,4 +21,5 @@ export const DEFAULT_VIEWPORT = {
   latitude: 32.7603525, // 37.39,
   longitude: -96.791731, // -96.78,
   zoom: 10,
+  preserveDrawingBuffer: true,
 }
