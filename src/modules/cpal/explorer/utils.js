@@ -45,27 +45,6 @@ const getFeatureFromCollection = (id, collection) => {
   return feature
 }
 
-/**
- * Gets the tilequery URL for the given region, latitude and longitude
- * @param {string} region
- * @param {number} lat
- * @param {number} lon
- * @returns {string}
- */
-// const getTilequeryUrl = (region, lat, lon) =>
-//   'https://api.mapbox.com/v4/' +
-//   process.env.REACT_APP_MAPBOX_USER +
-//   '.' +
-//   region +
-//   '-' +
-//   // TODO: update to prod when it's available
-//   (process.env.NODE_ENV === 'production' ? 'dev' : 'dev') +
-//   '/tilequery/' +
-//   lon +
-//   ',' +
-//   lat +
-//   '.json?radius=10000&access_token=' +
-//   process.env.REACT_APP_MAPBOX_ACCESS_TOKEN // process.env.MAPBOX_API_TOKEN
 //
 // /**
 //  * Loads a feature from a location object containing a feature ID,
@@ -96,3 +75,91 @@ const getFeatureFromCollection = (id, collection) => {
 //   Promise.all(
 //     locationsArray.map(l => loadFeatureFromCoords(l)),
 //   )
+
+/**
+ * Returns a value rounded to the indicated number of decimals
+ * @param  String value     Number or string, value passed to function
+ * @param  Number decimals  Number of decimals to round to
+ * @param  Boolan padZeroes If true, pad with extra zeroes to fill empty decimal spots
+ * @return Number
+ */
+export const getRoundedValue = (
+  value,
+  decimals,
+  padZeroes,
+) => {
+  // console.log('getRoundedValue()')
+  const type = typeof value
+  let fixed = null
+  if (type === 'string') {
+    if (padZeroes) {
+      fixed = parseFloat(value).toFixed(decimals)
+    } else {
+      fixed = +parseFloat(value).toFixed(decimals)
+    }
+  } else {
+    console.log('type is number')
+    if (padZeroes) {
+      fixed = value.toFixed(decimals)
+    } else {
+      fixed = +value.toFixed(decimals)
+    }
+  }
+  return fixed
+}
+
+/**
+ * Returns an index value for the quintile, 0 for far left, 4 for far right
+ * @type {[type]}
+ */
+export const getQuintile = (value, min, max) => {
+  // console.log('getQuintile()')
+  const standardized = ((value - min) / (max - min)) * 100
+  switch (true) {
+    case standardized >= 80:
+      return 4
+      break
+    case standardized < 80 && standardized >= 60:
+      return 3
+      break
+    case standardized < 60 && standardized >= 40:
+      return 2
+      break
+    case standardized < 40 && standardized >= 20:
+      return 1
+      break
+    case standardized < 20 && standardized >= 0:
+      return 0
+      break
+    default:
+      return 0
+  }
+}
+
+/**
+ * Calculates hash position (percent from left/0 based on min/max)
+ * @param  Number value Value of metric
+ * @param  Number min   Minimum of range for metric
+ * @param  Number max   Maximum of range for metric
+ * @return {[type]}       [description]
+ */
+export const getHashLeft = (value, min, max) => {
+  return ((value - min) / (max - min)) * 100
+}
+
+/**
+ * Returns an array of color values, one for each quintile for the given metric
+ * @param  String metric string for metric
+ * @return {[type]}        [description]
+ */
+export const getMetric = (metric, metrics) => {
+  // console.log('getMetric, ', metric)
+  const metricData = metrics.find(m => {
+    return m.id === metric
+  })
+  if (!!metricData) {
+    return metricData
+  } else {
+    console.error(`Unable to get metric ${metric}.`)
+  }
+}

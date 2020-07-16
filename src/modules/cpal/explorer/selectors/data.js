@@ -277,7 +277,7 @@ export const getSchoolGeojson = () => {
 }
 
 export const getSchoolZones = () => {
-  console.log('getSchoolZones')
+  // console.log('getSchoolZones')
   const data = schools
   const origJson = schoolsGeojson
   const newJson = {
@@ -307,6 +307,6 @@ export const getSchoolZones = () => {
       newJson.features.push(cir)
     }
   })
-  console.log('newJson', newJson)
+  // console.log('newJson', newJson)
   return newJson
 }

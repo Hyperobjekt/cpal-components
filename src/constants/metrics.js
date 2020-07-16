@@ -3,6 +3,8 @@ import LANG from './en'
 export const CPAL_METRICS = [
   {
     id: 'cri',
+    title: 'UI_MAP_METRIC_TITLE_CRI',
+    abbrev: 'CRI',
     range: [0, 100],
     // At present, dark purple to light purple
     colors: [
@@ -15,6 +17,8 @@ export const CPAL_METRICS = [
   },
   {
     id: 'econ_index',
+    title: 'UI_MAP_METRIC_TITLE_ECON',
+    abbrev: 'ECON',
     range: [0, 100],
     colors: [
       '#0225DF',
@@ -26,6 +30,8 @@ export const CPAL_METRICS = [
   },
   {
     id: 'edu_index',
+    title: 'UI_MAP_METRIC_TITLE_EDU',
+    abbrev: 'EDU',
     range: [0, 100],
     colors: [
       '#7C0000',
@@ -37,6 +43,8 @@ export const CPAL_METRICS = [
   },
   {
     id: 'fam_index',
+    title: 'UI_MAP_METRIC_TITLE_FAM',
+    abbrev: 'FAM',
     range: [0, 100],
     colors: [
       '#AB5700',
@@ -48,6 +56,8 @@ export const CPAL_METRICS = [
   },
   {
     id: 'heal_index',
+    title: 'UI_MAP_METRIC_TITLE_HEAL',
+    abbrev: 'HEAL',
     range: [0, 100],
     colors: [
       '#3800D9',
@@ -59,6 +69,8 @@ export const CPAL_METRICS = [
   },
   {
     id: 'comm_index',
+    title: 'UI_MAP_METRIC_TITLE_COMM',
+    abbrev: 'COMM',
     range: [0, 100],
     colors: [
       '#AA00A5',

@@ -12,6 +12,12 @@ import {
   COMM_COLORS,
 } from './../../../../../constants/colors'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
+import {
+  getRoundedValue,
+  getMetric,
+  getHashLeft,
+  getQuintile,
+} from './../../utils'
 import './PopupContent.scss'
 
 const PopupContent = ({ ...props }) => {
@@ -27,29 +33,29 @@ const PopupContent = ({ ...props }) => {
       en_US: en_US,
     },
   })
-  const popupStrings = {
-    metric_cri_title: i18n.translate(
-      `UI_MAP_METRIC_TITLE_CRI`,
-    ),
-    metric_cri_abbrev: i18n.translate(
-      `UI_MAP_METRIC_CRI_ABBREV`,
-    ),
-    metric_econ_index_title: i18n.translate(
-      `UI_MAP_METRIC_TITLE_ECON`,
-    ),
-    metric_edu_index_title: i18n.translate(
-      `UI_MAP_METRIC_TITLE_EDU`,
-    ),
-    metric_fam_index_title: i18n.translate(
-      `UI_MAP_METRIC_TITLE_FAM`,
-    ),
-    metric_heal_index_title: i18n.translate(
-      `UI_MAP_METRIC_TITLE_HEAL`,
-    ),
-    metric_comm_index_title: i18n.translate(
-      `UI_MAP_METRIC_TITLE_COMM`,
-    ),
-  }
+  // const popupStrings = {
+  //   metric_cri_title: i18n.translate(
+  //     `UI_MAP_METRIC_TITLE_CRI`,
+  //   ),
+  //   metric_cri_abbrev: i18n.translate(
+  //     `UI_MAP_METRIC_CRI_ABBREV`,
+  //   ),
+  //   metric_econ_index_title: i18n.translate(
+  //     `UI_MAP_METRIC_TITLE_ECON`,
+  //   ),
+  //   metric_edu_index_title: i18n.translate(
+  //     `UI_MAP_METRIC_TITLE_EDU`,
+  //   ),
+  //   metric_fam_index_title: i18n.translate(
+  //     `UI_MAP_METRIC_TITLE_FAM`,
+  //   ),
+  //   metric_heal_index_title: i18n.translate(
+  //     `UI_MAP_METRIC_TITLE_HEAL`,
+  //   ),
+  //   metric_comm_index_title: i18n.translate(
+  //     `UI_MAP_METRIC_TITLE_COMM`,
+  //   ),
+  // }
 
   const metrics = [
     `cri`,
@@ -60,81 +66,20 @@ const PopupContent = ({ ...props }) => {
     `comm_index`,
   ]
 
-  /**
-   * Returns an index value for the quintile, 0 for far left, 4 for far right
-   * @type {[type]}
-   */
-  const getQuintile = (value, min, max) => {
-    // console.log('getQuintile()')
-    const standardized = ((value - min) / (max - min)) * 100
-    switch (true) {
-      case standardized >= 80:
-        return 4
-        break
-      case standardized < 80 && standardized >= 60:
-        return 3
-        break
-      case standardized < 60 && standardized >= 40:
-        return 2
-        break
-      case standardized < 40 && standardized >= 20:
-        return 1
-        break
-      case standardized < 20 && standardized >= 0:
-        return 0
-        break
-      default:
-        return 0
-    }
-  }
-
-  /**
-   * Calculates hash position (percent from left/0 based on min/max)
-   * @param  Number value Value of metric
-   * @param  Number min   Minimum of range for metric
-   * @param  Number max   Maximum of range for metric
-   * @return {[type]}       [description]
-   */
-  const getHashLeft = (value, min, max) => {
-    return ((value - min) / (max - min)) * 100
-  }
-
-  const getRoundedValue = (value, min, max) => {
-    return parseFloat(value).toFixed(2)
-  }
-
-  /**
-   * Returns an array of color values, one for each quintile for the given metric
-   * @param  String metric string for metric
-   * @return {[type]}        [description]
-   */
-  const getMetric = metric => {
-    // console.log('getMetric, ', metric)
-    const metricData = CPAL_METRICS.find(m => {
-      return m.id === metric
-    })
-    if (!!metricData) {
-      return metricData
-    } else {
-      console.error(
-        'Unable to get metric from CPAL_METRICS in PopupContent.js.',
-      )
-    }
-  }
-
-  // console.log('popupStrings, ', popupStrings)
-
   return (
     <div className="popup-content">
+      <div className="popup-school-name">
+        <h4>{props.feature.properties.SCHOOLNAME}</h4>
+      </div>
       {metrics.map(metric => {
-        const label =
-          popupStrings['metric_' + metric + '_title']
-        const value =
-          props.feature.properties['metric_' + metric]
-        const metricConst = getMetric(metric)
-        const min = metricConst.range[0]
-        const max = metricConst.range[1]
-        if (value) {
+        const metricData = getMetric(metric, CPAL_METRICS)
+        const label = i18n.translate(metricData.title)
+        const value = String(
+          props.feature.properties['metric_' + metric],
+        )
+        const min = metricData.range[0]
+        const max = metricData.range[1]
+        if (value.length > 0) {
           return (
             <div
               className="popup-metric"
@@ -142,14 +87,16 @@ const PopupContent = ({ ...props }) => {
             >
               <div className="popup-metric-label">
                 {label}&nbsp;
-                {!!value ? getRoundedValue(value) : ''}
+                {!!value
+                  ? getRoundedValue(value, 0, false)
+                  : ''}
               </div>
               <div className="popup-metric-scale">
                 <NonInteractiveScale
                   metric={metric}
                   hashLeft={getHashLeft(value, min, max)}
                   quintile={getQuintile(value, min, max)}
-                  colors={metricConst.colors}
+                  colors={metricData.colors}
                   showMinMax={true}
                   min={min}
                   max={max}
