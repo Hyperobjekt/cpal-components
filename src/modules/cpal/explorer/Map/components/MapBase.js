@@ -390,7 +390,6 @@ const MapBase = ({
     // console.log(
     //   'getTooltipOffset(), hoveredFeature = ',
     //   hoveredFeature,
-    //   hoveredFeature.x,
     // )
     // Get current zoom.
     const zoom = currentMap.getZoom()
@@ -484,8 +483,6 @@ const MapBase = ({
         offsets.southeast.geometry.coordinates
       tooltip.anchor = 'top-left'
     }
-
-    // console.log('mouseCoords, ', mouseCoords)
     return tooltip
   }
 
