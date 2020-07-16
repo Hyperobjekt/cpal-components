@@ -83,6 +83,9 @@ const MapBase = ({
   schoolZonesAffix,
   ...rest
 }) => {
+  // Mapbox API token from .env to pass into map.
+  const TOKEN = process.env.MAPBOX_API_TOKEN
+
   const [loaded, setLoaded] = useState(false)
 
   const [resizeListener, sizes] = useResizeAware()
@@ -519,6 +522,7 @@ const MapBase = ({
           getCursor={getCursor}
           onClick={handleClick}
           onLoad={handleLoad}
+          mapboxApiAccessToken={TOKEN}
           {...viewport}
           {...rest}
         >
