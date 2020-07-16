@@ -1,4 +1,6 @@
 import create from 'zustand'
+import i18n from '@pureartisan/simple-i18n'
+import en_US from './../../../constants/en_US'
 
 const [useStore] = create((set, get) => ({
   siteHref: '/',
@@ -58,6 +60,12 @@ const [useStore] = create((set, get) => ({
     },
   ],
   setActiveLayers: newArr => set({ activeLayers: newArr }),
+  activeMetric: 'cri',
+  setActiveMetric: newActiveMetric =>
+    set({ activeMetric: newActiveMetric }),
+  activeQuintiles: [1, 1, 1, 1, 1],
+  setActiveQuintiles: newArr =>
+    set({ activeQuintiles: newArr }),
 }))
 
 export default useStore

@@ -172,8 +172,6 @@ const MapView = props => {
     locations,
   )
 
-  // <SedaMapLegend className={classes.legend} />
-
   return (
     <MapBase
       selectedColors={selectedColors}

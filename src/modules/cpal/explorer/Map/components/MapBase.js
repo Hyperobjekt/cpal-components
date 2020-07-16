@@ -11,7 +11,6 @@ import ReactMapGL, {
   NavigationControl,
   Popup,
 } from 'react-map-gl'
-// import { point } from '@turf/turf'
 import destination from '@turf/destination'
 import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
@@ -24,6 +23,7 @@ import PopupContent from './PopupContent'
 import MapLayerToggle from './MapLayerToggle'
 import MapResetButton from './MapResetButton'
 import MapCaptureButton from './MapCaptureButton'
+import MapLegend from './MapLegend'
 import { BOUNDS } from './../constants'
 
 /**
@@ -549,6 +549,7 @@ const MapBase = ({
               <PopupContent feature={hoveredFeature} />
             </Popup>
           )}
+          <MapLegend />
           <div className="map__zoom">
             <NavigationControl
               showCompass={false}

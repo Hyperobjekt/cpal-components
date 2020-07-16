@@ -4,7 +4,6 @@ import { Button, Label, Input } from 'reactstrap'
 import { FiLayers } from 'react-icons/fi'
 import clsx from 'clsx'
 
-import en_US from './../../../../../constants/en_US'
 import useStore from './../../store'
 import { CPAL_LAYER_GROUPS } from './../../../../../constants/layers'
 import './MapLayerToggle.scss'
@@ -15,12 +14,6 @@ const MapLayerToggle = ({ ...props }) => {
   // } else {
   //   console.log('MapLayerToggle layers: ', props.layers)
   // }
-  i18n.init({
-    locale: 'en_US',
-    languages: {
-      en_US: en_US,
-    },
-  })
 
   const activeLayers = useStore(state => state.activeLayers)
   // console.log('activeLayers, ', activeLayers)

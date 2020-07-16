@@ -686,7 +686,7 @@ export const getCircleLayers = context => {
 }
 
 export const getLayers = (context, activeLayers) => {
-  console.log('getLayers', context, activeLayers)
+  // console.log('getLayers', context, activeLayers)
   return [
     ...getSchoolZoneLayers(context),
     ...getDistrictLayers(context, activeLayers),

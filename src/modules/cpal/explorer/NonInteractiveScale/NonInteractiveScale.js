@@ -4,34 +4,40 @@ import './NonInteractiveScale.scss'
 
 const NonInteractiveScale = ({
   metric,
-  quintile,
-  hashLeft,
+  quintiles,
   colors,
+  showHash,
+  hashLeft,
   showMinMax,
   min,
   max,
 }) => {
-  // console.log('NonInteractiveScale, quintile', quintile)
+  // console.log('NonInteractiveScale, quintiles', quintiles)
   const styles = [
     {
-      backgroundColor:
-        quintile === 0 ? colors[0] : 'transparent',
+      backgroundColor: !!quintiles[0]
+        ? colors[0]
+        : 'transparent',
     },
     {
-      backgroundColor:
-        quintile === 1 ? colors[1] : 'transparent',
+      backgroundColor: !!quintiles[1]
+        ? colors[1]
+        : 'transparent',
     },
     {
-      backgroundColor:
-        quintile === 2 ? colors[2] : 'transparent',
+      backgroundColor: !!quintiles[2]
+        ? colors[2]
+        : 'transparent',
     },
     {
-      backgroundColor:
-        quintile === 3 ? colors[3] : 'transparent',
+      backgroundColor: !!quintiles[3]
+        ? colors[3]
+        : 'transparent',
     },
     {
-      backgroundColor:
-        quintile === 4 ? colors[4] : 'transparent',
+      backgroundColor: !!quintiles[4]
+        ? colors[4]
+        : 'transparent',
     },
   ]
   const hashStyles = { left: hashLeft + '%' }
@@ -41,10 +47,12 @@ const NonInteractiveScale = ({
   return (
     <div className="n-i-scale" key={metric}>
       <div className="n-i-scale-parent">
-        <div
-          className="n-i-scale-hash"
-          style={hashStyles}
-        ></div>
+        {!!showHash ? (
+          <div
+            className="n-i-scale-hash"
+            style={hashStyles}
+          ></div>
+        ) : null}
         <div className="n-i-scale-quintiles metric-{metric} quintile-{quintile}">
           <div
             className="n-i-scale-quintile quintile-0"
@@ -68,10 +76,17 @@ const NonInteractiveScale = ({
           ></div>
         </div>
       </div>
-      <div className="n-i-scale-minmax" style={minMaxStyle}>
-        <div className="n-i-scale-min">{min}</div>
-        <div className="n-i-scale-max">{max}</div>
-      </div>
+      {!!showMinMax ? (
+        <div
+          className="n-i-scale-minmax"
+          style={minMaxStyle}
+        >
+          <div className="n-i-scale-min">{min}</div>
+          <div className="n-i-scale-max">{max}</div>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   )
 }

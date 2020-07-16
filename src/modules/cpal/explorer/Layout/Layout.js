@@ -24,7 +24,6 @@ import MenuSearch from './MenuSearch/MenuSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
-import en_US from './../../../../constants/en_US'
 
 import './Layout.scss'
 
@@ -34,12 +33,6 @@ import './Layout.scss'
  * @param Object props    Props passed from parent
  */
 const Layout = ({ children, ...props }) => {
-  i18n.init({
-    locale: 'en_US',
-    languages: {
-      en_US: en_US,
-    },
-  })
   const logoProps = {
     siteName: i18n.translate(`SITE_TITLE`),
     siteHref: useStore(state => state.siteHref),
@@ -62,7 +55,7 @@ const Layout = ({ children, ...props }) => {
     <div className="layout" {...props}>
       <Header>
         <Logo {...logoProps} />
-        <MenuSearch i18n={i18n} />
+        <MenuSearch />
         <CoreButton
           id="button_toggle_menu"
           aria-label={i18n.translate(`BUTTON_MENU`)}

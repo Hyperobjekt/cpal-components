@@ -1,16 +1,7 @@
 import React from 'react'
 import i18n from '@pureartisan/simple-i18n'
 
-import en_US from './../../../../../constants/en_US'
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
-import {
-  CRI_COLORS,
-  ECON_COLORS,
-  EDU_COLORS,
-  FAM_COLORS,
-  HEAL_COLORS,
-  COMM_COLORS,
-} from './../../../../../constants/colors'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
 import {
   getRoundedValue,
@@ -26,37 +17,6 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature, ', props.feature)
   // }
 
-  // Get strings
-  i18n.init({
-    locale: 'en_US',
-    languages: {
-      en_US: en_US,
-    },
-  })
-  // const popupStrings = {
-  //   metric_cri_title: i18n.translate(
-  //     `UI_MAP_METRIC_TITLE_CRI`,
-  //   ),
-  //   metric_cri_abbrev: i18n.translate(
-  //     `UI_MAP_METRIC_CRI_ABBREV`,
-  //   ),
-  //   metric_econ_index_title: i18n.translate(
-  //     `UI_MAP_METRIC_TITLE_ECON`,
-  //   ),
-  //   metric_edu_index_title: i18n.translate(
-  //     `UI_MAP_METRIC_TITLE_EDU`,
-  //   ),
-  //   metric_fam_index_title: i18n.translate(
-  //     `UI_MAP_METRIC_TITLE_FAM`,
-  //   ),
-  //   metric_heal_index_title: i18n.translate(
-  //     `UI_MAP_METRIC_TITLE_HEAL`,
-  //   ),
-  //   metric_comm_index_title: i18n.translate(
-  //     `UI_MAP_METRIC_TITLE_COMM`,
-  //   ),
-  // }
-
   const metrics = [
     `cri`,
     `econ_index`,
@@ -65,6 +25,12 @@ const PopupContent = ({ ...props }) => {
     `heal_index`,
     `comm_index`,
   ]
+
+  const setActiveQuintile = quintile => {
+    const arr = [0, 0, 0, 0, 0]
+    arr[quintile] = 1
+    return arr
+  }
 
   return (
     <div className="popup-content">
@@ -94,8 +60,11 @@ const PopupContent = ({ ...props }) => {
               <div className="popup-metric-scale">
                 <NonInteractiveScale
                   metric={metric}
+                  showHash={true}
                   hashLeft={getHashLeft(value, min, max)}
-                  quintile={getQuintile(value, min, max)}
+                  quintiles={setActiveQuintile(
+                    getQuintile(value, min, max),
+                  )}
                   colors={metricData.colors}
                   showMinMax={true}
                   min={min}

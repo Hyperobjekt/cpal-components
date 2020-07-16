@@ -1,4 +1,5 @@
 import React from 'react'
+import i18n from '@pureartisan/simple-i18n'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Search } from './../../../../core'
@@ -9,15 +10,15 @@ import './MenuSearch.scss'
  * MenuSearch: Search input and button for header.
  */
 const MenuSearch = ({ ...props }) => {
-  const inputLabel = props.i18n.translate(`INPUT_SEARCH`)
-  const buttonLabel = props.i18n.translate(`BUTTON_SEARCH`)
-  const placeholder = props.i18n.translate(
+  const inputLabel = i18n.translate(`INPUT_SEARCH`)
+  const buttonLabel = i18n.translate(`BUTTON_SEARCH`)
+  const placeholder = i18n.translate(
     `INPUT_PLACEHOLDER_SEARCH`,
   )
   const classes = `menu-search`
   const colorClass = `secondary`
   const handleSearch = e => {
-    console.log('Menu search button clicked')
+    // console.log('Menu search button clicked')
     e.preventDefault()
   }
   return (

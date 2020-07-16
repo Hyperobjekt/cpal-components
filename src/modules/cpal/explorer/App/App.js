@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import i18n from '@pureartisan/simple-i18n'
 
 import Layout from '../Layout/Layout'
+import en_US from './../../../../constants/en_US'
 import 'mapbox-gl/dist/mapbox-gl.css'
+
 import './App.scss'
 
 /**
@@ -10,6 +13,14 @@ import './App.scss'
  * @param Object props Any props passed into the component
  */
 const App = props => {
+  // Initialize translation utility
+  i18n.init({
+    locale: 'en_US',
+    languages: {
+      en_US: en_US,
+    },
+  })
+
   // SEDA namespace for globals
   window.SEDA = (function () {
     // grabs everything after the # character on provided string

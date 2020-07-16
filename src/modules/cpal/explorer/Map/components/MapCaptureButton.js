@@ -4,17 +4,9 @@ import { Button } from 'reactstrap'
 import clsx from 'clsx'
 import { FiCamera } from 'react-icons/fi'
 
-import en_US from './../../../../../constants/en_US'
 import './MapCaptureButton.scss'
 
 const MapCaptureButton = ({ currentMap, ...props }) => {
-  i18n.init({
-    locale: 'en_US',
-    languages: {
-      en_US: en_US,
-    },
-  })
-
   const captureMap = () => {
     // console.log('captureMap')
     const dataURL = currentMap

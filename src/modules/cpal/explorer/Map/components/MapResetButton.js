@@ -4,18 +4,9 @@ import { Button } from 'reactstrap'
 import clsx from 'clsx'
 import { FaRedo } from 'react-icons/fa'
 
-import en_US from './../../../../../constants/en_US'
 import './MapResetButton.scss'
 
 const MapResetButton = ({ ...props }) => {
-  i18n.init({
-    locale: 'en_US',
-    languages: {
-      en_US: en_US,
-    },
-  })
-  //mapboxgl-ctrl-icon
-
   const resetViewport = props.resetViewport
 
   return (
