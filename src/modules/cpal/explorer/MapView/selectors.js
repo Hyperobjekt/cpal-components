@@ -14,6 +14,7 @@ import {
 import {
   DISTRICT_COLORS,
   REDLINE_COLORS,
+  SCHOOL_ZONE_COLORS,
 } from './../../../../constants/colors'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
@@ -425,12 +426,12 @@ export const getSchoolZoneShapes = ({
     },
     interactive: false,
     paint: {
-      'fill-color': 'orange',
-      'fill-outline-color': '#000',
+      'fill-color': SCHOOL_ZONE_COLORS.fill, // 'orange',
+      'fill-outline-color': SCHOOL_ZONE_COLORS.outline, // '#000',
       'fill-opacity': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
-        0.2,
+        1, // 0.2,
         0,
       ],
     },
@@ -493,61 +494,61 @@ export const getRedlineLines = ({ layerId, region }) => {
  * Gets the mapboxgl layer for the choropleth outline
  * @param {string} region
  */
-export const getChoroplethOutlineCasing = ({
-  layerId,
-  region,
-}) =>
-  fromJS({
-    id: layerId || region + '-choropleth-outline-casing',
-    source: 'schools',
-    'source-layer': region,
-    type: 'line',
-    interactive: false,
-    paint: {
-      'line-color': '#fff',
-      'line-opacity': [
-        'case',
-        [
-          'any',
-          ['boolean', ['feature-state', 'hover'], false],
-          ['to-boolean', ['feature-state', 'selected']],
-        ],
-        1,
-        0,
-      ],
-      'line-width': [
-        'case',
-        [
-          'any',
-          ['boolean', ['feature-state', 'hover'], false],
-          ['to-boolean', ['feature-state', 'selected']],
-        ],
-        1.5,
-        0,
-      ],
-      'line-gap-width': [
-        'case',
-        [
-          'any',
-          ['boolean', ['feature-state', 'hover'], false],
-          ['to-boolean', ['feature-state', 'selected']],
-        ],
-        2.5,
-        0,
-      ],
-    },
-  })
+// export const getChoroplethOutlineCasing = ({
+//   layerId,
+//   region,
+// }) =>
+//   fromJS({
+//     id: layerId || region + '-choropleth-outline-casing',
+//     source: 'schools',
+//     'source-layer': region,
+//     type: 'line',
+//     interactive: false,
+//     paint: {
+//       'line-color': '#fff',
+//       'line-opacity': [
+//         'case',
+//         [
+//           'any',
+//           ['boolean', ['feature-state', 'hover'], false],
+//           ['to-boolean', ['feature-state', 'selected']],
+//         ],
+//         1,
+//         0,
+//       ],
+//       'line-width': [
+//         'case',
+//         [
+//           'any',
+//           ['boolean', ['feature-state', 'hover'], false],
+//           ['to-boolean', ['feature-state', 'selected']],
+//         ],
+//         1.5,
+//         0,
+//       ],
+//       'line-gap-width': [
+//         'case',
+//         [
+//           'any',
+//           ['boolean', ['feature-state', 'hover'], false],
+//           ['to-boolean', ['feature-state', 'selected']],
+//         ],
+//         2.5,
+//         0,
+//       ],
+//     },
+//   })
 
-const isChoroplethId = id => {
-  if (!id) {
-    return false
-  }
-  const featureRegion = getRegionFromLocationId(id)
-  return (
-    featureRegion === 'districts' ||
-    featureRegion === 'counties'
-  )
-}
+// const isChoroplethId = id => {
+//   if (!id) {
+//     return false
+//   }
+//   const featureRegion = getRegionFromLocationId(id)
+//   return (
+//     featureRegion === 'districts' ||
+//     featureRegion === 'counties'
+//   )
+// }
 
 const isCircleId = id => {
   if (!id) {
@@ -576,43 +577,6 @@ const isSchoolZoneId = id => {
   // return featureRegion === 'schools'
   return 'schoolzones'
 }
-
-// export const getChoroplethLayer = ({
-//   layerId,
-//   region,
-//   metric,
-//   demographic,
-//   colors,
-// }) =>
-//   fromJS({
-//     id: layerId || region + '-choropleth',
-//     source: 'redlines',
-//     'source-layer':
-//       region === 'schools' ? 'districts' : region,
-//     type: 'fill',
-//     interactive: true,
-//     paint: {
-//       'fill-color': getFillStyle(
-//         [demographic, metric].join('_'),
-//         region,
-//         colors,
-//       ),
-//       'fill-opacity':
-//         region === 'schools'
-//           ? [
-//               'interpolate',
-//               ['linear'],
-//               ['zoom'],
-//               3,
-//               0,
-//               8,
-//               0.5,
-//               10,
-//               0.666,
-//             ]
-//           : 1,
-//     },
-//   })
 
 export const getDistrictLayers = (
   context,

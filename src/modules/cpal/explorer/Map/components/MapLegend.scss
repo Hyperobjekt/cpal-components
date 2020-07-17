@@ -7,4 +7,36 @@
   padding: 0.5rem 0.8rem;
   box-shadow: 1px 1px 2px #ccc;
   border-radius: 2px;
+  .map-legend-school-dot,
+  .map-legend-school-zone {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .map-legend-school-dot-icon {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      vertical-align: bottom;
+      margin-right: 0.35rem;
+      box-shadow: 1px 1px 2px #ccc;
+    }
+    .map-legend-school-zone-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 8px;
+      vertical-align: bottom;
+      margin-right: 0.35rem;
+      box-shadow: 1px 1px 2px #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .map-legend-school-zone-icon-knockout {
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        vertical-align: middle;
+      }
+    }
+  }
 }

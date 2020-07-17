@@ -24,8 +24,9 @@ export const CHOROPLETH_COLORS = [
 ]
 
 export const SCHOOL_ZONE_COLORS = {
-  border: '#ccc',
-  fill: '#ddd',
+  outline: 'rgba(0, 0, 0, 0.2)',
+  fill: 'rgba(255, 186, 37, 0.2)',
+  opacity: 0.2,
 }
 
 /**

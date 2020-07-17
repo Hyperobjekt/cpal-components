@@ -19,7 +19,7 @@ const en_US = {
   UI_MAP_LEGEND_TITLE: `Active Metric:`,
   UI_MAP_TOGGLE_LAYERS: `TOGGLE LAYERS`,
   UI_MAP_LEGEND_SCHOOL_DOT: `School`,
-  UI_MAP_LEGEND_SCHOOL_ZONE: `School zone, 2 mile radius`,
+  UI_MAP_LEGEND_SCHOOL_ZONE: `School zone (2 mile radius)`,
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,
   UI_MAP_LAYERS_DISTRICTS: `District boundaries`,
   UI_MAP_METRIC_TITLE_CRI: `Community Resource Index`,
