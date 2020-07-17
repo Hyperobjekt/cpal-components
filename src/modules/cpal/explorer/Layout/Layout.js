@@ -96,10 +96,12 @@ const Layout = ({ children, ...props }) => {
               label={i18n.translate(`SELECT_VIEW`)}
               items={viewSelectItems}
               handleSelect={handleSelect}
+              title={i18n.translate(`SELECT_VIEW`)}
             />
             <CoreButton
               id="button_view_map"
               aria-label={i18n.translate(`BUTTON_VIEW_MAP`)}
+              title={i18n.translate(`BUTTON_VIEW_MAP`)}
               onClick={handleClick}
               color="light"
               className={clsx(
@@ -110,12 +112,16 @@ const Layout = ({ children, ...props }) => {
               )}
             >
               <FiMap />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_VIEW_MAP`)}
+              </span>
             </CoreButton>
             <CoreButton
               id="button_view_feeder"
               aria-label={i18n.translate(
                 `BUTTON_VIEW_FEEDER`,
               )}
+              title={i18n.translate(`BUTTON_VIEW_FEEDER`)}
               onClick={handleClick}
               color="light"
               className={clsx(
@@ -126,6 +132,9 @@ const Layout = ({ children, ...props }) => {
               )}
             >
               <FiList />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_VIEW_FEEDER`)}
+              </span>
             </CoreButton>
             <Divider />
             <CoreButton
@@ -138,6 +147,9 @@ const Layout = ({ children, ...props }) => {
               className="button-view-filters"
             >
               <FiFilter />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_TOGGLE_FILTERS`)}
+              </span>
             </CoreButton>
             <CoreButton
               id="button_toggle_weight"
@@ -147,8 +159,12 @@ const Layout = ({ children, ...props }) => {
               onClick={handleClick}
               color="light"
               className="button-view-weights"
+              styles={{ display: 'none' }}
             >
               <MdCallSplit />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_TOGGLE_WEIGHT`)}
+              </span>
             </CoreButton>
           </ControlPanel>
           <div
