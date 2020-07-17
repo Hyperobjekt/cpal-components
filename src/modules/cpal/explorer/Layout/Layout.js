@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
@@ -8,6 +8,7 @@ import {
   FiMap,
   FiList,
   FiMenu,
+  FiInfo,
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 
@@ -43,10 +44,9 @@ const Layout = ({ children, ...props }) => {
   const setActiveView = useStore(
     state => state.setActiveView,
   )
-  let viewSelectItems = useStore(state => state.viewSelect)
-  viewSelectItems.map(el => {
-    el.label = i18n.translate(el.label)
-  })
+  const viewSelectItems = useStore(
+    state => state.viewSelect,
+  )
 
   const updateActiveView = val => {
     console.log('updateActiveView, ', val)
@@ -69,6 +69,11 @@ const Layout = ({ children, ...props }) => {
   const handleSelect = e => {
     e.preventDefault()
     console.log('View selected, ', e.currentTarget.id)
+    const val = String(e.currentTarget.id).replace(
+      'select_view_',
+      '',
+    )
+    updateActiveView(val)
   }
   return (
     <div className="layout" {...props}>
@@ -97,6 +102,7 @@ const Layout = ({ children, ...props }) => {
               items={viewSelectItems}
               handleSelect={handleSelect}
               title={i18n.translate(`SELECT_VIEW`)}
+              active={'select_view_' + activeView}
             />
             <CoreButton
               id="button_view_map"
@@ -138,13 +144,13 @@ const Layout = ({ children, ...props }) => {
             </CoreButton>
             <Divider />
             <CoreButton
-              id="button_toggle_filters"
+              id="button_toggle_panel_filters"
               aria-label={i18n.translate(
-                `BUTTON_TOGGLE_FILTERS`,
+                `BUTTON_TOGGLE_PANEL_FILTERS`,
               )}
               onClick={handleClick}
               color="light"
-              className="button-view-filters"
+              className="button-panel-filters"
             >
               <FiFilter />
               <span className="sr-only">
@@ -152,9 +158,23 @@ const Layout = ({ children, ...props }) => {
               </span>
             </CoreButton>
             <CoreButton
-              id="button_toggle_weight"
+              id="button_toggle_panel_info"
               aria-label={i18n.translate(
-                `BUTTON_TOGGLE_WEIGHT`,
+                `BUTTON_TOGGLE_PANEL_INFO`,
+              )}
+              onClick={handleClick}
+              color="light"
+              className="button-view-info"
+            >
+              <FiInfo />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_TOGGLE_INFO`)}
+              </span>
+            </CoreButton>
+            <CoreButton
+              id="button_toggle_panel_weight"
+              aria-label={i18n.translate(
+                `BUTTON_TOGGLE_PANEL_WEIGHT`,
               )}
               onClick={handleClick}
               color="light"

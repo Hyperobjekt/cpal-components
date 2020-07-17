@@ -7,6 +7,7 @@ import {
   DropdownItem,
 } from 'reactstrap'
 import clsx from 'clsx'
+import i18n from '@pureartisan/simple-i18n'
 
 import './Select.css'
 
@@ -38,8 +39,11 @@ const Select = ({ ...props }) => {
               key={el.id}
               id={el.id}
               onClick={props.handleSelect}
+              className={clsx(
+                props.active === el.id ? 'active' : '',
+              )}
             >
-              {el.label}
+              {i18n.translate(el.label)}
             </DropdownItem>
           )
         })}

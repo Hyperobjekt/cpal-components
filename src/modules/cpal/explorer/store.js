@@ -28,7 +28,7 @@ const [useStore] = create((set, get) => ({
     },
     {
       label: `SELECT_ITEM_FEEDER`,
-      id: `select_view_feed`,
+      id: `select_view_feeder`,
     },
   ],
   displayDistricts: [`057905`, `057834`],
@@ -67,6 +67,10 @@ const [useStore] = create((set, get) => ({
   activeQuintiles: [1, 1, 1, 1, 1],
   setActiveQuintiles: newArr =>
     set({ activeQuintiles: newArr }),
+  slideoutPanel: {
+    active: false,
+    panel: 'filters', // filters or weights, presumably, possibly info
+  },
 }))
 
 export default useStore
