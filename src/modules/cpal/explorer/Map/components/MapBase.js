@@ -494,7 +494,7 @@ const MapBase = ({
     <>
       <div
         id="map"
-        className="map"
+        className="map layout-view-map"
         style={{
           position: 'absolute',
           width: '100%',

@@ -6,6 +6,9 @@ import { FaRedo } from 'react-icons/fa'
 
 import './MapResetButton.scss'
 
+/**
+ * Button to reset zoom and pan to default viewport settings
+ */
 const MapResetButton = ({ ...props }) => {
   const resetViewport = props.resetViewport
 

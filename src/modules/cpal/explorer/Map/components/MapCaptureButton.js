@@ -6,6 +6,9 @@ import { FiCamera } from 'react-icons/fi'
 
 import './MapCaptureButton.scss'
 
+/**
+ * Button that captures map canvas and triggers download
+ */
 const MapCaptureButton = ({ currentMap, ...props }) => {
   const captureMap = () => {
     // console.log('captureMap')

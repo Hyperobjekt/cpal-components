@@ -16,6 +16,9 @@ import {
 } from './../../utils'
 import './MapLegend.scss'
 
+/**
+ * Legend for map
+ */
 const MapLegend = ({ ...props }) => {
   // Default affix for features in school zones layer
   const activeMetric = useStore(state => state.activeMetric)

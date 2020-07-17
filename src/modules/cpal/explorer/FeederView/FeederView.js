@@ -7,7 +7,9 @@ import './FeederView.css'
  * FeederView contains the feeder schools view.
  */
 const FeederView = () => {
-  return <div className="layout-view-feeder"></div>
+  return (
+    <div className="layout-view-feeder">FEEDER VIEW</div>
+  )
 }
 
 FeederView.propTypes = {}

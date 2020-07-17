@@ -11,6 +11,9 @@ import {
 } from './../../utils'
 import './PopupContent.scss'
 
+/**
+ * Returns popup contents for map feature mouseover
+ */
 const PopupContent = ({ ...props }) => {
   // if (props.feature) {
   //   console.log('props.feature exists')

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useState } from 'zustand'
 import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
+import clsx from 'clsx'
 import {
   FiFilter,
   FiMap,
@@ -24,6 +24,7 @@ import MenuSearch from './MenuSearch/MenuSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
+import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
 
 import './Layout.scss'
 
@@ -38,14 +39,32 @@ const Layout = ({ children, ...props }) => {
     siteHref: useStore(state => state.siteHref),
     logoSrc: useStore(state => state.logoSrc),
   }
+  const activeView = useStore(state => state.activeView)
+  const setActiveView = useStore(
+    state => state.setActiveView,
+  )
   let viewSelectItems = useStore(state => state.viewSelect)
   viewSelectItems.map(el => {
     el.label = i18n.translate(el.label)
   })
-  const displayView = useStore(state => state.viewDefault)
+
+  const updateActiveView = val => {
+    console.log('updateActiveView, ', val)
+    setActiveView(val)
+  }
   const handleClick = e => {
     e.preventDefault()
     console.log('Button clicked, ', e.currentTarget.id)
+    if (
+      e.currentTarget.id === 'button_view_feeder' ||
+      (e.currentTarget.id = 'button_view_map')
+    ) {
+      const val = String(e.currentTarget.id).replace(
+        'button_view_',
+        '',
+      )
+      updateActiveView(val)
+    }
   }
   const handleSelect = e => {
     e.preventDefault()
@@ -68,6 +87,7 @@ const Layout = ({ children, ...props }) => {
       </Header>
       <main>
         <Canvas>
+          <SlideoutPanel />
           <ControlPanel>
             <Select
               id="select_view"
@@ -82,7 +102,12 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(`BUTTON_VIEW_MAP`)}
               onClick={handleClick}
               color="light"
-              className="button-view-map"
+              className={clsx(
+                'button-view-map',
+                activeView && activeView === 'map'
+                  ? 'active'
+                  : '',
+              )}
             >
               <FiMap />
             </CoreButton>
@@ -93,7 +118,12 @@ const Layout = ({ children, ...props }) => {
               )}
               onClick={handleClick}
               color="light"
-              className="button-view-feeder"
+              className={clsx(
+                'button-view-feeder',
+                activeView && activeView === 'feeder'
+                  ? 'active'
+                  : '',
+              )}
             >
               <FiList />
             </CoreButton>
@@ -121,10 +151,17 @@ const Layout = ({ children, ...props }) => {
               <MdCallSplit />
             </CoreButton>
           </ControlPanel>
-          <View displayView={displayView}>
+          <div
+            className={clsx(
+              'view-parent',
+              activeView
+                ? 'display-' + activeView
+                : 'display-map',
+            )}
+          >
             <MapView />
             <FeederView />
-          </View>
+          </div>
         </Canvas>
       </main>
     </div>

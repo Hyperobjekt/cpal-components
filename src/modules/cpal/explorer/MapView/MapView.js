@@ -66,11 +66,12 @@ const MapView = props => {
   // Default viewport
   const viewport = useStore(state => state.viewport)
   // Active layers
-  // const activeLayers = useStore(state => state.activeLayers)
   const activeLayers = useStore(
     state => Object.values(state.activeLayers),
     shallow,
   )
+  // Active view
+  const activeView = useStore(state => state.activeView)
   /** id of the active location */
   const activeFeature = useActiveLocationFeature()
   /** boolean determining if the hovered location should show */

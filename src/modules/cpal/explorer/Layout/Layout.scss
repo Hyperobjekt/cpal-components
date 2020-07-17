@@ -16,4 +16,14 @@ main {
 
   // position: absolute;
   // right: 0;
+  &.display-feeder {
+    .layout-view-map {
+      display: none;
+    }
+  }
+  &.display-map {
+    .layout-view-feeder {
+      display: none;
+    }
+  }
 }

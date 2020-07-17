@@ -19,7 +19,8 @@ const [useStore] = create((set, get) => ({
     baseInverted: ``,
   },
   activeLang: `en_us`,
-  viewDefault: `map`,
+  activeView: `map`,
+  setActiveView: newVal => set({ activeView: newVal }),
   viewSelect: [
     {
       label: `SELECT_ITEM_MAP`,
