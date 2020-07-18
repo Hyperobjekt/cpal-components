@@ -10,14 +10,14 @@ import {
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 
-import './PanelFilterView.scss'
+import './PanelInfoView.scss'
 
-const PanelFilterView = ({ ...props }) => {
+const PanelInfoView = ({ ...props }) => {
   return (
-    <div className="map-panel-slideout-filters">
-      Panel filter view
+    <div className="map-panel-slideout-info">
+      Panel info view
     </div>
   )
 }
 
-export default PanelFilterView
+export default PanelInfoView

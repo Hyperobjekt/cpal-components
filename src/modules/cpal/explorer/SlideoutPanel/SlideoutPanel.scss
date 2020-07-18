@@ -12,4 +12,14 @@
     left: 80px;
     transition: left 500ms ease-in-out;
   }
+  &.panel-view-filters {
+    .map-panel-slideout-info {
+      display: none;
+    }
+  }
+  &.panel-view-info {
+    .map-panel-slideout-filters {
+      display: none;
+    }
+  }
 }

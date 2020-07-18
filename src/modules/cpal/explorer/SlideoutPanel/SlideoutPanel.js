@@ -5,6 +5,7 @@ import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
 
 import PanelFilterView from './../PanelFilterView/PanelFilterView'
+import PanelInfoView from './../PanelInfoView/PanelInfoView'
 
 import './SlideoutPanel.scss'
 
@@ -18,9 +19,13 @@ const SlideoutPanel = ({ ...props }) => {
       className={clsx(
         'map-panel-slideout',
         slideoutPanel.active ? 'active' : '',
+        slideoutPanel.panel.length > 0
+          ? 'panel-view-' + slideoutPanel.panel
+          : 'panel-view-info',
       )}
     >
-      Slideout panel
+      <PanelFilterView />
+      <PanelInfoView />
     </div>
   )
 }
