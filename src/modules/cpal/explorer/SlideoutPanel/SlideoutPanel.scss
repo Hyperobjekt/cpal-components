@@ -1,0 +1,15 @@
+.map-panel-slideout {
+  background-color: #fff;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -350px;
+  transition: left 500ms ease-in-out;
+  width: 350px;
+  z-index: 1999;
+  box-shadow: 1px 1px 2px #ddd;
+  &.active {
+    left: 80px;
+    transition: left 500ms ease-in-out;
+  }
+}

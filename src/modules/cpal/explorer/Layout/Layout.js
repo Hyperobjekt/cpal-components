@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useStore from './../store.js'
+import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
 import {
@@ -40,18 +41,23 @@ const Layout = ({ children, ...props }) => {
     siteHref: useStore(state => state.siteHref),
     logoSrc: useStore(state => state.logoSrc),
   }
+  // Active view, map or feeder
   const activeView = useStore(state => state.activeView)
   const setActiveView = useStore(
     state => state.setActiveView,
   )
+  // Array of objects, one for each select dropdown item
   const viewSelectItems = useStore(
     state => state.viewSelect,
   )
-
-  const updateActiveView = val => {
-    console.log('updateActiveView, ', val)
-    setActiveView(val)
-  }
+  // Slideout panel
+  const slideoutPanel = useStore(
+    state => state.slideoutPanel,
+  )
+  const setSlideoutPanel = useStore(
+    state => state.setSlideoutPanel,
+  )
+  // Handle clicks to any control panel button.
   const handleClick = e => {
     e.preventDefault()
     console.log('Button clicked, ', e.currentTarget.id)
@@ -63,18 +69,73 @@ const Layout = ({ children, ...props }) => {
         'button_view_',
         '',
       )
-      updateActiveView(val)
+      setActiveView(val)
+      setSlideoutPanel({
+        active: false,
+        panel: '',
+      })
     }
   }
+
+  /**
+   * Handles click to panel toggle buttons.
+   * @param  Object e Event object
+   */
+  const handlePanel = e => {
+    // console.log(
+    //   'handlePanel(), ',
+    //   e.currentTarget,
+    //   slideoutPanel,
+    // )
+    e.preventDefault()
+    if (
+      e.currentTarget.id !==
+        'button_toggle_panel_filters' &&
+      e.currentTarget.id !== 'button_toggle_panel_info'
+    )
+      return
+    // Retrieve clicked
+    let clicked = String(e.currentTarget.id).replace(
+      'button_toggle_panel_',
+      '',
+    )
+    // Conditionally adjust panel settings
+    let newActiveState = false
+    if (
+      !slideoutPanel.active &&
+      slideoutPanel.panel.length < 1
+    ) {
+      // Never opened
+      newActiveState = true
+    } else if (
+      !!slideoutPanel.active &&
+      slideoutPanel.panel.length > 0 &&
+      slideoutPanel.panel === clicked
+    ) {
+      // Selected existing open panel
+      newActiveState = false
+      clicked = ''
+    } else {
+      // Selected different panel
+      newActiveState = true
+    }
+    // Reset panel state
+    setSlideoutPanel({
+      active: newActiveState,
+      panel: clicked,
+    })
+  }
+  // Handle select in dropdown
   const handleSelect = e => {
     e.preventDefault()
-    console.log('View selected, ', e.currentTarget.id)
+    // console.log('View selected, ', e.currentTarget.id)
     const val = String(e.currentTarget.id).replace(
       'select_view_',
       '',
     )
-    updateActiveView(val)
+    setActiveView(val)
   }
+
   return (
     <div className="layout" {...props}>
       <Header>
@@ -148,9 +209,15 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_TOGGLE_PANEL_FILTERS`,
               )}
-              onClick={handleClick}
+              onClick={handlePanel}
               color="light"
-              className="button-panel-filters"
+              className={clsx(
+                'button-panel-filters',
+                slideoutPanel.active &&
+                  slideoutPanel.panel === 'filters'
+                  ? 'active'
+                  : '',
+              )}
             >
               <FiFilter />
               <span className="sr-only">
@@ -162,9 +229,15 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_TOGGLE_PANEL_INFO`,
               )}
-              onClick={handleClick}
+              onClick={handlePanel}
               color="light"
-              className="button-view-info"
+              className={clsx(
+                'button-panel-info',
+                slideoutPanel.active &&
+                  slideoutPanel.panel === 'info'
+                  ? 'active'
+                  : '',
+              )}
             >
               <FiInfo />
               <span className="sr-only">
@@ -176,7 +249,7 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_TOGGLE_PANEL_WEIGHT`,
               )}
-              onClick={handleClick}
+              onClick={handlePanel}
               color="light"
               className="button-view-weights"
               styles={{ display: 'none' }}

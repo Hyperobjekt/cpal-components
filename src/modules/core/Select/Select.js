@@ -39,9 +39,7 @@ const Select = ({ ...props }) => {
               key={el.id}
               id={el.id}
               onClick={props.handleSelect}
-              className={clsx(
-                props.active === el.id ? 'active' : '',
-              )}
+              className={clsx(!!el.active ? 'active' : '')}
             >
               {i18n.translate(el.label)}
             </DropdownItem>
