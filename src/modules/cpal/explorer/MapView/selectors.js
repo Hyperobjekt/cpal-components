@@ -1,21 +1,16 @@
 import { fromJS } from 'immutable'
+import { getDistrictColor } from './../selectors'
 import {
-  getRegionFromLocationId,
-  getChoroplethColors,
-  getMetricColors,
-  getDemographicIdFromVarName,
-  getMetricIdFromVarName,
-  getMetricRange,
-  isGapVarName,
-  getDistrictColor,
   getSchoolZones,
   getSchoolGeojson,
-} from './../selectors'
+} from './../utils'
 import {
   DISTRICT_COLORS,
   REDLINE_COLORS,
   SCHOOL_ZONE_COLORS,
 } from './../../../../constants/colors'
+import { CPAL_METRICS } from './../../../../constants/metrics'
+import { getMetric } from './../utils'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
 import useStore from './../store'
@@ -28,50 +23,51 @@ const noDataFill = '#ccc'
  * @returns {array}
  */
 export const getStopsForVarName = (
-  varName,
-  region,
-  colors = getChoroplethColors(),
+  metric,
+  colors, // = getChoroplethColors(),
 ) => {
-  const demId = getDemographicIdFromVarName(varName)
-  const metricId = getMetricIdFromVarName(varName)
-  const isGap = isGapVarName(varName)
-  colors = isGap ? [...colors].reverse() : colors
-  const [min, max] = getMetricRange(
-    metricId,
-    demId,
-    region,
-    'map',
-  )
+  const metricData = getMetric(metric, CPAL_METRICS)
+  // const demId = getDemographicIdFromVarName(metric)
+  // const metricId = getMetricIdFromVarName(metric)
+  // const isGap = isGapVarName(metric)
+  // colors =  // isGap ? [...colors].reverse() : colors
+  // const colors = metricData.colors
+  const [min, max] = metricData.range
+  // getMetricRange(
+  //   metricId,
+  //   demId,
+  //   region,
+  //   'map',
+  // )
   const range = Math.abs(max - min)
   const stepSize = range / (colors.length - 1)
   return colors.map((c, i) => [min + i * stepSize, c])
 }
 
-const getSchoolFillStyle = (varName, region, colors) => {
+const getSchoolFillStyle = (metric, colors) => {
   // console.log(
   //   'getSchoolFillStyle, ',
   //   varName,
   //   region,
   //   colors,
   // )
-  const stops = getStopsForVarName(
-    varName,
-    region,
-    colors,
-  ).reduce((acc, curr) => [...acc, ...curr], [])
+  const stops = getStopsForVarName(metric, colors).reduce(
+    (acc, curr) => [...acc, ...curr],
+    [],
+  )
   return [
     'case',
     [
       '==',
-      ['get', 'metric_' + getMetricIdFromVarName(varName)],
+      ['get', 'metric_' + metric], // getMetricIdFromVarName(varName)],
       -999,
     ],
     noDataFill,
-    ['has', 'metric_' + getMetricIdFromVarName(varName)],
+    ['has', 'metric_' + metric], // getMetricIdFromVarName(varName)],
     [
       'interpolate',
       ['linear'],
-      ['get', 'metric_' + getMetricIdFromVarName(varName)],
+      ['get', 'metric_' + metric], // getMetricIdFromVarName(varName)],
       ...stops,
     ],
     noDataFill,
@@ -278,9 +274,8 @@ export const getSchoolCircleLayer = ({
     },
     paint: {
       'circle-color': getSchoolFillStyle(
-        [demographic, metric].join('_'),
-        'schools',
-        getMetricColors(metric),
+        metric,
+        getMetric(metric, CPAL_METRICS).colors,
       ),
       'circle-opacity': 1,
       'circle-radius': [

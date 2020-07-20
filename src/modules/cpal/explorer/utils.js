@@ -1,8 +1,12 @@
 import axios from 'axios'
-import { parseLocationsString } from './selectors/router'
+import circle from '@turf/circle'
+import { schools } from './../../../data/schools'
+import { schoolsGeojson } from './../../../data/schoolsGeojson'
 
-const FLAGGED_ENDPOINT =
-  process.env.REACT_APP_DATA_ENDPOINT + 'flagged/'
+// import { parseLocationsString } from './selectors/router'
+
+// const FLAGGED_ENDPOINT =
+//   process.env.REACT_APP_DATA_ENDPOINT + 'flagged/'
 
 /**
  * Loads map features based on a string of locations
@@ -162,4 +166,75 @@ export const getMetric = (metric, metrics) => {
   } else {
     console.error(`Unable to get metric ${metric}.`)
   }
+}
+
+/**
+ * Generates geojson object with school zones (2 mile radius)
+ * @return  Object   GeoJSON Object of all schools in client-supplied data
+ */
+export const getSchoolGeojson = () => {
+  // console.log('getSchoolGeojson()')
+  const data = schools
+  const origJson = schoolsGeojson
+  const newJson = {
+    type: 'FeatureCollection',
+    features: [],
+  }
+  const features = origJson.features
+  features.forEach(el => {
+    const found = data.find(
+      school => school.TEA_ID === el.properties.SLN,
+    )
+    // console.log('found, ', found)
+    if (!!found) {
+      // Add data to the properties.
+      el.id = found.TEA_ID
+      el.properties.tea_id = found.TEA_ID
+      el.properties.metric_cri = found.cri
+      el.properties.metric_comm_index = found.com_index
+      el.properties.metric_econ_index = found.econ_index
+      el.properties.metric_edu_index = found.edu_index
+      el.properties.metric_heal_index = found.health_index
+      el.properties.metric_fam_index = found.fam_index
+      // Insert into new json object.
+      newJson.features.push(el)
+    }
+  })
+  // console.log(newJson)
+  return newJson
+}
+
+export const getSchoolZones = () => {
+  // console.log('getSchoolZones')
+  const data = schools
+  const origJson = schoolsGeojson
+  const newJson = {
+    type: 'FeatureCollection',
+    features: [],
+  }
+  const features = origJson.features
+  features.forEach(el => {
+    const found = data.find(
+      school => school.TEA_ID === el.properties.SLN,
+    )
+    if (!!found) {
+      // Add data to the properties.
+      var center = el.geometry.coordinates
+      var radius = 2
+      var options = {
+        steps: 64,
+        units: 'miles',
+        properties: {
+          tea_id: found.TEA_ID,
+          metric_cri: found.cri,
+        },
+      }
+      const cir = circle(center, radius, options)
+      cir.id = '200' + found.TEA_ID
+      // Insert into new json object.
+      newJson.features.push(cir)
+    }
+  })
+  // console.log('newJson', newJson)
+  return newJson
 }

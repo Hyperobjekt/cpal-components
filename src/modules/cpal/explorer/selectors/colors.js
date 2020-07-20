@@ -45,7 +45,7 @@ export const getDistrictColor = id => {
 /**
  * Gets the configuration for choropleth colors
  */
-export const getChoroplethColors = () => CHOROPLETH_COLORS
+// export const getChoroplethColors = () => CHOROPLETH_COLORS
 
 /** Checks if the varName has an inverted color scale */
 export const isColorInvertedForVarName = varName => {

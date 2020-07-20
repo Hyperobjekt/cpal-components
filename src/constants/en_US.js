@@ -1,5 +1,6 @@
 const en_US = {
   SITE_TITLE: `Site Title`,
+  TEA_ID: `TEA identification number`,
   BUTTON_VIEW_FEEDER: `Toggle feeder view`,
   BUTTON_VIEW_MAP: `Toggle map view`,
   BUTTON_MENU: `Menu`,
@@ -32,338 +33,85 @@ const en_US = {
   UI_MAP_METRIC_TITLE_COMM: `Community`,
   UI_MAP_METRIC_TITLE_COMM_CRIMEDENSITY: `Density of part a crimes`,
   UI_MAP_METRIC_TITLE_COMM_CRIME: `Count of part a crimes`,
-  UI_MAP_METRIC_TITLE_COMM_CHURCH: `Count of churches`,
-  UI_MAP_METRIC_COMM_CHURCHDENSITY: {
-    title: `Ensity of churches`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_EV1: {
-    title: `Eviction filings`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_EV2: {
-    title: `Eviction removals`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_EV3: {
-    title: `Eviction filing rate`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_EV4: {
-    title: `Eviction rate`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_RVP: {
-    title: `Residential vacancy`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_BVP: {
-    title: `Business vacancy`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_LTVP: {
-    title: `Long term residential vacancy`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_LTBVP: {
-    title: `Long term business vacancy`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_NSRES: {
-    title: `No-stat residential`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_NSBUS: {
-    title: `No-stat business`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_NSBUS: {
-    title: `No-stat business`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_NSBUSLT: {
-    title: `No-stat long term business`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_NSBUSLT: {
-    title: `No-stat long term business`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_THH: {
-    title: `Total households`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_OOHH: {
-    title: `Owner occupied households`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_OOHH: {
-    title: `Owner occupied households`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_ROHH: {
-    title: `Renter occupied households`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_OCB: {
-    title: `Owner occupied households that are cost burdened`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_RCB: {
-    title: `Penter occupied households that are cost burdened`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_OCBP: {
-    title: `Percent owner occupied households that are cost burdened - mean of tract value`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_RCBP: {
-    title: `Percent renter occupied households that are cost burdened - mean of tract value`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_OWNCB_PCT: {
-    title: `Percent owner occupied households that are cost burdened - calculated from buffer totals`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_RENTCB_PCT: {
-    title: `Percent renter occupied households that are cost burdened - calculated from buffer totals`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_RENTCB_PCT: {
-    title: `Percent renter occupied households that are cost burdened - calculated from buffer totals`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_ADUINCAR_DENOM: {
-    title: `Total adults in zip codes from commit incarceration data`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_ADUINCARCT: {
-    title: `Total count of incarcerated adults per zip, derived from commit data`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_INCARPCT: {
-    title: `Percent of adults incracerated derived from comm_aduincar_denom and comm_aduincarct`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_PCTVOIP: {
-    title: `Percent of households with voip`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_COMM_PCTWIFI: {
-    title: `Percent of household with wifi`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_ADUPOPI: {
-    title: `Population for unemployment denominator`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_UNEM: {
-    title: `Estimate of population that is unemployed`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_JUVPOP: {
-    title: `Population 16-24`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_JUVUNEM: {
-    title: `Population 16-24 unemployed and not in school`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_UNEMPPCT: {
-    title: `Unemployment rate`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_JUVUNEMPPCT: {
-    title: `Unemployment rate of population 16-24`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_MEDINC: {
-    title: `Median income`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_JOBS17: {
-    title: `Total jobs in 2017`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_BANKS: {
-    title: `Number of banks`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_CU: {
-    title: `Number of credit unions`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_FIN: {
-    title: `Number of banks + credit unions`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_PAYDAY: {
-    title: `Number of payday lending and cash advance`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_POP: {
-    title: `Population for poverty measures`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_BELPOV: {
-    title: `Population below poverty`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_KIDS: {
-    title: `Child population (under 18)`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_CBP: {
-    title: `Population under 18 below poverty`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_U5: {
-    title: `Children under 5 years old`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_U5: {
-    title: `Children under 5 years old`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_U5BP: {
-    title: `Children under 5 below poverty`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_5T17: {
-    title: `Children 5 to 17 population`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_5T17BP: {
-    title: `Children 5 to 17 below poverty`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_BPPCT: {
-    title: `Poverty rate - mean of tract data in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_CPR: {
-    title: `Child poverty rate - mean of tract data in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_U5RBP: {
-    title: `Povery rate for kids under5 - mean of tract data in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_5T17RBP: {
-    title: `Poverty rate for kids 5 to 17 - mean of tract data in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_POVERTYRATE: {
-    title: `Povery rate - derived from tract sums in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_CPR2: {
-    title: `Child poverty rate - derive from tract sums in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_U5_POVRATE: {
-    title: `U5 poverty rate - derived from tract sums in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_ECON_5T17_POVRATE: {
-    title: `5 to 17 poverty rate - derived from tract sums in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_FAM_HHC: {
-    title: `Households with children`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_ECON_EDU_POPADU: {
-    title: `Population 25+`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_BACH: {
-    title: `Pop 25+ w/ bachelors degree or higher`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_K34: {
-    title: `Children aged 3 and 4`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_K34ES: {
-    title: `Children aged 3 and 4 enrolled in school`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_PERBACH: {
-    title: `Percent of population with bach or higher - derived form tract sums`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_PEREARLYED: {
-    title: `Percent of children 3 and 4 enrolled in school - derived from tract sums`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_OOSTCT: {
-    title: `Number of afterschool programs in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_OOSTCAP: {
-    title: `Total capacity of afterschool program seats in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_EDU_OOSTCAPMEAN: {
-    title: `Mean capacity of afterschool program seat in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_FAM_HHCMH: {
-    title: `Households with children and male householder no wife`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_FAM_HHCFH: {
-    title: `Households with children and female householder no husband`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_FAM_TPHH: {
-    title: `Two parent households = hhc - (hhcmh + hhcfh)`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_FAM_TPHH_PCT: {
-    title: `Percent of households with children that are two parent`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_FAM_LCC: {
-    title: `Licensed child care centers in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_PHARM: {
-    title: `Licensed pharmacies in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_CLIN: {
-    title: `Clinics in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_INSPOP: {
-    title: `Insured population denominator`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_UNINS: {
-    title: `Population that is uninsured`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_PERINS: {
-    title: `Percent of population that is insured - derived from tract sums`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_GROC: {
-    title: `Grocery stores in buffer`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_LE: {
-    title: `Average life expectancy`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_FRUITAVG: {
-    title: `Average household spending on fresh fruit`,
-    abbrev: ``,
-  },
-  UI_MAP_METRIC_HEL_VEGAVG: {
-    title: `Average household spending on fresh vegetables`,
-    abbrev: ``,
-  },
+  UI_MAP_METRIC_TITLE_COMM_CHURCH: `Count of churches `,
+  UI_MAP_METRIC_COMM_CHURCHDENSITY: `Density of churches`,
+  UI_MAP_METRIC_COMM_EV1: `Eviction filings`,
+  UI_MAP_METRIC_COMM_EV2: `Eviction removals`,
+  UI_MAP_METRIC_COMM_EV3: `Eviction filing rate`,
+  UI_MAP_METRIC_COMM_EV4: `Eviction rate`,
+  UI_MAP_METRIC_COMM_RVP: `Residential vacancy`,
+  UI_MAP_METRIC_COMM_BVP: `Business vacancy`,
+  UI_MAP_METRIC_COMM_LTVP: `Long term residential vacancy`,
+  UI_MAP_METRIC_COMM_LTBVP: `Long term business vacancy`,
+  UI_MAP_METRIC_COMM_NSRES: `No-stat residential`,
+  UI_MAP_METRIC_COMM_NSBUS: `No-stat business`,
+  UI_MAP_METRIC_COMM_NSRESLT: `No-stat long term residential`,
+  UI_MAP_METRIC_COMM_NSBUSLT: `No-stat long term business`,
+  UI_MAP_METRIC_COMM_THH: `Total households`,
+  UI_MAP_METRIC_COMM_OOHH: `Owner occupied households`,
+  UI_MAP_METRIC_COMM_ROHH: `Renter occupied households`,
+  UI_MAP_METRIC_COMM_OCB: `Owner occupied households that are cost burdened`,
+  UI_MAP_METRIC_COMM_RCB: `Renter occupied households that are cost burdened`,
+  UI_MAP_METRIC_COMM_OCBP: `Percent owner occupied households that are cost burdened - mean of tract value`,
+  UI_MAP_METRIC_COMM_RCBP: `Percent renter occupied households that are cost burdened - mean of tract value`,
+  UI_MAP_METRIC_COMM_OWNCB_PCT: `Percent owner occupied households that are cost burdened - calculated from buffer totals`,
+  UI_MAP_METRIC_COMM_RENTCB_PCT: `Percent renter occupied households that are cost burdened - calculated from buffer totals`,
+  UI_MAP_METRIC_COMM_ADUINCAR_DENOM: `Total adults in zip codes from commit incarceration data`,
+  UI_MAP_METRIC_COMM_ADUINCARCT: `Total count of incarcerated adults per zip, derived from commit data`,
+  UI_MAP_METRIC_COMM_INCARPCT: `Percent of adults incracerated derived from comm_aduincar_denom and comm_aduincarct`,
+  UI_MAP_METRIC_COMM_PCTVOIP: `Percent of households with voip`,
+  UI_MAP_METRIC_COMM_PCTWIFI: `Percent of household with wifi`,
+  UI_MAP_METRIC_ECON_ADUPOP: `Population for unemployment denominator`,
+  UI_MAP_METRIC_ECON_UNEM: `Estimate of population that is unemployed`,
+  UI_MAP_METRIC_ECON_JUVPOP: `Population 16-24`,
+  UI_MAP_METRIC_ECON_JUVUNEM: `Population 16-24 unemployed and not in school`,
+  UI_MAP_METRIC_ECON_UNEMPPCT: `Unemployment rate`,
+  UI_MAP_METRIC_ECON_JUVUNEMPPCT: `Unemployment rate of population 16-24`,
+  UI_MAP_METRIC_ECON_MEDINC: `Median income`,
+  UI_MAP_METRIC_ECON_JOBS17: `Total jobs in 2017`,
+  UI_MAP_METRIC_ECON_BANKS: `Number of banks`,
+  UI_MAP_METRIC_ECON_CU: `Number of credit unions`,
+  UI_MAP_METRIC_ECON_FIN: `Number of banks + credit unions`,
+  UI_MAP_METRIC_ECON_PAYDAY: `Number of payday lending and cash advance`,
+  UI_MAP_METRIC_ECON_POP: `Population for poverty measures`,
+  UI_MAP_METRIC_ECON_BELPOV: `Population below poverty`,
+  UI_MAP_METRIC_ECON_KIDS: `Child population (under 18)`,
+  UI_MAP_METRIC_ECON_CBP: `Population under 18 below poverty`,
+  UI_MAP_METRIC_ECON_U5: `Children under 5 years old`,
+  UI_MAP_METRIC_ECON_U5BP: `Children under 5 below poverty`,
+  UI_MAP_METRIC_ECON_5T17: `Children 5 to 17 population`,
+  UI_MAP_METRIC_ECON_5T17BP: `Children 5 to 17 below poverty`,
+  UI_MAP_METRIC_ECON_BPPCT: `Poverty rate - mean of tract data in buffer`,
+  UI_MAP_METRIC_ECON_CPR: `Child poverty rate - mean of tract data in buffer`,
+  UI_MAP_METRIC_ECON_U5RBP: `Povery rate for kids under5 - mean of tract data in buffer`,
+  UI_MAP_METRIC_ECON_5T17RBP: `Poverty rate for kids 5 to 17 - mean of tract data in buffer`,
+  UI_MAP_METRIC_ECON_POVERTYRATE: `Povery rate - derived from tract sums in buffer`,
+  UI_MAP_METRIC_ECON_CPR2: `Child poverty rate - derive from tract sums in buffer`,
+  UI_MAP_METRIC_ECON_U5_POVRATE: `U5 poverty rate - derived from tract sums in buffer`,
+  UI_MAP_METRIC_ECON_ECON_5T17_POVRATE: `5 to 17 poverty rate - derived from tract sums in buffer`,
+  UI_MAP_METRIC_ECON_EDU_POPADU: `Population 25+`,
+  UI_MAP_METRIC_EDU_BACH: `Pop 25+ w/ bachelors degree or higher`,
+  UI_MAP_METRIC_EDU_K34: `Children aged 3 and 4`,
+  UI_MAP_METRIC_EDU_K34ES: `Children aged 3 and 4 enrolled in school`,
+  UI_MAP_METRIC_EDU_PERBACH: `Percent of population with bach or higher - derived form tract sums`,
+  UI_MAP_METRIC_EDU_PEREARLYED: `Percent of children 3 and 4 enrolled in school - derived from tract sums`,
+  UI_MAP_METRIC_EDU_OOSTCT: `Number of afterschool programs in buffer`,
+  UI_MAP_METRIC_EDU_OOSTCAP: `Total capacity of afterschool program seats in buffer`,
+  UI_MAP_METRIC_EDU_OOSTCAPMEAN: `Mean capacity of afterschool program seat in buffer`,
+  UI_MAP_METRIC_FAM_HHC: `Households with children`,
+  UI_MAP_METRIC_FAM_HHCFH: `Households with children and female householder no husband`,
+  UI_MAP_METRIC_FAM_HHCMH: `Households with children and male householder no wife`,
+  UI_MAP_METRIC_FAM_LCC: `Licensed child care centers in buffer`,
+  UI_MAP_METRIC_FAM_TPHH: `Two parent households = hhc - (hhcmh + hhcfh)`,
+  UI_MAP_METRIC_FAM_TPHH_PCT: `Percent of households with children that are two parent`,
+  UI_MAP_METRIC_HEL_PHARM: `Licensed pharmacies in buffer`,
+  UI_MAP_METRIC_HEL_CLIN: `Clinics in buffer`,
+  UI_MAP_METRIC_HEL_INSPOP: `Insured population denominator`,
+  UI_MAP_METRIC_HEL_UNINS: `Population that is uninsured`,
+  UI_MAP_METRIC_HEL_PERINS: `Percent of population that is insured - derived from tract sums`,
+  UI_MAP_METRIC_HEL_GROC: `Grocery stores in buffer`,
+  UI_MAP_METRIC_HEL_LE: `Average life expectancy`,
+  UI_MAP_METRIC_HEL_FRUITAVG: `Average household spending on fresh fruit`,
+  UI_MAP_METRIC_HEL_VEGAVG: `Average household spending on fresh vegetables`,
 }
 export default en_US

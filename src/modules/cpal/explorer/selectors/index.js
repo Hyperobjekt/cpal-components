@@ -69,19 +69,18 @@ export const getFeatureFromArray = (features, id) => {
  * Gets the id of the hovered feature
  * @param {*} hovered
  */
-export const getHoveredId = hovered =>
-  hovered && hovered.properties && hovered.properties.id
-    ? hovered.properties.id
-    : ''
+// export const getHoveredId = hovered =>
+//   hovered && hovered.properties && hovered.properties.id
+//     ? hovered.properties.id
+//     : ''
 
 export {
-  getColorForVarNameValue,
-  isColorInvertedForVarName,
-  getChoroplethColorAtValue,
-  getChoroplethColors,
-  getMetricColors,
-  getSelectedColors,
-  getDistrictColor,
+  // getColorForVarNameValue,
+  // isColorInvertedForVarName,
+  // getChoroplethColorAtValue,
+  // getChoroplethColors,
+  // getMetricColors,
+  getSelectedColors, // getDistrictColor,
 } from './colors'
 export {
   getDemographicForVarNames,
@@ -126,8 +125,6 @@ export {
   getMetricRangeFromVarName,
   getVarNames,
   getDataForId,
-  getSchoolZones,
-  getSchoolGeojson,
 } from './data'
 export {
   getRegionLabel,
