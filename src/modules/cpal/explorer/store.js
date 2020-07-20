@@ -73,6 +73,9 @@ const [useStore] = create((set, get) => ({
   },
   setSlideoutPanel: newObj =>
     set({ slideoutPanel: newObj }),
+  activeFilterTab: 'cri',
+  setActiveFilterTab: newActiveFilterTab =>
+    set({ activeFilterTab: newActiveFilterTab }),
 }))
 
 export default useStore

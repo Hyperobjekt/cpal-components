@@ -25,7 +25,7 @@ export const CPAL_METRICS = [
     abbrev: 'ECON',
     range: [0, 100],
     colors: ECON_COLORS,
-    ttab: 'econ',
+    tab: 'econ',
     tab_level: 0,
     tooltip: 1,
   },
@@ -92,16 +92,6 @@ export const CPAL_METRICS = [
   {
     id: 'comm_church',
     title: 'UI_MAP_METRIC_TITLE_COMM_CHURCH',
-    abbrev: '',
-    range: [0, 100],
-    colors: COMM_COLORS,
-    tab: 'comm',
-    tab_level: 1,
-    tooltip: 0,
-  },
-  {
-    id: 'comm_churchdensity',
-    title: 'UI_MAP_METRIC_COMM_CHURCHDENSITY',
     abbrev: '',
     range: [0, 100],
     colors: COMM_COLORS,
@@ -373,15 +363,6 @@ export const CPAL_METRICS = [
   {
     id: 'econ_adupop',
     title: 'UI_MAP_METRIC_ECON_ADUPOP',
-    abbrev: '',
-    range: [0, 100],
-    colors: ECON_COLORS,
-    tab: 'econ',
-    tab_level: 1,
-  },
-  {
-    id: 'econ_unem',
-    title: 'UI_MAP_METRIC_ECON_UNEM',
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
@@ -691,7 +672,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -700,7 +681,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -709,7 +690,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -718,7 +699,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -727,7 +708,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -736,7 +717,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -745,7 +726,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -754,7 +735,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -763,7 +744,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -772,7 +753,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -781,7 +762,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -790,7 +771,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -799,7 +780,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -808,7 +789,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -817,7 +798,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -826,7 +807,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -835,7 +816,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
   {
@@ -844,16 +825,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'EDU',
-    tab_level: 1,
-  },
-  {
-    id: 'hel_vegavg',
-    title: 'UI_MAP_METRIC_HEL_VEGAVG',
-    abbrev: '',
-    range: [0, 100],
-    colors: ECON_COLORS,
-    tab: 'EDU',
+    tab: 'edu',
     tab_level: 1,
   },
 ]

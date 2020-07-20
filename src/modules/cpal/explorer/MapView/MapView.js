@@ -16,7 +16,6 @@ import {
   getLocationIdsForRegion,
 } from './../selectors'
 import { getLang } from './../selectors/lang'
-// import SedaMapLegend from './SedaMapLegend'
 import {
   useActiveOptionIds,
   useFilters,

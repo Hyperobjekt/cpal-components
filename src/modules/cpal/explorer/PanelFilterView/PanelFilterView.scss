@@ -1,0 +1,37 @@
+.filters-panel-parent {
+  .filter-panel-tabs {
+    .filter-tab-category {
+      display: none;
+    }
+    &.active-tab-cri {
+      .tab-category-cri {
+        display: block;
+      }
+    }
+    &.active-tab-econ {
+      .tab-category-econ {
+        display: block;
+      }
+    }
+    &.active-tab-edu {
+      .tab-category-edu {
+        display: block;
+      }
+    }
+    &.active-tab-fam {
+      .tab-category-fam {
+        display: block;
+      }
+    }
+    &.active-tab-heal {
+      .tab-category-heal {
+        display: block;
+      }
+    }
+    &.active-tab-comm {
+      .tab-category-comm {
+        display: block;
+      }
+    }
+  }
+}

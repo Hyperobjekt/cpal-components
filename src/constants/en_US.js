@@ -113,5 +113,6 @@ const en_US = {
   UI_MAP_METRIC_HEL_LE: `Average life expectancy`,
   UI_MAP_METRIC_HEL_FRUITAVG: `Average household spending on fresh fruit`,
   UI_MAP_METRIC_HEL_VEGAVG: `Average household spending on fresh vegetables`,
+  UI_MAP_PANEL_SELECT: `Select filter category...`,
 }
 export default en_US
