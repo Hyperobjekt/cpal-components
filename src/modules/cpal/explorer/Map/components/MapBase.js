@@ -311,7 +311,7 @@ const MapBase = ({
 
   // handler for feature click
   const handleClick = ({ features, srcEvent, ...rest }) => {
-    console.log('click')
+    console.log('click, ', features[0].properties.tea_id)
     // was the click on a control
     // const isControl = getClosest(
     //   srcEvent.target,

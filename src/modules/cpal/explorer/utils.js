@@ -2,6 +2,7 @@ import axios from 'axios'
 import circle from '@turf/circle'
 import { schools } from './../../../data/schools'
 import { schoolsGeojson } from './../../../data/schoolsGeojson'
+import { CPAL_METRICS } from './../../../constants/metrics'
 
 // import { parseLocationsString } from './selectors/router'
 
@@ -118,7 +119,8 @@ export const getRoundedValue = (
  */
 export const getQuintile = (value, min, max) => {
   // console.log('getQuintile()')
-  const standardized = ((value - min) / (max - min)) * 100
+  const standardized =
+    (Math.abs(value - min) / Math.abs(max - min)) * 100
   switch (true) {
     case standardized >= 80:
       return 4
@@ -173,7 +175,7 @@ export const getMetric = (metric, metrics) => {
  * @return  Object   GeoJSON Object of all schools in client-supplied data
  */
 export const getSchoolGeojson = () => {
-  // console.log('getSchoolGeojson()')
+  console.log('getSchoolGeojson()')
   const data = schools
   const origJson = schoolsGeojson
   const newJson = {
@@ -190,17 +192,21 @@ export const getSchoolGeojson = () => {
       // Add data to the properties.
       el.id = found.TEA_ID
       el.properties.tea_id = found.TEA_ID
-      el.properties.metric_cri = found.cri
-      el.properties.metric_comm_index = found.com_index
-      el.properties.metric_econ_index = found.econ_index
-      el.properties.metric_edu_index = found.edu_index
-      el.properties.metric_heal_index = found.health_index
-      el.properties.metric_fam_index = found.fam_index
+      // el.properties.metric_cri = found.cri
+      // el.properties.metric_comm_index = found.com_index
+      // el.properties.metric_econ_index = found.econ_index
+      // el.properties.metric_edu_index = found.edu_index
+      // el.properties.metric_heal_index = found.health_index
+      // el.properties.metric_fam_index = found.fam_index
+      CPAL_METRICS.forEach(item => {
+        const node = 'metric_' + item.id
+        el.properties[node] = found[item.id]
+      })
       // Insert into new json object.
       newJson.features.push(el)
     }
   })
-  // console.log(newJson)
+  console.log(newJson)
   return newJson
 }
 

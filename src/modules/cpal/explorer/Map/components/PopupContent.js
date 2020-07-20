@@ -20,14 +20,22 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature, ', props.feature)
   // }
 
-  const metrics = [
-    `cri`,
-    `econ_index`,
-    `edu_index`,
-    `fam_index`,
-    `heal_index`,
-    `comm_index`,
-  ]
+  const metrics = []
+  CPAL_METRICS.map(el => {
+    if (el.tab_level === 0) {
+      metrics.push(el.id)
+    }
+  })
+  console.log('metrics = ', metrics)
+
+  // [
+  //   `cri`,
+  //   `econ_index`,
+  //   `edu_index`,
+  //   `fam_index`,
+  //   `heal_index`,
+  //   `comm_index`,
+  // ]
 
   const setActiveQuintile = quintile => {
     const arr = [0, 0, 0, 0, 0]

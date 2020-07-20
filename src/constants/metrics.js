@@ -17,6 +17,7 @@ export const CPAL_METRICS = [
     colors: CRI_COLORS,
     tab: 'cri',
     tab_level: 0,
+    tooltip: 1,
   },
   {
     id: 'econ_index',
@@ -26,6 +27,7 @@ export const CPAL_METRICS = [
     colors: ECON_COLORS,
     ttab: 'econ',
     tab_level: 0,
+    tooltip: 1,
   },
   {
     id: 'edu_index',
@@ -35,6 +37,7 @@ export const CPAL_METRICS = [
     colors: EDU_COLORS,
     tab: 'edu',
     tab_level: 0,
+    tooltip: 1,
   },
   {
     id: 'fam_index',
@@ -44,24 +47,27 @@ export const CPAL_METRICS = [
     colors: FAM_COLORS,
     tab: 'fam',
     tab_level: 0,
+    tooltip: 1,
   },
   {
-    id: 'heal_index',
+    id: 'health_index',
     title: 'UI_MAP_METRIC_TITLE_HEAL',
     abbrev: 'HEAL',
     range: [0, 100],
     colors: HEAL_COLORS,
     tab: 'heal',
     tab_level: 0,
+    tooltip: 1,
   },
   {
-    id: 'comm_index',
+    id: 'com_index',
     title: 'UI_MAP_METRIC_TITLE_COMM',
     abbrev: 'COMM',
     range: [0, 100],
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 0,
+    tooltip: 1,
   },
   {
     id: 'comm_crimedensity',
@@ -71,6 +77,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_crime',
@@ -80,6 +87,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_church',
@@ -89,6 +97,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_churchdensity',
@@ -98,6 +107,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_churchdensity',
@@ -107,6 +117,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ev1',
@@ -116,6 +127,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ev2',
@@ -125,6 +137,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ev3',
@@ -134,6 +147,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ev4',
@@ -143,6 +157,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_rvp',
@@ -152,6 +167,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_bvp',
@@ -161,6 +177,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ltrvp',
@@ -170,6 +187,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ltbvp',
@@ -179,6 +197,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_nsres',
@@ -188,6 +207,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_nsbus',
@@ -197,6 +217,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_nsreslt',
@@ -206,6 +227,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_nsbuslt',
@@ -215,6 +237,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_thh',
@@ -224,6 +247,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_oohh',
@@ -233,6 +257,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_rohh',
@@ -242,6 +267,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ocb',
@@ -251,6 +277,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_rcb',
@@ -260,6 +287,7 @@ export const CPAL_METRICS = [
     colors: COMM_COLORS,
     tab: 'comm',
     tab_level: 1,
+    tooltip: 0,
   },
   {
     id: 'comm_ocbp',
