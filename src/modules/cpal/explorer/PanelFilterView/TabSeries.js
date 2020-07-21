@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import FilterSeries from './FilterSeries'
 
 const TabSeries = ({ ...props }) => {
+  console.log('tabSeries, tabs, ', props.tabs)
   return (
     <div
       className={clsx(

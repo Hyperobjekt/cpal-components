@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
@@ -41,16 +41,15 @@ const PanelFilterView = ({ ...props }) => {
     selectItems.push({
       id: item.id,
       label: item.title,
-      active: item.id === 'cri' ? true : false,
+      active: item.tab === activeFilterTab ? true : false,
     })
   })
 
   const handleSelect = e => {
-    console.log('category selected, ', e.currentTarget.id)
+    // console.log('category selected, ', e.currentTarget.id)
     const tabId = CPAL_METRICS.find(i => {
       return i.id === e.currentTarget.id
     }).tab
-    console.log('tabId = ', tabId)
     setActiveFilterTab(tabId)
   }
 

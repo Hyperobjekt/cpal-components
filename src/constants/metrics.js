@@ -55,7 +55,7 @@ export const CPAL_METRICS = [
     abbrev: 'HEAL',
     range: [0, 100],
     colors: HEAL_COLORS,
-    tab: 'heal',
+    tab: 'hel',
     tab_level: 0,
     tooltip: 1,
   },
@@ -753,7 +753,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -762,7 +762,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -771,7 +771,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -780,7 +780,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -789,7 +789,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -798,7 +798,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -807,7 +807,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -816,7 +816,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
   {
@@ -825,7 +825,7 @@ export const CPAL_METRICS = [
     abbrev: '',
     range: [0, 100],
     colors: ECON_COLORS,
-    tab: 'edu',
+    tab: 'hel',
     tab_level: 1,
   },
 ]

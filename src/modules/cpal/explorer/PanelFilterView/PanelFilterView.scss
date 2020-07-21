@@ -23,8 +23,10 @@
         display: block;
       }
     }
-    &.active-tab-heal {
-      .tab-category-heal {
+    &.active-tab-heal,
+    &.active-tab-hel {
+      .tab-category-heal,
+      .tab-category-hel {
         display: block;
       }
     }
