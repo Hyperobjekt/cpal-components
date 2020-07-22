@@ -21,7 +21,7 @@ import {
   Divider,
   CoreButton,
   Select,
-} from '../../../core'
+} from './../../../core'
 import MenuSearch from './MenuSearch/MenuSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'

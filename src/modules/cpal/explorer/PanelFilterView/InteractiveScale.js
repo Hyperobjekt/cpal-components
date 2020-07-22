@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 import PropTypes from 'prop-types'
@@ -13,10 +13,12 @@ import {
   COMM_COLORS,
   DISABLED_COLORS,
 } from './../../../../constants/colors'
+import { getQuintileDesc } from './../utils'
 
 import './InteractiveScale.scss'
 
 const InteractiveScale = ({ ...props }) => {
+  const isLoaded = useRef(false)
   // Active metric
   const activeMetric = useStore(state => state.activeMetric)
   const setActiveMetric = useStore(
@@ -35,112 +37,61 @@ const InteractiveScale = ({ ...props }) => {
     return metric.colors[quintile]
   }
 
-  const quintileButtons = [
-    {
-      classes: clsx(
-        'quintile-button',
-        props.metric.id === activeMetric ? 'active' : '',
-        'quintile-0',
-      ),
-      // disabled:
-      //   props.metric.id !== activeMetric ||
-      //   !activeQuintiles[0]
-      //     ? true
-      //     : false,
-      styles: {
-        backgroundColor:
+  const getQuintileAriaLabel = quintile => {
+    const quintileDesc = i18n.translate(
+      getQuintileDesc(quintile),
+    )
+    if (
+      props.metric.id === activeMetric &&
+      activeQuintiles[quintile] == 1
+    ) {
+      return i18n.translate(
+        'UI_MAP_PANEL_QUINTILE_DISABLE',
+        { quintile: quintileDesc },
+      )
+    } else {
+      return i18n.translate(
+        'UI_MAP_PANEL_QUINTILE_ENABLE',
+        { quintile: quintileDesc },
+      )
+    }
+  }
+
+  const updateQuintileButtons = () => {
+    let quintileButtons = []
+    const count = 4
+    for (let i = 0; i <= count; i++) {
+      quintileButtons.push({
+        classes: clsx(
+          'quintile-button',
           props.metric.id === activeMetric &&
-          !!activeQuintiles[0]
-            ? getBgColor(props.metric, 0)
-            : DISABLED_COLORS[0],
-      },
-      key: 'quintile_button_0',
-    },
-    {
-      classes: clsx(
-        'quintile-button',
-        props.metric.id === activeMetric ? 'active' : '',
-        'quintile-1',
-      ),
-      // disabled:
-      //   props.metric.id !== activeMetric ||
-      //   !activeQuintiles[1]
-      //     ? true
-      //     : false,
-      styles: {
-        backgroundColor:
-          props.metric.id === activeMetric &&
-          !!activeQuintiles[1]
-            ? getBgColor(props.metric, 1)
-            : DISABLED_COLORS[1],
-      },
-      key: 'quintile_button_1',
-    },
-    {
-      classes: clsx(
-        'quintile-button',
-        props.metric.id === activeMetric ? 'active' : '',
-        'quintile-2',
-      ),
-      // disabled:
-      //   props.metric.id !== activeMetric ||
-      //   !activeQuintiles[2]
-      //     ? true
-      //     : false,
-      styles: {
-        backgroundColor:
-          props.metric.id === activeMetric &&
-          !!activeQuintiles[2]
-            ? getBgColor(props.metric, 2)
-            : DISABLED_COLORS[2],
-      },
-      key: 'quintile_button_2',
-    },
-    {
-      classes: clsx(
-        'quintile-button',
-        props.metric.id === activeMetric ? 'active' : '',
-        'quintile-3',
-      ),
-      // disabled:
-      //   props.metric.id !== activeMetric ||
-      //   !activeQuintiles[3]
-      //     ? true
-      //     : false,
-      styles: {
-        backgroundColor:
-          props.metric.id === activeMetric &&
-          !!activeQuintiles[3]
-            ? getBgColor(props.metric, 3)
-            : DISABLED_COLORS[3],
-      },
-      key: 'quintile_button_3',
-    },
-    {
-      classes: clsx(
-        'quintile-button',
-        props.metric.id === activeMetric ? 'active' : '',
-        'quintile-4',
-      ),
-      // disabled:
-      //   props.metric.id !== activeMetric ||
-      //   !activeQuintiles[4]
-      //     ? true
-      //     : false,
-      styles: {
-        backgroundColor:
-          props.metric.id === activeMetric &&
-          !!activeQuintiles[4]
-            ? getBgColor(props.metric, 4)
-            : DISABLED_COLORS[4],
-      },
-      key: 'quintile_button_4',
-    },
-  ]
+            !!activeQuintiles[i]
+            ? 'active'
+            : '',
+          'quintile-' + i,
+        ),
+        styles: {
+          backgroundColor:
+            props.metric.id === activeMetric &&
+            !!activeQuintiles[i]
+              ? getBgColor(props.metric, i)
+              : DISABLED_COLORS[i],
+        },
+        key: 'quintile_button_' + i,
+        ariaLabel: getQuintileAriaLabel(i),
+      })
+    }
+    return quintileButtons
+  }
+
+  useEffect(() => {
+    // console.log('isloaded or activequintiles changed')
+    updateQuintileButtons()
+  }, [isLoaded, activeQuintiles])
 
   const handleScaleClick = e => {
     e.preventDefault()
-    console.log('handleScaleClick(), ', e.currentTarget)
+    // console.log('handleScaleClick(), ', e.currentTarget)
     // If already active, just return
     if (e.currentTarget.classList.contains('active')) {
       return
@@ -150,7 +101,6 @@ const InteractiveScale = ({ ...props }) => {
         'metric_select_',
         '',
       )
-      console.log('metric, ', metric)
       setActiveMetric(metric)
       setActiveQuintiles([1, 1, 1, 1, 1])
     }
@@ -161,7 +111,7 @@ const InteractiveScale = ({ ...props }) => {
 
   const handleQuintileClick = e => {
     e.preventDefault()
-    console.log('handleQuintileClick(), ', e.currentTarget)
+    // console.log('handleQuintileClick(), ', e.currentTarget)
     // If parent not active, just return
     if (
       !e.currentTarget.parentNode.classList.contains(
@@ -170,11 +120,9 @@ const InteractiveScale = ({ ...props }) => {
     ) {
       return
     }
-    console.log('parent control is active, update quintile')
     const quintile = getElIndex(e.currentTarget)
     let quintiles = activeQuintiles.slice()
-    console.log(quintiles)
-    // If quintile was all enabled, knock other selections.
+    // If set was all enabled, knock other selections.
     if (
       quintiles[0] === 1 &&
       quintiles[1] === 1 &&
@@ -190,6 +138,20 @@ const InteractiveScale = ({ ...props }) => {
     setActiveQuintiles(quintiles)
   }
 
+  const getScaleAriaLabel = () => {
+    // console.log('getScaleAriaLabel()')
+    const metricTitle = i18n.translate(props.metric.title)
+    const prompt =
+      activeMetric === props.metric.id
+        ? 'UI_MAP_PANEL_METRIC_DISABLE'
+        : 'UI_MAP_PANEL_METRIC_ENABLE'
+    const label = i18n.translate(prompt, {
+      metric: metricTitle,
+    })
+    // console.log('label, ', label)
+    return label
+  }
+
   return (
     <div
       className={clsx(
@@ -200,21 +162,18 @@ const InteractiveScale = ({ ...props }) => {
       )}
       id={'metric_select_' + props.metric.id}
       onClick={handleScaleClick}
+      aria-label={getScaleAriaLabel()}
     >
-      {quintileButtons.map(b => {
+      {updateQuintileButtons().map(b => {
         return (
           <div
             className={b.classes}
             style={b.styles}
-            disabled={b.disabled}
             onClick={handleQuintileClick}
             key={b.key}
+            aria-label={b.ariaLabel}
           >
-            <span className="sr-only">
-              {i18n.translate(
-                `UI_MAP_PANEL_SELECT_QUINTILE`,
-              )}
-            </span>
+            <span className="sr-only">{b.ariaLabel}</span>
           </div>
         )
       })}

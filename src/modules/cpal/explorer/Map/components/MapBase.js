@@ -264,19 +264,19 @@ const MapBase = ({
       }
 
       if (vp.longitude && vp.longitude < BOUNDS.lng.min) {
-        console.log('panned beyond lng.min')
+        // console.log('panned beyond lng.min')
         vp.longitude = BOUNDS.lng.min
       }
       if (vp.longitude && vp.longitude > BOUNDS.lng.max) {
-        console.log('panned beyond lng.max')
+        // console.log('panned beyond lng.max')
         vp.longitude = BOUNDS.lng.max
       }
       if (vp.latitude && vp.latitude < BOUNDS.lat.min) {
-        console.log('panned beyond lat.min')
+        // console.log('panned beyond lat.min')
         vp.latitude = BOUNDS.lat.min
       }
       if (vp.latitude && vp.latitude > BOUNDS.lat.max) {
-        console.log('panned beyond lat.max')
+        // console.log('panned beyond lat.max')
         vp.latitude = BOUNDS.lat.max
       }
       setViewport(vp)
@@ -311,7 +311,7 @@ const MapBase = ({
 
   // handler for feature click
   const handleClick = ({ features, srcEvent, ...rest }) => {
-    console.log('click')
+    console.log('feature click')
     // was the click on a control
     // const isControl = getClosest(
     //   srcEvent.target,
@@ -405,7 +405,7 @@ const MapBase = ({
     // Distance = 2 miles.
     let distance = 2
     if (zoom >= 12) {
-      distance = 0.2
+      distance = 0.4
     }
     // Set point for hovered feature.
     const point = hoveredFeature.geometry.coordinates

@@ -64,6 +64,7 @@ const [useStore] = create((set, get) => ({
     },
   ],
   setActiveLayers: newArr => set({ activeLayers: newArr }),
+  defaultMetric: 'cri',
   activeMetric: 'cri',
   setActiveMetric: newActiveMetric =>
     set({ activeMetric: newActiveMetric }),
@@ -76,6 +77,7 @@ const [useStore] = create((set, get) => ({
   },
   setSlideoutPanel: newObj =>
     set({ slideoutPanel: newObj }),
+  defaultFilterTab: 'cri',
   activeFilterTab: 'cri',
   setActiveFilterTab: newActiveFilterTab =>
     set({ activeFilterTab: newActiveFilterTab }),

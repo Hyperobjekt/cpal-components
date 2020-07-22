@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import i18n from '@pureartisan/simple-i18n'
-import { Button } from 'reactstrap'
 import clsx from 'clsx'
-import { FiCamera } from 'react-icons/fi'
+import { MdPhotoCamera } from 'react-icons/md'
+import { CoreButton } from './../../../../core'
 
 import './MapCaptureButton.scss'
 
@@ -23,8 +23,8 @@ const MapCaptureButton = ({ currentMap, ...props }) => {
   }
 
   return (
-    <Button
-      color="secondary"
+    <CoreButton
+      color="light"
       active={true}
       className={clsx(
         `map-capture-btn`,
@@ -33,11 +33,11 @@ const MapCaptureButton = ({ currentMap, ...props }) => {
       onClick={captureMap}
       title={i18n.translate(`UI_MAP_CAPTURE`)}
     >
-      <FiCamera className="icon" />
+      <MdPhotoCamera className="icon" />
       <span className="sr-only">
         {i18n.translate(`UI_MAP_CAPTURE`)}
       </span>
-    </Button>
+    </CoreButton>
   )
 }
 

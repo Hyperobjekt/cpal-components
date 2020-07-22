@@ -4,9 +4,14 @@
   .map-panel-slideout-filters {
     height: 100%;
     padding: 0.7rem;
-    .select {
-      button {
-        width: 100%;
+    .map-panel-controls {
+      display: flex;
+      .select {
+        flex-grow: 1;
+        margin-right: 1rem;
+        button {
+          width: 100%;
+        }
       }
     }
     .filters-panel-parent {

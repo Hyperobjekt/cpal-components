@@ -8,10 +8,10 @@ import {
   FiList,
   FiMenu,
 } from 'react-icons/fi'
-import { MdCallSplit } from 'react-icons/md'
+import { MdRefresh } from 'react-icons/md'
 
+import { CoreButton, Select } from './../../../core'
 import useStore from './../store.js'
-import Select from './../../../core/Select'
 import {
   CPAL_METRICS,
   CPAL_FILTER_TABS,
@@ -22,11 +22,24 @@ import './PanelFilterView.scss'
 
 const PanelFilterView = ({ ...props }) => {
   // Active filter tab
+  const defaultFilterTab = useStore(
+    state => state.defaultFilterTab,
+  )
   const activeFilterTab = useStore(
     state => state.activeFilterTab,
   )
   const setActiveFilterTab = useStore(
     state => state.setActiveFilterTab,
+  )
+  // Default metric
+  const defaultMetric = useStore(
+    state => state.defaultMetric,
+  )
+  const setActiveMetric = useStore(
+    state => state.setActiveMetric,
+  )
+  const setActiveQuintiles = useStore(
+    state => state.setActiveQuintiles,
   )
 
   // Generate tabs for every metric with tab_level set to 0
@@ -64,6 +77,13 @@ const PanelFilterView = ({ ...props }) => {
     setActiveFilterTab(tabId)
   }
 
+  const handleResetClick = () => {
+    console.log('handleResetClick()')
+    setActiveFilterTab(defaultFilterTab)
+    setActiveMetric(defaultMetric)
+    setActiveQuintiles([1, 1, 1, 1, 1])
+  }
+
   return (
     <div
       className={clsx(
@@ -73,11 +93,30 @@ const PanelFilterView = ({ ...props }) => {
           : 'active-tab-default',
       )}
     >
-      <Select
-        label={i18n.translate('UI_MAP_PANEL_SELECT')}
-        items={selectItems}
-        handleSelect={e => handleSelect(e)}
-      ></Select>
+      <div className="map-panel-controls">
+        <Select
+          label={i18n.translate('UI_MAP_PANEL_SELECT')}
+          items={selectItems}
+          handleSelect={e => handleSelect(e)}
+        ></Select>
+        <CoreButton
+          id="button_reset_filter"
+          aria-label={i18n.translate(
+            `UI_MAP_BUTTON_RESET_FILTER`,
+          )}
+          title={i18n.translate(
+            `UI_MAP_BUTTON_RESET_FILTER`,
+          )}
+          onClick={handleResetClick}
+          color="light"
+          className={clsx('map-panel-filter-reset')}
+        >
+          <MdRefresh />
+          <span className="sr-only">
+            {i18n.translate(`UI_MAP_BUTTON_RESET_FILTER`)}
+          </span>
+        </CoreButton>
+      </div>
       <div className="filters-panel-parent">
         <TabSeries
           tabs={tabs}

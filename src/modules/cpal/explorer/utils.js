@@ -170,6 +170,26 @@ export const getMetric = (metric, metrics) => {
   }
 }
 
+export const getQuintileDesc = quintile => {
+  switch (true) {
+    case quintile === 0: {
+      return 'FIRST'
+    }
+    case quintile === 1: {
+      return 'SECOND'
+    }
+    case quintile === 2: {
+      return 'THIRD'
+    }
+    case quintile === 3: {
+      return 'FOURTH'
+    }
+    case quintile === 4: {
+      return 'FIFTH'
+    }
+  }
+}
+
 /**
  * Generates geojson object with school zones (2 mile radius)
  * @return  Object   GeoJSON Object of all schools in client-supplied data
