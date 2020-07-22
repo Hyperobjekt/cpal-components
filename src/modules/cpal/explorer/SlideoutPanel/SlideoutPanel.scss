@@ -12,14 +12,18 @@
     left: 80px;
     transition: left 500ms ease-in-out;
   }
+  .map-panel-slideout-filters,
+  .map-panel-slideout-info {
+    display: none;
+  }
   &.panel-view-filters {
-    .map-panel-slideout-info {
-      display: none;
+    .map-panel-slideout-filters {
+      display: block;
     }
   }
   &.panel-view-info {
-    .map-panel-slideout-filters {
-      display: none;
+    .map-panel-slideout-info {
+      display: block;
     }
   }
 }

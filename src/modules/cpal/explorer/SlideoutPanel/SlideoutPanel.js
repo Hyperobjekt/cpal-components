@@ -21,7 +21,7 @@ const SlideoutPanel = ({ ...props }) => {
         slideoutPanel.active ? 'active' : '',
         slideoutPanel.panel.length > 0
           ? 'panel-view-' + slideoutPanel.panel
-          : 'panel-view-info',
+          : 'panel-view-none',
       )}
     >
       <PanelFilterView />

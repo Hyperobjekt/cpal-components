@@ -108,7 +108,7 @@ const Layout = ({ children, ...props }) => {
       !slideoutPanel.active &&
       slideoutPanel.panel.length < 1
     ) {
-      // Never opened
+      // If never opened
       newActiveState = true
     } else if (
       !!slideoutPanel.active &&
