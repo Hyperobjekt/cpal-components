@@ -19,18 +19,21 @@ const [useStore] = create((set, get) => ({
     baseInverted: ``,
   },
   activeLang: `en_us`,
-  activeView: `map`,
+  activeView: `map`, // Map or feeder
   setActiveView: newVal => set({ activeView: newVal }),
   viewSelect: [
     {
       label: `SELECT_ITEM_MAP`,
       id: `select_view_map`,
+      active: true,
     },
     {
       label: `SELECT_ITEM_FEEDER`,
       id: `select_view_feeder`,
+      active: false,
     },
   ],
+  setViewSelect: newArr => set({ viewSelect: newArr }),
   displayDistricts: [`057905`, `057834`],
   viewport: {
     latitude: 32.7603525,

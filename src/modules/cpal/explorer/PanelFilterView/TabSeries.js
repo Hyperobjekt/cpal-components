@@ -4,9 +4,32 @@ import i18n from '@pureartisan/simple-i18n'
 import PropTypes from 'prop-types'
 
 import FilterSeries from './FilterSeries'
+import InteractiveScale from './InteractiveScale'
 
 const TabSeries = ({ ...props }) => {
-  console.log('tabSeries, tabs, ', props.tabs)
+  /**
+   * Returns tab description transl and markup if one is provided
+   * @param  Object metric Object with metric data
+   * @return String HTML string
+   */
+  const getTabDesc = metric => {
+    if (metric.desc && metric.desc.length > 0) {
+      return (
+        <div
+          className={clsx(
+            'tab-desc',
+            'tab-desc-' + metric.tabId,
+          )}
+          dangerouslySetInnerHTML={{
+            __html: i18n.translate(metric.desc),
+          }}
+        ></div>
+      )
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div
       className={clsx(
@@ -20,7 +43,6 @@ const TabSeries = ({ ...props }) => {
         const metric = props.metrics.find(m => {
           return m.id === t
         })
-        console.log('metric.tab, ', metric.tab)
         const tabLabel = i18n.translate(metric.title)
         const tabId = metric.tab
         return (
@@ -34,6 +56,7 @@ const TabSeries = ({ ...props }) => {
             key={metric.tab}
           >
             <h5>{tabLabel}</h5>
+            {getTabDesc(metric)}
             <div
               className={clsx(
                 'filter-select',
@@ -41,9 +64,7 @@ const TabSeries = ({ ...props }) => {
               )}
               key={t}
             >
-              <div className="filter-buttons">
-                filter buttons
-              </div>
+              <InteractiveScale metric={metric} />
             </div>
             <FilterSeries
               tab={tabId}

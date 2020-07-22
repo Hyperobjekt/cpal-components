@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 import PropTypes from 'prop-types'
 
+import InteractiveScale from './InteractiveScale'
+
 const FilterSeries = ({ ...props }) => {
   // Get all of the items in the metrics array with matching tab node.
   const filters = props.metrics.filter(m => {
@@ -29,9 +31,7 @@ const FilterSeries = ({ ...props }) => {
         return (
           <div className="filter" key={f.id}>
             <h6>{i18n.translate(f.title)}</h6>
-            <div className="filter-buttons">
-              filter buttons
-            </div>
+            <InteractiveScale metric={f} />
           </div>
         )
       })}

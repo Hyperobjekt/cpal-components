@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
 import {
@@ -11,8 +10,12 @@ import {
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 
+import useStore from './../store.js'
 import Select from './../../../core/Select'
-import { CPAL_METRICS } from './../../../../constants/metrics'
+import {
+  CPAL_METRICS,
+  CPAL_FILTER_TABS,
+} from './../../../../constants/metrics'
 import TabSeries from './TabSeries'
 
 import './PanelFilterView.scss'
@@ -26,6 +29,7 @@ const PanelFilterView = ({ ...props }) => {
     state => state.setActiveFilterTab,
   )
 
+  // Generate tabs for every metric with tab_level set to 0
   const tabs = []
   CPAL_METRICS.forEach(el => {
     if (el.tab_level === 0) {
@@ -33,6 +37,13 @@ const PanelFilterView = ({ ...props }) => {
     }
   })
 
+  /** Returns title translation placeholder for a tab **/
+  const getTabTitle = id => {
+    const obj = CPAL_FILTER_TABS.find(el => el.id === id)
+    return obj.title
+  }
+
+  /** Process select items for tabs **/
   const selectItems = []
   tabs.forEach(el => {
     const item = CPAL_METRICS.find(i => {
@@ -40,7 +51,7 @@ const PanelFilterView = ({ ...props }) => {
     })
     selectItems.push({
       id: item.id,
-      label: item.title,
+      label: getTabTitle(item.tab),
       active: item.tab === activeFilterTab ? true : false,
     })
   })

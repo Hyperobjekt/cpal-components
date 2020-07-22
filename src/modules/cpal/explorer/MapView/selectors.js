@@ -627,7 +627,7 @@ export const getSchoolZoneLayers = context => {
 }
 
 export const getCircleLayers = context => {
-  // console.log('getCircleLayers', context)
+  console.log('getCircleLayers', context)
   return [
     // {
     //   z: 150,

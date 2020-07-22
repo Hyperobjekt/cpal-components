@@ -44,7 +44,9 @@ const useStyles = makeStyles(theme => ({
 
 const MapView = props => {
   /** current options for the map */
-  const [metric, demographic, region] = useActiveOptionIds()
+  const [demographic, region] = useActiveOptionIds()
+  // Currently active metric
+  const metric = useStore(state => state.activeMetric)
   /** currently active data filters */
   const [{ prefix }] = useFilters()
   /** currently selected location ids */

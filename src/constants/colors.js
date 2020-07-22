@@ -78,11 +78,11 @@ export const FAM_COLORS = [
  * colors for health scale
  */
 export const HEAL_COLORS = [
-  '#3800D9',
-  '#5225d3',
-  '#795dc9',
-  '#9e90c6',
-  '#b6b0c6',
+  '#008511',
+  '#1C992C',
+  '#47B555',
+  '#74DD81',
+  '#9BFDA7',
 ]
 
 /**

@@ -50,6 +50,9 @@ const Layout = ({ children, ...props }) => {
   const viewSelectItems = useStore(
     state => state.viewSelect,
   )
+  const setViewSelect = useStore(
+    state => state.setViewSelect,
+  )
   // Slideout panel
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
@@ -134,6 +137,18 @@ const Layout = ({ children, ...props }) => {
       '',
     )
     setActiveView(val)
+    setViewSelect([
+      {
+        label: `SELECT_ITEM_MAP`,
+        id: `select_view_map`,
+        active: val === 'map' ? true : false,
+      },
+      {
+        label: `SELECT_ITEM_FEEDER`,
+        id: `select_view_feeder`,
+        active: val === 'feeder' ? true : false,
+      },
+    ])
   }
 
   return (
