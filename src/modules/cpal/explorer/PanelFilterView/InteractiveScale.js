@@ -11,6 +11,7 @@ import {
   FAM_COLORS,
   HEAL_COLORS,
   COMM_COLORS,
+  DISABLED_COLORS,
 } from './../../../../constants/colors'
 
 import './InteractiveScale.scss'
@@ -41,13 +42,17 @@ const InteractiveScale = ({ ...props }) => {
         props.metric.id === activeMetric ? 'active' : '',
         'quintile-0',
       ),
-      disabled:
-        props.metric.id !== activeMetric ||
-        !activeQuintiles[0]
-          ? true
-          : false,
+      // disabled:
+      //   props.metric.id !== activeMetric ||
+      //   !activeQuintiles[0]
+      //     ? true
+      //     : false,
       styles: {
-        backgroundColor: getBgColor(props.metric, 0),
+        backgroundColor:
+          props.metric.id === activeMetric &&
+          !!activeQuintiles[0]
+            ? getBgColor(props.metric, 0)
+            : DISABLED_COLORS[0],
       },
       key: 'quintile_button_0',
     },
@@ -57,13 +62,17 @@ const InteractiveScale = ({ ...props }) => {
         props.metric.id === activeMetric ? 'active' : '',
         'quintile-1',
       ),
-      disabled:
-        props.metric.id !== activeMetric ||
-        !activeQuintiles[1]
-          ? true
-          : false,
+      // disabled:
+      //   props.metric.id !== activeMetric ||
+      //   !activeQuintiles[1]
+      //     ? true
+      //     : false,
       styles: {
-        backgroundColor: getBgColor(props.metric, 1),
+        backgroundColor:
+          props.metric.id === activeMetric &&
+          !!activeQuintiles[1]
+            ? getBgColor(props.metric, 1)
+            : DISABLED_COLORS[1],
       },
       key: 'quintile_button_1',
     },
@@ -73,13 +82,17 @@ const InteractiveScale = ({ ...props }) => {
         props.metric.id === activeMetric ? 'active' : '',
         'quintile-2',
       ),
-      disabled:
-        props.metric.id !== activeMetric ||
-        !activeQuintiles[2]
-          ? true
-          : false,
+      // disabled:
+      //   props.metric.id !== activeMetric ||
+      //   !activeQuintiles[2]
+      //     ? true
+      //     : false,
       styles: {
-        backgroundColor: getBgColor(props.metric, 2),
+        backgroundColor:
+          props.metric.id === activeMetric &&
+          !!activeQuintiles[2]
+            ? getBgColor(props.metric, 2)
+            : DISABLED_COLORS[2],
       },
       key: 'quintile_button_2',
     },
@@ -89,13 +102,17 @@ const InteractiveScale = ({ ...props }) => {
         props.metric.id === activeMetric ? 'active' : '',
         'quintile-3',
       ),
-      disabled:
-        props.metric.id !== activeMetric ||
-        !activeQuintiles[3]
-          ? true
-          : false,
+      // disabled:
+      //   props.metric.id !== activeMetric ||
+      //   !activeQuintiles[3]
+      //     ? true
+      //     : false,
       styles: {
-        backgroundColor: getBgColor(props.metric, 3),
+        backgroundColor:
+          props.metric.id === activeMetric &&
+          !!activeQuintiles[3]
+            ? getBgColor(props.metric, 3)
+            : DISABLED_COLORS[3],
       },
       key: 'quintile_button_3',
     },
@@ -105,13 +122,17 @@ const InteractiveScale = ({ ...props }) => {
         props.metric.id === activeMetric ? 'active' : '',
         'quintile-4',
       ),
-      disabled:
-        props.metric.id !== activeMetric ||
-        !activeQuintiles[4]
-          ? true
-          : false,
+      // disabled:
+      //   props.metric.id !== activeMetric ||
+      //   !activeQuintiles[4]
+      //     ? true
+      //     : false,
       styles: {
-        backgroundColor: getBgColor(props.metric, 4),
+        backgroundColor:
+          props.metric.id === activeMetric &&
+          !!activeQuintiles[4]
+            ? getBgColor(props.metric, 4)
+            : DISABLED_COLORS[4],
       },
       key: 'quintile_button_4',
     },
@@ -120,11 +141,53 @@ const InteractiveScale = ({ ...props }) => {
   const handleScaleClick = e => {
     e.preventDefault()
     console.log('handleScaleClick(), ', e.currentTarget)
+    // If already active, just return
+    if (e.currentTarget.classList.contains('active')) {
+      return
+    } else {
+      // setActiveMetric
+      const metric = String(e.currentTarget.id).replace(
+        'metric_select_',
+        '',
+      )
+      console.log('metric, ', metric)
+      setActiveMetric(metric)
+      setActiveQuintiles([1, 1, 1, 1, 1])
+    }
   }
+
+  const getElIndex = element =>
+    Array.from(element.parentNode.children).indexOf(element)
 
   const handleQuintileClick = e => {
     e.preventDefault()
     console.log('handleQuintileClick(), ', e.currentTarget)
+    // If parent not active, just return
+    if (
+      !e.currentTarget.parentNode.classList.contains(
+        'active',
+      )
+    ) {
+      return
+    }
+    console.log('parent control is active, update quintile')
+    const quintile = getElIndex(e.currentTarget)
+    let quintiles = activeQuintiles.slice()
+    console.log(quintiles)
+    // If quintile was all enabled, knock other selections.
+    if (
+      quintiles[0] === 1 &&
+      quintiles[1] === 1 &&
+      quintiles[2] === 1 &&
+      quintiles[3] === 1 &&
+      quintiles[4] === 1
+    ) {
+      quintiles = [0, 0, 0, 0, 0]
+      quintiles[quintile] = 1
+    } else {
+      quintiles[quintile] = !quintiles[quintile]
+    }
+    setActiveQuintiles(quintiles)
   }
 
   return (
@@ -140,15 +203,19 @@ const InteractiveScale = ({ ...props }) => {
     >
       {quintileButtons.map(b => {
         return (
-          <button
+          <div
             className={b.classes}
             style={b.styles}
             disabled={b.disabled}
             onClick={handleQuintileClick}
             key={b.key}
           >
-            <span className="sr-only">Select quintile</span>
-          </button>
+            <span className="sr-only">
+              {i18n.translate(
+                `UI_MAP_PANEL_SELECT_QUINTILE`,
+              )}
+            </span>
+          </div>
         )
       })}
     </div>

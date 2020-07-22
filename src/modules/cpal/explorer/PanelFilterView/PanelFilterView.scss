@@ -1,5 +1,6 @@
 .map-panel-slideout {
   height: 100%;
+  overflow: hidden;
   .map-panel-slideout-filters {
     height: 100%;
     padding: 0.7rem;
@@ -17,6 +18,13 @@
           display: none;
           height: 100%;
           overflow-y: scroll;
+          padding-bottom: 1.2rem;
+          h5 {
+            margin-bottom: 0.2rem;
+          }
+          h6 {
+            margin-bottom: 0.1rem;
+          }
         }
         &.active-tab-cri {
           .tab-category-cri {
