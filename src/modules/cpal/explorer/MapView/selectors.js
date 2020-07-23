@@ -26,23 +26,9 @@ const noDataFill = '#ccc'
  * @param {string} id
  * @returns {array}
  */
-export const getStopsForVarName = (
-  metric,
-  colors, // = getChoroplethColors(),
-) => {
+export const getStopsForVarName = (metric, colors) => {
   const metricData = getMetric(metric, CPAL_METRICS)
-  // const demId = getDemographicIdFromVarName(metric)
-  // const metricId = getMetricIdFromVarName(metric)
-  // const isGap = isGapVarName(metric)
-  // colors =  // isGap ? [...colors].reverse() : colors
-  // const colors = metricData.colors
   const [min, max] = metricData.range
-  // getMetricRange(
-  //   metricId,
-  //   demId,
-  //   region,
-  //   'map',
-  // )
   const range = Math.abs(max - min)
   const stepSize = range / (colors.length - 1)
   return colors.map((c, i) => [min + i * stepSize, c])
@@ -61,211 +47,21 @@ const getSchoolFillStyle = (metric, colors) => {
   )
   return [
     'case',
-    [
-      '==',
-      ['get', 'metric_' + metric], // getMetricIdFromVarName(varName)],
-      -999,
-    ],
+    ['==', ['get', 'metric_' + metric], -999],
     noDataFill,
-    ['has', 'metric_' + metric], // getMetricIdFromVarName(varName)],
+    ['has', 'metric_' + metric],
     [
       'interpolate',
       ['linear'],
-      ['get', 'metric_' + metric], // getMetricIdFromVarName(varName)],
+      ['get', 'metric_' + metric],
       ...stops,
     ],
     noDataFill,
   ]
 }
 
-const getFillStyle = (varName, region, colors) => {
-  console.log('getFillStyle, ', varName, region, colors)
-  const stops = getStopsForVarName(
-    varName,
-    region,
-    colors,
-  ).reduce((acc, curr) => [...acc, ...curr], [])
-  return [
-    'case',
-    ['==', ['get', varName], -999],
-    noDataFill,
-    ['has', varName],
-    ['interpolate', ['linear'], ['get', varName], ...stops],
-    noDataFill,
-  ]
-}
-
-const getCircleOpacity = region =>
-  region === 'schools'
-    ? ['interpolate', ['linear'], ['zoom'], 2, 0, 3, 1]
-    : [
-        'interpolate',
-        ['exponential', 2],
-        ['zoom'],
-        8,
-        0,
-        10,
-        1,
-      ]
-
-const getCircleRadius = (region, offset = 0) =>
-  region === 'schools'
-    ? [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        2,
-        2 + offset,
-        4,
-        3 + offset,
-        14,
-        12 + offset,
-      ]
-    : [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        7,
-        0,
-        8,
-        1 + offset,
-        14,
-        12 + offset,
-      ]
-
 const getCircleMinZoom = region =>
   region === 'schools' ? 2 : 8
-
-export const getCircleHighlightLayer = ({
-  layerId,
-  region,
-}) =>
-  fromJS({
-    id: layerId || region + '-circle-highlight',
-    source: 'schools',
-    'source-layer': 'schools',
-    type: 'circle',
-    minzoom: getCircleMinZoom(region),
-    interactive: false,
-    layout: {
-      visibility: 'visible',
-    },
-    paint: {
-      'circle-color': 'rgba(0,0,0,0)',
-      'circle-opacity': 1,
-      'circle-radius': getCircleRadius(region, -3),
-      'circle-stroke-opacity': 1,
-      'circle-stroke-color': [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        '#f00',
-        '#000',
-      ],
-      'circle-stroke-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        4,
-        2,
-        6,
-        2,
-        14,
-        4,
-      ],
-    },
-  })
-
-export const getSchoolCircleHoverLayer = ({
-  layerId,
-  region,
-}) =>
-  fromJS({
-    id: layerId || region + '-circle-highlight',
-    source: 'schools',
-    // 'source-layer': 'schools',
-    type: 'circle',
-    minzoom: getCircleMinZoom(region),
-    interactive: true,
-    layout: {
-      visibility: 'visible',
-    },
-    paint: {
-      'circle-color': 'rgba(0,0,0,0)',
-      'circle-opacity': 1,
-      'circle-radius': getCircleRadius(region, -3),
-      'circle-stroke-opacity': 1,
-      'circle-stroke-color': [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        ['string', ['feature-state', 'selected'], '#fff'],
-        'rgba(0,0,0,0)',
-      ],
-      'circle-stroke-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        4,
-        2,
-        6,
-        2,
-        14,
-        4,
-      ],
-    },
-  })
-
-export const getCircleLayer = ({
-  layerId,
-  region,
-  metric,
-  demographic,
-  colors,
-}) => {
-  return fromJS({
-    id: layerId || 'schools-circle',
-    source: 'schools',
-    'source-layer': 'schools',
-    type: 'circle',
-    minzoom: 1, // getCircleMinZoom(region),
-    // interactive: region === 'schools',
-    interactive: true,
-    layout: {
-      visibility:
-        demographic === 'all' ? 'visible' : 'none',
-    },
-    paint: {
-      'circle-color': getFillStyle(
-        [demographic, metric].join('_'),
-        'schools',
-        colors,
-      ),
-      'circle-opacity': 1, // getCircleOpacity(region),
-      'circle-radius': 4, // getCircleRadius(region),
-      'circle-stroke-opacity': 1, // getCircleOpacity(region),
-      'circle-stroke-color': '#fff',
-      'circle-stroke-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        4,
-        0,
-        6,
-        0.5,
-        14,
-        2,
-      ],
-    },
-  })
-}
-
-export const checkSchoolVisibility = (
-  metric,
-  activeQuintiles,
-  id,
-) => {
-  console.log('checkSchoolVisibility(), ', id)
-  return true
-}
 
 export const getSchoolCircleLayer = ({
   layerId,
@@ -274,7 +70,6 @@ export const getSchoolCircleLayer = ({
   activeQuintiles,
   colors,
 }) => {
-  console.log('getSchoolCircleLayer(), ', activeQuintiles)
   return fromJS({
     id: 'schools-circle',
     source: 'schools',
@@ -315,89 +110,8 @@ export const getSchoolCircleLayer = ({
         2,
       ],
     },
-    filter: [
-      'boolean',
-      checkSchoolVisibility(metric, activeQuintiles, [
-        'get',
-        'SLN',
-      ]),
-    ],
   })
 }
-
-export const getCircleCasingLayer = ({
-  layerId,
-  demographic,
-  region,
-}) =>
-  fromJS({
-    id: layerId || region + '-circle-casing',
-    source: 'schools',
-    'source-layer': 'schools',
-    type: 'circle',
-    minzoom: getCircleMinZoom(region),
-    interactive: false,
-    layout: {
-      visibility:
-        demographic === 'all' ? 'visible' : 'none',
-    },
-    paint: {
-      'circle-stroke-opacity': getCircleOpacity(region),
-      'circle-radius': getCircleRadius(region, 1),
-      'circle-color': 'transparent',
-      'circle-stroke-color': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        6,
-        '#ccc',
-        8,
-        '#5d5d5d',
-      ],
-      'circle-stroke-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        8,
-        0.5,
-        10,
-        1,
-        14,
-        2,
-      ],
-    },
-  })
-
-export const getChoroplethOutline = ({ layerId, region }) =>
-  fromJS({
-    id: layerId || region + '-choropleth-outline',
-    source: 'redlines',
-    'source-layer': region,
-    type: 'line',
-    interactive: false,
-    paint: {
-      'line-color': [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        '#f00',
-        [
-          'string',
-          ['feature-state', 'selected'],
-          'rgba(0,0,0,0)',
-        ],
-      ],
-      'line-width': [
-        'case',
-        [
-          'any',
-          ['boolean', ['feature-state', 'hover'], false],
-          ['to-boolean', ['feature-state', 'selected']],
-        ],
-        2.5,
-        0,
-      ],
-    },
-  })
 
 export const getDistrictOutline = ({ layerId, region }) => {
   // console.log('getDistrictOutline(), ', region)
@@ -504,76 +218,8 @@ export const getRedlineLines = ({ layerId, region }) => {
   })
 }
 
-/**
- * Gets the mapboxgl layer for the choropleth outline
- * @param {string} region
- */
-// export const getChoroplethOutlineCasing = ({
-//   layerId,
-//   region,
-// }) =>
-//   fromJS({
-//     id: layerId || region + '-choropleth-outline-casing',
-//     source: 'schools',
-//     'source-layer': region,
-//     type: 'line',
-//     interactive: false,
-//     paint: {
-//       'line-color': '#fff',
-//       'line-opacity': [
-//         'case',
-//         [
-//           'any',
-//           ['boolean', ['feature-state', 'hover'], false],
-//           ['to-boolean', ['feature-state', 'selected']],
-//         ],
-//         1,
-//         0,
-//       ],
-//       'line-width': [
-//         'case',
-//         [
-//           'any',
-//           ['boolean', ['feature-state', 'hover'], false],
-//           ['to-boolean', ['feature-state', 'selected']],
-//         ],
-//         1.5,
-//         0,
-//       ],
-//       'line-gap-width': [
-//         'case',
-//         [
-//           'any',
-//           ['boolean', ['feature-state', 'hover'], false],
-//           ['to-boolean', ['feature-state', 'selected']],
-//         ],
-//         2.5,
-//         0,
-//       ],
-//     },
-//   })
-
-// const isChoroplethId = id => {
-//   if (!id) {
-//     return false
-//   }
-//   const featureRegion = getRegionFromLocationId(id)
-//   return (
-//     featureRegion === 'districts' ||
-//     featureRegion === 'counties'
-//   )
-// }
-
-const isCircleId = id => {
-  if (!id) {
-    return false
-  }
-  const featureRegion = getRegionFromLocationId(id)
-  return featureRegion === 'schools'
-}
-
 const isSchoolCircleId = id => {
-  console.log('isSchoolCircleId')
+  // console.log('isSchoolCircleId')
   if (!id) {
     return false
   }
@@ -646,12 +292,8 @@ export const getSchoolZoneLayers = context => {
 }
 
 export const getCircleLayers = context => {
-  console.log('getCircleLayers', context)
+  // console.log('getCircleLayers', context)
   return [
-    // {
-    //   z: 150,
-    //   style: getSchoolCircleHoverLayer(context),
-    // },
     {
       z: 150,
       style: getSchoolCircleLayer(context),
@@ -659,12 +301,11 @@ export const getCircleLayers = context => {
       hasFeatureId: isSchoolCircleId,
       type: `schools`,
     },
-    // { z: 50, style: getCircleCasingLayer(context) },
   ]
 }
 
 export const getLayers = (context, activeLayers) => {
-  console.log('getLayers', context, activeLayers)
+  // console.log('getLayers', context, activeLayers)
   return [
     ...getSchoolZoneLayers(context),
     ...getDistrictLayers(context, activeLayers),

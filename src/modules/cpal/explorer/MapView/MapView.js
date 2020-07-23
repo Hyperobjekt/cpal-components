@@ -96,7 +96,14 @@ const MapView = props => {
     }
     const context = { metric, activeQuintiles }
     return getLayers(context, activeLayers)
-  }, [metric, activeQuintiles])
+  }, [
+    metric,
+    activeQuintiles[0],
+    activeQuintiles[1],
+    activeQuintiles[2],
+    activeQuintiles[3],
+    activeQuintiles[4],
+  ])
   // }, [region, metric, demographic])
 
   /** aria label for screen readers */

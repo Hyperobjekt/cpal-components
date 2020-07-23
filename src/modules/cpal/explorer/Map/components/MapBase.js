@@ -25,6 +25,7 @@ import MapResetButton from './MapResetButton'
 import MapCaptureButton from './MapCaptureButton'
 import MapLegend from './MapLegend'
 import { BOUNDS } from './../constants'
+import useStore from './../../store'
 
 /**
  * Returns an array of layer ids for layers that have the
@@ -92,6 +93,12 @@ const MapBase = ({
   const [resizeListener, sizes] = useResizeAware()
 
   const [viewport, setViewport] = useMapViewport()
+  // Active metric
+  const activeMetric = useStore(state => state.activeMetric)
+  // Active quintiles
+  const activeQuintiles = useStore(
+    state => state.activeQuintiles,
+  )
 
   const setResetViewport = useMapStore(
     state => state.setResetViewport,
@@ -123,6 +130,29 @@ const MapBase = ({
     hoveredType,
     selectedIds,
   })
+
+  const updateFilteredSchools = () => {
+    // TODO: SET TRANSPARENCY TEMPORARILY SO THERE'S NO FLICKER?
+    const hiddenFilter = ['all']
+    activeQuintiles.forEach((el, index) => {
+      if (!el) {
+        hiddenFilter.push([
+          '!=',
+          ['get', 'metric_quintile_' + activeMetric],
+          index,
+        ])
+      }
+    })
+    currentMap.setFilter('schools-circle', hiddenFilter)
+  }
+
+  /** Filter features in school layer when active quintiles updated */
+  useEffect(() => {
+    // console.log('activeQuintiles updated')
+    if (!!currentMap && !!loaded) {
+      updateFilteredSchools()
+    }
+  }, [activeQuintiles, currentMap, loaded])
 
   const setFeatureState = useCallback(
     (featureId, type, state) => {
