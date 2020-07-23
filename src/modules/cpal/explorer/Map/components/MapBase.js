@@ -133,6 +133,11 @@ const MapBase = ({
 
   const updateFilteredSchools = () => {
     // TODO: SET TRANSPARENCY TEMPORARILY SO THERE'S NO FLICKER?
+    currentMap.setLayoutProperty(
+      'schools-circle',
+      'visibility',
+      'none',
+    )
     const hiddenFilter = ['all']
     activeQuintiles.forEach((el, index) => {
       if (!el) {
@@ -144,6 +149,13 @@ const MapBase = ({
       }
     })
     currentMap.setFilter('schools-circle', hiddenFilter)
+    setTimeout(() => {
+      currentMap.setLayoutProperty(
+        'schools-circle',
+        'visibility',
+        'visible',
+      )
+    }, 500)
   }
 
   /** Filter features in school layer when active quintiles updated */

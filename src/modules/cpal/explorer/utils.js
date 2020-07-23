@@ -231,7 +231,7 @@ export const getQuintilesPhrase = quintiles => {
     })
     if (count === 2) {
       // 2 quintiles active
-      console.log('count is 2')
+      // console.log('count is 2')
       phrase[phrase.length - 1] =
         i18n.translate('AND') +
         ' ' +
