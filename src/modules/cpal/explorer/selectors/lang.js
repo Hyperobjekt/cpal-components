@@ -1,10 +1,9 @@
-import {
-  isGapDemographic,
-  getMetricIdFromVarName,
-  getDemographicIdFromVarName,
-  getFormatterForVarName,
-  getGapDemographics,
-} from '.'
+import // isGapDemographic,
+// getMetricIdFromVarName,
+// getDemographicIdFromVarName,
+// getFormatterForVarName,
+// getGapDemographics,
+'.'
 
 import LANG from './../../../../constants/en'
 import { getMidpointForVarName } from './data'

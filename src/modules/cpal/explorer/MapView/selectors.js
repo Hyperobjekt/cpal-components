@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable'
-import { getDistrictColor } from './../selectors'
+// import { getDistrictColor } from './../selectors'
 import {
   getSchoolZones,
   getSchoolGeojson,

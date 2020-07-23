@@ -2,10 +2,10 @@ import shallow from 'zustand/shallow'
 import useDataOptions from './useDataOptions'
 import useUiStore from './useUiStore'
 import {
-  getFeatureProperty,
-  getSizesForRegion,
+  // getFeatureProperty,
+  // getSizesForRegion,
   getRegionFromLocationId,
-  isGapDemographic,
+  // isGapDemographic,
 } from '../selectors'
 import { getFiltersLang } from '../selectors/lang'
 import {

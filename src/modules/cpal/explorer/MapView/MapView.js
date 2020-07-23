@@ -12,9 +12,9 @@ import MapBase, {
 } from './../Map'
 import MapLegend from './../Map'
 import {
-  getSelectedColors,
+  // getSelectedColors,
   getFeatureProperty,
-  getLocationIdsForRegion,
+  // getLocationIdsForRegion,
 } from './../selectors'
 import { getLang } from './../selectors/lang'
 import {

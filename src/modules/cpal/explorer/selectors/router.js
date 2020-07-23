@@ -1,6 +1,6 @@
 import * as _debounce from 'lodash.debounce'
 import * as polylabel from 'polylabel'
-import { getRegionFromLocationId, getRegionFromFeature } from '.'
+// import { getRegionFromLocationId, getRegionFromFeature } from '.'
 
 const push = newRoute => {
   window.location.hash = newRoute
@@ -19,7 +19,7 @@ const DEFAULT_ROUTEVARS = [
   'zoom',
   'lat',
   'lon',
-  'locations'
+  'locations',
 ]
 
 /**
@@ -37,10 +37,11 @@ const isValidView = view =>
 
 const isValidRegion = region =>
   ['states', 'counties', 'districts', 'schools'].indexOf(
-    region
+    region,
   ) > -1
 
-const isValidDemographic = demographic => demographic.length < 4
+const isValidDemographic = demographic =>
+  demographic.length < 4
 
 const isValidMetric = metric =>
   ['avg', 'grd', 'coh'].indexOf(metric) > -1
@@ -108,10 +109,10 @@ export const parseLocationsString = locations => {
     l.split(',').reduce(
       (acc, curr, i) => ({
         ...acc,
-        [locationParts[i]]: curr
+        [locationParts[i]]: curr,
       }),
-      {}
-    )
+      {},
+    ),
   )
 }
 
@@ -129,7 +130,7 @@ export const locationsToString = locations =>
       ',' +
       curr.lon +
       (i === locations.length - 1 ? '' : '+'),
-    ''
+    '',
   )
 
 /**
@@ -148,7 +149,7 @@ const getLocationCountByRegion = locations => {
       acc[getRegionFromLocationId(curr)]++
       return acc
     },
-    { counties: 0, districts: 0, schools: 0 }
+    { counties: 0, districts: 0, schools: 0 },
   )
 }
 
@@ -159,7 +160,10 @@ const getLocationCountByRegion = locations => {
  * @param {*} region region type to remove from the url
  * @returns a location string with the first location of region type removed
  */
-const removeFirstLocationForRegion = (locations, region) => {
+const removeFirstLocationForRegion = (
+  locations,
+  region,
+) => {
   if (!region || !locations) {
     return locations
   }
@@ -184,14 +188,16 @@ const removeFirstLocationForRegion = (locations, region) => {
  */
 export const addFeatureToPathname = (pathname, feature) => {
   const currentRoute = getParamsFromPathname(pathname)
-  const counts = getLocationCountByRegion(currentRoute.locations)
+  const counts = getLocationCountByRegion(
+    currentRoute.locations,
+  )
   const region = getRegionFromFeature(feature)
   const baseLocations =
     counts[region] < 6
       ? currentRoute.locations
       : removeFirstLocationForRegion(
           currentRoute.locations,
-          region
+          region,
         )
   const locations = baseLocations
     ? baseLocations + '+' + getLocationFromFeature(feature)
@@ -206,13 +212,15 @@ export const addFeatureToPathname = (pathname, feature) => {
  */
 export const removeLocationFromPathname = (
   pathname,
-  locationId
+  locationId,
 ) => {
   const params = getParamsFromPathname(pathname)
   const locations = parseLocationsString(params.locations)
-  const newLocations = locations.filter(l => l.id !== locationId)
+  const newLocations = locations.filter(
+    l => l.id !== locationId,
+  )
   return getPathnameFromParams(params, {
-    locations: locationsToString(newLocations)
+    locations: locationsToString(newLocations),
   })
 }
 
@@ -223,7 +231,7 @@ export const removeLocationFromPathname = (
  */
 export const getParamsFromPathname = (
   path,
-  routeVars = DEFAULT_ROUTEVARS
+  routeVars = DEFAULT_ROUTEVARS,
 ) => {
   // strip starting "#" and "/" chars
   const route = path.replace(/^#\/+/g, '')
@@ -233,9 +241,9 @@ export const getParamsFromPathname = (
       [routeVars[i]]:
         ['zoom', 'lat', 'lon'].indexOf(routeVars[i]) > -1
           ? parseFloat(curr)
-          : curr
+          : curr,
     }),
-    {}
+    {},
   )
 }
 
@@ -248,7 +256,7 @@ export const getParamsFromPathname = (
 export const getPathnameFromParams = (
   params,
   updates = {},
-  routeVars = DEFAULT_ROUTEVARS
+  routeVars = DEFAULT_ROUTEVARS,
 ) => {
   const matches = { ...params, ...updates }
   return (
@@ -270,10 +278,10 @@ export const getViewportFromRoute = ({ params }) =>
     (acc, curr) => ({
       ...acc,
       [curr]: parseFloat(
-        params[curr !== 'zoom' ? curr.substr(0, 3) : curr]
-      )
+        params[curr !== 'zoom' ? curr.substr(0, 3) : curr],
+      ),
     }),
-    {}
+    {},
   )
 
 /**
@@ -286,7 +294,7 @@ export const getViewportFromPathname = path => {
   return {
     latitude: params.lat,
     longitude: params.lon,
-    zoom: params.zoom
+    zoom: params.zoom,
   }
 }
 
@@ -296,7 +304,9 @@ export const getViewportFromPathname = path => {
  */
 const areNewUpdates = (params, updates) => {
   return Object.keys(updates).reduce((acc, curr) => {
-    return acc ? acc : params[curr] !== updates[curr].toString()
+    return acc
+      ? acc
+      : params[curr] !== updates[curr].toString()
   }, false)
 }
 
@@ -329,9 +339,9 @@ export const updateViewportRoute = _debounce(vp => {
     const routeUpdates = ['lat', 'lon', 'zoom'].reduce(
       (acc, curr, i) => ({
         ...acc,
-        [curr]: Math.round(vp[paramMap[i]] * 100) / 100
+        [curr]: Math.round(vp[paramMap[i]] * 100) / 100,
       }),
-      {}
+      {},
     )
     updateRoute(routeUpdates)
   }
@@ -365,10 +375,13 @@ export const addFeatureToRoute = (pathname, feature) => {
  * @param {string} pathname
  * @param {object} feature
  */
-export const removeFeatureFromRoute = (pathname, feature) => {
+export const removeFeatureFromRoute = (
+  pathname,
+  feature,
+) => {
   const newRoute = removeLocationFromPathname(
     pathname,
-    feature.properties.id
+    feature.properties.id,
   )
   push(newRoute)
 }

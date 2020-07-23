@@ -3,33 +3,33 @@
  * @param {*} value value for the provided metric
  * @param {*} metric the metric ID
  */
-export const getHighLow = (value, metric) => {
-  if (!value) {
-    return 'NONE'
-  }
-  switch (metric) {
-    case 'avg':
-      return value > 0.3
-        ? 'HIGH'
-        : value < -0.3
-        ? 'LOW'
-        : 'MID'
-    case 'coh':
-      return value > 0.1
-        ? 'HIGH'
-        : value < -0.1
-        ? 'LOW'
-        : 'MID'
-    case 'grd':
-      return value > 1.09
-        ? 'HIGH'
-        : value < 0.91
-        ? 'LOW'
-        : 'MID'
-    default:
-      return ''
-  }
-}
+// export const getHighLow = (value, metric) => {
+//   if (!value) {
+//     return 'NONE'
+//   }
+//   switch (metric) {
+//     case 'avg':
+//       return value > 0.3
+//         ? 'HIGH'
+//         : value < -0.3
+//         ? 'LOW'
+//         : 'MID'
+//     case 'coh':
+//       return value > 0.1
+//         ? 'HIGH'
+//         : value < -0.1
+//         ? 'LOW'
+//         : 'MID'
+//     case 'grd':
+//       return value > 1.09
+//         ? 'HIGH'
+//         : value < 0.91
+//         ? 'LOW'
+//         : 'MID'
+//     default:
+//       return ''
+//   }
+// }
 
 /**
  * Gets a property from a feature, returns null if not found
@@ -75,61 +75,39 @@ export const getFeatureFromArray = (features, id) => {
 //     : ''
 
 export {
-  // getColorForVarNameValue,
-  // isColorInvertedForVarName,
-  // getChoroplethColorAtValue,
-  // getChoroplethColors,
-  // getMetricColors,
-  getSelectedColors, // getDistrictColor,
+  getSelectedColors, // getColorForVarNameValue, // isColorInvertedForVarName, // getChoroplethColorAtValue, // getChoroplethColors, // getMetricColors, // getSelectedColors, // getDistrictColor,
 } from './colors'
+
 export {
-  getDemographicForVarNames,
-  getGapDemographics,
-  getDemographicFromVarName,
-  getDemographicIdFromVarName,
-  isVersusFromVarNames,
-  isGapVarName,
-  isGapDemographic,
-  getGapById,
-  getDemographicById,
-  getGaps,
-  getDemographics,
+  isGapDemographic, // getDemographicForVarNames, // getGapDemographics, // getDemographicFromVarName, // getDemographicIdFromVarName, // isVersusFromVarNames, // isGapVarName, // , // getGapById, // getDemographicById, // getGaps, // getDemographics,
 } from './demographics'
+
+export {} from // valueToLowMidHigh,
+// getInvertedFromVarName,
+// getMetricFromVarName,
+// getMetricIdFromVarName,
+// getMetricById,
+// getMetrics,
+// getMetricRange,
+// getKeyMetrics,
+// getSecondaryForDemographic,
+'./metrics'
+
 export {
-  valueToLowMidHigh,
-  getInvertedFromVarName,
-  getMetricFromVarName,
-  getMetricIdFromVarName,
-  getMetricById,
-  getMetrics,
-  getMetricRange,
-  getKeyMetrics,
-  getSecondaryForDemographic,
-} from './metrics'
-export {
-  getRegionFromFeature,
-  getRegionFromLocationId,
-  getRegionById,
-  getRegionDomain,
-  getSingularRegion,
-  getSingularRegions,
-  getRegions,
-  getLocationIdsForRegion,
-  getSizesForRegion,
-} from './regions'
-export {
-  getPositionForVarNameValue,
-  getPredictedValue,
-  getFormatterForVarName,
-  getMidpointForVarName,
-  getMetricRangeFromVarName,
-  getVarNames,
-  getDataForId,
-} from './data'
-export {
-  getRegionLabel,
-  getMetricLabel,
-  getDemographicLabel,
-  getLabelFromVarName,
-  getLabelsFromVarNames,
-} from './lang'
+  getRegionFromLocationId, // getRegionFromFeature,
+} from // getRegionFromLocationId,
+// getSizesForRegion, //   , //   getRegionById, //   getRegionDomain, //   getSingularRegion, //   getSingularRegions, //   getRegions, //   getLocationIdsForRegion, //   getSizesForRegion,
+'./regions'
+
+export {} from // getPositionForVarNameValue,
+// getPredictedValue,
+// getFormatterForVarName, // getMidpointForVarName, // getMetricRangeFromVarName, // getVarNames, // getDataForId,
+'./data'
+
+// export {
+//   getRegionLabel,
+//   getMetricLabel,
+//   getDemographicLabel,
+//   getLabelFromVarName,
+//   getLabelsFromVarNames,
+// } from './lang'
