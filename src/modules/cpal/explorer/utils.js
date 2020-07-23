@@ -1,5 +1,6 @@
 import axios from 'axios'
 import circle from '@turf/circle'
+import i18n from '@pureartisan/simple-i18n'
 import { schools } from './../../../data/schools'
 import { schoolsGeojson } from './../../../data/schoolsGeojson'
 import { CPAL_METRICS } from './../../../constants/metrics'
@@ -167,6 +168,77 @@ export const getMetric = (metric, metrics) => {
     return metricData
   } else {
     console.error(`Unable to get metric ${metric}.`)
+  }
+}
+
+export const getQuintilesPhrase = quintiles => {
+  if (
+    !!quintiles[0] &&
+    !!quintiles[1] &&
+    !!quintiles[2] &&
+    !!quintiles[3] &&
+    !!quintiles[4]
+  ) {
+    // all true, return
+    return (
+      i18n.translate('ALL_FIVE') +
+      ' ' +
+      i18n.translate('QUINTILES')
+    )
+  } else {
+    let count = 0
+    let last = 0
+    for (let i = 1; i < quintiles.length; i++) {
+      if (!!quintiles[i]) {
+        last = i
+        count++
+      }
+    }
+    if (count === 0) {
+      // No quintiles active
+      return (
+        i18n.translate('NO') +
+        ' ' +
+        i18n.translate('QUINTILES')
+      )
+    }
+    if (count === 1) {
+      // 1 quintiles active
+      return (
+        i18n.translate(getQuintileDesc(last)) +
+        ' ' +
+        i18n.translate('QUINTILE')
+      )
+    }
+    let phrase = []
+    quintiles.forEach((el, i) => {
+      if (!!el) {
+        phrase.push(i18n.translate(getQuintileDesc(i)))
+      }
+    })
+    if (count === 2) {
+      // 2 quintiles active
+      console.log('count is 2')
+      phrase[phrase.length - 1] =
+        i18n.translate('AND') +
+        ' ' +
+        phrase[phrase.length - 1]
+      phrase.push(i18n.translate('QUINTILES'))
+      phrase.join()
+      phrase = String(phrase).replace(/,/g, ' ')
+
+      return phrase
+    } else {
+      phrase[phrase.length - 1] =
+        i18n.translate('AND') +
+        ' ' +
+        phrase[phrase.length - 1]
+      phrase.join(',')
+      phrase = String(phrase).replace(/,/g, ', ')
+      phrase = phrase + ' ' + i18n.translate('QUINTILES')
+
+      return phrase
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect, useRef } from 'react'
+import i18n from '@pureartisan/simple-i18n'
 import shallow from 'zustand/shallow'
 import { makeStyles } from '@material-ui/core'
 import { getLayers, CPAL_SOURCES } from './selectors'
@@ -27,12 +28,14 @@ import {
   useActiveLocationFeature,
 } from './../hooks'
 import { REGION_TO_ID_LENGTH } from './../../../../constants/regions'
+import { CPAL_METRICS } from './../../../../constants/metrics'
 import useData from './../hooks/useData'
+import { getMetric, getQuintilesPhrase } from './../utils'
 import useStore from './../store'
 
 import './MapView.scss'
 
-const selectedColors = getSelectedColors()
+// const selectedColors = getSelectedColors()
 
 const useStyles = makeStyles(theme => ({
   legend: {
@@ -44,9 +47,13 @@ const useStyles = makeStyles(theme => ({
 
 const MapView = props => {
   /** current options for the map */
-  const [demographic, region] = useActiveOptionIds()
+  // const [demographic, region] = useActiveOptionIds()
   // Currently active metric
   const metric = useStore(state => state.activeMetric)
+  // Active quintiles
+  const activeQuintiles = useStore(
+    state => state.activeQuintiles,
+  )
   /** currently active data filters */
   const [{ prefix }] = useFilters()
   /** currently selected location ids */
@@ -67,10 +74,7 @@ const MapView = props => {
   // Default viewport
   const viewport = useStore(state => state.viewport)
   // Active layers
-  const activeLayers = useStore(
-    state => Object.values(state.activeLayers),
-    shallow,
-  )
+  const activeLayers = useStore(state => state.activeLayers)
   // Active view
   const activeView = useStore(state => state.activeView)
   /** id of the active location */
@@ -87,21 +91,23 @@ const MapView = props => {
   const isLoaded = useRef(false)
   /** memoized array of choropleth and dot layers */
   const layers = useMemo(() => {
-    if (!metric || !demographic || !region) {
+    if (!metric || !activeQuintiles) {
       return []
     }
-    const context = { region, metric, demographic }
+    const context = { metric, activeQuintiles }
     return getLayers(context, activeLayers)
-  }, [region, metric, demographic])
+  }, [metric, activeQuintiles])
+  // }, [region, metric, demographic])
 
   /** aria label for screen readers */
-  const ariaLabel = getLang('UI_MAP_SR', {
-    metric: getLang('LABEL_' + metric),
-    region: getLang('LABEL_' + region),
-    demographic: getLang('LABEL_STUDENTS_' + demographic),
+  const ariaLabel = i18n.translate('UI_MAP_SR', {
+    metric: i18n.translate(
+      getMetric(metric, CPAL_METRICS).title,
+    ),
+    quintiles: getQuintilesPhrase(activeQuintiles),
   })
   /** object with class names for styling the component */
-  const classes = useStyles()
+  // const classes = useStyles()
 
   /** handler for map hover */
   const handleHover = (feature, coords, geoCoords) => {
@@ -169,18 +175,18 @@ const MapView = props => {
     }
   }, [activeFeature, flyToFeature])
 
-  const locationIds = getLocationIdsForRegion(
-    region,
-    locations,
-  )
+  // const locationIds = getLocationIdsForRegion(
+  //   region,
+  //   locations,
+  // )
+  // selectedIds={locationIds}
+  // selectedColors={selectedColors}
 
   return (
     <MapBase
-      selectedColors={selectedColors}
       sources={CPAL_SOURCES}
       layers={layers}
       idMap={idMap}
-      selectedIds={locationIds}
       hoveredId={hoveredId ? hoveredId : undefined}
       hoveredType={hoveredType ? hoveredType : undefined}
       hoveredCoords={coords ? coords : undefined}

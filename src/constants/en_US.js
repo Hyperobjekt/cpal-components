@@ -15,7 +15,7 @@ const en_US = {
   SELECT_ITEM_MAP: `Map view`,
   SELECT_ITEM_FEEDER: `Feeder view`,
   UI_MAP_SR:
-    'Map of $[region] in the United States, with colors showing $[metric] for $[demographic].',
+    'Map of Dallas, with colors showing {metric} for {quintiles}.',
   UI_MAP_RESET: `Reset map`,
   UI_MAP_CAPTURE: `Screenshot map`,
   UI_MAP_CITY: `Dallas`,
@@ -137,5 +137,10 @@ const en_US = {
   THIRD: `third`,
   FOURTH: `fourth`,
   FIFTH: `fifth`,
+  ALL_FIVE: `all five`,
+  QUINTILE: `quintile`,
+  QUINTILES: `quintiles`,
+  NO: `no`,
+  AND: `and`,
 }
 export default en_US
