@@ -10,7 +10,11 @@ import {
   SCHOOL_ZONE_COLORS,
 } from './../../../../constants/colors'
 import { CPAL_METRICS } from './../../../../constants/metrics'
-import { getMetric } from './../utils'
+import {
+  getMetric,
+  getQuintile,
+  isInActiveQuintile,
+} from './../utils'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
 import useStore from './../store'
@@ -254,20 +258,28 @@ export const getCircleLayer = ({
   })
 }
 
+export const checkSchoolVisibility = (
+  metric,
+  activeQuintiles,
+  id,
+) => {
+  console.log('checkSchoolVisibility(), ', id)
+  return true
+}
+
 export const getSchoolCircleLayer = ({
   layerId,
   region,
   metric,
-  demographic,
+  activeQuintiles,
   colors,
 }) => {
+  console.log('getSchoolCircleLayer(), ', activeQuintiles)
   return fromJS({
-    id: 'schools-circle', // layerId || 'schools-circle',
+    id: 'schools-circle',
     source: 'schools',
-    // 'source-layer': 'schools',
     type: 'circle',
     minzoom: getCircleMinZoom(region),
-    // interactive: region === 'schools',
     interactive: true,
     layout: {
       visibility: 'visible',
@@ -303,6 +315,13 @@ export const getSchoolCircleLayer = ({
         2,
       ],
     },
+    filter: [
+      'boolean',
+      checkSchoolVisibility(metric, activeQuintiles, [
+        'get',
+        'SLN',
+      ]),
+    ],
   })
 }
 
@@ -614,7 +633,7 @@ export const getAssetLayers = context => {
 }
 
 export const getSchoolZoneLayers = context => {
-  // console.log('getCircleLayers', context)
+  // console.log('getSchoolZoneLayers', context)
   return [
     {
       z: 160,
@@ -645,7 +664,7 @@ export const getCircleLayers = context => {
 }
 
 export const getLayers = (context, activeLayers) => {
-  // console.log('getLayers', context, activeLayers)
+  console.log('getLayers', context, activeLayers)
   return [
     ...getSchoolZoneLayers(context),
     ...getDistrictLayers(context, activeLayers),

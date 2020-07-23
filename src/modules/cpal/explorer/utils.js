@@ -115,6 +115,19 @@ export const getRoundedValue = (
 }
 
 /**
+ * Returns boolean if quintile is within active quintiles
+ * @param  {[type]}  quintile        [description]
+ * @param  {[type]}  activeQuintiles [description]
+ * @return {Boolean}                 [description]
+ */
+export const isInActiveQuintile = (
+  quintile,
+  activeQuintiles,
+) => {
+  return true
+}
+
+/**
  * Returns an index value for the quintile, 0 for far left, 4 for far right
  * @type {[type]}
  */
