@@ -46,6 +46,7 @@ const PopupContent = ({ ...props }) => {
         )
         const min = metricData.range[0]
         const max = metricData.range[1]
+        const high_is_good = metricData.high_is_good
         if (value.length > 0) {
           return (
             <div
@@ -64,7 +65,12 @@ const PopupContent = ({ ...props }) => {
                   showHash={true}
                   hashLeft={getHashLeft(value, min, max)}
                   quintiles={setActiveQuintile(
-                    getQuintile(value, min, max),
+                    getQuintile(
+                      value,
+                      min,
+                      max,
+                      high_is_good,
+                    ),
                   )}
                   colors={metricData.colors}
                   showMinMax={true}

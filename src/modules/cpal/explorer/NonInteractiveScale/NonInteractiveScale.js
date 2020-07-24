@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './NonInteractiveScale.scss'
+import { getRoundedValue } from './../utils'
 
 const NonInteractiveScale = ({
   metric,
@@ -81,8 +82,12 @@ const NonInteractiveScale = ({
           className="n-i-scale-minmax"
           style={minMaxStyle}
         >
-          <div className="n-i-scale-min">{min}</div>
-          <div className="n-i-scale-max">{max}</div>
+          <div className="n-i-scale-min">
+            {getRoundedValue(min, metric.decimals)}
+          </div>
+          <div className="n-i-scale-max">
+            {getRoundedValue(max, metric.decimals)}
+          </div>
         </div>
       ) : (
         ''

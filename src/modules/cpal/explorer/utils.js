@@ -131,25 +131,30 @@ export const isInActiveQuintile = (
  * Returns an index value for the quintile, 0 for far left, 4 for far right
  * @type {[type]}
  */
-export const getQuintile = (value, min, max) => {
+export const getQuintile = (
+  value,
+  min,
+  max,
+  high_is_good = 1,
+) => {
   // console.log('getQuintile()')
   const standardized =
     (Math.abs(value - min) / Math.abs(max - min)) * 100
   switch (true) {
     case standardized >= 80:
-      return 4
+      return high_is_good ? 4 : 0
       break
     case standardized < 80 && standardized >= 60:
-      return 3
+      return high_is_good ? 3 : 1
       break
     case standardized < 60 && standardized >= 40:
       return 2
       break
     case standardized < 40 && standardized >= 20:
-      return 1
+      return high_is_good ? 1 : 3
       break
     case standardized < 20 && standardized >= 0:
-      return 0
+      return high_is_good ? 0 : 4
       break
     default:
       return 0
@@ -307,6 +312,7 @@ export const getSchoolGeojson = () => {
           found[item.id],
           item.range[0],
           item.range[1],
+          item.high_is_good,
         )
       })
       // Insert into new json object.
