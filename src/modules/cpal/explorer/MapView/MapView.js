@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useRef } from 'react'
 import i18n from '@pureartisan/simple-i18n'
 import shallow from 'zustand/shallow'
-import { makeStyles } from '@material-ui/core'
+// import { makeStyles } from '@material-ui/core'
 import { getLayers, CPAL_SOURCES } from './selectors'
 import {} from './selectors'
 import MapBase, {
@@ -37,13 +37,13 @@ import './MapView.scss'
 
 // const selectedColors = getSelectedColors()
 
-const useStyles = makeStyles(theme => ({
-  legend: {
-    position: 'absolute',
-    bottom: 24,
-    right: 16,
-  },
-}))
+// const useStyles = makeStyles(theme => ({
+//   legend: {
+//     position: 'absolute',
+//     bottom: 24,
+//     right: 16,
+//   },
+// }))
 
 const MapView = props => {
   /** current options for the map */
