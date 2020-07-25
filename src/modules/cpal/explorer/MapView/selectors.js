@@ -45,6 +45,11 @@ const getSchoolFillStyle = (metric, colors) => {
     (acc, curr) => [...acc, ...curr],
     [],
   )
+  // const metricData = getMetric(metric, CPAL_METRICS)
+  // // If high is not not good, reverse colors array.
+  // if (!metricData.high_is_good) {
+  //   colors.reverse()
+  // }
   return [
     'case',
     ['==', ['get', 'metric_' + metric], -999],

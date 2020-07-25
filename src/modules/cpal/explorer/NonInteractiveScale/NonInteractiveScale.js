@@ -1,7 +1,8 @@
 import React from 'react'
 
 import './NonInteractiveScale.scss'
-import { getRoundedValue } from './../utils'
+import { getRoundedValue, getMetric } from './../utils'
+import { CPAL_METRICS } from './../../../../constants/metrics'
 
 const NonInteractiveScale = ({
   metric,
@@ -10,10 +11,9 @@ const NonInteractiveScale = ({
   showHash,
   hashLeft,
   showMinMax,
-  min,
-  max,
 }) => {
   // console.log('NonInteractiveScale, quintiles', quintiles)
+  const metricData = getMetric(metric, CPAL_METRICS)
   const styles = [
     {
       backgroundColor: !!quintiles[0]
@@ -83,10 +83,26 @@ const NonInteractiveScale = ({
           style={minMaxStyle}
         >
           <div className="n-i-scale-min">
-            {getRoundedValue(min, metric.decimals)}
+            {!!metricData.high_is_good
+              ? getRoundedValue(
+                  metricData.range[0],
+                  metricData.decimals,
+                )
+              : getRoundedValue(
+                  metricData.range[1],
+                  metricData.decimals,
+                )}
           </div>
           <div className="n-i-scale-max">
-            {getRoundedValue(max, metric.decimals)}
+            {!!metricData.high_is_good
+              ? getRoundedValue(
+                  metricData.range[1],
+                  metricData.decimals,
+                )
+              : getRoundedValue(
+                  metricData.range[0],
+                  metricData.decimals,
+                )}
           </div>
         </div>
       ) : (

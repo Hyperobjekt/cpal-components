@@ -92,23 +92,31 @@ const getFeatureFromCollection = (id, collection) => {
 export const getRoundedValue = (
   value,
   decimals,
-  padZeroes,
+  padZeroes = false,
+  isCurrency = false,
 ) => {
   // console.log('getRoundedValue()')
   const type = typeof value
   let fixed = null
   if (type === 'string') {
     if (padZeroes) {
-      fixed = parseFloat(value).toFixed(decimals)
+      fixed = parseFloat(value)
+        .toFixed(decimals)
+        .toLocaleString()
     } else {
-      fixed = +parseFloat(value).toFixed(decimals)
+      fixed = +parseFloat(value)
+        .toFixed(decimals)
+        .toLocaleString()
     }
   } else {
-    console.log('type is number')
     if (padZeroes) {
-      fixed = value.toFixed(decimals)
+      fixed = Number(
+        value.toFixed(decimals),
+      ).toLocaleString()
     } else {
-      fixed = +value.toFixed(decimals)
+      fixed = Number(
+        +value.toFixed(decimals),
+      ).toLocaleString()
     }
   }
   return fixed

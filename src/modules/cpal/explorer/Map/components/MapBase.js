@@ -132,7 +132,7 @@ const MapBase = ({
   })
 
   const updateFilteredSchools = () => {
-    // TODO: SET TRANSPARENCY TEMPORARILY SO THERE'S NO FLICKER?
+    console.log('updateFilteredSchools, ', activeQuintiles)
     currentMap.setLayoutProperty(
       'schools-circle',
       'visibility',
