@@ -370,6 +370,10 @@ export const getSchoolZones = () => {
   return newJson
 }
 
+/**
+ * Returns an array of schools with feeder data added
+ * @return Array Array of objects, one for each school
+ */
 export const getFeederSchools = () => {
   console.log('getFeederSchools()')
   const data = schools
