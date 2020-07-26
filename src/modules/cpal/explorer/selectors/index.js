@@ -94,9 +94,8 @@ export {} from // valueToLowMidHigh,
 './metrics'
 
 export {
-  getRegionFromLocationId, // getRegionFromFeature,
-} from // getRegionFromLocationId,
-// getSizesForRegion, //   , //   getRegionById, //   getRegionDomain, //   getSingularRegion, //   getSingularRegions, //   getRegions, //   getLocationIdsForRegion, //   getSizesForRegion,
+  getRegionFromLocationId, // getRegionFromFeature, // getRegionFromLocationId,
+} from // getSizesForRegion, //   , //   getRegionById, //   getRegionDomain, //   getSingularRegion, //   getSingularRegions, //   getRegions, //   getLocationIdsForRegion, //   getSizesForRegion,
 './regions'
 
 export {} from // getPositionForVarNameValue,

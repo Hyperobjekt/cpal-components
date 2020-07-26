@@ -16,7 +16,7 @@ import {
   getFeatureProperty,
   // getLocationIdsForRegion,
 } from './../selectors'
-import { getLang } from './../selectors/lang'
+// import { getLang } from './../selectors/lang'
 import {
   useActiveOptionIds,
   useFilters,
