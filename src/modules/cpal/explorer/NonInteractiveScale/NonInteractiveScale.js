@@ -12,8 +12,13 @@ const NonInteractiveScale = ({
   hashLeft,
   showMinMax,
 }) => {
-  // console.log('NonInteractiveScale, quintiles', quintiles)
   const metricData = getMetric(metric, CPAL_METRICS)
+  // console.log(
+  //   'NonInteractiveScale, metricData.colors ',
+  //   metricData.colors,
+  //   'quintiles, ',
+  //   quintiles,
+  // )
   const styles = [
     {
       backgroundColor: !!quintiles[0]

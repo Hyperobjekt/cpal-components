@@ -30,8 +30,14 @@ export const getStopsForVarName = (metric, colors) => {
   const metricData = getMetric(metric, CPAL_METRICS)
   const [min, max] = metricData.range
   const range = Math.abs(max - min)
-  const stepSize = range / (colors.length - 1)
-  return colors.map((c, i) => [min + i * stepSize, c])
+  // Grab colors from metric colors array, and detach
+  const assignColors = metricData.colors.slice()
+  // If high is not not good, reverse colors array.
+  if (!metricData.high_is_good) {
+    assignColors.reverse()
+  }
+  const stepSize = range / (assignColors.length - 1)
+  return assignColors.map((c, i) => [min + i * stepSize, c])
 }
 
 const getSchoolFillStyle = (metric, colors) => {
@@ -45,11 +51,6 @@ const getSchoolFillStyle = (metric, colors) => {
     (acc, curr) => [...acc, ...curr],
     [],
   )
-  // const metricData = getMetric(metric, CPAL_METRICS)
-  // // If high is not not good, reverse colors array.
-  // if (!metricData.high_is_good) {
-  //   colors.reverse()
-  // }
   return [
     'case',
     ['==', ['get', 'metric_' + metric], -999],
@@ -118,15 +119,21 @@ export const getSchoolCircleLayer = ({
   })
 }
 
-export const getDistrictOutline = ({ layerId, region }) => {
+export const getDistrictOutline = (
+  { layerId, region },
+  activeLayers,
+) => {
   // console.log('getDistrictOutline(), ', region)
+  const layer = activeLayers.find(item => {
+    return item.types.indexOf('districts') >= 0
+  })
+  console.log('layer = ', layer)
   return fromJS({
-    id: 'districts', // region + '-district-outline', // layerId || region + '-district-outline',
+    id: 'districts',
     source: 'districts',
-    // 'source-layer': region,
     type: 'line',
     layout: {
-      visibility: 'visible',
+      visibility: !!layer.active ? 'visible' : 'none',
     },
     interactive: false,
     paint: {
@@ -171,15 +178,20 @@ export const getSchoolZoneShapes = ({
   })
 }
 
-export const getRedlineShapes = ({ layerId, region }) => {
+export const getRedlineShapes = (
+  { layerId, region },
+  activeLayers,
+) => {
   // console.log('getRedlineShapes(), ', region)
+  const layer = activeLayers.find(item => {
+    return item.types.indexOf('redlineShapes') >= 0
+  })
   return fromJS({
-    id: 'redlineShapes', // region + '-redline-shapes', // layerId || region + '-district-outline',
+    id: 'redlineShapes',
     source: 'redlines',
-    // 'source-layer': region,
     type: 'fill',
     layout: {
-      visibility: 'none',
+      visibility: !!layer.active ? 'visible' : 'none',
     },
     interactive: false,
     paint: {
@@ -197,15 +209,20 @@ export const getRedlineShapes = ({ layerId, region }) => {
   })
 }
 
-export const getRedlineLines = ({ layerId, region }) => {
+export const getRedlineLines = (
+  { layerId, region },
+  activeLayers,
+) => {
   // console.log('getRedlineLines(), ', region)
+  const layer = activeLayers.find(item => {
+    return item.types.indexOf('redlineLines') >= 0
+  })
   return fromJS({
-    id: 'redlineLines', // region + '-redline-lines', // layerId || region + '-district-outline',
+    id: 'redlineLines',
     source: 'redlines',
-    // 'source-layer': region,
     type: 'line',
     layout: {
-      visibility: 'none',
+      visibility: !!layer.active ? 'visible' : 'none',
     },
     interactive: false,
     paint: {
@@ -251,7 +268,7 @@ export const getDistrictLayers = (
   return [
     {
       z: 150,
-      style: getDistrictOutline(context),
+      style: getDistrictOutline(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,
       type: `districts`,
@@ -264,14 +281,14 @@ export const getRedlineLayers = (context, activeLayers) => {
   return [
     {
       z: 100,
-      style: getRedlineShapes(context),
+      style: getRedlineShapes(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,
       type: `redlineShapes`,
     },
     {
       z: 101,
-      style: getRedlineLines(context),
+      style: getRedlineLines(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,
       type: `redlineLines`,
