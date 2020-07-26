@@ -369,3 +369,21 @@ export const getSchoolZones = () => {
   // console.log('newJson', newJson)
   return newJson
 }
+
+export const getFeederSchools = () => {
+  console.log('getFeederSchools()')
+  const data = schools
+  const feeders = feeders
+  const json = []
+  data.forEach(el => {
+    const feeder = feeders.find(item => {
+      return (item.TEA = el.TEA_ID)
+    })
+    if (!!feeder) {
+      el.feeder = item.FEEDER
+      el.feeder_sln = item.FEEDER_SLN
+    }
+  })
+  console.log('data, ', data)
+  return data
+}

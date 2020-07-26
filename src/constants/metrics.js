@@ -651,6 +651,97 @@ export const CPAL_METRICS = [
   },
 ]
 
+export const CPAL_FEEDERS = [
+  {
+    id: 1,
+    title: 'Adams',
+  },
+  {
+    id: 2,
+    title: 'Adamson',
+  },
+  {
+    id: 23,
+    title: 'Carter',
+  },
+  {
+    id: 28,
+    title: 'Conrad',
+  },
+  {
+    id: 6,
+    title: 'Hillcrest',
+  },
+  {
+    id: 7,
+    title: 'Jefferson',
+  },
+  {
+    id: 8,
+    title: 'Kimball',
+  },
+  {
+    id: 32,
+    title: 'Madison',
+  },
+  {
+    id: 5,
+    title: 'Molina',
+  },
+  {
+    id: 24,
+    title: 'North Dallas',
+  },
+  {
+    id: 12,
+    title: 'Pinkston',
+  },
+  {
+    id: 13,
+    title: 'Roosevelt',
+  },
+  {
+    id: 13,
+    title: 'Roosevelt',
+  },
+  {
+    id: 14,
+    title: 'Samuell',
+  },
+  {
+    id: 15,
+    title: 'Seagoville',
+  },
+  {
+    id: 25,
+    title: 'Skyline',
+  },
+  {
+    id: 16,
+    title: 'SOC',
+  },
+  {
+    id: 17,
+    title: 'Spruce',
+  },
+  {
+    id: 18,
+    title: 'Sunset',
+  },
+  {
+    id: 21,
+    title: 'White',
+  },
+  {
+    id: 380,
+    title: 'Wilmer-Hutchins',
+  },
+  {
+    id: 22,
+    title: 'Wilson',
+  },
+]
+
 /**
  * Data metrics in the SEDA data set
  */
