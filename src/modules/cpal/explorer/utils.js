@@ -3,7 +3,11 @@ import circle from '@turf/circle'
 import i18n from '@pureartisan/simple-i18n'
 import { schools } from './../../../data/schools'
 import { schoolsGeojson } from './../../../data/schoolsGeojson'
-import { CPAL_METRICS } from './../../../constants/metrics'
+import { feeders } from './../../../data/feeders'
+import {
+  CPAL_METRICS,
+  CPAL_FEEDERS,
+} from './../../../constants/metrics'
 
 // import { parseLocationsString } from './selectors/router'
 
@@ -293,7 +297,7 @@ export const getQuintileDesc = quintile => {
  * @return  Object   GeoJSON Object of all schools in client-supplied data
  */
 export const getSchoolGeojson = () => {
-  console.log('getSchoolGeojson()')
+  // console.log('getSchoolGeojson()')
   const data = schools
   const origJson = schoolsGeojson
   const newJson = {
@@ -327,7 +331,7 @@ export const getSchoolGeojson = () => {
       newJson.features.push(el)
     }
   })
-  console.log(newJson)
+  // console.log(newJson)
   return newJson
 }
 
