@@ -81,6 +81,11 @@ const [useStore] = create((set, get) => ({
   activeFilterTab: 'cri',
   setActiveFilterTab: newActiveFilterTab =>
     set({ activeFilterTab: newActiveFilterTab }),
+  feederSchools: [],
+  setFeederSchools: newArr =>
+    set({ feederSchools: newArr }),
+  activeFeeder: null,
+  setActiveFeeder: newVal => set({ activeFeeder: newVal }),
 }))
 
 export default useStore

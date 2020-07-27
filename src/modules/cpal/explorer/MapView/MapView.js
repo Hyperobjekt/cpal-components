@@ -1,9 +1,8 @@
 import React, { useMemo, useEffect, useRef } from 'react'
 import i18n from '@pureartisan/simple-i18n'
 import shallow from 'zustand/shallow'
-// import { makeStyles } from '@material-ui/core'
 import { getLayers, CPAL_SOURCES } from './selectors'
-import {} from './selectors'
+// import {} from './selectors'
 import MapBase, {
   useFlyToState,
   useFlyToFeature,

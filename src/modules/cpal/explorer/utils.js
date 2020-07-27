@@ -87,6 +87,20 @@ const getFeatureFromCollection = (id, collection) => {
 //   )
 
 /**
+ * Converts string to title case
+ * @param  String str String input
+ * @return String
+ */
+export const toTitleCase = str => {
+  str = str.toLowerCase().split(' ')
+  for (var i = 0; i < str.length; i++) {
+    str[i] =
+      str[i].charAt(0).toUpperCase() + str[i].slice(1)
+  }
+  return str.join(' ')
+}
+
+/**
  * Returns a value rounded to the indicated number of decimals
  * @param  String value     Number or string, value passed to function
  * @param  Number decimals  Number of decimals to round to
@@ -375,19 +389,20 @@ export const getSchoolZones = () => {
  * @return Array Array of objects, one for each school
  */
 export const getFeederSchools = () => {
-  console.log('getFeederSchools()')
+  // console.log('getFeederSchools()')
   const data = schools
-  const feeders = feeders
+  const feederSchools = feeders
   const json = []
   data.forEach(el => {
-    const feeder = feeders.find(item => {
-      return (item.TEA = el.TEA_ID)
+    const feeder = feederSchools.find(item => {
+      return Number(item.SLN) == Number(el.TEA_ID)
     })
     if (!!feeder) {
-      el.feeder = item.FEEDER
-      el.feeder_sln = item.FEEDER_SLN
+      el.feeder = feeder.FEEDER
+      el.feeder_sln = feeder.FEEDER_SLN
+      json.push(el)
     }
   })
-  console.log('data, ', data)
-  return data
+  // console.log('data, ', json)
+  return json
 }

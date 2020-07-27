@@ -1,6 +1,8 @@
 const en_US = {
   SITE_TITLE: `Site Title`,
   TEA_ID: `TEA identification number`,
+  TERM_SINGULAR_SCHOOL: `school`,
+  TERM_PLURAL_SCHOOL: `schools`,
   BUTTON_VIEW_FEEDER: `Toggle feeder view`,
   BUTTON_VIEW_MAP: `Toggle map view`,
   BUTTON_MENU: `Menu`,
@@ -84,6 +86,10 @@ const en_US = {
   UI_MAP_METRIC_HEL_PHLTH: `Adults with poor physical health, estimated per 10,000`,
   UI_MAP_METRIC_HEL_SLEEP: `Adults sleeping less than 7 hours per night, estimated per 10,000 population`,
   UI_MAP_METRIC_HEL_STROKE: `Adults who have had a stroke, estimated per 10,000`,
+  UI_FEEDER_TITLE_FEEDER_CHART: `Community Resource Index Averages and Distribution by Feeder Pattern`,
+  UI_FEEDER_TITLE_SCHOOLS_CHART: `Distribution of Campuses Across CRI`,
+  UI_FEEDER_TOOLTIP_INDEX_DESC: `Index scores measured 0 to 100`,
+  UI_FEEDER_TOOLTIP_SUBINDEX_AVG: `Average {metric} index score:`,
 
   // UI_MAP_METRIC_TITLE_COMM_CRIMEDENSITY: `Density of part a crimes`,
   // UI_MAP_METRIC_TITLE_COMM_CRIME: `Count of part a crimes`,

@@ -127,7 +127,6 @@ export const getDistrictOutline = (
   const layer = activeLayers.find(item => {
     return item.types.indexOf('districts') >= 0
   })
-  console.log('layer = ', layer)
   return fromJS({
     id: 'districts',
     source: 'districts',

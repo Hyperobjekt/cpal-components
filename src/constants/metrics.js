@@ -35,6 +35,31 @@ export const CPAL_FILTER_TABS = [
   },
 ]
 
+// Fucking necessary because the client can't seem to make their affixes consistent between
+// indices and indicators to save their fucking lives.
+export const CPAL_FEEDER_TIP_ITEMS = [
+  {
+    id: 'econ',
+    title: 'UI_MAP_METRIC_TITLE_ECON',
+  },
+  {
+    id: 'edu',
+    title: 'UI_MAP_METRIC_TITLE_EDU',
+  },
+  {
+    id: 'fam',
+    title: 'UI_MAP_METRIC_TITLE_FAM',
+  },
+  {
+    id: 'com',
+    title: 'UI_MAP_METRIC_TITLE_COMM',
+  },
+  {
+    id: 'health',
+    title: 'UI_MAP_METRIC_TITLE_HEAL',
+  },
+]
+
 export const CPAL_METRICS = [
   {
     id: 'cri',
