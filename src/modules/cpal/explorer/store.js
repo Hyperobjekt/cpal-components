@@ -86,6 +86,8 @@ const [useStore] = create((set, get) => ({
     set({ feederSchools: newArr }),
   activeFeeder: null,
   setActiveFeeder: newVal => set({ activeFeeder: newVal }),
+  justLoaded: true,
+  setJustLoaded: newBool => set({ justLoaded: newBool }),
 }))
 
 export default useStore

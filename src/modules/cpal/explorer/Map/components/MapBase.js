@@ -132,7 +132,7 @@ const MapBase = ({
   })
 
   const updateFilteredSchools = () => {
-    console.log('updateFilteredSchools, ', activeQuintiles)
+    // console.log('updateFilteredSchools, ', activeQuintiles)
     currentMap.setLayoutProperty(
       'schools-circle',
       'visibility',
