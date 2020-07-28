@@ -10,6 +10,8 @@ import {
   CPAL_FEEDERS,
   CPAL_FEEDER_TIP_ITEMS,
 } from './../../../../constants/metrics'
+import { feeders } from './../../../../data/feeders'
+import { schools } from './../../../../data/schools'
 import {
   CRI_COLORS,
   ECON_COLORS,
@@ -36,13 +38,8 @@ import './FeederView.scss'
  */
 const FeederView = () => {
   const isLoaded = useRef(false)
-  // Currently active (hovered) feeder
-  // // Stores the SLN of the feeder
-  // const activeFeeder = useStore(state => state.activeFeeder)
-  // const setActiveFeeder = useStore(
-  //   state => state.setActiveFeeder,
-  // )
-  // // Currently active metric
+
+  // Currently active metric
   const activeMetric = useStore(state => state.activeMetric)
   // Array of feeder school objects
   const feederSchools = useStore(
@@ -137,6 +134,10 @@ const FeederView = () => {
     const option = {
       yAxis: {
         type: 'category',
+        name: i18n.translate(
+          'UI_FEEDER_TITLE_FEEDER_CHART',
+        ),
+        nameLocation: 'middle',
       },
       xAxis: {
         type: 'value',
@@ -155,7 +156,10 @@ const FeederView = () => {
             ) +
             ': ' +
             getRoundedValue(params.data.value, 0) +
-            '</h6>' +
+            '*</h6>' +
+            '<p>' +
+            i18n.translate('UI_FEEDER_TOOLTIP_INDEX_DESC') +
+            '</p>' +
             getTooltipSubsets(params.data.name) +
             '</div>'
           )
@@ -173,7 +177,7 @@ const FeederView = () => {
           barGap: 10,
           barCategoryGap: '20%',
           tooltip: {
-            padding: [10, 20],
+            padding: [15, 20, 0, 20],
             backgroundColor: '#fff',
             textStyle: {
               color: '#000',
@@ -187,14 +191,10 @@ const FeederView = () => {
     return option
   }
   const theme_feeder = []
-  const getSchoolsOptions = () => {}
-  const theme_schools = []
+
   return (
     <Row className="layout-view-feeder">
-      <Col xs="12" md="8" className="feeders-bar-chart">
-        <h2>
-          {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
-        </h2>
+      <Col xs="12" md="12" className="feeders-bar-chart">
         <FeederChart
           classNames={clsx('chart-feeders')}
           style={{ width: '100%' }}
@@ -206,13 +206,9 @@ const FeederView = () => {
       </Col>
       <Col
         xs="12"
-        md="4"
+        md="12"
         className="feeders-schools-scatter"
       >
-        <h2>
-          {i18n.translate('UI_FEEDER_TITLE_SCHOOLS_CHART')}
-        </h2>
-        feeders schools scatter:
         <FeederSchoolsChart />
       </Col>
     </Row>

@@ -88,7 +88,7 @@ const en_US = {
   UI_MAP_METRIC_HEL_STROKE: `Adults who have had a stroke, estimated per 10,000`,
   UI_FEEDER_TITLE_FEEDER_CHART: `Community Resource Index Averages and Distribution by Feeder Pattern`,
   UI_FEEDER_TITLE_SCHOOLS_CHART: `Distribution of Campuses Across CRI`,
-  UI_FEEDER_TOOLTIP_INDEX_DESC: `Index scores measured 0 to 100`,
+  UI_FEEDER_TOOLTIP_INDEX_DESC: `*Index scores measured 0 to 100`,
   UI_FEEDER_TOOLTIP_SUBINDEX_AVG: `Average {metric} index score:`,
 
   // UI_MAP_METRIC_TITLE_COMM_CRIMEDENSITY: `Density of part a crimes`,
