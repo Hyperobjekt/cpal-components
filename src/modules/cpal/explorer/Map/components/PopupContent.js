@@ -37,6 +37,11 @@ const PopupContent = ({ ...props }) => {
     <div className="popup-content">
       <div className="popup-school-name">
         <h4>{props.feature.properties.SCHOOLNAME}</h4>
+        <h5>
+          {i18n.translate('UI_MAP_TOOLTIP_FEEDER', {
+            name: props.feature.properties.feeder,
+          })}
+        </h5>
       </div>
       {metrics.map(metric => {
         const metricData = getMetric(metric, CPAL_METRICS)

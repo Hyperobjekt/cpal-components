@@ -328,6 +328,13 @@ export const getSchoolGeojson = () => {
       // Add data to the properties.
       el.id = found.TEA_ID
       el.properties.tea_id = found.TEA_ID
+      const feeder = feeders.find(item => {
+        return Number(item.SLN) == Number(found.TEA_ID)
+      })
+      if (!!feeder) {
+        el.properties.feeder = feeder.FEEDER
+        el.properties.feeder_sln = feeder.FEEDER_SLN
+      }
       CPAL_METRICS.forEach(item => {
         // Add metric value
         const node = 'metric_' + item.id
