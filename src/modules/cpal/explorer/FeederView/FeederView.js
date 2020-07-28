@@ -187,7 +187,7 @@ const FeederView = () => {
             '<p>' +
             i18n.translate('UI_FEEDER_TOOLTIP_INDEX_DESC') +
             '</p>' +
-            getTooltipSubsets(params.data.name) +
+            getTooltipSubsets(params.data.id) +
             '</div>'
           )
         },
