@@ -1,7 +1,8 @@
 .layout {
   height: 100%; // 100vh;
   // max-height: 100vh;
-  .button-view-weights {
+  .button-view-weights,
+  .button-panel-info {
     display: none;
   }
 }

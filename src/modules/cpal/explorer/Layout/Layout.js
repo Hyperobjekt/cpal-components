@@ -12,6 +12,9 @@ import {
   FiInfo,
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
+import { FaTwitter, FaFacebookF } from 'react-icons/fa'
+import { GrMail } from 'react-icons/gr'
+import { BsLink45Deg } from 'react-icons/bs'
 
 import {
   Header,
@@ -151,6 +154,11 @@ const Layout = ({ children, ...props }) => {
     ])
   }
 
+  const handleShare = e => {
+    e.preventDefault()
+    console.log('handleShare(), ', e)
+  }
+
   return (
     <div className="layout" {...props}>
       <Header>
@@ -218,27 +226,35 @@ const Layout = ({ children, ...props }) => {
                 {i18n.translate(`BUTTON_VIEW_FEEDER`)}
               </span>
             </CoreButton>
-            <Divider />
-            <CoreButton
-              id="button_toggle_panel_filters"
-              aria-label={i18n.translate(
-                `BUTTON_TOGGLE_PANEL_FILTERS`,
-              )}
-              onClick={handlePanel}
-              color="light"
-              className={clsx(
-                'button-panel-filters',
-                slideoutPanel.active &&
-                  slideoutPanel.panel === 'filters'
-                  ? 'active'
-                  : '',
-              )}
-            >
-              <FiFilter />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_TOGGLE_FILTERS`)}
-              </span>
-            </CoreButton>
+            {activeView === 'map' ? (
+              <>
+                <Divider />
+                <CoreButton
+                  id="button_toggle_panel_filters"
+                  aria-label={i18n.translate(
+                    `BUTTON_TOGGLE_PANEL_FILTERS`,
+                  )}
+                  onClick={handlePanel}
+                  color="light"
+                  className={clsx(
+                    'button-panel-filters',
+                    slideoutPanel.active &&
+                      slideoutPanel.panel === 'filters'
+                      ? 'active'
+                      : '',
+                  )}
+                >
+                  <FiFilter />
+                  <span className="sr-only">
+                    {i18n.translate(
+                      `BUTTON_TOGGLE_FILTERS`,
+                    )}
+                  </span>
+                </CoreButton>
+              </>
+            ) : (
+              ''
+            )}
             <CoreButton
               id="button_toggle_panel_info"
               aria-label={i18n.translate(
@@ -246,6 +262,7 @@ const Layout = ({ children, ...props }) => {
               )}
               onClick={handlePanel}
               color="light"
+              styles={{ display: 'none' }}
               className={clsx(
                 'button-panel-info',
                 slideoutPanel.active &&
@@ -259,19 +276,61 @@ const Layout = ({ children, ...props }) => {
                 {i18n.translate(`BUTTON_TOGGLE_INFO`)}
               </span>
             </CoreButton>
+            <Divider />
             <CoreButton
-              id="button_toggle_panel_weight"
+              id="button_share_twitter"
               aria-label={i18n.translate(
-                `BUTTON_TOGGLE_PANEL_WEIGHT`,
+                `BUTTON_SHARE_TWITTER`,
               )}
-              onClick={handlePanel}
+              onClick={handleShare}
               color="light"
-              className="button-view-weights"
-              styles={{ display: 'none' }}
+              className="button-share-twitter"
             >
-              <MdCallSplit />
+              <FaTwitter />
               <span className="sr-only">
-                {i18n.translate(`BUTTON_TOGGLE_WEIGHT`)}
+                {i18n.translate(`BUTTON_SHARE_TWITTER`)}
+              </span>
+            </CoreButton>
+            <CoreButton
+              id="button_share_facebook"
+              aria-label={i18n.translate(
+                `BUTTON_SHARE_FACEBOOK`,
+              )}
+              onClick={handleShare}
+              color="light"
+              className="button-share-facebook"
+            >
+              <FaFacebookF />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_SHARE_FACEBOOK`)}
+              </span>
+            </CoreButton>
+            <CoreButton
+              id="button_share_email"
+              aria-label={i18n.translate(
+                `BUTTON_SHARE_EMAIL`,
+              )}
+              onClick={handleShare}
+              color="light"
+              className="button-share-email"
+            >
+              <GrMail />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_SHARE_EMAIL`)}
+              </span>
+            </CoreButton>
+            <CoreButton
+              id="button_share_link"
+              aria-label={i18n.translate(
+                `BUTTON_SHARE_LINK`,
+              )}
+              onClick={handleShare}
+              color="light"
+              className="button-share-link"
+            >
+              <BsLink45Deg />
+              <span className="sr-only">
+                {i18n.translate(`BUTTON_SHARE_LINK`)}
               </span>
             </CoreButton>
           </ControlPanel>
