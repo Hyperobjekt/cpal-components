@@ -198,8 +198,7 @@ const FeederView = () => {
           data: buildFeederData(),
           type: 'bar',
           itemStyle: {
-            color: getMetric(activeMetric, CPAL_METRICS)
-              .colors[0],
+            color: getMetric('cri', CPAL_METRICS).colors[0],
           },
           barWidth: 15,
           barGap: 10,
