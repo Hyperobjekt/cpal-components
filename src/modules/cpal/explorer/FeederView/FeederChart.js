@@ -33,10 +33,10 @@ const FeederChart = ({ ...props }) => {
     state => state.setActiveFeeder,
   )
   const onFeederMouseover = e => {
-    // console.log('onFeederMouseover, ', e)
+    console.log('onFeederMouseover, ', e)
     // If the hover event is for a bar, set activeFeeder
     if (e.componentSubType === 'bar') {
-      setActiveFeeder(e.data.name)
+      setActiveFeeder(e.data.id)
     } else {
       setActiveFeeder(null)
     }

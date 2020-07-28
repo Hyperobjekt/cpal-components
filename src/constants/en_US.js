@@ -90,6 +90,8 @@ const en_US = {
   UI_FEEDER_TITLE_SCHOOLS_CHART: `Distribution of Campuses Across CRI`,
   UI_FEEDER_TOOLTIP_INDEX_DESC: `*Index scores measured 0 to 100`,
   UI_FEEDER_TOOLTIP_SUBINDEX_AVG: `Average {metric} index score:`,
+  UI_FEEDER_FEEDER_CHART_DESC: `Bar chart indicating average CRI for each feeder in Dallas ISD.`,
+  UI_FEEDER_SCHOOL_CHART_DESC: `Scatterplot chart indicating number of schools with a given CRI value. Schools are highlighted when their feeder is hovered in the feeder chart.`,
 
   // UI_MAP_METRIC_TITLE_COMM_CRIMEDENSITY: `Density of part a crimes`,
   // UI_MAP_METRIC_TITLE_COMM_CRIME: `Count of part a crimes`,

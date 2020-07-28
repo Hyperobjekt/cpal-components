@@ -93,7 +93,8 @@ const FeederView = () => {
     const feederData = []
     CPAL_FEEDERS.forEach(el => {
       feederData.push({
-        name: el.id,
+        name: el.title,
+        id: el.id,
         label: el.title,
         value: getFeederAverage(
           activeMetric,
@@ -132,6 +133,32 @@ const FeederView = () => {
 
   const getFeedersOptions = () => {
     const option = {
+      aria: {
+        show: true,
+        // description: i18n.translate(
+        //   'UI_FEEDER_FEEDER_CHART_DESC',
+        // ),
+        general: {
+          withoutTitle: i18n.translate(
+            'UI_FEEDER_SCHOOL_CHART_DESC',
+          ),
+        },
+        series: {
+          single: {
+            prefix: '',
+          },
+          multiple: {
+            prefix: '',
+          },
+        },
+        data: {
+          maxCount: 200,
+          allData: `Its data is `,
+          partialData: `Where the first {displayCnt} entry is:`,
+          withName: '{name} data is {value}',
+          withoutName: '{value}',
+        },
+      },
       yAxis: {
         type: 'category',
         name: i18n.translate(
@@ -167,6 +194,7 @@ const FeederView = () => {
       },
       series: [
         {
+          name: `Feeder Average CRI`,
           data: buildFeederData(),
           type: 'bar',
           itemStyle: {
@@ -194,7 +222,14 @@ const FeederView = () => {
 
   return (
     <Row className="layout-view-feeder">
-      <Col xs="12" md="12" className="feeders-bar-chart">
+      <Col
+        xs="12"
+        md="12"
+        className="feeders-bar-chart"
+        aria-label={i18n.translate(
+          'UI_FEEDER_FEEDER_CHART_DESC',
+        )}
+      >
         <FeederChart
           classNames={clsx('chart-feeders')}
           style={{ width: '100%' }}
@@ -208,6 +243,9 @@ const FeederView = () => {
         xs="12"
         md="12"
         className="feeders-schools-scatter"
+        aria-label={i18n.translate(
+          'UI_FEEDER_SCHOOL_CHART_DESC',
+        )}
       >
         <FeederSchoolsChart />
       </Col>

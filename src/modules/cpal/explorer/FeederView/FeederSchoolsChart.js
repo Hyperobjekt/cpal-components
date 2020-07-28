@@ -94,6 +94,25 @@ const FeederSchoolsChart = ({ ...props }) => {
       grid: {
         show: false,
       },
+      // title: i18n.translate('UI_FEEDER_SCHOOL_CHART_DESC'),
+      aria: {
+        show: true,
+        description: i18n.translate(
+          'UI_FEEDER_SCHOOL_CHART_DESC',
+        ),
+        // general: {
+        //   withoutTitle: i18n.translate(
+        //     'UI_FEEDER_SCHOOL_CHART_DESC',
+        //   ),
+        // },
+        // data: {
+        //   maxCount: 200,
+        //   allData: `Its data is `,
+        //   partialData: `Where the first {displayCnt} entry is:`,
+        //   withName: '{name}s data is {value}',
+        //   withoutName: '{value}',
+        // },
+      },
       tooltip: {
         trigger: 'item',
       },
@@ -130,6 +149,9 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       series: [
         {
+          name: i18n.translate(
+            'UI_FEEDER_SCHOOL_CHART_DESC',
+          ),
           symbolSize: (val, params) => {
             return Number(getFeederSLN(params.name)) ===
               Number(activeFeeder)
