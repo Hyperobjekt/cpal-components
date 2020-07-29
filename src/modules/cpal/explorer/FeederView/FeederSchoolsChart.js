@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 
-import {
-  CPAL_METRICS,
-  CPAL_FEEDERS,
-  CPAL_FEEDER_TIP_ITEMS,
-} from './../../../../constants/metrics'
+import { CPAL_METRICS } from './../../../../constants/metrics'
 import {
   CRI_COLORS,
   ECON_COLORS,
@@ -21,8 +17,6 @@ import { feeders } from './../../../../data/feeders'
 import { schools } from './../../../../data/schools'
 import useStore from './../store'
 import {
-  getFeederSchools,
-  getSchoolZones,
   getMetric,
   getRoundedValue,
   toTitleCase,
@@ -31,12 +25,16 @@ import {
 const FeederSchoolsChart = ({ ...props }) => {
   // Currently active feeder
   const activeFeeder = useStore(state => state.activeFeeder)
-  useEffect(() => {
-    console.log('activeFeeder changed to ', activeFeeder)
-  }, [activeFeeder])
   const feederSchools = useStore(
     state => state.feederSchools,
   )
+
+  /**
+   * Gets the count of items with a shared y-value (in node with an array containing [x,y])
+   * @param  Number val         Y value
+   * @param  Array schoolsData Array of objects
+   * @return Number            Length of assembled array
+   */
   const getCountOfSameYValue = (val, schoolsData) => {
     const objs = schoolsData.filter(el => {
       return el.value[0] === val
@@ -44,6 +42,10 @@ const FeederSchoolsChart = ({ ...props }) => {
     return objs.length
   }
 
+  /**
+   * Builds schools data to feed into scatterplot
+   * @return Array Array of objects
+   */
   const getSchoolsData = () => {
     // Go through list of schools from feeder file
     const schoolsData = []
@@ -63,6 +65,11 @@ const FeederSchoolsChart = ({ ...props }) => {
     return schoolsData
   }
 
+  /**
+   * Gets label for the feeder
+   * @param  String tea TEA id for school
+   * @return String     Label for the feeder
+   */
   const getFeederLabel = tea => {
     const school = feederSchools.find(item => {
       return item.TEA_ID === Number(tea)
@@ -101,18 +108,6 @@ const FeederSchoolsChart = ({ ...props }) => {
         description: i18n.translate(
           'UI_FEEDER_SCHOOL_CHART_DESC',
         ),
-        // general: {
-        //   withoutTitle: i18n.translate(
-        //     'UI_FEEDER_SCHOOL_CHART_DESC',
-        //   ),
-        // },
-        // data: {
-        //   maxCount: 200,
-        //   allData: `Its data is `,
-        //   partialData: `Where the first {displayCnt} entry is:`,
-        //   withName: '{name}s data is {value}',
-        //   withoutName: '{value}',
-        // },
       },
       tooltip: {
         trigger: 'item',
@@ -140,7 +135,6 @@ const FeederSchoolsChart = ({ ...props }) => {
         axisTick: {
           show: false,
         },
-        // offset: -5,
       },
       emphasis: {
         itemStyle: {
@@ -224,19 +218,18 @@ const FeederSchoolsChart = ({ ...props }) => {
     }
     return options
   }
-  const theme_schools = []
-
+  // Events
   const schoolChartReady = e => {
-    console.log('school chart ready')
+    // console.log('school chart ready')
   }
   const onSchoolMouseover = e => {
-    console.log('onSchoolMouseover() ', e)
+    // console.log('onSchoolMouseover() ', e)
   }
   const onSchoolMouseout = e => {
-    console.log('onSchoolMouseout() ', e)
+    // console.log('onSchoolMouseout() ', e)
   }
   const onSchoolClick = e => {
-    console.log('onSchoolClick() ', e)
+    // console.log('onSchoolClick() ', e)
   }
   let schoolsEvents = {
     mouseover: onSchoolMouseover,

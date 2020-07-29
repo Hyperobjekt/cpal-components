@@ -286,6 +286,11 @@ export const getQuintilesPhrase = quintiles => {
   }
 }
 
+/**
+ * Returns string placeholder based on quintile provided
+ * @param  Number quintile Quintile 0 - 4
+ * @return String          String referncing translation file constant
+ */
 export const getQuintileDesc = quintile => {
   switch (true) {
     case quintile === 0: {
@@ -304,6 +309,18 @@ export const getQuintileDesc = quintile => {
       return 'FIFTH'
     }
   }
+}
+
+export const getFeederAverage = (metric, schoolSet) => {
+  // Get all the schools that are in that
+  // console.log('getFeederAverage, ', schoolSet)
+  const values = []
+  schoolSet.forEach(el => {
+    values.push(el[metric])
+  })
+  let total = 0
+  values.forEach(v => (total = total + v))
+  return total / values.length
 }
 
 /**
