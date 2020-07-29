@@ -39,6 +39,10 @@ export const CPAL_FILTER_TABS = [
 // indices and indicators to save their fucking lives.
 export const CPAL_FEEDER_TIP_ITEMS = [
   {
+    id: 'cri',
+    title: 'UI_MAP_METRIC_TITLE_CRI',
+  },
+  {
     id: 'econ',
     title: 'UI_MAP_METRIC_TITLE_ECON',
   },
@@ -720,10 +724,6 @@ export const CPAL_FEEDERS = [
   {
     id: 12,
     title: 'Pinkston',
-  },
-  {
-    id: 13,
-    title: 'Roosevelt',
   },
   {
     id: 13,

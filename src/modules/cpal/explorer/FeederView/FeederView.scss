@@ -3,5 +3,80 @@
     .echarts-for-react {
       min-height: 600px;
     }
+    .feeder-chart-bar {
+      width: 100%;
+      .feeder-bar-button {
+        position: relative;
+        width: 100%;
+        color: transparent;
+        background-color: transparent;
+        border: 0;
+        &:focus {
+          outline: none;
+        }
+        .bar {
+          display: block;
+          height: 1.3rem;
+          background: rgb(56, 0, 217);
+          background: linear-gradient(
+            180deg,
+            rgba(56, 0, 217, 1) 0%,
+            rgba(161, 134, 241, 1) 54%
+          );
+        }
+        &.active {
+          .bar {
+            background: rgb(56, 0, 217);
+            background: linear-gradient(
+              180deg,
+              rgba(56, 0, 217, 1) 25%,
+              rgba(161, 134, 241, 1) 94%
+            );
+          }
+        }
+        .data {
+          color: black;
+          position: absolute;
+          left: 1rem;
+          top: 0;
+        }
+      }
+    }
+    .feeder-chart-legend {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      h4 {
+        width: 100%;
+        flex: 0 0 100%;
+      }
+      .feeder-legend-metrics,
+      .feeder-legend-schools {
+        width: 45%;
+        flex: 0 0 auto;
+        span {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .feeder-chart-legend {
+    // display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25% !important;
+    .feeder-legend-metrics,
+    .feeder-legend-schools {
+      width: 100% !important;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .feeders-schools-scatter {
+    display: none;
   }
 }

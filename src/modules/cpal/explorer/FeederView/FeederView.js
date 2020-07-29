@@ -23,6 +23,7 @@ import {
 import useStore from './../store'
 import { getFeederSchools } from './../utils'
 import FeederChart from './FeederChart'
+import FeederLegend from './FeederLegend'
 import FeederSchoolsChart from './FeederSchoolsChart'
 
 import './FeederView.scss'
@@ -58,18 +59,16 @@ const FeederView = () => {
   return (
     <Row className="layout-view-feeder">
       <Col
-        xs="12"
-        md="12"
+        xs={{ size: 12, order: 1, offset: 0 }}
+        md={{ size: 10, order: 1, offset: 1 }}
         className="feeders-bar-chart"
-        aria-label={i18n.translate(
-          'UI_FEEDER_FEEDER_CHART_DESC',
-        )}
       >
         <FeederChart />
+        <FeederLegend />
       </Col>
       <Col
-        xs="12"
-        md="12"
+        xs={{ size: 12, order: 2, offset: 0 }}
+        md={{ size: 12, order: 2, offset: 0 }}
         className="feeders-schools-scatter"
         aria-label={i18n.translate(
           'UI_FEEDER_SCHOOL_CHART_DESC',

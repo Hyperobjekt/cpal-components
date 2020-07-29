@@ -4,6 +4,7 @@ import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 import echarts from 'echarts/lib/echarts'
+import { Col } from 'reactstrap'
 
 import {
   CPAL_METRICS,
@@ -26,18 +27,10 @@ import {
   toTitleCase,
 } from './../utils'
 
-const FeederChart = ({ ...props }) => {
+const FeederLegend = ({ ...props }) => {
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
-  const setActiveFeeder = useStore(
-    state => state.setActiveFeeder,
-  )
-  // Whether feeder is "locked" by click
-  const feederLocked = useStore(state => state.feederLocked)
-  const setFeederLocked = useStore(
-    state => state.setFeederLocked,
-  )
   // Array of feeder school objects
   const feederSchools = useStore(
     state => state.feederSchools,
@@ -47,8 +40,10 @@ const FeederChart = ({ ...props }) => {
    * @return Array Array of school data objects
    */
   const getSchoolSet = feeder => {
+    console.log('getSchoolSet, ', feeder)
+    console.log('feederSchools, ', feederSchools)
     return feederSchools.filter(el => {
-      return el.feeder_sln === feeder
+      return Number(el.feeder_sln) === Number(feeder)
     })
   }
 
@@ -79,7 +74,7 @@ const FeederChart = ({ ...props }) => {
       })
     })
     // Sort ascending by cri average
-    feederData.sort((a, b) => a.value - b.value)
+    feederData.sort((a, b) => b.value - a.value)
     return feederData
   }
 
@@ -230,83 +225,68 @@ const FeederChart = ({ ...props }) => {
     return option
   }
 
-  const onFeederMouseover = e => {
-    // console.log('onFeederMouseover, ', e.currentTarget.id)
-    const feeder = String(e.currentTarget.id).replace(
-      'feeder_bar_',
-      '',
-    )
-    if (!feederLocked) {
-      setActiveFeeder(feeder)
-      e.currentTarget.classList.add('active')
-    }
-  }
-  const onFeederMouseout = e => {
-    console.log('onFeederMouseout, ', e.currentTarget.id)
-    if (!feederLocked) {
-      setActiveFeeder(null)
-      e.currentTarget.classList.remove('active')
-    }
-  }
-  const onFeederClick = e => {
-    console.log('onFeederClick, ', e.currentTarget.id)
-    const feeder = String(e.currentTarget.id).replace(
-      'feeder_bar_',
-      '',
-    )
-    if (!!feederLocked && activeFeeder === feeder) {
-      setActiveFeeder(null)
-      setFeederLocked(false)
-      e.currentTarget.classList.remove('active')
-    } else {
-      setActiveFeeder(feeder)
-      setFeederLocked(true)
-      e.currentTarget.classList.add('active')
-    }
-  }
-  const feederChartReady = e => {
-    console.log('feeder chart ready')
-  }
-  let feederEvents = {
-    mouseover: onFeederMouseover,
-    mouseout: onFeederMouseout,
-    click: onFeederClick,
-  }
-  const feederData = buildFeederData()
-  console.log('feederData, ', feederData)
-  // For each bar, a button. Includes the name and value.
   return (
-    <div
-      className="feeder-chart-bar"
-      aria-label={i18n.translate(
-        'UI_FEEDER_FEEDER_CHART_DESC',
-      )}
-    >
-      {feederData.map(el => {
-        return (
-          <button
-            id={'feeder_bar_' + el.id}
-            key={'feeder_bar_' + el.id}
-            className="feeder-bar-button"
-            onClick={onFeederClick}
-            onMouseOver={onFeederMouseover}
-            onMouseOut={onFeederMouseout}
+    <div className="feeder-chart-legend">
+      <h4>
+        {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
+      </h4>
+      {!!activeFeeder && activeFeeder.length > 0 ? (
+        <>
+          <div
+            className="feeder-legend-metrics"
+            aria-live="assertive"
           >
-            <div
-              className="bar"
-              style={{
-                width: el.value + '%',
-              }}
-              aria-hidden="true"
-            ></div>
-            <span className="data">
-              {el.label}, {getRoundedValue(el.value, 0)}
-            </span>
-          </button>
-        )
-      })}
+            <h5>
+              {toTitleCase(
+                i18n.translate('TERM_PLURAL', {
+                  term: i18n.translate(
+                    `TERM_INDEX_AVERAGE`,
+                  ),
+                }),
+              )}
+            </h5>
+            {CPAL_FEEDER_TIP_ITEMS.map(el => {
+              return (
+                <span>
+                  {i18n.translate(el.title)}:{' '}
+                  {getRoundedValue(
+                    getFeederAverage(
+                      el.id,
+                      getSchoolSet(activeFeeder),
+                    ),
+                    0,
+                  )}
+                </span>
+              )
+            })}
+            <i>
+              {i18n.translate(
+                'UI_FEEDER_TOOLTIP_INDEX_DESC',
+              )}
+            </i>
+          </div>
+          <div className="feeder-legend-schools">
+            <h5>
+              {toTitleCase(
+                i18n.translate('TERM_PLURAL', {
+                  term: i18n.translate('TERM_SCHOOL'),
+                }),
+              )}
+            </h5>
+            {getSchoolSet(activeFeeder).map(el => {
+              return (
+                <span className="school">
+                  {el.schoolname}
+                </span>
+              )
+            })}
+          </div>
+        </>
+      ) : (
+        ''
+      )}
     </div>
   )
 }
 
-export default FeederChart
+export default FeederLegend

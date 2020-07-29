@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
@@ -31,6 +31,9 @@ import {
 const FeederSchoolsChart = ({ ...props }) => {
   // Currently active feeder
   const activeFeeder = useStore(state => state.activeFeeder)
+  useEffect(() => {
+    console.log('activeFeeder changed to ', activeFeeder)
+  }, [activeFeeder])
   const feederSchools = useStore(
     state => state.feederSchools,
   )
@@ -40,8 +43,6 @@ const FeederSchoolsChart = ({ ...props }) => {
     })
     return objs.length
   }
-
-  const [hoveredSchool, setHoveredSchool] = useState(null)
 
   const getSchoolsData = () => {
     // Go through list of schools from feeder file
@@ -202,7 +203,9 @@ const FeederSchoolsChart = ({ ...props }) => {
                 ) +
                 ' ' +
                 toTitleCase(
-                  i18n.translate('TERM_PLURAL_SCHOOL'),
+                  i18n.translate('TERM_PLURAL', {
+                    term: i18n.translate('TERM_SCHOOL'),
+                  }),
                 ) +
                 '</p>' +
                 '</div>'

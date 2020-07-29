@@ -1,8 +1,7 @@
 const en_US = {
   SITE_TITLE: `Site Title`,
   TEA_ID: `TEA identification number`,
-  TERM_SINGULAR_SCHOOL: `school`,
-  TERM_PLURAL_SCHOOL: `schools`,
+  TERM_SCHOOL: `school`,
   BUTTON_VIEW_FEEDER: `Toggle feeder view`,
   BUTTON_VIEW_MAP: `Toggle map view`,
   BUTTON_MENU: `Menu`,
@@ -97,6 +96,8 @@ const en_US = {
   UI_FEEDER_FEEDER_CHART_DESC: `Bar chart indicating average CRI for each feeder in Dallas ISD.`,
   UI_FEEDER_SCHOOL_CHART_DESC: `Scatterplot chart indicating number of schools with a given CRI value. Schools are highlighted when their feeder is hovered in the feeder chart.`,
   UI_MAP_TOOLTIP_FEEDER: `{name} Schools`,
+  TERM_INDEX_AVERAGE: `Index Average`,
+  TERM_PLURAL: `{term}s`,
 
   // UI_MAP_METRIC_TITLE_COMM_CRIMEDENSITY: `Density of part a crimes`,
   // UI_MAP_METRIC_TITLE_COMM_CRIME: `Count of part a crimes`,

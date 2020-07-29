@@ -407,6 +407,7 @@ export const getFeederSchools = () => {
     if (!!feeder) {
       el.feeder = feeder.FEEDER
       el.feeder_sln = feeder.FEEDER_SLN
+      el.schoolname = feeder.SCHOOLNAME
       json.push(el)
     }
   })

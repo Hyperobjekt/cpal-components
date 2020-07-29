@@ -29,14 +29,8 @@ import {
 const FeederChart = ({ ...props }) => {
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
-  const activeFeeder = useStore(state => state.activeFeeder)
   const setActiveFeeder = useStore(
     state => state.setActiveFeeder,
-  )
-  // Whether feeder is "locked" by click
-  const feederLocked = useStore(state => state.feederLocked)
-  const setFeederLocked = useStore(
-    state => state.setFeederLocked,
   )
   // Array of feeder school objects
   const feederSchools = useStore(
@@ -64,6 +58,11 @@ const FeederChart = ({ ...props }) => {
     return total / values.length
   }
 
+  const labelNodes = {
+    show: true,
+    value: 'test',
+  }
+
   /**
    * Builds feeder bar chart data set.
    * @return Array Array of objects
@@ -79,7 +78,7 @@ const FeederChart = ({ ...props }) => {
       })
     })
     // Sort ascending by cri average
-    feederData.sort((a, b) => a.value - b.value)
+    feederData.sort((a, b) => b.value - a.value)
     return feederData
   }
 
@@ -229,40 +228,24 @@ const FeederChart = ({ ...props }) => {
     }
     return option
   }
+  const theme_feeder = []
 
   const onFeederMouseover = e => {
-    // console.log('onFeederMouseover, ', e.currentTarget.id)
-    const feeder = String(e.currentTarget.id).replace(
-      'feeder_bar_',
-      '',
-    )
-    if (!feederLocked) {
-      setActiveFeeder(feeder)
-      e.currentTarget.classList.add('active')
+    console.log('onFeederMouseover, ', e)
+    // If the hover event is for a bar, set activeFeeder
+    if (e.componentSubType === 'bar') {
+      setActiveFeeder(e.data.id)
+    } else {
+      setActiveFeeder(null)
     }
+    // console.log('set activeFeeder to ', activeFeeder)
   }
   const onFeederMouseout = e => {
-    console.log('onFeederMouseout, ', e.currentTarget.id)
-    if (!feederLocked) {
-      setActiveFeeder(null)
-      e.currentTarget.classList.remove('active')
-    }
+    console.log('onFeederMouseout, ', e)
+    setActiveFeeder(null)
   }
   const onFeederClick = e => {
-    console.log('onFeederClick, ', e.currentTarget.id)
-    const feeder = String(e.currentTarget.id).replace(
-      'feeder_bar_',
-      '',
-    )
-    if (!!feederLocked && activeFeeder === feeder) {
-      setActiveFeeder(null)
-      setFeederLocked(false)
-      e.currentTarget.classList.remove('active')
-    } else {
-      setActiveFeeder(feeder)
-      setFeederLocked(true)
-      e.currentTarget.classList.add('active')
-    }
+    console.log('onFeederClick, ', e)
   }
   const feederChartReady = e => {
     console.log('feeder chart ready')
@@ -272,40 +255,18 @@ const FeederChart = ({ ...props }) => {
     mouseout: onFeederMouseout,
     click: onFeederClick,
   }
-  const feederData = buildFeederData()
-  console.log('feederData, ', feederData)
-  // For each bar, a button. Includes the name and value.
   return (
-    <div
-      className="feeder-chart-bar"
-      aria-label={i18n.translate(
-        'UI_FEEDER_FEEDER_CHART_DESC',
-      )}
-    >
-      {feederData.map(el => {
-        return (
-          <button
-            id={'feeder_bar_' + el.id}
-            key={'feeder_bar_' + el.id}
-            className="feeder-bar-button"
-            onClick={onFeederClick}
-            onMouseOver={onFeederMouseover}
-            onMouseOut={onFeederMouseout}
-          >
-            <div
-              className="bar"
-              style={{
-                width: el.value + '%',
-              }}
-              aria-hidden="true"
-            ></div>
-            <span className="data">
-              {el.label}, {getRoundedValue(el.value, 0)}
-            </span>
-          </button>
-        )
-      })}
-    </div>
+    <ReactEcharts
+      classNames={clsx('chart-feeders')}
+      style={{ width: '100%' }}
+      option={getFeedersOptions()}
+      notMerge={false}
+      lazyUpdate={true}
+      theme={'theme_feeder'}
+      onEvents={feederEvents}
+      onChartReady={feederChartReady}
+      {...props}
+    />
   )
 }
 
