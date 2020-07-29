@@ -24,7 +24,8 @@
             rgba(161, 134, 241, 1) 54%
           );
         }
-        &.active {
+        &.active,
+        &:hover {
           .bar {
             background: rgb(56, 0, 217);
             background: linear-gradient(
