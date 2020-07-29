@@ -353,6 +353,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    is_currency: 1,
   },
   {
     id: 'econ_paydaycap',

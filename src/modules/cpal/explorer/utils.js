@@ -137,6 +137,9 @@ export const getRoundedValue = (
       ).toLocaleString()
     }
   }
+  if (!!isCurrency) {
+    fixed = '$' + fixed
+  }
   return fixed
 }
 
