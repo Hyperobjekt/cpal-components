@@ -25,7 +25,7 @@ import {
   CoreButton,
   Select,
 } from './../../../core'
-import MenuSearch from './MenuSearch/MenuSearch'
+import SchoolSearch from './../SchoolSearch/SchoolSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
@@ -163,7 +163,7 @@ const Layout = ({ children, ...props }) => {
     <div className="layout" {...props}>
       <Header>
         <Logo {...logoProps} />
-        <MenuSearch />
+        <SchoolSearch />
         <CoreButton
           id="button_toggle_menu"
           aria-label={i18n.translate(`BUTTON_MENU`)}
@@ -226,9 +226,9 @@ const Layout = ({ children, ...props }) => {
                 {i18n.translate(`BUTTON_VIEW_FEEDER`)}
               </span>
             </CoreButton>
+            <Divider />
             {activeView === 'map' ? (
               <>
-                <Divider />
                 <CoreButton
                   id="button_toggle_panel_filters"
                   aria-label={i18n.translate(
@@ -283,7 +283,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_SHARE_TWITTER`,
               )}
               onClick={handleShare}
-              color="light"
+              color="none"
               className="button-share-twitter"
             >
               <FaTwitter />
@@ -297,7 +297,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_SHARE_FACEBOOK`,
               )}
               onClick={handleShare}
-              color="light"
+              color="none"
               className="button-share-facebook"
             >
               <FaFacebookF />
@@ -311,7 +311,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_SHARE_EMAIL`,
               )}
               onClick={handleShare}
-              color="light"
+              color="none"
               className="button-share-email"
             >
               <GrMail />
@@ -325,7 +325,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_SHARE_LINK`,
               )}
               onClick={handleShare}
-              color="light"
+              color="none"
               className="button-share-link"
             >
               <BsLink45Deg />

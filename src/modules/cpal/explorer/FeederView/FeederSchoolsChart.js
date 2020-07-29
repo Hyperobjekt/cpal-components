@@ -111,7 +111,7 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       tooltip: {
         trigger: 'item',
-        triggerOn: 'click',
+        triggerOn: 'mousemove|click',
       },
       yAxis: {
         show: false,

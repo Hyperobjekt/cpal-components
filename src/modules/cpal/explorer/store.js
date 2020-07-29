@@ -91,6 +91,9 @@ const [useStore] = create((set, get) => ({
   feederLocked: false,
   setFeederLocked: newBool =>
     set({ feederLocked: newBool }),
+  highlightedSchool: null,
+  setHighlightedSchool: newStr =>
+    set({ highlightedSchool: newStr }),
 }))
 
 export default useStore

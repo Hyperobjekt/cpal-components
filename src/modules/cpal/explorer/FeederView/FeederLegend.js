@@ -31,11 +31,22 @@ const FeederLegend = ({ ...props }) => {
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
+  console.log('activeFeeder, ', activeFeeder)
   // Array of feeder school objects
   const feederSchools = useStore(
     state => state.feederSchools,
   )
-
+  /**
+   * Gets label for the feeder
+   * @param  String tea TEA id for school
+   * @return String     Label for the feeder
+   */
+  const getFeederLabel = tea => {
+    const school = feederSchools.find(item => {
+      return item.TEA_ID === Number(tea)
+    })
+    return school.feeder
+  }
   /**
    * Gets the set of schools that are in a feeder
    * @return Array Array of school data objects
@@ -50,11 +61,18 @@ const FeederLegend = ({ ...props }) => {
 
   return (
     <div className="feeder-chart-legend">
-      <h4>
-        {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
-      </h4>
-      {!!activeFeeder && activeFeeder.length > 0 ? (
+      {!!activeFeeder ? (
         <>
+          <h4>
+            {getFeederLabel(activeFeeder) +
+              ' ' +
+              toTitleCase(
+                i18n.translate('TERM_PLURAL', {
+                  term: i18n.translate('TERM_SCHOOL'),
+                }),
+              )}
+          </h4>
+
           <div
             className="feeder-legend-metrics"
             aria-live="assertive"

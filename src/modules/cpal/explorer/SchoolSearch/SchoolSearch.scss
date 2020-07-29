@@ -1,0 +1,70 @@
+.search-autosuggest {
+  max-width: 300px;
+  margin-right: 5px;
+  margin-left: auto;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: flex;
+  flex-wrap: nowrap;
+  .icon-search {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #bbb;
+  }
+  .react-autosuggest__container {
+    // width: 100%;
+    flex: 1 1 80%;
+    .react-autosuggest__input {
+      padding-left: 16px;
+      height: 36px;
+    }
+    ::-webkit-search-cancel-button {
+      display: none;
+    }
+    .react-autosuggest__suggestions-list {
+      border: 1px solid #ddd;
+      max-width: 300px;
+      .react-autosuggest__suggestion {
+        height: 36px;
+        // color: #ddd;
+        line-height: 36px;
+        padding-left: 16px;
+        & > div {
+          width: 264px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .react-autosuggest__suggestion--highlighted {
+        background-color: rgba(153, 192, 255, 0.6);
+      }
+    }
+  }
+}
+
+.react-autosuggest__container--open {
+  max-width: 350px;
+}
+
+@media only screen and (min-width: 768px) {
+  .menu-search {
+    min-width: 450px;
+  }
+}
+
+// container:                'react-autosuggest__container',
+//   containerOpen:            'react-autosuggest__container--open',
+//   input:                    'react-autosuggest__input',
+//   inputOpen:                'react-autosuggest__input--open',
+//   inputFocused:             'react-autosuggest__input--focused',
+//   suggestionsContainer:     'react-autosuggest__suggestions-container',
+//   suggestionsContainerOpen: 'react-autosuggest__suggestions-container--open',
+//   suggestionsList:          'react-autosuggest__suggestions-list',
+//   suggestion:               'react-autosuggest__suggestion',
+//   suggestionFirst:          'react-autosuggest__suggestion--first',
+//   suggestionHighlighted:    'react-autosuggest__suggestion--highlighted',
+//   sectionContainer:         'react-autosuggest__section-container',
+//   sectionContainerFirst:    'react-autosuggest__section-container--first',
+//   sectionTitle:             'react-autosuggest__section-title'

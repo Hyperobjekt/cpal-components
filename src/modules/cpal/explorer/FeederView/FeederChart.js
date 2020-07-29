@@ -91,14 +91,14 @@ const FeederChart = ({ ...props }) => {
     )
     if (!feederLocked) {
       setActiveFeeder(feeder)
-      e.currentTarget.classList.add('active')
+      // e.currentTarget.classList.add('active')
     }
   }
   const onFeederMouseout = e => {
     // console.log('onFeederMouseout, ', e.currentTarget.id)
     if (!feederLocked) {
       setActiveFeeder(null)
-      e.currentTarget.classList.remove('active')
+      // e.currentTarget.classList.remove('active')
     }
   }
   const onFeederClick = e => {
@@ -107,20 +107,23 @@ const FeederChart = ({ ...props }) => {
       'feeder_bar_',
       '',
     )
-    if (!!feederLocked && activeFeeder === feeder) {
+    if (
+      !!feederLocked &&
+      Number(activeFeeder) === Number(feeder)
+    ) {
       setActiveFeeder(null)
       setFeederLocked(false)
-      e.currentTarget.classList.remove('active')
+      // e.currentTarget.classList.remove('active')
     } else {
       setActiveFeeder(feeder)
       setFeederLocked(true)
       // Remove active class from previous
-      const former = document.getElementsByClassName(
-        'feeder-bar-button active',
-      )
-      former[0].classList.remove('active')
-      // Add active class to new
-      e.currentTarget.classList.add('active')
+      // const former = document.getElementsByClassName(
+      //   'feeder-bar-button active',
+      // )
+      // former[0].classList.remove('active')
+      // // Add active class to new
+      // e.currentTarget.classList.add('active')
     }
   }
   const feederChartReady = e => {
@@ -144,7 +147,12 @@ const FeederChart = ({ ...props }) => {
           <button
             id={'feeder_bar_' + el.id}
             key={'feeder_bar_' + el.id}
-            className="feeder-bar-button"
+            className={clsx(
+              'feeder-bar-button',
+              Number(el.id) === Number(activeFeeder)
+                ? 'active'
+                : '',
+            )}
             onClick={onFeederClick}
             onMouseOver={onFeederMouseover}
             onMouseOut={onFeederMouseout}

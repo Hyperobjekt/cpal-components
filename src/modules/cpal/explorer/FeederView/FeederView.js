@@ -61,14 +61,22 @@ const FeederView = () => {
       <Col
         xs={{ size: 12, order: 1, offset: 0 }}
         md={{ size: 10, order: 1, offset: 1 }}
+      >
+        <h4>
+          {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
+        </h4>
+      </Col>
+      <Col
+        xs={{ size: 12, order: 2, offset: 0 }}
+        md={{ size: 10, order: 2, offset: 1 }}
         className="feeders-bar-chart"
       >
         <FeederChart />
         <FeederLegend />
       </Col>
       <Col
-        xs={{ size: 12, order: 2, offset: 0 }}
-        md={{ size: 12, order: 2, offset: 0 }}
+        xs={{ size: 12, order: 3, offset: 0 }}
+        md={{ size: 12, order: 3, offset: 0 }}
         className="feeders-schools-scatter"
         aria-label={i18n.translate(
           'UI_FEEDER_SCHOOL_CHART_DESC',

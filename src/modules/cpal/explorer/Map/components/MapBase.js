@@ -131,8 +131,17 @@ const MapBase = ({
     selectedIds,
   })
 
+  const justLoaded = useStore(state => state.justLoaded)
+  const setJustLoaded = useStore(
+    state => state.setJustLoaded,
+  )
+
   const updateFilteredSchools = () => {
     // console.log('updateFilteredSchools, ', activeQuintiles)
+    if (!!justLoaded) {
+      setJustLoaded(false)
+      return
+    }
     currentMap.setLayoutProperty(
       'schools-circle',
       'visibility',
@@ -333,7 +342,7 @@ const MapBase = ({
 
   // handler for feature hover
   const handleHover = ({ features, point, srcEvent }) => {
-    // console.log('handleHover, ', features, point)
+    console.log('handleHover, ', features, point)
     setMouseCoords(point)
     const newHoveredFeature =
       features && features.length > 0 ? features[0] : null

@@ -101,7 +101,7 @@ export const getSchoolCircleLayer = ({
       'circle-stroke-color': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
-        '#1e0370', // Hover color
+        '#fff', // Hover color
         '#fff', // Normal color
       ],
       'circle-stroke-width': [
@@ -111,7 +111,7 @@ export const getSchoolCircleLayer = ({
         4,
         0,
         6,
-        0.5,
+        1.5,
         14,
         2,
       ],
