@@ -115,6 +115,7 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       tooltip: {
         trigger: 'item',
+        triggerOn: 'click',
       },
       yAxis: {
         show: false,
@@ -223,17 +224,21 @@ const FeederSchoolsChart = ({ ...props }) => {
   const theme_schools = []
 
   const schoolChartReady = e => {
-    // console.log('school chart ready')
+    console.log('school chart ready')
   }
   const onSchoolMouseover = e => {
-    // console.log('onSchoolMouseover() ', e)
+    console.log('onSchoolMouseover() ', e)
   }
   const onSchoolMouseout = e => {
-    // console.log('onSchoolMouseout() ', e)
+    console.log('onSchoolMouseout() ', e)
+  }
+  const onSchoolClick = e => {
+    console.log('onSchoolClick() ', e)
   }
   let schoolsEvents = {
     mouseover: onSchoolMouseover,
     mouseout: onSchoolMouseout,
+    click: onSchoolClick,
   }
   return (
     <ReactEcharts

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
+import echarts from 'echarts/lib/echarts'
 
 import {
   CPAL_METRICS,
@@ -55,6 +56,11 @@ const FeederChart = ({ ...props }) => {
     let total = 0
     values.forEach(v => (total = total + v))
     return total / values.length
+  }
+
+  const labelNodes = {
+    show: true,
+    value: 'test',
   }
 
   /**
@@ -134,12 +140,24 @@ const FeederChart = ({ ...props }) => {
           'UI_FEEDER_TITLE_FEEDER_CHART',
         ),
         nameLocation: 'middle',
+        data: buildFeederData().map(el => {
+          return el.label
+        }),
+        position: 'left',
+        nameGap: 120,
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
       },
       xAxis: {
         type: 'value',
       },
       tooltip: {
         trigger: 'item',
+        triggerOn: 'mousemove',
         formatter: params => {
           // console.log('tooltip params, ', params)
           return (
@@ -167,8 +185,32 @@ const FeederChart = ({ ...props }) => {
           data: buildFeederData(),
           type: 'bar',
           itemStyle: {
-            color: getMetric('cri', CPAL_METRICS).colors[0],
+            normal: {
+              label: {
+                show: true,
+                position: 'inside*',
+              },
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1,
+                [
+                  {
+                    offset: 0,
+                    color: getMetric('cri', CPAL_METRICS)
+                      .colors[0],
+                  },
+                  {
+                    offset: 1,
+                    color: '#ffe',
+                  },
+                ],
+              ),
+              // getMetric('cri', CPAL_METRICS).colors[0],
+            },
           },
+
           barWidth: 15,
           barGap: 10,
           barCategoryGap: '20%',
@@ -189,7 +231,7 @@ const FeederChart = ({ ...props }) => {
   const theme_feeder = []
 
   const onFeederMouseover = e => {
-    // console.log('onFeederMouseover, ', e)
+    console.log('onFeederMouseover, ', e)
     // If the hover event is for a bar, set activeFeeder
     if (e.componentSubType === 'bar') {
       setActiveFeeder(e.data.id)
@@ -199,15 +241,19 @@ const FeederChart = ({ ...props }) => {
     // console.log('set activeFeeder to ', activeFeeder)
   }
   const onFeederMouseout = e => {
-    // console.log('onFeederMouseout, ', e)
+    console.log('onFeederMouseout, ', e)
     setActiveFeeder(null)
   }
+  const onFeederClick = e => {
+    console.log('onFeederClick, ', e)
+  }
   const feederChartReady = e => {
-    // console.log('feeder chart ready')
+    console.log('feeder chart ready')
   }
   let feederEvents = {
     mouseover: onFeederMouseover,
     mouseout: onFeederMouseout,
+    click: onFeederClick,
   }
   return (
     <ReactEcharts
