@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
@@ -31,26 +31,10 @@ const FeederSchoolsChart = ({ ...props }) => {
   const feederSchools = useStore(
     state => state.feederSchools,
   )
+  // Currently highlighted school in this chart, if there is one
   const highlightedSchool = useStore(
     state => state.highlightedSchool,
   )
-
-  useEffect(() => {
-    if (!!isLoaded) {
-      let echarts_instance = echarts_react.getEchartsInstance()
-      echarts_instance.dispatchAction({
-        type: 'highlight',
-        // optional; series index; could be an array of multiple series
-        // seriesIndex?: number|Array,
-        // optional; series name; could be an array of multiple series
-        // seriesName?: string|Array,
-        // options are index of data
-        dataIndex: 10,
-        // options are data name
-        // name: highlightedSchool + ',' + activeFeeder,
-      })
-    }
-  }, [highlightedSchool])
 
   /**
    * Gets the count of items with a shared y-value (in node with an array containing [x,y])

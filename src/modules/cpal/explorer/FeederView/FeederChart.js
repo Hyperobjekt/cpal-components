@@ -42,6 +42,10 @@ const FeederChart = ({ ...props }) => {
   const feederSchools = useStore(
     state => state.feederSchools,
   )
+  // To clear highlighted school when a feeder bar is clicked
+  const setHighlightedSchool = useStore(
+    state => state.setHighlightedSchool,
+  )
   /**
    * Gets the set of schools that are in a feeder
    * @return Array Array of school data objects
@@ -91,18 +95,17 @@ const FeederChart = ({ ...props }) => {
     )
     if (!feederLocked) {
       setActiveFeeder(feeder)
-      // e.currentTarget.classList.add('active')
     }
   }
   const onFeederMouseout = e => {
     // console.log('onFeederMouseout, ', e.currentTarget.id)
     if (!feederLocked) {
       setActiveFeeder(null)
-      // e.currentTarget.classList.remove('active')
     }
   }
   const onFeederClick = e => {
     // console.log('onFeederClick, ', e.currentTarget.id)
+    setHighlightedSchool('')
     const feeder = String(e.currentTarget.id).replace(
       'feeder_bar_',
       '',
@@ -113,17 +116,9 @@ const FeederChart = ({ ...props }) => {
     ) {
       setActiveFeeder(null)
       setFeederLocked(false)
-      // e.currentTarget.classList.remove('active')
     } else {
       setActiveFeeder(feeder)
       setFeederLocked(true)
-      // Remove active class from previous
-      // const former = document.getElementsByClassName(
-      //   'feeder-bar-button active',
-      // )
-      // former[0].classList.remove('active')
-      // // Add active class to new
-      // e.currentTarget.classList.add('active')
     }
   }
   const feederChartReady = e => {
