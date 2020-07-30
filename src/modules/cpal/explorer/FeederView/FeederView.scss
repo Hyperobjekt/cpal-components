@@ -138,8 +138,8 @@ $base-cri-color: #3800d9;
       }
     }
   }
-  @media only screen and (max-width: 768px) {
-    .feeders-schools-scatter {
+  @media only screen and (max-width: 1028px) {
+    .row-schools-chart {
       display: none;
     }
   }
