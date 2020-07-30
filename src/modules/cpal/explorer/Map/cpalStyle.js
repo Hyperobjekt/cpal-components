@@ -1,7 +1,7 @@
 // prettier-ignore
 export default {
     "version": 8,
-    "name": "Frank",
+    "name": "CRE v5",
     "metadata": {
         "mapbox:type": "default",
         "mapbox:origin": "basic-v1",
@@ -86,120 +86,11 @@ export default {
             "ios": "5.10.0",
             "js": "1.10.0"
         },
-        "mapbox:uiParadigm": "components",
+        "mapbox:uiParadigm": "layers",
         "mapbox:trackposition": false,
         "mapbox:decompiler": {
-            "id": "ck3zxbv499umj1cscx9sbymev",
+            "id": "ckd7i4sex01xb1io2dwpuevpl",
             "componentVersion": "0.4.0",
-            "propConfig": {
-                "road-network": {
-                    "color-base": "#ffffff",
-                    "color-road": "hsl(40, 38%, 84%)",
-                    "roadNetwork": "Simple",
-                    "color-road-label": "hsl(0, 0%, 38%)",
-                    "roadsFont": [
-                        "Source Sans Pro Regular",
-                        "Arial Unicode MS Regular"
-                    ],
-                    "shieldsFont": [
-                        "Source Sans Pro SemiBold",
-                        "Arial Unicode MS Bold"
-                    ]
-                },
-                "natural-features": {
-                    "color-base": "#ffffff",
-                    "color-water": "#c1ccd7",
-                    "color-poi": "hsl(26, 18%, 42%)",
-                    "waterLabelsFont": [
-                        "Source Sans Pro Italic",
-                        "Arial Unicode MS Regular"
-                    ]
-                },
-                "place-labels": {
-                    "color-base": "#ffffff",
-                    "color-place-label": "hsl(53, 17%, 52%)",
-                    "settlementSubdivisionsDensity": 3,
-                    "settlementLabelStyle": "Text only",
-                    "settlementSubdivisionsFont": [
-                        "Source Code Pro Regular",
-                        "Arial Unicode MS Regular"
-                    ],
-                    "settlementsMinorFont": [
-                        "Source Sans Pro Regular",
-                        "Arial Unicode MS Regular"
-                    ],
-                    "countriesSettlementsMajorFont": [
-                        "Source Sans Pro SemiBold",
-                        "Arial Unicode MS Regular"
-                    ],
-                    "statesFont": [
-                        "Source Sans Pro SemiBold",
-                        "Arial Unicode MS Bold"
-                    ]
-                },
-                "admin-boundaries": {
-                    "color-base": "#ffffff",
-                    "color-place-label": "hsl(53, 17%, 52%)"
-                },
-                "point-of-interest-labels": {
-                    "color-base": "#ffffff",
-                    "color-greenspace": "hsl(65, 62%, 46%)",
-                    "color-hospital": "hsl(3, 45%, 55%)",
-                    "color-school": "hsl(40, 45%, 45%)",
-                    "color-poi": "hsl(26, 18%, 42%)",
-                    "density": 2
-                },
-                "walking-cycling": {
-                    "color-base": "#ffffff",
-                    "color-road": "hsl(40, 38%, 84%)",
-                    "color-greenspace": "hsl(65, 62%, 46%)",
-                    "walkingCyclingPisteBackground": false,
-                    "golfHoleLabelLine": false,
-                    "pedestrianPolygonFeatures": false,
-                    "color-road-label": "hsl(0, 0%, 38%)",
-                    "roadsFont": [
-                        "Source Sans Pro Regular",
-                        "Arial Unicode MS Regular"
-                    ]
-                },
-                "transit": {
-                    "color-airport": "hsl(225, 4%, 40%)",
-                    "matchLabelAndIcon": true,
-                    "roadsFont": [
-                        "Source Sans Pro Regular",
-                        "Arial Unicode MS Regular"
-                    ],
-                    "color-transit": "hsla(230, 55%, 42%, 0.65)",
-                    "aerialways": false,
-                    "color-road": "hsl(40, 38%, 84%)",
-                    "color-water": "#c1ccd7",
-                    "color-road-label": "hsl(0, 0%, 38%)",
-                    "transitLabels": true,
-                    "railways": false,
-                    "ferries": false,
-                    "color-base": "#ffffff"
-                },
-                "land-and-water": {
-                    "color-airport": "hsl(225, 4%, 40%)",
-                    "color-hospital": "hsl(3, 45%, 55%)",
-                    "landcover": false,
-                    "color-greenspace": "hsl(65, 62%, 46%)",
-                    "color-water": "#c1ccd7",
-                    "transitionLandOnZoom": false,
-                    "waterStyle": "Simple",
-                    "color-base": "#ffffff",
-                    "color-school": "hsl(40, 45%, 45%)"
-                },
-                "buildings": {
-                    "color-base": "#ffffff",
-                    "houseNumbers": false,
-                    "3D": true,
-                    "houseNumbersFont": [
-                        "Source Sans Pro Light Italic",
-                        "Arial Unicode MS Regular"
-                    ]
-                }
-            },
             "strata": [
                 {
                     "id": "basic-v1",
@@ -241,60 +132,201 @@ export default {
             ],
             "overrides": {
                 "buildings": {
-                    "building": {"paint": {"fill-color": "#e3d6c4"}},
+                    "building": {
+                        "paint": {
+                            "fill-color": "#f1f1ee",
+                            "fill-outline-color": {"remove": true}
+                        }
+                    },
                     "building-outline": {"layout": {"visibility": "none"}},
                     "building-extrusion": {
                         "paint": {"fill-extrusion-color": "hsl(35, 46%, 69%)"}
                     }
                 },
                 "land-and-water": {
-                    "landuse": {
-                        "paint": {
-                            "fill-color": [
-                                "match",
-                                ["get", "class"],
-                                ["park"],
-                                "hsl(65, 28%, 87%)",
-                                ["cemetery"],
-                                "hsl(64, 23%, 84%)",
-                                ["school"],
-                                "hsl(33, 51%, 94%)",
-                                ["hospital"],
-                                "#f9ebef",
-                                ["airport"],
-                                "hsl(0, 3%, 88%)",
-                                ["glacier"],
-                                "#f3eff5",
-                                ["sand"],
-                                "#eee3c3",
-                                ["pitch"],
-                                "#e2e3ce",
-                                "hsla(0, 0%, 100%, 0)"
+                    "landuse": {"paint": {"fill-color": "#f3f8e7"}},
+                    "national-park": {"paint": {"fill-color": "#f3f8e7"}},
+                    "land": {"paint": {"background-color": "#fcfcf8"}},
+                    "land-structure-polygon": {
+                        "paint": {"fill-color": "#f5f4ef"}
+                    },
+                    "water": {"paint": {"fill-color": "#dff2fb"}},
+                    "waterway": {"paint": {"line-color": "#e4f0f6"}}
+                },
+                "natural-features": {
+                    "waterway-label": {
+                        "paint": {"text-color": "#8399af"},
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "text-letter-spacing": 0.1
+                        }
+                    },
+                    "water-point-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
                             ]
                         }
                     },
-                    "national-park": {
-                        "paint": {"fill-color": "hsl(63, 27%, 83%)"}
+                    "water-line-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ]
+                        }
                     },
-                    "land": {"paint": {"background-color": "#f5f4ef"}},
-                    "land-structure-polygon": {
-                        "paint": {"fill-color": "#f5f4ef"}
+                    "natural-point-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ]
+                        }
+                    },
+                    "natural-line-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ]
+                        }
                     }
-                },
-                "natural-features": {
-                    "waterway-label": {"paint": {"text-color": "#8399af"}}
                 },
                 "place-labels": {
                     "settlement-subdivision-label": {
-                        "paint": {"text-color": "#674b3c"}
+                        "paint": {"text-color": "#73683b"},
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "text-size": [
+                                "interpolate",
+                                ["cubic-bezier", 0.5, 0, 1, 1],
+                                ["zoom"],
+                                13,
+                                ["match", ["get", "type"], "suburb", 11, 10.5],
+                                22,
+                                ["match", ["get", "type"], "suburb", 17, 16]
+                            ]
+                        }
+                    },
+                    "country-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "icon-image": {"remove": true},
+                            "text-transform": "uppercase"
+                        }
+                    },
+                    "state-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Bold"
+                            ]
+                        },
+                        "paint": {"text-color": "#73683b"}
+                    },
+                    "settlement-major-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Regular",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "text-letter-spacing": 0.1,
+                            "text-transform": "uppercase"
+                        },
+                        "paint": {"text-color": "#73683b"}
+                    },
+                    "settlement-minor-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "text-letter-spacing": 0.1,
+                            "text-transform": {"remove": true},
+                            "text-size": [
+                                "interpolate",
+                                ["cubic-bezier", 0.2, 0, 0.9, 1],
+                                ["zoom"],
+                                8,
+                                [
+                                    "step",
+                                    ["get", "symbolrank"],
+                                    12,
+                                    9,
+                                    11,
+                                    10,
+                                    10.5,
+                                    12,
+                                    9.5,
+                                    14,
+                                    8.5,
+                                    16,
+                                    6.5,
+                                    17,
+                                    4
+                                ],
+                                13,
+                                [
+                                    "step",
+                                    ["get", "symbolrank"],
+                                    25,
+                                    9,
+                                    23,
+                                    10,
+                                    21,
+                                    11,
+                                    19,
+                                    12,
+                                    18,
+                                    13,
+                                    17,
+                                    15,
+                                    15
+                                ]
+                            ]
+                        },
+                        "paint": {"text-color": "#73683b"}
                     }
                 },
                 "transit": {
                     "aeroway-polygon": {
-                        "paint": {"fill-color": "#cecaca"},
+                        "paint": {"fill-color": "#f1f1ee"},
                         "layout": {"visibility": "visible"}
                     },
-                    "aeroway-line": {"paint": {"line-color": "#cecaca"}}
+                    "aeroway-line": {"paint": {"line-color": "#f1f1ee"}},
+                    "airport-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "icon-image": {"remove": true}
+                        },
+                        "paint": {"text-color": "#73683b"}
+                    },
+                    "transit-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "text-letter-spacing": 0.1,
+                            "icon-image": ["get", "network"],
+                            "icon-size": 0.6
+                        },
+                        "paint": {"icon-opacity": 0}
+                    }
                 },
                 "walking-cycling": {
                     "road-path-bg": {"layout": {"visibility": "none"}},
@@ -336,6 +368,126 @@ export default {
                         "layout": {"visibility": "none"}
                     },
                     "bridge-pedestrian": {"layout": {"visibility": "none"}}
+                },
+                "point-of-interest-labels": {
+                    "poi-label": {
+                        "layout": {
+                            "text-font": [
+                                "Halyard Display Book",
+                                "Arial Unicode MS Regular"
+                            ],
+                            "text-letter-spacing": 0.1,
+                            "icon-size": 0.6,
+                            "icon-image": {"remove": true}
+                        },
+                        "paint": {"text-color": "#73683b", "icon-opacity": 0.5}
+                    }
+                },
+                "road-network": {
+                    "bridge-simple": {
+                        "paint": {
+                            "line-color": [
+                                "match",
+                                ["get", "class"],
+                                [
+                                    "primary_link",
+                                    "secondary_link",
+                                    "tertiary_link",
+                                    "street",
+                                    "street_limited",
+                                    "service",
+                                    "track"
+                                ],
+                                "#f1f1ee",
+                                "#f1f1ee"
+                            ]
+                        }
+                    },
+                    "road-simple": {
+                        "paint": {
+                            "line-color": [
+                                "match",
+                                ["get", "class"],
+                                [
+                                    "primary_link",
+                                    "secondary_link",
+                                    "tertiary_link",
+                                    "street",
+                                    "street_limited",
+                                    "service",
+                                    "track"
+                                ],
+                                "#f1f1ee",
+                                "#f1f1ee"
+                            ],
+                            "line-width": [
+                                "interpolate",
+                                ["exponential", 1.5],
+                                ["zoom"],
+                                7,
+                                [
+                                    "match",
+                                    ["get", "class"],
+                                    ["motorway", "trunk", "primary"],
+                                    0.3,
+                                    ["secondary", "tertiary"],
+                                    0.1,
+                                    0
+                                ],
+                                13,
+                                [
+                                    "match",
+                                    ["get", "class"],
+                                    ["motorway", "trunk", "primary"],
+                                    4,
+                                    ["secondary", "tertiary"],
+                                    2.5,
+                                    [
+                                        "motorway_link",
+                                        "trunk_link",
+                                        "primary_link",
+                                        "street",
+                                        "street_limited"
+                                    ],
+                                    1,
+                                    0.5
+                                ],
+                                18,
+                                [
+                                    "match",
+                                    ["get", "class"],
+                                    ["motorway", "trunk", "primary"],
+                                    32,
+                                    ["secondary", "tertiary"],
+                                    26,
+                                    [
+                                        "motorway_link",
+                                        "trunk_link",
+                                        "primary_link",
+                                        "street",
+                                        "street_limited"
+                                    ],
+                                    18,
+                                    10
+                                ]
+                            ]
+                        }
+                    },
+                    "tunnel-simple": {"paint": {"line-color": "#f1f1ee"}},
+                    "road-label-simple": {
+                        "paint": {
+                            "text-color": "#73683b",
+                            "text-halo-color": "#ffffff"
+                        },
+                        "layout": {
+                            "text-transform": {"remove": true},
+                            "text-letter-spacing": 0.1,
+                            "text-font": [
+                                "Halyard Display Light",
+                                "Arial Unicode MS Regular"
+                            ]
+                        }
+                    }
                 }
             },
             "components": {
@@ -348,6 +500,132 @@ export default {
                 "transit": "0.4.0",
                 "land-and-water": "0.4.0",
                 "buildings": "0.4.0"
+            },
+            "propConfig": {
+                "road-network": {
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "color-road": "hsl(40, 38%, 84%)",
+                    "roadNetwork": "Simple",
+                    "color-road-label": "#73683b",
+                    "roadsFont": [
+                        "Halyard Display Light",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "shieldsFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Bold"
+                    ]
+                },
+                "natural-features": {
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "color-water": "#c1ccd7",
+                    "color-poi": "hsl(26, 18%, 42%)",
+                    "waterLabelsFont": [
+                        "Halyard Display Light",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "poiEtcFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ]
+                },
+                "place-labels": {
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "color-place-label": "hsl(53, 17%, 52%)",
+                    "settlementSubdivisionsDensity": 3,
+                    "settlementLabelStyle": "Text only",
+                    "settlementSubdivisionsFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "settlementsMinorFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "countriesSettlementsMajorFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "statesFont": [
+                        "Halyard Display Regular",
+                        "Arial Unicode MS Bold"
+                    ]
+                },
+                "admin-boundaries": {
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "color-place-label": "hsl(53, 17%, 52%)"
+                },
+                "point-of-interest-labels": {
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "color-greenspace": "hsl(65, 62%, 46%)",
+                    "color-hospital": "hsl(3, 45%, 55%)",
+                    "color-school": "hsl(40, 45%, 45%)",
+                    "color-poi": "hsl(26, 18%, 42%)",
+                    "density": 2,
+                    "poiEtcFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ]
+                },
+                "walking-cycling": {
+                    "roadsFont": [
+                        "Halyard Display Light",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "golfHoleLabelLine": false,
+                    "color-road": "hsl(40, 38%, 84%)",
+                    "color-greenspace": "hsl(65, 62%, 46%)",
+                    "walkingCyclingPisteBackground": false,
+                    "color-road-label": "#73683b",
+                    "poiEtcFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "pedestrianPolygonFeatures": false
+                },
+                "transit": {
+                    "color-airport": "hsl(225, 4%, 40%)",
+                    "matchLabelAndIcon": true,
+                    "roadsFont": [
+                        "Halyard Display Light",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "color-transit": "hsla(230, 55%, 42%, 0.65)",
+                    "aerialways": false,
+                    "color-road": "hsl(40, 38%, 84%)",
+                    "color-water": "#c1ccd7",
+                    "color-road-label": "#73683b",
+                    "transitLabels": true,
+                    "railways": false,
+                    "ferries": false,
+                    "poiEtcFont": [
+                        "Halyard Display Book",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "color-base": "hsl(0, 0%, 100%)"
+                },
+                "land-and-water": {
+                    "color-airport": "hsl(225, 4%, 40%)",
+                    "color-hospital": "hsl(3, 45%, 55%)",
+                    "landcover": false,
+                    "color-greenspace": "hsl(65, 62%, 46%)",
+                    "color-water": "#c1ccd7",
+                    "transitionLandOnZoom": false,
+                    "waterStyle": "Simple",
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "color-school": "hsl(40, 45%, 45%)"
+                },
+                "buildings": {
+                    "color-base": "hsl(0, 0%, 100%)",
+                    "houseNumbers": false,
+                    "3D": false,
+                    "houseNumbersFont": [
+                        "Halyard Display Light",
+                        "Arial Unicode MS Regular"
+                    ],
+                    "haloWidth": 1
+                }
             }
         }
     },
@@ -356,20 +634,12 @@ export default {
     "bearing": 0,
     "pitch": 0,
     "sources": {
-        "mapbox://mapbox.mapbox-traffic-v1": {
-            "url": "mapbox://mapbox.mapbox-traffic-v1",
-            "type": "vector"
-        },
-        "mapbox://mapbox.mapbox-incidents-v1": {
-            "url": "mapbox://mapbox.mapbox-incidents-v1",
-            "type": "vector"
-        },
         "composite": {
-            "url": "mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2",
+            "url": "mapbox://mapbox.mapbox-streets-v8",
             "type": "vector"
         }
     },
-    "sprite": "mapbox://sprites/cpal/ckd7i4sex01xb1io2dwpuevpl/7vlprm9mpzc69yaw2pofsyoit",
+    "sprite": "mapbox://sprites/cpal/ckd7i4sex01xb1io2dwpuevpl/53scw41v5rj9y91shygngdd49",
     "glyphs": "mapbox://fonts/cpal/{fontstack}/{range}.pbf",
     "layers": [
         {
@@ -380,7 +650,7 @@ export default {
                 "mapbox:group": "Land & water, land-and-water"
             },
             "layout": {},
-            "paint": {"background-color": "#f5f4ef"}
+            "paint": {"background-color": "#fcfcf8"}
         },
         {
             "id": "national-park",
@@ -395,7 +665,7 @@ export default {
             "filter": ["==", ["get", "class"], "national_park"],
             "layout": {},
             "paint": {
-                "fill-color": "hsl(63, 27%, 83%)",
+                "fill-color": "#f3f8e7",
                 "fill-opacity": [
                     "interpolate",
                     ["linear"],
@@ -434,27 +704,7 @@ export default {
             ],
             "layout": {},
             "paint": {
-                "fill-color": [
-                    "match",
-                    ["get", "class"],
-                    ["park"],
-                    "hsl(65, 28%, 87%)",
-                    ["cemetery"],
-                    "hsl(64, 23%, 84%)",
-                    ["school"],
-                    "hsl(33, 51%, 94%)",
-                    ["hospital"],
-                    "#f9ebef",
-                    ["airport"],
-                    "hsl(0, 3%, 88%)",
-                    ["glacier"],
-                    "#f3eff5",
-                    ["sand"],
-                    "#eee3c3",
-                    ["pitch"],
-                    "#e2e3ce",
-                    "hsla(0, 0%, 100%, 0)"
-                ],
+                "fill-color": "#f3f8e7",
                 "fill-opacity": [
                     "interpolate",
                     ["linear"],
@@ -495,7 +745,7 @@ export default {
                 "line-join": "round"
             },
             "paint": {
-                "line-color": "#c1ccd7",
+                "line-color": "#e4f0f6",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.3],
@@ -526,7 +776,7 @@ export default {
             "source": "composite",
             "source-layer": "water",
             "layout": {},
-            "paint": {"fill-color": "#c1ccd7"}
+            "paint": {"fill-color": "#dff2fb"}
         },
         {
             "id": "water-pattern",
@@ -535,8 +785,15 @@ export default {
             "source-layer": "water",
             "layout": {},
             "paint": {
-                "fill-color": "hsl(210, 22%, 80%)",
-                "fill-pattern": "bank2-01",
+                "fill-color": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0,
+                    "#e4f0f6",
+                    22,
+                    "#e4f0f6"
+                ],
                 "fill-opacity": 0.5
             }
         },
@@ -584,7 +841,7 @@ export default {
                     20,
                     40
                 ],
-                "line-color": "rgb(252, 252, 252)"
+                "line-color": "hsl(0, 0%, 99%)"
             }
         },
         {
@@ -610,7 +867,7 @@ export default {
             ],
             "layout": {},
             "paint": {
-                "fill-color": "#cecaca",
+                "fill-color": "#f1f1ee",
                 "fill-opacity": [
                     "interpolate",
                     ["linear"],
@@ -635,7 +892,7 @@ export default {
             "filter": ["==", ["geometry-type"], "LineString"],
             "layout": {},
             "paint": {
-                "line-color": "#cecaca",
+                "line-color": "#f1f1ee",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -644,6 +901,73 @@ export default {
                     ["match", ["get", "type"], "runway", 1, 0.5],
                     18,
                     ["match", ["get", "type"], "runway", 80, 20]
+                ]
+            }
+        },
+        {
+            "id": "building-outline",
+            "type": "line",
+            "metadata": {
+                "mapbox:featureComponent": "buildings",
+                "mapbox:group": "Buildings, built"
+            },
+            "source": "composite",
+            "source-layer": "building",
+            "minzoom": 15,
+            "filter": [
+                "all",
+                ["!=", ["get", "type"], "building:part"],
+                ["==", ["get", "underground"], "false"]
+            ],
+            "layout": {"visibility": "none"},
+            "paint": {
+                "line-color": "hsl(0, 0%, 89%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    15,
+                    0.75,
+                    20,
+                    3
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    15,
+                    0,
+                    16,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "building",
+            "type": "fill",
+            "metadata": {
+                "mapbox:featureComponent": "buildings",
+                "mapbox:group": "Buildings, built"
+            },
+            "source": "composite",
+            "source-layer": "building",
+            "minzoom": 15,
+            "filter": [
+                "all",
+                ["!=", ["get", "type"], "building:part"],
+                ["==", ["get", "underground"], "false"]
+            ],
+            "layout": {},
+            "paint": {
+                "fill-color": "#f1f1ee",
+                "fill-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    15,
+                    0,
+                    16,
+                    1
                 ]
             }
         },
@@ -675,7 +999,7 @@ export default {
                     18,
                     4
                 ],
-                "line-color": "rgb(227, 227, 227)",
+                "line-color": "hsl(0, 0%, 89%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -718,7 +1042,7 @@ export default {
                     18,
                     6
                 ],
-                "line-color": "rgb(227, 227, 227)",
+                "line-color": "hsl(0, 0%, 89%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -759,7 +1083,7 @@ export default {
                     18,
                     12
                 ],
-                "line-color": "rgb(227, 227, 227)",
+                "line-color": "hsl(0, 0%, 89%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -875,7 +1199,7 @@ export default {
                         12
                     ]
                 ],
-                "line-color": "hsl(40, 38%, 77%)"
+                "line-color": "#f1f1ee"
             }
         },
         {
@@ -928,7 +1252,7 @@ export default {
                     18,
                     4
                 ],
-                "line-color": "rgb(255, 255, 255)",
+                "line-color": "hsl(0, 0%, 100%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -971,7 +1295,7 @@ export default {
                     18,
                     6
                 ],
-                "line-color": "rgb(255, 255, 255)",
+                "line-color": "hsl(0, 0%, 100%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -1015,7 +1339,7 @@ export default {
                     18,
                     12
                 ],
-                "line-color": "rgb(255, 255, 255)",
+                "line-color": "hsl(0, 0%, 100%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -1173,12 +1497,12 @@ export default {
                     "interpolate",
                     ["exponential", 1.5],
                     ["zoom"],
-                    5,
+                    7,
                     [
                         "match",
                         ["get", "class"],
                         ["motorway", "trunk", "primary"],
-                        0.75,
+                        0.3,
                         ["secondary", "tertiary"],
                         0.1,
                         0
@@ -1232,8 +1556,8 @@ export default {
                         "service",
                         "track"
                     ],
-                    "hsl(40, 38%, 79%)",
-                    "hsl(40, 38%, 84%)"
+                    "#f1f1ee",
+                    "#f1f1ee"
                 ]
             }
         },
@@ -1341,7 +1665,7 @@ export default {
                         16
                     ]
                 ],
-                "line-color": "rgb(252, 252, 252)"
+                "line-color": "hsl(0, 0%, 99%)"
             }
         },
         {
@@ -1372,7 +1696,7 @@ export default {
                     18,
                     4
                 ],
-                "line-color": "rgb(255, 255, 255)",
+                "line-color": "hsl(0, 0%, 100%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -1415,7 +1739,7 @@ export default {
                     18,
                     6
                 ],
-                "line-color": "rgb(255, 255, 255)",
+                "line-color": "hsl(0, 0%, 100%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -1456,7 +1780,7 @@ export default {
                     18,
                     12
                 ],
-                "line-color": "rgb(255, 255, 255)",
+                "line-color": "hsl(0, 0%, 100%)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -1595,31 +1919,9 @@ export default {
                         "service",
                         "track"
                     ],
-                    "hsl(40, 38%, 79%)",
-                    "hsl(40, 38%, 84%)"
+                    "#f1f1ee",
+                    "#f1f1ee"
                 ]
-            }
-        },
-        {
-            "id": "building-extrusion",
-            "type": "fill-extrusion",
-            "metadata": {
-                "mapbox:featureComponent": "buildings",
-                "mapbox:group": "Buildings, extruded"
-            },
-            "source": "composite",
-            "source-layer": "building",
-            "minzoom": 15,
-            "filter": [
-                "all",
-                ["==", ["get", "underground"], "false"],
-                ["!=", ["get", "extrude"], "false"]
-            ],
-            "layout": {},
-            "paint": {
-                "fill-extrusion-color": "hsl(35, 46%, 69%)",
-                "fill-extrusion-height": ["get", "height"],
-                "fill-extrusion-opacity": 0.3
             }
         },
         {
@@ -1644,7 +1946,7 @@ export default {
                     ["linear"],
                     ["zoom"],
                     8,
-                    "rgb(252, 252, 252)",
+                    "hsl(0, 0%, 99%)",
                     16,
                     "hsl(53, 29%, 99%)"
                 ],
@@ -1703,7 +2005,7 @@ export default {
                     ["linear"],
                     ["zoom"],
                     6,
-                    "rgb(252, 252, 252)",
+                    "hsl(0, 0%, 99%)",
                     8,
                     "hsl(53, 29%, 99%)"
                 ],
@@ -1908,7 +2210,7 @@ export default {
                 ],
                 "text-max-angle": 30,
                 "text-font": [
-                    "Source Sans Pro Regular",
+                    "Halyard Display Light",
                     "Arial Unicode MS Regular"
                 ],
                 "symbol-placement": "line",
@@ -1916,11 +2218,11 @@ export default {
                 "text-rotation-alignment": "map",
                 "text-pitch-alignment": "viewport",
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
-                "text-letter-spacing": 0.01
+                "text-letter-spacing": 0.1
             },
             "paint": {
-                "text-color": "hsl(0, 0%, 38%)",
-                "text-halo-color": "hsl(40, 38%, 84%)",
+                "text-color": "#73683b",
+                "text-halo-color": "#ffffff",
                 "text-halo-width": 1
             }
         },
@@ -1953,7 +2255,7 @@ export default {
                 ],
                 "text-max-angle": 30,
                 "text-font": [
-                    "Source Sans Pro Regular",
+                    "Halyard Display Light",
                     "Arial Unicode MS Regular"
                 ],
                 "symbol-placement": "line",
@@ -1965,8 +2267,8 @@ export default {
                 "text-letter-spacing": 0.01
             },
             "paint": {
-                "text-color": "hsl(0, 0%, 38%)",
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-color": "#73683b",
+                "text-halo-color": "hsl(0, 0%, 100%)",
                 "text-halo-width": 1,
                 "text-halo-blur": 1
             }
@@ -1994,7 +2296,7 @@ export default {
             ],
             "layout": {
                 "text-font": [
-                    "Source Sans Pro Italic",
+                    "Halyard Display Book",
                     "Arial Unicode MS Regular"
                 ],
                 "text-max-angle": 30,
@@ -2018,7 +2320,8 @@ export default {
                 ],
                 "symbol-placement": "line",
                 "text-pitch-alignment": "viewport",
-                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
+                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "text-letter-spacing": 0.1
             },
             "paint": {"text-color": "#8399af"}
         },
@@ -2054,13 +2357,16 @@ export default {
                 ],
                 "text-max-angle": 30,
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
-                "text-font": ["DIN Pro Medium", "Arial Unicode MS Regular"],
+                "text-font": [
+                    "Halyard Display Book",
+                    "Arial Unicode MS Regular"
+                ],
                 "symbol-placement": "line-center",
                 "text-pitch-alignment": "viewport"
             },
             "paint": {
                 "text-halo-width": 0.5,
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-halo-color": "hsl(0, 5%, 100%)",
                 "text-halo-blur": 0.5,
                 "text-color": [
                     "step",
@@ -2120,7 +2426,10 @@ export default {
                     15,
                     ["concat", ["get", "maki"], "-15"]
                 ],
-                "text-font": ["DIN Pro Medium", "Arial Unicode MS Regular"],
+                "text-font": [
+                    "Halyard Display Book",
+                    "Arial Unicode MS Regular"
+                ],
                 "text-offset": [
                     "step",
                     ["zoom"],
@@ -2157,7 +2466,7 @@ export default {
                     17,
                     ["step", ["get", "sizerank"], 0, 13, 1]
                 ],
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-halo-color": "hsl(0, 5%, 100%)",
                 "text-halo-width": 0.5,
                 "text-halo-blur": 0.5,
                 "text-color": [
@@ -2224,7 +2533,7 @@ export default {
                     0
                 ],
                 "text-font": [
-                    "Source Sans Pro Italic",
+                    "Halyard Display Book",
                     "Arial Unicode MS Regular"
                 ],
                 "symbol-placement": "line-center",
@@ -2273,7 +2582,7 @@ export default {
                     ["step", ["get", "sizerank"], 18, 9, 12]
                 ],
                 "text-font": [
-                    "Source Sans Pro Italic",
+                    "Halyard Display Book",
                     "Arial Unicode MS Regular"
                 ],
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
@@ -2331,14 +2640,10 @@ export default {
                     17,
                     ["step", ["get", "sizerank"], 18, 13, 12]
                 ],
-                "icon-image": [
-                    "step",
-                    ["zoom"],
-                    ["concat", ["get", "maki"], "-11"],
-                    15,
-                    ["concat", ["get", "maki"], "-15"]
+                "text-font": [
+                    "Halyard Display Book",
+                    "Arial Unicode MS Regular"
                 ],
-                "text-font": ["DIN Pro Medium", "Arial Unicode MS Regular"],
                 "text-offset": [
                     "step",
                     ["zoom"],
@@ -2365,16 +2670,12 @@ export default {
                     17,
                     ["step", ["get", "sizerank"], "center", 13, "top"]
                 ],
-                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
+                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "text-letter-spacing": 0.1,
+                "icon-size": 0.6
             },
             "paint": {
-                "icon-opacity": [
-                    "step",
-                    ["zoom"],
-                    ["step", ["get", "sizerank"], 0, 5, 1],
-                    17,
-                    ["step", ["get", "sizerank"], 0, 13, 1]
-                ],
+                "icon-opacity": 0.5,
                 "text-halo-color": [
                     "match",
                     ["get", "class"],
@@ -2384,77 +2685,11 @@ export default {
                     "hsl(40, 28%, 100%)",
                     "medical",
                     "hsl(3, 41%, 100%)",
-                    "rgb(255, 255, 255)"
+                    "hsl(0, 5%, 100%)"
                 ],
                 "text-halo-width": 0.5,
                 "text-halo-blur": 0.5,
-                "text-color": [
-                    "step",
-                    ["zoom"],
-                    [
-                        "step",
-                        ["get", "sizerank"],
-                        [
-                            "match",
-                            ["get", "class"],
-                            "food_and_drink",
-                            "hsl(22, 40%, 65%)",
-                            "park_like",
-                            "hsl(65, 28%, 46%)",
-                            "education",
-                            "hsl(40, 18%, 45%)",
-                            "medical",
-                            "hsl(3, 18%, 55%)",
-                            "hsl(26, 13%, 52%)"
-                        ],
-                        5,
-                        [
-                            "match",
-                            ["get", "class"],
-                            "food_and_drink",
-                            "hsl(22, 61%, 48%)",
-                            "park_like",
-                            "hsl(65, 62%, 29%)",
-                            "education",
-                            "hsl(40, 45%, 25%)",
-                            "medical",
-                            "hsl(3, 24%, 45%)",
-                            "hsl(26, 18%, 42%)"
-                        ]
-                    ],
-                    17,
-                    [
-                        "step",
-                        ["get", "sizerank"],
-                        [
-                            "match",
-                            ["get", "class"],
-                            "food_and_drink",
-                            "hsl(22, 40%, 65%)",
-                            "park_like",
-                            "hsl(65, 28%, 46%)",
-                            "education",
-                            "hsl(40, 18%, 45%)",
-                            "medical",
-                            "hsl(3, 18%, 55%)",
-                            "hsl(26, 13%, 52%)"
-                        ],
-                        13,
-                        [
-                            "match",
-                            ["get", "class"],
-                            "food_and_drink",
-                            "hsl(22, 61%, 48%)",
-                            "park_like",
-                            "hsl(65, 62%, 29%)",
-                            "education",
-                            "hsl(40, 45%, 25%)",
-                            "medical",
-                            "hsl(3, 24%, 45%)",
-                            "hsl(26, 18%, 42%)"
-                        ]
-                    ]
-                ]
+                "text-color": "#73683b"
             }
         },
         {
@@ -2525,7 +2760,10 @@ export default {
             "layout": {
                 "text-size": 12,
                 "icon-image": ["get", "network"],
-                "text-font": ["DIN Pro Medium", "Arial Unicode MS Regular"],
+                "text-font": [
+                    "Halyard Display Book",
+                    "Arial Unicode MS Regular"
+                ],
                 "text-justify": [
                     "match",
                     ["get", "stop_type"],
@@ -2540,6 +2778,7 @@ export default {
                     ["literal", [1, 0]],
                     ["literal", [0, 0.8]]
                 ],
+                "icon-size": 0.6,
                 "text-anchor": [
                     "match",
                     ["get", "stop_type"],
@@ -2570,7 +2809,7 @@ export default {
                     18,
                     ["coalesce", ["get", "name_en"], ["get", "name"]]
                 ],
-                "text-letter-spacing": 0.01,
+                "text-letter-spacing": 0.1,
                 "text-max-width": [
                     "match",
                     ["get", "stop_type"],
@@ -2580,7 +2819,7 @@ export default {
                 ]
             },
             "paint": {
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-halo-color": "hsl(0, 5%, 100%)",
                 "text-color": [
                     "match",
                     ["get", "network"],
@@ -2608,7 +2847,8 @@ export default {
                     "hsla(230, 55%, 42%, 0.65)"
                 ],
                 "text-halo-blur": 0.5,
-                "text-halo-width": 0.5
+                "text-halo-width": 0.5,
+                "icon-opacity": 0
             }
         },
         {
@@ -2624,14 +2864,10 @@ export default {
             "layout": {
                 "text-line-height": 1.1,
                 "text-size": ["step", ["get", "sizerank"], 18, 9, 12],
-                "icon-image": [
-                    "step",
-                    ["get", "sizerank"],
-                    ["concat", ["get", "maki"], "-15"],
-                    9,
-                    ["concat", ["get", "maki"], "-11"]
+                "text-font": [
+                    "Halyard Display Book",
+                    "Arial Unicode MS Regular"
                 ],
-                "text-font": ["DIN Pro Medium", "Arial Unicode MS Regular"],
                 "text-offset": [0, 0.75],
                 "text-rotation-alignment": "viewport",
                 "text-anchor": "top",
@@ -2646,7 +2882,7 @@ export default {
                 "text-max-width": 9
             },
             "paint": {
-                "text-color": "hsl(225, 4%, 40%)",
+                "text-color": "#73683b",
                 "text-halo-color": "hsl(225, 20%, 100%)",
                 "text-halo-width": 1
             }
@@ -2671,7 +2907,7 @@ export default {
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
                 "text-transform": "uppercase",
                 "text-font": [
-                    "Source Code Pro Regular",
+                    "Halyard Display Book",
                     "Arial Unicode MS Regular"
                 ],
                 "text-letter-spacing": [
@@ -2687,16 +2923,16 @@ export default {
                     "interpolate",
                     ["cubic-bezier", 0.5, 0, 1, 1],
                     ["zoom"],
-                    11,
+                    13,
                     ["match", ["get", "type"], "suburb", 11, 10.5],
-                    15,
+                    22,
                     ["match", ["get", "type"], "suburb", 17, 16]
                 ]
             },
             "paint": {
-                "text-halo-color": "rgba(255, 255, 255, 0.75)",
+                "text-halo-color": "hsla(0, 5%, 100%, 0.75)",
                 "text-halo-width": 1,
-                "text-color": "#674b3c",
+                "text-color": "#73683b",
                 "text-halo-blur": 0.5
             }
         },
@@ -2738,7 +2974,7 @@ export default {
                     "interpolate",
                     ["cubic-bezier", 0.2, 0, 0.9, 1],
                     ["zoom"],
-                    3,
+                    8,
                     [
                         "step",
                         ["get", "symbolrank"],
@@ -2777,7 +3013,7 @@ export default {
                 ],
                 "icon-image": "",
                 "text-font": [
-                    "Source Sans Pro Regular",
+                    "Halyard Display Book",
                     "Arial Unicode MS Regular"
                 ],
                 "text-justify": [
@@ -2804,11 +3040,12 @@ export default {
                 ],
                 "text-anchor": ["step", ["zoom"], "center", 8, "center"],
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "text-letter-spacing": 0.1,
                 "text-max-width": 7
             },
             "paint": {
-                "text-color": "hsl(53, 17%, 29%)",
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-color": "#73683b",
+                "text-halo-color": "hsl(0, 5%, 100%)",
                 "text-halo-width": 1,
                 "icon-opacity": ["step", ["zoom"], 1, 8, 0],
                 "text-halo-blur": 1
@@ -2874,8 +3111,9 @@ export default {
                     ]
                 ],
                 "icon-image": "",
+                "text-transform": "uppercase",
                 "text-font": [
-                    "Source Sans Pro SemiBold",
+                    "Halyard Display Regular",
                     "Arial Unicode MS Regular"
                 ],
                 "text-justify": [
@@ -2902,11 +3140,12 @@ export default {
                 ],
                 "text-anchor": ["step", ["zoom"], "center", 8, "center"],
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "text-letter-spacing": 0.1,
                 "text-max-width": 7
             },
             "paint": {
-                "text-color": "hsl(53, 17%, 29%)",
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-color": "#73683b",
+                "text-halo-color": "hsl(0, 5%, 100%)",
                 "text-halo-width": 1,
                 "icon-opacity": ["step", ["zoom"], 1, 8, 0],
                 "text-halo-blur": 1
@@ -2935,10 +3174,7 @@ export default {
                     ["step", ["get", "symbolrank"], 24, 6, 18, 7, 14]
                 ],
                 "text-transform": "uppercase",
-                "text-font": [
-                    "Source Sans Pro SemiBold",
-                    "Arial Unicode MS Bold"
-                ],
+                "text-font": ["Halyard Display Book", "Arial Unicode MS Bold"],
                 "text-field": [
                     "step",
                     ["zoom"],
@@ -2961,8 +3197,8 @@ export default {
                 "text-max-width": 6
             },
             "paint": {
-                "text-color": "hsl(53, 17%, 29%)",
-                "text-halo-color": "rgb(255, 255, 255)",
+                "text-color": "#73683b",
+                "text-halo-color": "hsl(0, 5%, 100%)",
                 "text-halo-width": 1
             }
         },
@@ -2979,12 +3215,12 @@ export default {
             "maxzoom": 10,
             "filter": ["==", ["get", "class"], "country"],
             "layout": {
-                "icon-image": "",
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "text-transform": "uppercase",
                 "text-line-height": 1.1,
                 "text-max-width": 6,
                 "text-font": [
-                    "Source Sans Pro SemiBold",
+                    "Halyard Display Book",
                     "Arial Unicode MS Regular"
                 ],
                 "text-offset": ["literal", [0, 0]],
@@ -3027,9 +3263,9 @@ export default {
                     ["linear"],
                     ["zoom"],
                     2,
-                    "rgba(255, 255, 255, 0.75)",
+                    "hsla(0, 5%, 100%, 0.75)",
                     3,
-                    "rgb(255, 255, 255)"
+                    "hsl(0, 5%, 100%)"
                 ],
                 "text-halo-width": 1.25
             }
@@ -3037,7 +3273,7 @@ export default {
     ],
     "created": "2020-07-29T15:06:12.073Z",
     "id": "ckd7i4sex01xb1io2dwpuevpl",
-    "modified": "2020-07-29T15:06:12.073Z",
+    "modified": "2020-07-30T20:04:54.733Z",
     "owner": "cpal",
     "visibility": "private",
     "draft": false
