@@ -177,7 +177,7 @@ const FeederSchoolsChart = ({ ...props }) => {
               Number(getSchoolSLN(params.name)) ===
               Number(highlightedSchool)
             ) {
-              return 14
+              return 13
             } else {
               return Number(getFeederSLN(params.name)) ===
                 Number(activeFeeder)
