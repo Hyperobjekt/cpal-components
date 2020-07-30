@@ -108,8 +108,8 @@ export const COMM_COLORS = [
 ]
 
 export const DISTRICT_COLORS = {
-  57916: 'green',
-  57905: 'red',
+  57916: '#DCDCC2',
+  57905: '#DCDCC2',
 }
 
 export const REDLINE_COLORS = {
