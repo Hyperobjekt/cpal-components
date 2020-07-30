@@ -56,35 +56,53 @@ const FeederView = () => {
     }
   }, [isLoaded])
 
+  // <h2>
+  //   {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
+  // </h2>
+
   return (
-    <Row className="layout-view-feeder">
-      <Col
-        xs={{ size: 12, order: 1, offset: 0 }}
-        md={{ size: 10, order: 1, offset: 1 }}
-      >
-        <h4>
-          {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
-        </h4>
-      </Col>
-      <Col
-        xs={{ size: 12, order: 2, offset: 0 }}
-        md={{ size: 10, order: 2, offset: 1 }}
-        className="feeders-bar-chart"
-      >
-        <FeederChart />
-        <FeederLegend />
-      </Col>
-      <Col
-        xs={{ size: 12, order: 3, offset: 0 }}
-        md={{ size: 12, order: 3, offset: 0 }}
-        className="feeders-schools-scatter"
-        aria-label={i18n.translate(
-          'UI_FEEDER_SCHOOL_CHART_DESC',
-        )}
-      >
-        <FeederSchoolsChart />
-      </Col>
-    </Row>
+    <div className="layout-view-feeder">
+      <Row className="row-feeder-top">
+        <Col
+          xs={{ size: 12, order: 1, offset: 0 }}
+          md={{ size: 12, order: 1, offset: 0 }}
+        ></Col>
+      </Row>
+      <Row className="row-bar-chart">
+        <Col
+          xs={{ size: 12, order: 2, offset: 0 }}
+          md={{ size: 12, order: 2, offset: 0 }}
+          className="feeders-bar-chart"
+        >
+          <div className="feeders-bar-chart-parent">
+            <FeederChart />
+          </div>
+          <FeederLegend />
+        </Col>
+        <Col
+          xs={{ size: 12, order: 2, offset: 0 }}
+          md={{ size: 12, order: 2, offset: 0 }}
+          className="feeders-bar-legend"
+        ></Col>
+      </Row>
+      <Row className="row-schools-chart">
+        <Col
+          xs={{ size: 12, order: 3, offset: 0 }}
+          md={{ size: 12, order: 3, offset: 0 }}
+          className="feeders-schools-scatter"
+          aria-label={i18n.translate(
+            'UI_FEEDER_TITLE_SCHOOLS_CHART',
+          )}
+        >
+          <h2>
+            {i18n.translate(
+              'UI_FEEDER_TITLE_SCHOOLS_CHART',
+            )}
+          </h2>
+          <FeederSchoolsChart />
+        </Col>
+      </Row>
+    </div>
   )
 }
 

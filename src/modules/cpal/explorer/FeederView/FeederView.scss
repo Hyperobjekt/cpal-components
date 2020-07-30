@@ -1,83 +1,146 @@
+$base-cri-color: #3800d9;
+
 .layout-view-feeder {
-  .feeders-bar-chart {
-    .echarts-for-react {
-      min-height: 600px;
-    }
-    .feeder-chart-bar {
-      width: 100%;
-      .feeder-bar-button {
-        position: relative;
-        width: 100%;
-        color: transparent;
-        background-color: transparent;
-        border: 0;
-        &:focus {
-          outline: none;
-        }
-        .bar {
-          display: block;
-          height: 1.3rem;
-          background: rgb(56, 0, 217);
-          background: linear-gradient(
-            180deg,
-            rgba(56, 0, 217, 1) 0%,
-            rgba(161, 134, 241, 1) 54%
-          );
-        }
-        &.active,
-        &:hover {
+  // Header row
+  .row-feeder-top {
+    min-height: 5vh;
+  }
+
+  // Bar chart row
+  .row-bar-chart {
+    .feeders-bar-chart {
+      .echarts-for-react {
+        min-height: 600px;
+      }
+      .feeder-chart-bar {
+        width: 90%;
+        // height: 150vh;
+        overflow-y: scroll;
+        .feeder-bar-button {
+          position: relative;
+          width: 100%;
+          background-color: transparent;
+          border: 0;
+          display: flex;
+          flex-wrap: nowrap;
+          margin-bottom: 0.5rem;
+          .label {
+            flex: 0 0 160px;
+            text-align: right;
+            padding-right: 0.5rem;
+            // vertical-align: top;
+            line-height: 1.3rem;
+          }
+          .data {
+            flex: 0 1 auto;
+            padding-left: 0.5rem;
+            line-height: 1.3rem;
+          }
+          &:focus {
+            outline: none;
+          }
           .bar {
-            background: rgb(56, 0, 217);
-            background: linear-gradient(
-              180deg,
-              rgba(56, 0, 217, 1) 25%,
-              rgba(161, 134, 241, 1) 94%
-            );
+            display: block;
+            height: 1.3rem;
+            background: lighten($base-cri-color, 40%);
+          }
+          &.active,
+          &:hover {
+            .bar {
+              background: lighten($base-cri-color, 30%);
+            }
           }
         }
-        .data {
-          color: black;
-          position: absolute;
-          left: 1rem;
-          top: 0;
+      }
+      .feeder-chart-legend {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 12px;
+        h2 {
+          font-size: 16px;
+        }
+        h3 {
+          font-size: 14px;
+        }
+        h4 {
+          font-size: 12px;
+        }
+        p {
+          font-size: 10px;
+        }
+        h4 {
+          width: 100%;
+          flex: 0 0 100%;
+        }
+        .feeder-legend-metrics,
+        .feeder-legend-schools {
+          width: 45%;
+          flex: 0 0 auto;
+          margin: 0.6rem auto 0.6rem;
+          span {
+            width: 100%;
+            display: block;
+          }
         }
       }
+    }
+  }
+
+  // Scatterplot (school) chart row
+  .row-schools-chart {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    width: 100%;
+    padding-top: 1rem;
+    .feeders-schools-scatter {
+      background: #fff;
+      padding-top: 2rem;
+      box-shadow: 0 -2px 2px #ccc;
+      h2 {
+        font-size: 16px;
+        margin-bottom: -90px;
+        margin-left: 3rem;
+      }
+    }
+  }
+
+  .layout-view-feeder {
+  }
+  @media only screen and (min-width: 1028px) {
+    .feeders-bar-chart-parent {
+      height: 110%;
+      overflow-y: scroll;
+      .feeder-chart-bar {
+        height: 110%;
+      }
+    }
+    .layout-view-feeder {
+      height: 100%;
+      overflow: hidden;
     }
     .feeder-chart-legend {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      h4 {
-        width: 100%;
-        flex: 0 0 100%;
-      }
+      display: block !important;
+      position: absolute;
+      top: 0;
+      right: 10%;
+      width: 25% !important;
+      background: #fff;
+      padding: 0.6rem;
+      border-radius: 3px;
+      box-shadow: 0px 0px 4px #ccc;
+      min-height: 40vh;
+
       .feeder-legend-metrics,
       .feeder-legend-schools {
-        width: 45%;
-        flex: 0 0 auto;
-        span {
-          width: 100%;
-          display: block;
-        }
+        width: 100% !important;
       }
     }
   }
-}
-@media only screen and (min-width: 768px) {
-  .feeder-chart-legend {
-    // display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 25% !important;
-    .feeder-legend-metrics,
-    .feeder-legend-schools {
-      width: 100% !important;
+  @media only screen and (max-width: 768px) {
+    .feeders-schools-scatter {
+      display: none;
     }
-  }
-}
-@media only screen and (max-width: 768px) {
-  .feeders-schools-scatter {
-    display: none;
   }
 }

@@ -152,6 +152,7 @@ const FeederChart = ({ ...props }) => {
             onMouseOver={onFeederMouseover}
             onMouseOut={onFeederMouseout}
           >
+            <span className="label">{el.label}</span>
             <div
               className="bar"
               style={{
@@ -160,7 +161,7 @@ const FeederChart = ({ ...props }) => {
               aria-hidden="true"
             ></div>
             <span className="data">
-              {el.label}, {getRoundedValue(el.value, 0)}
+              {getRoundedValue(el.value, 1, 1)}
             </span>
           </button>
         )

@@ -63,7 +63,10 @@ const FeederLegend = ({ ...props }) => {
     <div className="feeder-chart-legend">
       {!!activeFeeder ? (
         <>
-          <h4>
+          <h2>
+            {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
+          </h2>
+          <h3>
             {getFeederLabel(activeFeeder) +
               ' ' +
               toTitleCase(
@@ -71,13 +74,13 @@ const FeederLegend = ({ ...props }) => {
                   term: i18n.translate('TERM_SCHOOL'),
                 }),
               )}
-          </h4>
+          </h3>
 
           <div
             className="feeder-legend-metrics"
             aria-live="assertive"
           >
-            <h5>
+            <h4>
               {toTitleCase(
                 i18n.translate('TERM_PLURAL', {
                   term: i18n.translate(
@@ -85,7 +88,7 @@ const FeederLegend = ({ ...props }) => {
                   ),
                 }),
               )}
-            </h5>
+            </h4>
             {CPAL_FEEDER_TIP_ITEMS.map(el => {
               return (
                 <span
@@ -110,13 +113,13 @@ const FeederLegend = ({ ...props }) => {
             </i>
           </div>
           <div className="feeder-legend-schools">
-            <h5>
+            <h3>
               {toTitleCase(
                 i18n.translate('TERM_PLURAL', {
                   term: i18n.translate('TERM_SCHOOL'),
                 }),
               )}
-            </h5>
+            </h3>
             {getSchoolSet(activeFeeder).map(el => {
               return (
                 <span
@@ -131,7 +134,19 @@ const FeederLegend = ({ ...props }) => {
           </div>
         </>
       ) : (
-        ''
+        <>
+          <h2>
+            {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
+          </h2>
+          <div
+            className="feeder-desc"
+            dangerouslySetInnerHTML={{
+              __html: i18n.translate(
+                `UI_FEEDER_TITLE_FEEDER_DESC`,
+              ),
+            }}
+          ></div>
+        </>
       )}
     </div>
   )
