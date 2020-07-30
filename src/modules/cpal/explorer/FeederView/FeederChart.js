@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
-import echarts from 'echarts/lib/echarts'
+// import echarts from 'echarts/lib/echarts'
 
 import {
   CPAL_METRICS,

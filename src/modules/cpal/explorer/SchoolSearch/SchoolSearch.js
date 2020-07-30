@@ -72,20 +72,26 @@ const SchoolSearch = ({ ...props }) => {
               .slice(0, inputLength) === inputValue,
         )
   }
-
-  const classes = `input-search`
-  const colorClass = `secondary`
-  // const handleFetchRequested = e => {
-  //   console.log('handleFetchRequested, ', e)
-  //   e.preventDefault()
-  // }
+  /**
+   * Clear the suggestions list.
+   */
   const handleClearRequested = () => {
     setSuggestions([])
   }
+  /**
+   * When item is selected, do something.
+   * @param  Object e          Event
+   * @param  Object suggestion Object of suggestion nodes
+   */
   const handleSelection = (e, suggestion) => {
-    console.log('handleSelection, ', e, suggestion)
+    // console.log('handleSelection, ', e, suggestion)
     updateUIWithResult(suggestion)
   }
+  /**
+   * When input value changes, reset value
+   * @param  Object e        Event
+   * @param  String newValue String value of input
+   */
   const handleChange = (e, { newValue }) => {
     // console.log('handleChange, ', e, newValue)
     setValue(newValue)
@@ -111,7 +117,7 @@ const SchoolSearch = ({ ...props }) => {
 
   // Use your imagination to render suggestions.
   const renderSuggestion = suggestion => {
-    console.log('renderSuggestion')
+    // console.log('renderSuggestion')
     return (
       <div
         id={suggestion.TEA_ID}

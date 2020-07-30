@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
+import echarts from 'echarts/lib/echarts'
 
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import {
@@ -23,11 +24,33 @@ import {
 } from './../utils'
 
 const FeederSchoolsChart = ({ ...props }) => {
+  // Check loaded state
+  const [isLoaded, setIsLoaded] = useState(false)
   // Currently active feeder
   const activeFeeder = useStore(state => state.activeFeeder)
   const feederSchools = useStore(
     state => state.feederSchools,
   )
+  const highlightedSchool = useStore(
+    state => state.highlightedSchool,
+  )
+
+  useEffect(() => {
+    if (!!isLoaded) {
+      let echarts_instance = echarts_react.getEchartsInstance()
+      echarts_instance.dispatchAction({
+        type: 'highlight',
+        // optional; series index; could be an array of multiple series
+        // seriesIndex?: number|Array,
+        // optional; series name; could be an array of multiple series
+        // seriesName?: string|Array,
+        // options are index of data
+        dataIndex: 10,
+        // options are data name
+        // name: highlightedSchool + ',' + activeFeeder,
+      })
+    }
+  }, [highlightedSchool])
 
   /**
    * Gets the count of items with a shared y-value (in node with an array containing [x,y])
@@ -149,21 +172,38 @@ const FeederSchoolsChart = ({ ...props }) => {
             'UI_FEEDER_SCHOOL_CHART_DESC',
           ),
           symbolSize: (val, params) => {
-            return Number(getFeederSLN(params.name)) ===
-              Number(activeFeeder)
-              ? 12
-              : 8
+            // If it's highlighted, return that, else check for feeder.
+            if (
+              Number(getSchoolSLN(params.name)) ===
+              Number(highlightedSchool)
+            ) {
+              return 14
+            } else {
+              return Number(getFeederSLN(params.name)) ===
+                Number(activeFeeder)
+                ? 12
+                : 8
+            }
           },
           data: getSchoolsData(),
           type: 'scatter',
           symbol: 'rectangle',
           itemStyle: {
             color: params => {
-              return Number(
-                getFeederSLN(params.data.name),
-              ) === Number(activeFeeder)
-                ? getMetric('cri', CPAL_METRICS).colors[0]
-                : getMetric('cri', CPAL_METRICS).colors[4]
+              // If it's highlighted, return that, else check for feeder.
+              if (
+                Number(getSchoolSLN(params.data.name)) ===
+                Number(highlightedSchool)
+              ) {
+                return getMetric('cri', CPAL_METRICS)
+                  .colors[0]
+              } else {
+                return Number(
+                  getFeederSLN(params.data.name),
+                ) === Number(activeFeeder)
+                  ? getMetric('cri', CPAL_METRICS).colors[2]
+                  : getMetric('cri', CPAL_METRICS).colors[4]
+              }
             },
             opacity: params => {
               return Number(
@@ -221,6 +261,7 @@ const FeederSchoolsChart = ({ ...props }) => {
   // Events
   const schoolChartReady = e => {
     // console.log('school chart ready')
+    setIsLoaded(true)
   }
   const onSchoolMouseover = e => {
     // console.log('onSchoolMouseover() ', e)
@@ -236,8 +277,13 @@ const FeederSchoolsChart = ({ ...props }) => {
     mouseout: onSchoolMouseout,
     click: onSchoolClick,
   }
+  // let echarts_instance = this.echarts_react.getEchartsInstance()
+  let echarts_react
   return (
     <ReactEcharts
+      ref={e => {
+        echarts_react = e
+      }}
       onEvents={schoolsEvents}
       onChartReady={schoolChartReady}
       classNames={clsx('chart-schools')}
