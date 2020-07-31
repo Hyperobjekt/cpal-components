@@ -3,6 +3,8 @@ import i18n from '@pureartisan/simple-i18n'
 import en_US from './../../../constants/en_US'
 
 const [useStore] = create((set, get) => ({
+  route: '',
+  defaultRoute: '/map/',
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
   // activeDistrict: ``,

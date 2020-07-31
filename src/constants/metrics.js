@@ -8,6 +8,17 @@ import {
   COMM_COLORS,
 } from './colors'
 
+export const ROUTE_SET = [
+  'activeView',
+  'activeMetric',
+  'activeQuintiles',
+  'activeFeeder',
+  'highlightedSchool',
+  'latitude',
+  'longitude',
+  'zoom',
+]
+
 export const CPAL_FILTER_TABS = [
   {
     id: 'cri',

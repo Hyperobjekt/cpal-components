@@ -159,7 +159,7 @@ const MapView = props => {
   /** handler for map load */
   const handleLoad = () => {
     // inform global listener that map has loaded
-    window.SEDA.trigger('map')
+    window.CPAL.trigger('map')
     // zoom to US if needed once cover is shown
     // setTimeout(() => {
     //   flyToReset()
