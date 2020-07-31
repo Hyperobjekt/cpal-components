@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'reactstrap'
+import { Button, Tooltip } from 'reactstrap'
 import clsx from 'clsx'
 
 import './CoreButton.css'
@@ -15,6 +15,9 @@ import './CoreButton.css'
  * @param Function onClick  Click handler for button
  */
 const CoreButton = ({ children, ...props }) => {
+  // to manage tooltip state
+  const [tooltipOpen, setTooltipOpen] = useState(false)
+  const toggle = () => setTooltipOpen(!tooltipOpen)
   return (
     <Button
       id={props.id}
@@ -25,6 +28,18 @@ const CoreButton = ({ children, ...props }) => {
       {...props}
     >
       {children}
+      {props.tooltip && props.tooltip.length > 0 ? (
+        <Tooltip
+          placement={props.tooltip}
+          isOpen={tooltipOpen}
+          target={props.id}
+          toggle={toggle}
+        >
+          {props.title}
+        </Tooltip>
+      ) : (
+        ''
+      )}
     </Button>
   )
 }

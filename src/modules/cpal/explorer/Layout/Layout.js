@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import useStore from './../store.js'
 import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
+import { Button, Tooltip } from 'reactstrap'
 import {
   FiFilter,
   FiMap,
@@ -39,6 +40,8 @@ import './Layout.scss'
  * @param Object props    Props passed from parent
  */
 const Layout = ({ children, ...props }) => {
+  // const [tooltipOpen, setTooltipOpen] = useState(false)
+  // const toggle = () => setTooltipOpen(!tooltipOpen)
   const logoProps = {
     siteName: i18n.translate(`SITE_TITLE`),
     siteHref: useStore(state => state.siteHref),
@@ -192,6 +195,7 @@ const Layout = ({ children, ...props }) => {
               id="button_view_map"
               aria-label={i18n.translate(`BUTTON_VIEW_MAP`)}
               title={i18n.translate(`BUTTON_VIEW_MAP`)}
+              tooltip="right"
               onClick={handleClick}
               color="light"
               className={clsx(
@@ -212,6 +216,7 @@ const Layout = ({ children, ...props }) => {
                 `BUTTON_VIEW_FEEDER`,
               )}
               title={i18n.translate(`BUTTON_VIEW_FEEDER`)}
+              tooltip="right"
               onClick={handleClick}
               color="light"
               className={clsx(
@@ -234,8 +239,12 @@ const Layout = ({ children, ...props }) => {
                   aria-label={i18n.translate(
                     `BUTTON_TOGGLE_PANEL_FILTERS`,
                   )}
+                  title={i18n.translate(
+                    `BUTTON_TOGGLE_PANEL_FILTERS`,
+                  )}
                   onClick={handlePanel}
                   color="light"
+                  tooltip="right"
                   className={clsx(
                     'button-panel-filters',
                     slideoutPanel.active &&
@@ -260,6 +269,10 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_TOGGLE_PANEL_INFO`,
               )}
+              title={i18n.translate(
+                `BUTTON_TOGGLE_PANEL_INFO`,
+              )}
+              tooltip="right"
               onClick={handlePanel}
               color="light"
               styles={{ display: 'none' }}
@@ -282,6 +295,8 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_SHARE_TWITTER`,
               )}
+              title={i18n.translate(`BUTTON_SHARE_TWITTER`)}
+              tooltip="right"
               onClick={handleShare}
               color="none"
               className="button-share-twitter"
@@ -296,6 +311,10 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_SHARE_FACEBOOK`,
               )}
+              title={i18n.translate(
+                `BUTTON_SHARE_FACEBOOK`,
+              )}
+              tooltip="right"
               onClick={handleShare}
               color="none"
               className="button-share-facebook"
@@ -310,6 +329,8 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_SHARE_EMAIL`,
               )}
+              title={i18n.translate(`BUTTON_SHARE_EMAIL`)}
+              tooltip="right"
               onClick={handleShare}
               color="none"
               className="button-share-email"
@@ -324,6 +345,8 @@ const Layout = ({ children, ...props }) => {
               aria-label={i18n.translate(
                 `BUTTON_SHARE_LINK`,
               )}
+              title={i18n.translate(`BUTTON_SHARE_LINK`)}
+              tooltip="right"
               onClick={handleShare}
               color="none"
               className="button-share-link"
