@@ -143,9 +143,9 @@ export const DISTRICT_COLORS = {
 }
 
 export const REDLINE_COLORS = {
-  A: 'blue',
-  B: 'yellow',
-  C: 'orange',
+  A: 'green',
+  B: 'blue',
+  C: 'yellow',
   D: 'red',
 }
 
