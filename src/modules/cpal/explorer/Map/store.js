@@ -125,7 +125,6 @@ const [useMapStore] = create((set, get) => ({
   flyToReset: () => {
     set(state => ({
       viewport: {
-        ...state.viewport,
         ...state.resetViewport,
         transitionDuration: 3000,
         transitionInterpolator: new FlyToInterpolator(),
@@ -133,16 +132,16 @@ const [useMapStore] = create((set, get) => ({
       },
     }))
   },
-  setViewportFromRoute: params => {
-    set(state => ({
-      viewport: {
-        ...state.viewport,
-        zoom: params.zoom,
-        latitude: params.lat,
-        longitude: params.lon,
-      },
-    }))
-  },
+  // setViewportFromRoute: params => {
+  //   set(state => ({
+  //     viewport: {
+  //       ...state.viewport,
+  //       zoom: params.zoom,
+  //       latitude: params.lat,
+  //       longitude: params.lon,
+  //     },
+  //   }))
+  // },
 }))
 
 /**

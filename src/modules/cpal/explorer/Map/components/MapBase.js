@@ -380,9 +380,9 @@ const MapBase = ({
   }
 
   // set the default / reset viewport when it changes
-  useEffect(() => {
-    setResetViewport(defaultViewport)
-  }, [defaultViewport, setResetViewport])
+  // useEffect(() => {
+  //   setResetViewport(defaultViewport)
+  // }, [defaultViewport, setResetViewport])
 
   // set the default viewport on mount
   useEffect(() => {
