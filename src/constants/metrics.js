@@ -9,15 +9,19 @@ import {
 } from './colors'
 
 export const ROUTE_SET = [
-  'activeView',
-  'activeMetric',
-  'activeQuintiles',
-  'activeFeeder',
-  'highlightedSchool',
-  'latitude',
-  'longitude',
-  'zoom',
+  'view', // View, 'map' or 'feeder'
+  'metric', // Metric ID to set for active metric.
+  'quintiles', // quintiles that are active and inactive. Always length fo 5.
+  'feeder', // TEA_ID of feeder that will be "locked" in feeder view.
+  'school', // TEA_ID of a school that will be highlighted in feeder view.
+  'layers', // To determine active layers, 'district_boundaries' and/or 'redlining'
+  'lat', // Latitude
+  'lng', // Longitude
+  'zoom', // Zoom level
 ]
+
+export const DEFAULT_ROUTE =
+  '/map/cri/1,1,1,1,1/2/47/districts/32.76/-96.79/12/'
 
 export const CPAL_FILTER_TABS = [
   {

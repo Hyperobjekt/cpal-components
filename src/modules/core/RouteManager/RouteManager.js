@@ -1,30 +1,16 @@
-import { useEffect, useRef } from 'react'
-import propTypes from 'prop-types'
-// import useDebounce from './../../../utils/useDebounce'
-// import {
-//   useRouterParams,
-//   useAddLocationsByRoute,
-// } from '../hooks'
-// import useDataOptions from '../hooks/useDataOptions'
-// import useUiStore from '../hooks/useUiStore'
-// import {
-//   isEmptyRoute,
-//   isValidRoute,
-//   getParamsFromPathname,
-// } from '../selectors/router'
-// import { useMapStore } from '../../map'
+import { useEffect, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * Get a route parameters object based on the string
  * @param {string} path
  * @returns {object} e.g. { region: 'counties', metric: 'avg', ... }
  */
-export const getParamsFromPathname = (
-  path,
-  routeVars = DEFAULT_ROUTEVARS,
-) => {
+export const getParamsFromPathname = (path, routeVars) => {
+  // console.log('getParamsFromPathname()')
   // strip starting "#" and "/" chars
   const route = path.replace(/^#\/+/g, '')
+  // Construct object from hash
   return route.split('/').reduce(
     (acc, curr, i) => ({
       ...acc,
@@ -37,10 +23,8 @@ export const getParamsFromPathname = (
   )
 }
 
-export const isValidRoute = (params, routeSet) => {
-  // checks route params against valid options for each parameter
-  return true
-}
+export const getStrippedRoute = route =>
+  route.replace(/^#[/]+/g, '').replace(/\/$/g, '')
 
 export const isEmptyRoute = route =>
   getStrippedRoute(route).length === 0
@@ -84,20 +68,7 @@ const RouteManager = props => {
   // track if initial route has loaded
   const isLoaded = useRef(false)
   // get the route params based on current view
-  const route = props.getRouteFromState()
-
-  // function to set options based on a route string
-  // const setDataOptions = useDataOptions(
-  //   state => state.setOptionsFromRoute,
-  // )
-  // // const addLocationsFromRoute = useAddLocationsByRoute()
-  //
-  // const setViewOptions = useUiStore(
-  //   state => state.setViewFromRoute,
-  // )
-  // const setMapOptions = useMapStore(
-  //   state => state.setViewportFromRoute,
-  // )
+  const route = props.getHashFromState()
 
   // debounce the route so it updates every 1 second max
   const debouncedRoute = useDebounce(route, 500)
@@ -113,24 +84,21 @@ const RouteManager = props => {
   // load the route when the application mounts
   useEffect(() => {
     async function loadRoute() {
+      // console.log('loadRoute')
       isLoaded.current = true
+      // Get path.
       const path = window.location.hash
+      // Construct params object from hash.
+      const params = getParamsFromPathname(
+        path,
+        props.routeSet,
+      )
       if (
         !isEmptyRoute(path) &&
-        isValidRoute(path, props.routeSet)
+        props.isRouteValid(params, props.routeSet)
       ) {
-        // Get params from the path name
-        const params = getParamsFromPathname(path)
         // Update state based on params
-        props.setStateFromRoute(params)
-        // setDataOptions(params)
-        // setViewOptions(params)
-        // setMapOptions(params)
-        // if (params.locations)
-        //   await addLocationsFromRoute(
-        //     params.locations,
-        //     false,
-        //   )
+        props.setStateFromHash(params)
       }
     }
     loadRoute()
@@ -142,8 +110,9 @@ const RouteManager = props => {
 }
 
 RouteManager.propTypes = {
-  setStateFromRoute: PropTypes.func, // External function, sets state from route params.
-  getRouteFromState: PropTypes.func, // External function, gets route params from state.
+  getHashFromState: PropTypes.func, // External function, sets state from route params.
+  setStateFromHash: PropTypes.func, // External function, gets route params from state.
+  isRouteValid: PropTypes.func, // External function, returns boolean.
   routeSet: PropTypes.array, // Constants listing params and allowable options.
 }
 

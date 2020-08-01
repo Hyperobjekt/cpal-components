@@ -24,7 +24,7 @@ import MapLayerToggle from './MapLayerToggle'
 import MapResetButton from './MapResetButton'
 import MapCaptureButton from './MapCaptureButton'
 import MapLegend from './MapLegend'
-import { BOUNDS } from './../constants'
+import { BOUNDS } from './../../../../../constants/map'
 import useStore from './../../store'
 
 /**

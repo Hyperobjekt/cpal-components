@@ -5,7 +5,7 @@ import WebMercatorViewport from 'viewport-mercator-project'
 import * as ease from 'd3-ease'
 import bbox from '@turf/bbox'
 
-import { DEFAULT_VIEWPORT } from './constants'
+import { DEFAULT_VIEWPORT } from './../../../../constants/map'
 import { getStateViewportByFips } from './utils'
 
 const getFeatureGeometryType = feature => {

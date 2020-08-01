@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import useStore from './../store.js'
 import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
@@ -16,6 +15,7 @@ import { FaTwitter, FaFacebookF } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
 import { BsLink45Deg } from 'react-icons/bs'
 
+import useStore from './../store.js'
 import {
   Header,
   Logo,
@@ -24,12 +24,19 @@ import {
   Divider,
   CoreButton,
   Select,
+  RouteManager,
 } from './../../../core'
 import SchoolSearch from './../SchoolSearch/SchoolSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
+import { ROUTE_SET } from './../../../../constants/metrics'
+import {
+  isRouteValid,
+  setStateFromHash,
+  getHashFromState,
+} from './../utils'
 
 import './Layout.scss'
 
@@ -161,6 +168,12 @@ const Layout = ({ children, ...props }) => {
 
   return (
     <div className="layout" {...props}>
+      <RouteManager
+        isRouteValid={isRouteValid}
+        setStateFromHash={setStateFromHash}
+        getHashFromState={getHashFromState}
+        routeSet={ROUTE_SET}
+      />
       <Header>
         <Logo {...logoProps} />
         <SchoolSearch />

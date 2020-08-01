@@ -124,15 +124,13 @@ export const getDistrictOutline = (
   activeLayers,
 ) => {
   // console.log('getDistrictOutline(), ', region)
-  const layer = activeLayers.find(item => {
-    return item.types.indexOf('districts') >= 0
-  })
+  const isActive = activeLayers.indexOf('districts') > -1
   return fromJS({
     id: 'districts',
     source: 'districts',
     type: 'line',
     layout: {
-      visibility: !!layer.active ? 'visible' : 'none',
+      visibility: !!isActive ? 'visible' : 'none',
     },
     interactive: false,
     paint: {
@@ -181,16 +179,13 @@ export const getRedlineShapes = (
   { layerId, region },
   activeLayers,
 ) => {
-  // console.log('getRedlineShapes(), ', region)
-  const layer = activeLayers.find(item => {
-    return item.types.indexOf('redlineShapes') >= 0
-  })
+  const isActive = activeLayers.indexOf('redlining') > -1
   return fromJS({
     id: 'redlineShapes',
     source: 'redlines',
     type: 'fill',
     layout: {
-      visibility: !!layer.active ? 'visible' : 'none',
+      visibility: !!isActive ? 'visible' : 'none',
     },
     interactive: false,
     paint: {
@@ -213,15 +208,13 @@ export const getRedlineLines = (
   activeLayers,
 ) => {
   // console.log('getRedlineLines(), ', region)
-  const layer = activeLayers.find(item => {
-    return item.types.indexOf('redlineLines') >= 0
-  })
+  const isActive = activeLayers.indexOf('redlining') > -1
   return fromJS({
     id: 'redlineLines',
     source: 'redlines',
     type: 'line',
     layout: {
-      visibility: !!layer.active ? 'visible' : 'none',
+      visibility: !!isActive ? 'visible' : 'none',
     },
     interactive: false,
     paint: {

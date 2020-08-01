@@ -46,25 +46,13 @@ const [useStore] = create((set, get) => ({
     dragPan: true,
     touchZoomRotate: { around: 'center' },
     preserveDrawingBuffer: true,
-    // scrollZoom: { around: 'center' },
   },
   setViewport: viewport =>
     set(state => ({
       viewport: { ...state.viewport, ...viewport },
     })),
   schoolZonesAffix: `200`,
-  activeLayers: [
-    {
-      id: `district_boundaries`,
-      active: true,
-      types: [`districts`],
-    },
-    {
-      id: `redlining`,
-      active: false,
-      types: ['redlineShapes', 'redlineLines'],
-    },
-  ],
+  activeLayers: [`districts`],
   setActiveLayers: newArr => set({ activeLayers: newArr }),
   defaultMetric: 'cri',
   activeMetric: 'cri',
