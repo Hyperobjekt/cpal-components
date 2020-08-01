@@ -546,81 +546,77 @@ const MapBase = ({
   }
 
   return (
-    <>
-      <div
-        id="map"
-        className="map layout-view-map"
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}
-        ref={mapEl}
-        onMouseLeave={() =>
-          handleHover({
-            features: null,
-            point: [null, null],
-          })
-        }
+    <div
+      id="map"
+      className="map layout-view-map"
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+      }}
+      ref={mapEl}
+      onMouseLeave={() =>
+        handleHover({
+          features: null,
+          point: [null, null],
+        })
+      }
+    >
+      {resizeListener}
+      <ReactMapGL
+        ref={mapRef}
+        attributionControl={attributionControl}
+        mapStyle={mapStyle}
+        dragRotate={false}
+        touchRotate={false}
+        dragPan={true}
+        touchZoom={true}
+        interactiveLayerIds={interactiveLayerIds}
+        onViewportChange={handleViewportChange}
+        onHover={handleHover}
+        getCursor={getCursor}
+        onClick={handleClick}
+        onLoad={handleLoad}
+        mapboxApiAccessToken={TOKEN}
+        {...viewport}
+        {...rest}
       >
-        {resizeListener}
-        <ReactMapGL
-          ref={mapRef}
-          attributionControl={attributionControl}
-          mapStyle={mapStyle}
-          dragRotate={false}
-          touchRotate={false}
-          dragPan={true}
-          touchZoom={true}
-          interactiveLayerIds={interactiveLayerIds}
-          onViewportChange={handleViewportChange}
-          onHover={handleHover}
-          getCursor={getCursor}
-          onClick={handleClick}
-          onLoad={handleLoad}
-          mapboxApiAccessToken={TOKEN}
-          {...viewport}
-          {...rest}
-        >
-          {!!hoveredId && (
-            <Popup
-              latitude={
-                getTooltipOffset(hoveredFeature).coords[1]
-              }
-              longitude={
-                getTooltipOffset(hoveredFeature).coords[0]
-              }
-              closeButton={false}
-              closeOnClick={false}
-              onClose={() =>
-                this.setState({ showPopup: false })
-              }
-              anchor={
-                getTooltipOffset(hoveredFeature).anchor
-              }
-              tipSize={0}
-              dynamicPosition={false}
-            >
-              <PopupContent feature={hoveredFeature} />
-            </Popup>
-          )}
+        {!!hoveredId && (
+          <Popup
+            latitude={
+              getTooltipOffset(hoveredFeature).coords[1]
+            }
+            longitude={
+              getTooltipOffset(hoveredFeature).coords[0]
+            }
+            closeButton={false}
+            closeOnClick={false}
+            onClose={() =>
+              this.setState({ showPopup: false })
+            }
+            anchor={getTooltipOffset(hoveredFeature).anchor}
+            tipSize={0}
+            dynamicPosition={false}
+          >
+            <PopupContent feature={hoveredFeature} />
+          </Popup>
+        )}
 
-          <div className="map__zoom">
-            <NavigationControl
-              showCompass={false}
-              onViewportChange={setViewport}
-            ></NavigationControl>
-            <MapResetButton
-              resetViewport={handleResetViewport}
-            />
-            <MapCaptureButton currentMap={currentMap} />
-          </div>
-          {children}
-        </ReactMapGL>
-        <MapLegend />
-        <MapLayerToggle currentMap={currentMap} />
-      </div>
-    </>
+        <div className="map__zoom">
+          <NavigationControl
+            showCompass={false}
+            onViewportChange={setViewport}
+          ></NavigationControl>
+          <MapResetButton
+            resetViewport={handleResetViewport}
+          />
+          <MapCaptureButton currentMap={currentMap} />
+        </div>
+        {children}
+      </ReactMapGL>
+      <MapLegend />
+      <MapLayerToggle currentMap={currentMap} />
+    </div>
   )
 }
 

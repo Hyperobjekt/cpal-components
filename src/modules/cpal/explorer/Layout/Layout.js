@@ -15,7 +15,7 @@ import { FaTwitter, FaFacebookF } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
 import { BsLink45Deg } from 'react-icons/bs'
 
-import useStore from './../store.js'
+import useStore from './../store'
 import {
   Header,
   Logo,
@@ -24,19 +24,19 @@ import {
   Divider,
   CoreButton,
   Select,
-  RouteManager,
 } from './../../../core'
 import SchoolSearch from './../SchoolSearch/SchoolSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
 import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
+import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
 import { ROUTE_SET } from './../../../../constants/metrics'
-import {
-  isRouteValid,
-  setStateFromHash,
-  getHashFromState,
-} from './../utils'
+// import {
+//   isRouteValid,
+//   setStateFromHash,
+//   getHashFromState,
+// } from './../utils'
 
 import './Layout.scss'
 
@@ -168,12 +168,7 @@ const Layout = ({ children, ...props }) => {
 
   return (
     <div className="layout" {...props}>
-      <RouteManager
-        isRouteValid={isRouteValid}
-        setStateFromHash={setStateFromHash}
-        getHashFromState={getHashFromState}
-        routeSet={ROUTE_SET}
-      />
+      <RouteManager routeSet={ROUTE_SET} />
       <Header>
         <Logo {...logoProps} />
         <SchoolSearch />
