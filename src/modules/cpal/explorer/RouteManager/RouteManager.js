@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import shallow from 'zustand/shallow'
 
 import useStore from './../store'
+import { getRoundedValue } from './../utils'
 import { schools } from './../../../../data/schools'
 import { schoolsGeojson } from './../../../../data/schoolsGeojson'
 import { feeders } from './../../../../data/feeders'
@@ -291,9 +292,9 @@ const RouteManager = props => {
       '/' +
       getLayersString(activeLayers) +
       '/' +
-      viewport.latitude +
+      getRoundedValue(viewport.latitude, 4) +
       '/' +
-      viewport.longitude +
+      getRoundedValue(viewport.longitude, 4) +
       '/' +
       viewport.zoom +
       '/'

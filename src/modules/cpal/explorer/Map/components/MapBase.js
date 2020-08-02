@@ -92,7 +92,11 @@ const MapBase = ({
 
   const [resizeListener, sizes] = useResizeAware()
 
-  const [viewport, setViewport] = useMapViewport()
+  // const [viewport, setViewport] = useMapViewport()
+  const viewport = useStore(state => state.viewport)
+  const setViewport = useStore(state => state.setViewport)
+  const flyToReset = useStore(state => state.flyToReset)
+
   // Active metric
   const activeMetric = useStore(state => state.activeMetric)
   // Active quintiles
@@ -104,7 +108,7 @@ const MapBase = ({
     state => state.setResetViewport,
   )
 
-  const flyToReset = useFlyToReset()
+  // const flyToReset = useFlyToReset()
 
   // reference to map container DOM element
   const mapEl = useRef(null)
