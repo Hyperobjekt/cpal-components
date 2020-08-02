@@ -1,7 +1,6 @@
-import {
-  DEMOGRAPHICS,
-  GAPS,
-} from './../../../../constants/demographics'
+// import // DEMOGRAPHICS,
+// GAPS,
+// './../../../../constants/demographics'
 
 /**
  * Gets the configuration for demographics

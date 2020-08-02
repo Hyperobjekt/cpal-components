@@ -22,27 +22,27 @@ const App = props => {
   })
 
   // SEDA namespace for globals
-  window.SEDA = (function () {
+  window.CPAL = (function () {
     // grabs everything after the # character on provided string
-    function getHashFromURL(url) {
-      if (url.indexOf('#') === -1) {
-        return ''
-      }
-      return url.substring(url.indexOf('#') + 1)
-    }
-
-    // listen to hash change, and show intro if empty route
-    window.addEventListener(
-      'hashchange',
-      function (e) {
-        const oldHash = getHashFromURL(e.oldURL)
-        const newHash = getHashFromURL(e.newURL)
-        if (newHash === '/' && oldHash.length > 0) {
-          showIntro()
-        }
-      },
-      false,
-    )
+    // function getHashFromURL(url) {
+    //   if (url.indexOf('#') === -1) {
+    //     return ''
+    //   }
+    //   return url.substring(url.indexOf('#') + 1)
+    // }
+    //
+    // // listen to hash change, and show intro if empty route
+    // window.addEventListener(
+    //   'hashchange',
+    //   function (e) {
+    //     const oldHash = getHashFromURL(e.oldURL)
+    //     const newHash = getHashFromURL(e.newURL)
+    //     if (newHash === '/' && oldHash.length > 0) {
+    //       showIntro()
+    //     }
+    //   },
+    //   false,
+    // )
 
     // stores the browser name and version for reporting
     var browser = (function () {
@@ -214,8 +214,8 @@ const App = props => {
     }
 
     // default route to load if none specified, or invalid
-    var defaultRoute =
-      '/map/us/districts/avg/ses/all/3.5/38/-97'
+    // var defaultRoute =
+    // '/map/us/districts/avg/ses/all/3.5/38/-97'
 
     // track start time
     var startTime = new Date()
@@ -242,25 +242,25 @@ const App = props => {
     var handlers = {}
 
     // labels for tracking
-    var LANG = {
-      ALL: 'all',
-      B: 'Black',
-      W: 'White',
-      H: 'Hispanic',
-      A: 'Asian',
-      M: 'male',
-      F: 'female',
-      P: 'poor',
-      NP: 'non-poor',
-      N: 'non-poor',
-      WB: 'White / Black gap',
-      WH: 'White / Hispanic gap',
-      PN: 'non-poor / poor gap',
-      MF: 'male / female gap',
-      AVG: 'average test scores',
-      GRD: 'learning rates',
-      COH: 'trend in test scores',
-    }
+    // var LANG = {
+    //   ALL: 'all',
+    //   B: 'Black',
+    //   W: 'White',
+    //   H: 'Hispanic',
+    //   A: 'Asian',
+    //   M: 'male',
+    //   F: 'female',
+    //   P: 'poor',
+    //   NP: 'non-poor',
+    //   N: 'non-poor',
+    //   WB: 'White / Black gap',
+    //   WH: 'White / Hispanic gap',
+    //   PN: 'non-poor / poor gap',
+    //   MF: 'male / female gap',
+    //   AVG: 'average test scores',
+    //   GRD: 'learning rates',
+    //   COH: 'trend in test scores',
+    // }
 
     // registers a handler for a custom event
     var addHandler = function (handlerId, handler) {
@@ -339,14 +339,14 @@ const App = props => {
     }
 
     // hide the cards for metric selection
-    var hideCards = function () {
-      var el = document.getElementsByClassName(
-        'section__body',
-      )[0]
-      if (el) {
-        el.classList.add('section__body--loading')
-      }
-    }
+    // var hideCards = function () {
+    //   var el = document.getElementsByClassName(
+    //     'section__body',
+    //   )[0]
+    //   if (el) {
+    //     el.classList.add('section__body--loading')
+    //   }
+    // }
 
     // load view for the provided metric, set in local storage to remember
     var loadView = function (metric) {

@@ -5,7 +5,7 @@ import WebMercatorViewport from 'viewport-mercator-project'
 import * as ease from 'd3-ease'
 import bbox from '@turf/bbox'
 
-import { DEFAULT_VIEWPORT } from './constants'
+import { DEFAULT_VIEWPORT } from './../../../../constants/map'
 import { getStateViewportByFips } from './utils'
 
 const getFeatureGeometryType = feature => {
@@ -125,7 +125,6 @@ const [useMapStore] = create((set, get) => ({
   flyToReset: () => {
     set(state => ({
       viewport: {
-        ...state.viewport,
         ...state.resetViewport,
         transitionDuration: 3000,
         transitionInterpolator: new FlyToInterpolator(),
@@ -133,16 +132,16 @@ const [useMapStore] = create((set, get) => ({
       },
     }))
   },
-  setViewportFromRoute: params => {
-    set(state => ({
-      viewport: {
-        ...state.viewport,
-        zoom: params.zoom,
-        latitude: params.lat,
-        longitude: params.lon,
-      },
-    }))
-  },
+  // setViewportFromRoute: params => {
+  //   set(state => ({
+  //     viewport: {
+  //       ...state.viewport,
+  //       zoom: params.zoom,
+  //       latitude: params.lat,
+  //       longitude: params.lon,
+  //     },
+  //   }))
+  // },
 }))
 
 /**

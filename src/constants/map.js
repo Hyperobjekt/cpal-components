@@ -18,8 +18,12 @@ export const BOUNDS = {
 }
 
 export const DEFAULT_VIEWPORT = {
-  latitude: 32.7603525, // 37.39,
-  longitude: -96.791731, // -96.78,
+  latitude: 32.7603525,
+  longitude: -96.791731,
   zoom: 10,
+  bearing: 0,
+  pitch: 0,
+  dragPan: true,
+  touchZoomRotate: { around: 'center' },
   preserveDrawingBuffer: true,
 }

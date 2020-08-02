@@ -1,6 +1,6 @@
 export const CPAL_LAYER_GROUPS = [
   {
-    id: `district_boundaries`,
+    id: `districts`,
     label: `UI_MAP_LAYERS_DISTRICTS`,
     types: [`districts`],
   },

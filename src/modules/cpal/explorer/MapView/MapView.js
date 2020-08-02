@@ -26,7 +26,7 @@ import {
   useAddLocation,
   useActiveLocationFeature,
 } from './../hooks'
-import { REGION_TO_ID_LENGTH } from './../../../../constants/regions'
+// import { REGION_TO_ID_LENGTH } from './../../../../constants/regions'
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import useData from './../hooks/useData'
 import { getMetric, getQuintilesPhrase } from './../utils'
@@ -159,7 +159,7 @@ const MapView = props => {
   /** handler for map load */
   const handleLoad = () => {
     // inform global listener that map has loaded
-    window.SEDA.trigger('map')
+    window.CPAL.trigger('map')
     // zoom to US if needed once cover is shown
     // setTimeout(() => {
     //   flyToReset()

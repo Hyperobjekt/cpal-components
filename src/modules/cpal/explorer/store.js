@@ -1,8 +1,15 @@
 import create from 'zustand'
 import i18n from '@pureartisan/simple-i18n'
+import { FlyToInterpolator } from 'react-map-gl'
+import WebMercatorViewport from 'viewport-mercator-project'
+import * as ease from 'd3-ease'
+
 import en_US from './../../../constants/en_US'
+import { DEFAULT_VIEWPORT } from './../../../constants/map'
 
 const [useStore] = create((set, get) => ({
+  route: '',
+  defaultRoute: '/map/',
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
   // activeDistrict: ``,
@@ -44,25 +51,24 @@ const [useStore] = create((set, get) => ({
     dragPan: true,
     touchZoomRotate: { around: 'center' },
     preserveDrawingBuffer: true,
-    // scrollZoom: { around: 'center' },
   },
+  resetViewport: DEFAULT_VIEWPORT,
   setViewport: viewport =>
     set(state => ({
       viewport: { ...state.viewport, ...viewport },
     })),
+  flyToReset: () => {
+    set(state => ({
+      viewport: {
+        ...state.resetViewport,
+        transitionDuration: 3000,
+        transitionInterpolator: new FlyToInterpolator(),
+        transitionEasing: ease.easeCubic,
+      },
+    }))
+  },
   schoolZonesAffix: `200`,
-  activeLayers: [
-    {
-      id: `district_boundaries`,
-      active: true,
-      types: [`districts`],
-    },
-    {
-      id: `redlining`,
-      active: false,
-      types: ['redlineShapes', 'redlineLines'],
-    },
-  ],
+  activeLayers: [`districts`],
   setActiveLayers: newArr => set({ activeLayers: newArr }),
   defaultMetric: 'cri',
   activeMetric: 'cri',

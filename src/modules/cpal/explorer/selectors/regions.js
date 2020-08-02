@@ -1,8 +1,8 @@
-import {
-  REGIONS,
-  REGION_DOMAINS,
-  ID_LENGTH_TO_REGION,
-} from './../../../../constants/regions'
+// import {
+//   REGIONS,
+//   REGION_DOMAINS,
+//   ID_LENGTH_TO_REGION,
+// } from './../../../../constants/regions'
 import { getFeatureProperty } from '.'
 import { getPrefixLang } from './lang'
 

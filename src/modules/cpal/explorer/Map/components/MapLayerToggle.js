@@ -31,17 +31,32 @@ const MapLayerToggle = ({ ...props }) => {
 
   const updateLayers = e => {
     // console.log('updateLayers, ', e.currentTarget)
-    // Get index of map layer.
-    const index = activeLayers.findIndex(
+    // If item is checked, if it's not in array, push it into array
+    // If item is not checked, if it's in array, remove
+    if (!!e.currentTarget.checked) {
+      // Checked.
+      if (
+        activeLayers &&
+        activeLayers.indexOf(e.currentTarget.id) <= -1
+      ) {
+        activeLayers.push(e.currentTarget.id)
+        setActiveLayers(activeLayers)
+      }
+    } else {
+      // Not checked.
+      const index = activeLayers.indexOf(e.currentTarget.id)
+      if (index > -1) {
+        activeLayers.splice(index, 1)
+        setActiveLayers(activeLayers)
+      }
+    }
+
+    // Get map layer.
+    const layer = CPAL_LAYER_GROUPS.find(
       el => el.id === e.currentTarget.id,
     )
-    // Update active status in store.
-    activeLayers[index].active = !!e.currentTarget.checked
-      ? true
-      : false
-
-    // Get current visibility for each type
-    activeLayers[index].types.forEach(el => {
+    // Get current visibility for each type in the map layer.
+    layer.types.forEach(el => {
       const visibility = props.currentMap.getLayoutProperty(
         el,
         'visibility',
@@ -65,7 +80,7 @@ const MapLayerToggle = ({ ...props }) => {
           showPanel ? 'panel-show' : 'panel-hide',
         )}
       >
-        {activeLayers.map(el => {
+        {CPAL_LAYER_GROUPS.map(el => {
           return (
             <div className="layer" key={`layer-${el.id}`}>
               <label key={`label-${el.id}`}>
@@ -74,7 +89,12 @@ const MapLayerToggle = ({ ...props }) => {
                   id={el.id}
                   name="scales"
                   key={el.id}
-                  defaultChecked={el.active ? true : false}
+                  defaultChecked={
+                    activeLayers &&
+                    activeLayers.indexOf(el.id) > -1
+                      ? true
+                      : false
+                  }
                   onChange={e => {
                     updateLayers(e)
                   }}
@@ -87,7 +107,6 @@ const MapLayerToggle = ({ ...props }) => {
       </div>
       <Button
         color="primary"
-        active={activeLayers.length > 0 ? true : false}
         className="map-layer-toggle-btn"
         onClick={() => setShowPanel(!showPanel)}
       >

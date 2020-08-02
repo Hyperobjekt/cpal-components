@@ -24,7 +24,7 @@ import MapLayerToggle from './MapLayerToggle'
 import MapResetButton from './MapResetButton'
 import MapCaptureButton from './MapCaptureButton'
 import MapLegend from './MapLegend'
-import { BOUNDS } from './../constants'
+import { BOUNDS } from './../../../../../constants/map'
 import useStore from './../../store'
 
 /**
@@ -92,7 +92,11 @@ const MapBase = ({
 
   const [resizeListener, sizes] = useResizeAware()
 
-  const [viewport, setViewport] = useMapViewport()
+  // const [viewport, setViewport] = useMapViewport()
+  const viewport = useStore(state => state.viewport)
+  const setViewport = useStore(state => state.setViewport)
+  const flyToReset = useStore(state => state.flyToReset)
+
   // Active metric
   const activeMetric = useStore(state => state.activeMetric)
   // Active quintiles
@@ -104,7 +108,7 @@ const MapBase = ({
     state => state.setResetViewport,
   )
 
-  const flyToReset = useFlyToReset()
+  // const flyToReset = useFlyToReset()
 
   // reference to map container DOM element
   const mapEl = useRef(null)
@@ -380,9 +384,9 @@ const MapBase = ({
   }
 
   // set the default / reset viewport when it changes
-  useEffect(() => {
-    setResetViewport(defaultViewport)
-  }, [defaultViewport, setResetViewport])
+  // useEffect(() => {
+  //   setResetViewport(defaultViewport)
+  // }, [defaultViewport, setResetViewport])
 
   // set the default viewport on mount
   useEffect(() => {
@@ -546,81 +550,77 @@ const MapBase = ({
   }
 
   return (
-    <>
-      <div
-        id="map"
-        className="map layout-view-map"
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}
-        ref={mapEl}
-        onMouseLeave={() =>
-          handleHover({
-            features: null,
-            point: [null, null],
-          })
-        }
+    <div
+      id="map"
+      className="map layout-view-map"
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+      }}
+      ref={mapEl}
+      onMouseLeave={() =>
+        handleHover({
+          features: null,
+          point: [null, null],
+        })
+      }
+    >
+      {resizeListener}
+      <ReactMapGL
+        ref={mapRef}
+        attributionControl={attributionControl}
+        mapStyle={mapStyle}
+        dragRotate={false}
+        touchRotate={false}
+        dragPan={true}
+        touchZoom={true}
+        interactiveLayerIds={interactiveLayerIds}
+        onViewportChange={handleViewportChange}
+        onHover={handleHover}
+        getCursor={getCursor}
+        onClick={handleClick}
+        onLoad={handleLoad}
+        mapboxApiAccessToken={TOKEN}
+        {...viewport}
+        {...rest}
       >
-        {resizeListener}
-        <ReactMapGL
-          ref={mapRef}
-          attributionControl={attributionControl}
-          mapStyle={mapStyle}
-          dragRotate={false}
-          touchRotate={false}
-          dragPan={true}
-          touchZoom={true}
-          interactiveLayerIds={interactiveLayerIds}
-          onViewportChange={handleViewportChange}
-          onHover={handleHover}
-          getCursor={getCursor}
-          onClick={handleClick}
-          onLoad={handleLoad}
-          mapboxApiAccessToken={TOKEN}
-          {...viewport}
-          {...rest}
-        >
-          {!!hoveredId && (
-            <Popup
-              latitude={
-                getTooltipOffset(hoveredFeature).coords[1]
-              }
-              longitude={
-                getTooltipOffset(hoveredFeature).coords[0]
-              }
-              closeButton={false}
-              closeOnClick={false}
-              onClose={() =>
-                this.setState({ showPopup: false })
-              }
-              anchor={
-                getTooltipOffset(hoveredFeature).anchor
-              }
-              tipSize={0}
-              dynamicPosition={false}
-            >
-              <PopupContent feature={hoveredFeature} />
-            </Popup>
-          )}
+        {!!hoveredId && (
+          <Popup
+            latitude={
+              getTooltipOffset(hoveredFeature).coords[1]
+            }
+            longitude={
+              getTooltipOffset(hoveredFeature).coords[0]
+            }
+            closeButton={false}
+            closeOnClick={false}
+            onClose={() =>
+              this.setState({ showPopup: false })
+            }
+            anchor={getTooltipOffset(hoveredFeature).anchor}
+            tipSize={0}
+            dynamicPosition={false}
+          >
+            <PopupContent feature={hoveredFeature} />
+          </Popup>
+        )}
 
-          <div className="map__zoom">
-            <NavigationControl
-              showCompass={false}
-              onViewportChange={setViewport}
-            ></NavigationControl>
-            <MapResetButton
-              resetViewport={handleResetViewport}
-            />
-            <MapCaptureButton currentMap={currentMap} />
-          </div>
-          {children}
-        </ReactMapGL>
-        <MapLegend />
-        <MapLayerToggle currentMap={currentMap} />
-      </div>
-    </>
+        <div className="map__zoom">
+          <NavigationControl
+            showCompass={false}
+            onViewportChange={setViewport}
+          ></NavigationControl>
+          <MapResetButton
+            resetViewport={handleResetViewport}
+          />
+          <MapCaptureButton currentMap={currentMap} />
+        </div>
+        {children}
+      </ReactMapGL>
+      <MapLegend />
+      <MapLayerToggle currentMap={currentMap} />
+    </div>
   )
 }
 
