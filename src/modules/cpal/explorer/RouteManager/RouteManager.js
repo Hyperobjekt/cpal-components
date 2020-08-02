@@ -10,9 +10,11 @@ import { feeders } from './../../../../data/feeders'
 import {
   CPAL_METRICS,
   CPAL_FEEDERS,
-  DEFAULT_ROUTE,
 } from './../../../../constants/metrics'
-import { BOUNDS } from './../../../../constants/map'
+import {
+  BOUNDS,
+  DEFAULT_ROUTE,
+} from './../../../../constants/map'
 import { CPAL_LAYER_GROUPS } from './../../../../constants/layers'
 
 /**
@@ -114,7 +116,7 @@ const isMetricValid = metric => {
  * @return {Boolean}
  */
 const isQuintilesValid = quintiles => {
-  console.log('isQuintilesValid')
+  // console.log('isQuintilesValid')
   if (!quintiles) return true
   if (quintiles.length < 5) return false
   const arr = quintiles.split(',')
@@ -170,18 +172,18 @@ const isLayersValid = layers => {
 }
 
 const isLatLngValid = (lat, lng) => {
-  console.log('isLatLngValid()')
+  // console.log('isLatLngValid()')
   // Make sure they're inside the bounds.
   if (!lat && !lng) return true
   lat = Number(lat)
   lng = Number(lng)
   let isValid = true
   if (lat < BOUNDS.lat.min || lat > BOUNDS.lat.max) {
-    console.log('lat out of bounds')
+    // console.log('lat out of bounds')
     isValid = false
   }
   if (lng < BOUNDS.lng.min || lng > BOUNDS.lng.max) {
-    console.log('lng out of bounds')
+    // console.log('lng out of bounds')
     isValid = false
   }
   return isValid
@@ -313,7 +315,7 @@ const RouteManager = props => {
    * @param {[type]} params [description]
    */
   const setStateFromHash = params => {
-    console.log('setStateFromHash()')
+    // console.log('setStateFromHash()')
 
     if (!!params.view) {
       setActiveView(params.view)

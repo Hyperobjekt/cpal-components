@@ -31,7 +31,15 @@ import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
+import {
+  onTwitterShare,
+  onFacebookShare,
+  onMailShare,
+} from './share'
+import ShareLinkModal from './share/ShareLinkModal'
+// import ShareLinkDialog from './share'
 import { ROUTE_SET } from './../../../../constants/metrics'
+import { DEFAULT_ROUTE } from './../../../../constants/map'
 // import {
 //   isRouteValid,
 //   setStateFromHash,
@@ -161,9 +169,52 @@ const Layout = ({ children, ...props }) => {
     ])
   }
 
+  const constructShareLink = () => {
+    // If hash === default hash, send back only the root url.
+    if (window.location.hash === DEFAULT_ROUTE) {
+      return window.location.origin
+    } else {
+      return window.location.href
+    }
+  }
+
+  const shareLinkModal = useStore(
+    state => state.shareLinkModal,
+  )
+  const setShareLinkModal = useStore(
+    state => state.setShareLinkModal,
+  )
+
   const handleShare = e => {
     e.preventDefault()
-    console.log('handleShare(), ', e)
+    // console.log('handleShare(), ', e)
+    // Click to Twitter
+    if (e.currentTarget.id === 'button_share_twitter') {
+      onTwitterShare(
+        encodeURIComponent(constructShareLink()),
+        i18n.translate('DIALOG_SHARE_TWITTER'),
+      )
+    }
+    // Click to Facebook
+    if (e.currentTarget.id === 'button_share_facebook') {
+      onFacebookShare(
+        encodeURIComponent(constructShareLink()),
+        i18n.translate('DIALOG_SHARE_TWITTER'),
+      )
+    }
+    // Click to mail
+    if (e.currentTarget.id === 'button_share_email') {
+      onMailShare(
+        encodeURIComponent(constructShareLink()),
+        i18n.translate('DIALOG_SHARE_EMAIL_SUBJECT'),
+        i18n.translate('DIALOG_SHARE_EMAIL_BODY'),
+      )
+    }
+    // Click to link
+    if (e.currentTarget.id === 'button_share_link') {
+      console.log('click share link')
+      setShareLinkModal(!shareLinkModal)
+    }
   }
 
   return (
@@ -353,6 +404,7 @@ const Layout = ({ children, ...props }) => {
             <MapView />
             <FeederView />
           </div>
+          <ShareLinkModal />
         </Canvas>
       </main>
     </div>

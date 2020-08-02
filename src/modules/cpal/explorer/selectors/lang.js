@@ -1,11 +1,11 @@
-import // isGapDemographic,
+// import // isGapDemographic,
 // getMetricIdFromVarName,
 // getDemographicIdFromVarName,
 // getFormatterForVarName,
 // getGapDemographics,
-'.'
+// '.'
 
-import LANG from './../../../../constants/en'
+// import LANG from './../../../../constants/en'
 import { getMidpointForVarName } from './data'
 import { getStateName } from './../../../../shared/utils/states'
 

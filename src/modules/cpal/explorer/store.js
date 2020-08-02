@@ -12,11 +12,6 @@ const [useStore] = create((set, get) => ({
   defaultRoute: '/map/',
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
-  // activeDistrict: ``,
-  // setActiveDistrict: newDistrict =>
-  //   set({ activeDistrict: newDistrict }),
-  // schoolsData: {},
-  // setSchoolsData: newObj => set({ schoolsData: newObj }),
   logoSrc: `<svg width="150" height="50">
             <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />
             <text x="25" y="40" fill="white">LOGO</text>
@@ -100,6 +95,9 @@ const [useStore] = create((set, get) => ({
   highlightedSchool: null,
   setHighlightedSchool: newStr =>
     set({ highlightedSchool: newStr }),
+  shareLinkModal: false,
+  setShareLinkModal: newBool =>
+    set({ shareLinkModal: newBool }),
 }))
 
 export default useStore

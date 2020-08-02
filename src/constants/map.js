@@ -2,6 +2,9 @@
  * default viewport on map view
  */
 
+export const DEFAULT_ROUTE =
+  '/map/cri/1,1,1,1,1/2/47/districts/32.76/-96.79/12/'
+
 export const BOUNDS = {
   lat: {
     max: 33.26625,

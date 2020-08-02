@@ -1,4 +1,5 @@
-import LANG from './en'
+// import LANG from './en'
+
 import {
   CRI_COLORS,
   ECON_COLORS,
@@ -19,9 +20,6 @@ export const ROUTE_SET = [
   'lng', // Longitude
   'zoom', // Zoom level
 ]
-
-export const DEFAULT_ROUTE =
-  '/map/cri/1,1,1,1,1/2/47/districts/32.76/-96.79/12/'
 
 export const CPAL_FILTER_TABS = [
   {
