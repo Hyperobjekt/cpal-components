@@ -39,7 +39,7 @@ const PopupContent = ({ ...props }) => {
         <h4>{props.feature.properties.SCHOOLNAME}</h4>
         <h5>
           {i18n.translate('UI_MAP_TOOLTIP_FEEDER', {
-            name: props.feature.properties.feeder,
+            name: props.feature.properties.Feeder,
           })}
         </h5>
       </div>
@@ -47,7 +47,7 @@ const PopupContent = ({ ...props }) => {
         const metricData = getMetric(metric, CPAL_METRICS)
         const label = i18n.translate(metricData.title)
         const value = String(
-          props.feature.properties['metric_' + metric],
+          props.feature.properties[metric],
         )
         const min = metricData.range[0]
         const max = metricData.range[1]

@@ -57,37 +57,47 @@ const InteractiveScale = ({ ...props }) => {
     }
   }
 
-  const updateQuintileButtons = () => {
-    let quintileButtons = []
-    const count = 4
-    for (let i = 0; i <= count; i++) {
-      quintileButtons.push({
-        classes: clsx(
-          'quintile-button',
-          props.metric.id === activeMetric &&
-            !!activeQuintiles[i]
-            ? 'active'
-            : '',
-          'quintile-' + i,
-        ),
-        styles: {
-          backgroundColor:
-            props.metric.id === activeMetric &&
-            !!activeQuintiles[i]
-              ? getBgColor(props.metric, i)
-              : DISABLED_COLORS[i],
-        },
-        key: 'quintile_button_' + i,
-        ariaLabel: getQuintileAriaLabel(i),
-      })
-    }
-    return quintileButtons
-  }
+  // const updateQuintileButtons = () => {
+  //   // console.log(
+  //   //   'updateQuintileButtons(), ',
+  //   //   activeQuintiles,
+  //   // )
+  //   let quintileButtons = []
+  //   const count = 4
+  //   for (let i = 0; i <= count; i++) {
+  //     quintileButtons.push({
+  //       classes: clsx(
+  //         'quintile-button',
+  //         props.metric.id === activeMetric &&
+  //           activeQuintiles[i] == 1
+  //           ? 'active'
+  //           : '',
+  //         'quintile-' + i,
+  //       ),
+  //       styles: {
+  //         backgroundColor:
+  //           props.metric.id === activeMetric &&
+  //           !!activeQuintiles[i]
+  //             ? getBgColor(props.metric, i)
+  //             : DISABLED_COLORS[i],
+  //       },
+  //       key: 'quintile_button_' + i,
+  //       ariaLabel: getQuintileAriaLabel(i),
+  //     })
+  //   }
+  //   console.log(
+  //     'quintileButtons',
+  //     activeMetric,
+  //     props.metric.id,
+  //     quintileButtons,
+  //   )
+  //   return quintileButtons
+  // }
 
-  useEffect(() => {
-    // console.log('isloaded or activequintiles changed')
-    updateQuintileButtons()
-  }, [isLoaded, activeQuintiles])
+  // useEffect(() => {
+  //   // console.log('isloaded or activequintiles changed')
+  //   updateQuintileButtons()
+  // }, [isLoaded, activeQuintiles])
 
   const handleScaleClick = e => {
     e.preventDefault()
@@ -111,7 +121,7 @@ const InteractiveScale = ({ ...props }) => {
 
   const handleQuintileClick = e => {
     e.preventDefault()
-    // console.log('handleQuintileClick(), ', e.currentTarget)
+    console.log('handleQuintileClick(), ', e.currentTarget)
     // If parent not active, just return
     if (
       !e.currentTarget.parentNode.classList.contains(
@@ -133,7 +143,8 @@ const InteractiveScale = ({ ...props }) => {
       quintiles = [0, 0, 0, 0, 0]
       quintiles[quintile] = 1
     } else {
-      quintiles[quintile] = !quintiles[quintile]
+      quintiles[quintile] =
+        Number(quintiles[quintile]) === 1 ? 0 : 1
     }
     setActiveQuintiles(quintiles)
   }
@@ -164,16 +175,31 @@ const InteractiveScale = ({ ...props }) => {
       onClick={handleScaleClick}
       aria-label={getScaleAriaLabel()}
     >
-      {updateQuintileButtons().map(b => {
+      {activeQuintiles.map((val, i) => {
         return (
           <div
-            className={b.classes}
-            style={b.styles}
+            className={clsx(
+              'quintile-button',
+              props.metric.id === activeMetric &&
+                Number(val) === 1
+                ? 'active'
+                : '',
+              'quintile-' + i,
+            )}
+            style={{
+              backgroundColor:
+                props.metric.id === activeMetric &&
+                Number(val) === 1
+                  ? getBgColor(props.metric, i)
+                  : DISABLED_COLORS[i],
+            }}
             onClick={handleQuintileClick}
-            key={b.key}
-            aria-label={b.ariaLabel}
+            key={'quintile_button_' + i}
+            aria-label={getQuintileAriaLabel(i)}
           >
-            <span className="sr-only">{b.ariaLabel}</span>
+            <span className="sr-only">
+              {getQuintileAriaLabel(i)}
+            </span>
           </div>
         )
       })}

@@ -79,7 +79,7 @@ export const CPAL_FEEDER_TIP_ITEMS = [
 
 export const CPAL_METRICS = [
   {
-    id: 'cri',
+    id: 'cri_weight',
     title: 'UI_MAP_METRIC_TITLE_CRI',
     abbrev: 'CRI',
     range: [0, 100],
@@ -92,8 +92,9 @@ export const CPAL_METRICS = [
     decimals: 0,
   },
   {
-    id: 'econ_index',
+    id: 'eci_weight',
     title: 'UI_MAP_METRIC_TITLE_ECON_INDEX',
+    desc: 'UI_MAP_METRIC_DESC_ECON',
     abbrev: 'ECON',
     range: [0, 100],
     high_is_good: 1,
@@ -104,8 +105,9 @@ export const CPAL_METRICS = [
     decimals: 0,
   },
   {
-    id: 'edu_index',
+    id: 'edi_weight',
     title: 'UI_MAP_METRIC_TITLE_EDU_INDEX',
+    desc: 'UI_MAP_METRIC_DESC_EDU',
     abbrev: 'EDU',
     range: [0, 100],
     high_is_good: 1,
@@ -116,8 +118,9 @@ export const CPAL_METRICS = [
     decimals: 0,
   },
   {
-    id: 'fam_index',
+    id: 'fi_weight',
     title: 'UI_MAP_METRIC_TITLE_FAM_INDEX',
+    desc: 'UI_MAP_METRIC_DESC_FAM',
     abbrev: 'FAM',
     range: [0, 100],
     high_is_good: 1,
@@ -128,8 +131,9 @@ export const CPAL_METRICS = [
     decimals: 0,
   },
   {
-    id: 'health_index',
+    id: 'hi_weight',
     title: 'UI_MAP_METRIC_TITLE_HEAL_INDEX',
+    desc: 'UI_MAP_METRIC_DESC_HEAL',
     abbrev: 'HEAL',
     range: [0, 100],
     high_is_good: 1,
@@ -140,8 +144,9 @@ export const CPAL_METRICS = [
     decimals: 0,
   },
   {
-    id: 'com_index',
+    id: 'ci_weight',
     title: 'UI_MAP_METRIC_TITLE_COMM_INDEX',
+    desc: 'UI_MAP_METRIC_DESC_COMM',
     abbrev: 'COMM',
     range: [0, 100],
     high_is_good: 1,
@@ -691,6 +696,30 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+  },
+  {
+    id: 'hel_clincap',
+    title: 'UI_MAP_METRIC_HEL_CLINCAP',
+    abbrev: '',
+    range: [0, 4.591794665],
+    high_is_good: 1,
+    colors: HEL_COLORS,
+    tab: 'hel',
+    tab_level: 1,
+    tooltip: 0,
+    decimals: 2,
+  },
+  {
+    id: 'hel_groccap',
+    title: 'UI_MAP_METRIC_HEL_GROCCAP',
+    abbrev: '',
+    range: [0, 2.267815118],
+    high_is_good: 1,
+    colors: HEL_COLORS,
+    tab: 'hel',
+    tab_level: 1,
+    tooltip: 0,
+    decimals: 2,
   },
 ]
 

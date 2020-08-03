@@ -32,8 +32,9 @@ const MapLegend = ({ ...props }) => {
     borderColor: '1px solid #fff',
   }
   const schoolZoneStyle = {
-    backgroundColor: SCHOOL_ZONE_COLORS.fill,
-    borderColor: '1px solid ' + SCHOOL_ZONE_COLORS.outline,
+    backgroundColor: metricData.colors[4], // SCHOOL_ZONE_COLORS.fill,
+    borderColor: '1px solid ' + metricData.colors[4], // SCHOOL_ZONE_COLORS.outline,
+    opacity: 0.2,
   }
   const schoolZoneKnockoutStyle = {
     backgroundColor: metricData.colors[0],
@@ -67,10 +68,11 @@ const MapLegend = ({ ...props }) => {
         </div>
       </div>
       <div className="map-legend-school-zone">
-        <div
-          className="map-legend-school-zone-icon"
-          style={schoolZoneStyle}
-        >
+        <div className="map-legend-school-zone-icon">
+          <div
+            className="map-legend-school-zone-icon-background"
+            style={schoolZoneStyle}
+          ></div>
           <div
             className="map-legend-school-zone-icon-knockout"
             style={schoolZoneKnockoutStyle}

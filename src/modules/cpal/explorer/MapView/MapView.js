@@ -51,7 +51,8 @@ const MapView = props => {
   const metric = useStore(state => state.activeMetric)
   // Active quintiles
   const activeQuintiles = useStore(
-    state => state.activeQuintiles,
+    state => [...state.activeQuintiles],
+    shallow,
   )
   /** currently active data filters */
   const [{ prefix }] = useFilters()
@@ -73,7 +74,10 @@ const MapView = props => {
   // Default viewport
   const viewport = useStore(state => state.viewport)
   // Active layers
-  const activeLayers = useStore(state => state.activeLayers)
+  const activeLayers = useStore(
+    state => [...state.activeLayers],
+    shallow,
+  )
   // Active view
   const activeView = useStore(state => state.activeView)
   /** id of the active location */
@@ -88,21 +92,24 @@ const MapView = props => {
   const flyToFeature = useFlyToFeature()
   const flyToReset = useFlyToReset()
   const isLoaded = useRef(false)
+  console.log(
+    'loading mapview, activeLayers, ',
+    activeLayers,
+    metric,
+  )
   /** memoized array of choropleth and dot layers */
   const layers = useMemo(() => {
-    if (!metric || !activeQuintiles) {
+    console.log(
+      'activeLayers may have changed, ',
+      activeLayers,
+      metric,
+    )
+    if (!metric || !activeQuintiles || !activeLayers) {
       return []
     }
     const context = { metric, activeQuintiles }
     return getLayers(context, activeLayers)
-  }, [
-    metric,
-    activeQuintiles[0],
-    activeQuintiles[1],
-    activeQuintiles[2],
-    activeQuintiles[3],
-    activeQuintiles[4],
-  ])
+  }, [metric, activeQuintiles, activeLayers])
   // }, [region, metric, demographic])
 
   /** aria label for screen readers */
@@ -117,7 +124,12 @@ const MapView = props => {
 
   /** handler for map hover */
   const handleHover = (feature, coords, geoCoords) => {
-    // console.log('handleHover, ', feature, coords, geoCoords)
+    // console.log(
+    //   'handleHover in mapview, ',
+    //   feature,
+    //   coords,
+    //   geoCoords,
+    // )
     let type = null
     let id = null
     if (
@@ -133,10 +145,10 @@ const MapView = props => {
       feature.layer &&
       feature.layer.id === 'schools-circle'
     ) {
-      // console.log('School circle hovered.')
+      console.log('School circle hovered.', feature)
       type = `schools`
       // console.log('handleHover, ', feature, coords)
-      id = getFeatureProperty(feature, 'tea_id')
+      id = getFeatureProperty(feature, 'TEA')
       // setHovered(id, type, geoCoords, feature)
     }
 

@@ -27,6 +27,7 @@ export const DEFAULT_VIEWPORT = {
   bearing: 0,
   pitch: 0,
   dragPan: true,
-  touchZoomRotate: { around: 'center' },
+  touchZoom: { around: 'center' },
+  touchRotate: { around: 'center' },
   preserveDrawingBuffer: true,
 }

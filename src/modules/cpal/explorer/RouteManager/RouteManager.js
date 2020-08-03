@@ -156,19 +156,19 @@ const isSchoolValid = school => {
   }
 }
 
-// const activeLayers = useStore(state => state.activeLayers)
 const isLayersValid = layers => {
   // console.log('isLayersValid()')
-  if (!layers || layers.length === 0) return true
-  const layerNames = CPAL_LAYER_GROUPS.map(el => el.id)
-  const splitLayers = layers.split(',')
-  let hasAMatch = true
-  splitLayers.forEach(el => {
-    if (layerNames.indexOf(el) <= -1) {
-      hasAMatch = false
+  if (!layers) return true
+  if (layers.length < 2) return false
+  const arr = layers.split(',')
+  let t = true
+  arr.forEach(el => {
+    const n = Number(el)
+    if (n !== 1 && n !== 0) {
+      t = false
     }
   })
-  return hasAMatch
+  return t
 }
 
 const isLatLngValid = (lat, lng) => {
@@ -215,7 +215,7 @@ const isRouteValid = params => {
   ) {
     isValid = false
   }
-  // console.log('isValid = ', isValid)
+  console.log('isValid = ', isValid)
   return isValid
 }
 
@@ -324,7 +324,12 @@ const RouteManager = props => {
       setActiveMetric(params.metric)
     }
     if (params.quintiles && params.quintiles.length > 0) {
-      setActiveQuintiles(params.quintiles.split(','))
+      const quintiles = params.quintiles.split(',')
+      setActiveQuintiles(
+        quintiles.map(el => {
+          return Number(el)
+        }),
+      )
     }
     if (!!params.feeder) {
       setActiveFeeder(params.feeder)
@@ -334,6 +339,15 @@ const RouteManager = props => {
       setHighlightedSchool(params.school)
       setFeederLocked(true)
     }
+    if (params.layers && params.layers.length > 0) {
+      const getLayers = params.layers.split(',')
+      setActiveLayers(
+        getLayers.map(el => {
+          return Number(el)
+        }),
+      )
+    }
+
     let resetViewport = false
     if (!!params.lat && !!params.lng) {
       viewport.latitude = Number(params.lat)

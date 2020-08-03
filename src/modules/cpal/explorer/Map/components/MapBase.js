@@ -103,6 +103,7 @@ const MapBase = ({
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
+  const activeLayers = useStore(state => state.activeLayers)
 
   const setResetViewport = useMapStore(
     state => state.setResetViewport,
@@ -140,45 +141,6 @@ const MapBase = ({
     state => state.setJustLoaded,
   )
 
-  const updateFilteredSchools = () => {
-    // console.log('updateFilteredSchools, ', activeQuintiles)
-    if (!!justLoaded) {
-      setJustLoaded(false)
-      return
-    }
-    currentMap.setLayoutProperty(
-      'schools-circle',
-      'visibility',
-      'none',
-    )
-    const hiddenFilter = ['all']
-    activeQuintiles.forEach((el, index) => {
-      if (!el) {
-        hiddenFilter.push([
-          '!=',
-          ['get', 'metric_quintile_' + activeMetric],
-          index,
-        ])
-      }
-    })
-    currentMap.setFilter('schools-circle', hiddenFilter)
-    setTimeout(() => {
-      currentMap.setLayoutProperty(
-        'schools-circle',
-        'visibility',
-        'visible',
-      )
-    }, 500)
-  }
-
-  /** Filter features in school layer when active quintiles updated */
-  useEffect(() => {
-    // console.log('activeQuintiles updated')
-    if (!!currentMap && !!loaded) {
-      updateFilteredSchools()
-    }
-  }, [activeQuintiles, currentMap, loaded])
-
   const setFeatureState = useCallback(
     (featureId, type, state) => {
       if (
@@ -188,12 +150,12 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      // console.log(
-      //   'setFeatureStateNew',
-      //   featureId,
-      //   type,
-      //   state,
-      // )
+      console.log(
+        'setFeatureStateNew',
+        featureId,
+        type,
+        state,
+      )
       // console.log('layers = ', layers)
       const layer = layers.find(l => l.type === type)
       // console.log('layer = ', layer)
@@ -346,7 +308,7 @@ const MapBase = ({
 
   // handler for feature hover
   const handleHover = ({ features, point, srcEvent }) => {
-    // console.log('handleHover, ', features, point)
+    console.log('handleHover, ', features, point)
     setMouseCoords(point)
     const newHoveredFeature =
       features && features.length > 0 ? features[0] : null

@@ -26,6 +26,10 @@ import {
 const FeederSchoolsChart = ({ ...props }) => {
   // Check loaded state
   const [isLoaded, setIsLoaded] = useState(false)
+  // Default metric for color scheme
+  const defaultMetric = useStore(
+    state => state.defaultMetric,
+  )
   // Currently active feeder
   const activeFeeder = useStore(state => state.activeFeeder)
   const feederSchools = useStore(
@@ -58,10 +62,10 @@ const FeederSchoolsChart = ({ ...props }) => {
     const schoolsData = []
     feeders.forEach(el => {
       const school = schools.find(item => {
-        return item.TEA_ID === el.TEA
+        return item.TEA === el.TEA
       })
       if (!school) return
-      const x = getRoundedValue(school.cri, 0)
+      const x = getRoundedValue(school.ci_weight, 0)
       const y = getCountOfSameYValue(x, schoolsData)
       schoolsData.push({
         name: el.TEA + ',' + el.FEEDER_SLN,
@@ -145,7 +149,8 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       emphasis: {
         itemStyle: {
-          color: getMetric('cri', CPAL_METRICS).colors[0],
+          color: getMetric(defaultMetric, CPAL_METRICS)
+            .colors[0],
           opacity: 1,
           borderColor: '#fff',
         },
@@ -179,14 +184,18 @@ const FeederSchoolsChart = ({ ...props }) => {
                 Number(getSchoolSLN(params.data.name)) ===
                 Number(highlightedSchool)
               ) {
-                return getMetric('cri', CPAL_METRICS)
-                  .colors[0]
+                return getMetric(
+                  defaultMetric,
+                  CPAL_METRICS,
+                ).colors[0]
               } else {
                 return Number(
                   getFeederSLN(params.data.name),
                 ) === Number(activeFeeder)
-                  ? getMetric('cri', CPAL_METRICS).colors[2]
-                  : getMetric('cri', CPAL_METRICS).colors[4]
+                  ? getMetric(defaultMetric, CPAL_METRICS)
+                      .colors[2]
+                  : getMetric(defaultMetric, CPAL_METRICS)
+                      .colors[4]
               }
             },
             opacity: params => {

@@ -336,82 +336,130 @@ export const getFeederAverage = (metric, schoolSet) => {
  * @return  Object   GeoJSON Object of all schools in client-supplied data
  */
 export const getSchoolGeojson = () => {
-  // console.log('getSchoolGeojson()')
+  console.log('getSchoolGeojson()')
   const data = schools
-  const origJson = schoolsGeojson
+  // const origJson = schoolsGeojson
+  // const feeders = feeders
   const newJson = {
     type: 'FeatureCollection',
     features: [],
   }
-  const features = origJson.features
-  features.forEach(el => {
-    const found = data.find(
-      school => school.TEA_ID === el.properties.SLN,
-    )
-    // console.log('found, ', found)
-    if (!!found) {
-      // Add data to the properties.
-      el.id = found.TEA_ID
-      el.properties.tea_id = found.TEA_ID
-      const feeder = feeders.find(item => {
-        return Number(item.SLN) == Number(found.TEA_ID)
-      })
-      if (!!feeder) {
-        el.properties.feeder = feeder.FEEDER
-        el.properties.feeder_sln = feeder.FEEDER_SLN
-      }
-      CPAL_METRICS.forEach(item => {
-        // Add metric value
-        const node = 'metric_' + item.id
-        el.properties[node] = found[item.id]
-        // Also add quintile for each value
-        const quintile = 'metric_quintile_' + item.id
-        el.properties[quintile] = getQuintile(
-          found[item.id],
-          item.range[0],
-          item.range[1],
-          item.high_is_good,
-        )
-      })
-      // Insert into new json object.
-      newJson.features.push(el)
+  // Each object in schools is one feature.
+  // Add coords
+  // Put school properties into properties
+  // Add feeder sln (because the client is fucking idiotic)
+  // Push the feature into the newJson array.
+  data.forEach(el => {
+    const newFeature = {
+      type: 'Feature',
+      id: el.TEA,
+      geometry: {
+        type: 'Point',
+        coordinates: [],
+      },
+      properties: {},
     }
+    newFeature.geometry.coordinates = [
+      el.POINT_X,
+      el.POINT_Y,
+    ]
+    newFeature.properties = el
+    const feeder = feeders.find(item => {
+      return Number(item.TEA) == Number(el.TEA)
+    })
+    if (!!feeder) {
+      newFeature.properties.feeder = feeder.FEEDER
+      newFeature.properties.feeder_sln = feeder.FEEDER_SLN
+    }
+    newJson.features.push(newFeature)
   })
-  // console.log(newJson)
+
+  // const features = origJson.features
+  // features.forEach(el => {
+  //   const found = data.find(
+  //     school => school.TEA_ID === el.properties.SLN,
+  //   )
+  //   // console.log('found, ', found)
+  //   if (!!found) {
+  //     // Add data to the properties.
+  //     el.id = found.TEA_ID
+  //     el.properties.tea_id = found.TEA_ID
+  //     const feeder = feeders.find(item => {
+  //       return Number(item.SLN) == Number(found.TEA_ID)
+  //     })
+  //     if (!!feeder) {
+  //       el.properties.feeder = feeder.FEEDER
+  //       el.properties.feeder_sln = feeder.FEEDER_SLN
+  //     }
+  //     CPAL_METRICS.forEach(item => {
+  //       // Add metric value
+  //       const node = 'metric_' + item.id
+  //       el.properties[node] = found[item.id]
+  //       // Also add quintile for each value
+  //       const quintile = 'metric_quintile_' + item.id
+  //       el.properties[quintile] = getQuintile(
+  //         found[item.id],
+  //         item.range[0],
+  //         item.range[1],
+  //         item.high_is_good,
+  //       )
+  //     })
+  //     // Insert into new json object.
+  //     newJson.features.push(el)
+  //   }
+  // })
+  console.log(newJson)
   return newJson
 }
 
 export const getSchoolZones = () => {
   // console.log('getSchoolZones')
   const data = schools
-  const origJson = schoolsGeojson
+  // const origJson = schoolsGeojson
   const newJson = {
     type: 'FeatureCollection',
     features: [],
   }
-  const features = origJson.features
-  features.forEach(el => {
-    const found = data.find(
-      school => school.TEA_ID === el.properties.SLN,
-    )
-    if (!!found) {
-      // Add data to the properties.
-      var center = el.geometry.coordinates
-      var radius = 2
-      var options = {
-        steps: 64,
-        units: 'miles',
-        properties: {
-          tea_id: found.TEA_ID,
-          metric_cri: found.cri,
-        },
-      }
-      const cir = circle(center, radius, options)
-      cir.id = '200' + found.TEA_ID
-      // Insert into new json object.
-      newJson.features.push(cir)
+  data.forEach(el => {
+    var center = [el.POINT_X, el.POINT_Y]
+    var radius = 2
+    var options = {
+      steps: 64,
+      units: 'miles',
+      properties: {
+        tea_id: el.TEA,
+        metric_cri: el.cri_weight,
+      },
     }
+    const cir = circle(center, radius, options)
+    cir.id = '200' + el.TEA
+    // Insert into new json object.
+    newJson.features.push(cir)
   })
+
+  // const features = origJson.features
+  // features.forEach(el => {
+  //   const found = data.find(
+  //     school => school.TEA_ID === el.properties.SLN,
+  //   )
+  //   if (!!found) {
+  //     // Add data to the properties.
+  //     var center = el.geometry.coordinates
+  //     var radius = 2
+  //     var options = {
+  //       steps: 64,
+  //       units: 'miles',
+  //       properties: {
+  //         tea_id: found.TEA_ID,
+  //         metric_cri: found.cri,
+  //       },
+  //     }
+  //     const cir = circle(center, radius, options)
+  //     cir.id = '200' + found.TEA_ID
+  //     // Insert into new json object.
+  //     newJson.features.push(cir)
+  //   }
+  // })
   // console.log('newJson', newJson)
   return newJson
 }

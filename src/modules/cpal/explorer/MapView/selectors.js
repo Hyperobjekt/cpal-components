@@ -51,17 +51,25 @@ const getSchoolFillStyle = (metric, colors) => {
     (acc, curr) => [...acc, ...curr],
     [],
   )
+  // return [
+  //   'case',
+  //   ['==', ['get', 'metric_' + metric], -999],
+  //   noDataFill,
+  //   ['has', 'metric_' + metric],
+  //   [
+  //     'interpolate',
+  //     ['linear'],
+  //     ['get', 'metric_' + metric],
+  //     ...stops,
+  //   ],
+  //   noDataFill,
+  // ]
   return [
     'case',
-    ['==', ['get', 'metric_' + metric], -999],
+    ['==', ['get', metric], -999],
     noDataFill,
-    ['has', 'metric_' + metric],
-    [
-      'interpolate',
-      ['linear'],
-      ['get', 'metric_' + metric],
-      ...stops,
-    ],
+    ['has', metric],
+    ['interpolate', ['linear'], ['get', metric], ...stops],
     noDataFill,
   ]
 }
@@ -76,6 +84,7 @@ export const getSchoolCircleLayer = ({
   activeQuintiles,
   colors,
 }) => {
+  console.log('getSchoolCircleLayer(), ', metric)
   return fromJS({
     id: 'schools-circle',
     source: 'schools',
@@ -86,10 +95,20 @@ export const getSchoolCircleLayer = ({
       visibility: 'visible',
     },
     paint: {
-      'circle-color': getSchoolFillStyle(
-        metric,
-        getMetric(metric, CPAL_METRICS).colors,
-      ),
+      'circle-color': [
+        'case',
+        ['==', ['get', metric + '_quintile'], 0],
+        getMetric(metric, CPAL_METRICS).colors[0],
+        ['==', ['get', metric + '_quintile'], 1],
+        getMetric(metric, CPAL_METRICS).colors[1],
+        ['==', ['get', metric + '_quintile'], 2],
+        getMetric(metric, CPAL_METRICS).colors[2],
+        ['==', ['get', metric + '_quintile'], 3],
+        getMetric(metric, CPAL_METRICS).colors[3],
+        ['==', ['get', metric + '_quintile'], 4],
+        getMetric(metric, CPAL_METRICS).colors[4],
+        '#ccc',
+      ],
       'circle-opacity': 1,
       'circle-radius': [
         'case',
@@ -116,6 +135,20 @@ export const getSchoolCircleLayer = ({
         2,
       ],
     },
+    filter: [
+      'let',
+      'quintile',
+      ['number', ['get', ['concat', metric, '_quintile']]],
+      [
+        '==',
+        [
+          'at',
+          ['var', 'quintile'],
+          ['literal', activeQuintiles],
+        ],
+        1,
+      ],
+    ],
   })
 }
 
@@ -124,7 +157,8 @@ export const getDistrictOutline = (
   activeLayers,
 ) => {
   // console.log('getDistrictOutline(), ', region)
-  const isActive = activeLayers.indexOf('districts') > -1
+  // const isActive = activeLayers.indexOf('districts') > -1
+  const isActive = activeLayers[0] === 1
   return fromJS({
     id: 'districts',
     source: 'districts',
@@ -151,6 +185,9 @@ export const getDistrictOutline = (
 export const getSchoolZoneShapes = ({
   layerId,
   region,
+  metric,
+  activeQuintiles,
+  colors,
 }) => {
   // console.log('getSchoolZoneShapes(), ', region)
   return fromJS({
@@ -163,12 +200,14 @@ export const getSchoolZoneShapes = ({
     },
     interactive: false,
     paint: {
-      'fill-color': SCHOOL_ZONE_COLORS.fill, // 'orange',
-      'fill-outline-color': SCHOOL_ZONE_COLORS.outline, // '#000',
+      'fill-color': getMetric(metric, CPAL_METRICS)
+        .colors[4], // SCHOOL_ZONE_COLORS.fill, // 'orange',
+      'fill-outline-color': getMetric(metric, CPAL_METRICS)
+        .colors[4], // SCHOOL_ZONE_COLORS.outline, // '#000',
       'fill-opacity': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
-        1, // 0.2,
+        0.2,
         0,
       ],
     },
@@ -179,7 +218,7 @@ export const getRedlineShapes = (
   { layerId, region },
   activeLayers,
 ) => {
-  const isActive = activeLayers.indexOf('redlining') > -1
+  const isActive = activeLayers[1] === 1
   return fromJS({
     id: 'redlineShapes',
     source: 'redlines',
@@ -208,7 +247,8 @@ export const getRedlineLines = (
   activeLayers,
 ) => {
   // console.log('getRedlineLines(), ', region)
-  const isActive = activeLayers.indexOf('redlining') > -1
+  // const isActive = activeLayers.indexOf('redlining') > -1
+  const isActive = activeLayers[1] === 1
   return fromJS({
     id: 'redlineLines',
     source: 'redlines',

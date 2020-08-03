@@ -33,41 +33,18 @@ const MapLayerToggle = ({ ...props }) => {
     // console.log('updateLayers, ', e.currentTarget)
     // If item is checked, if it's not in array, push it into array
     // If item is not checked, if it's in array, remove
+    const index = Number(
+      String(e.currentTarget.id).replace('layer_', ''),
+    )
     if (!!e.currentTarget.checked) {
       // Checked.
-      if (
-        activeLayers &&
-        activeLayers.indexOf(e.currentTarget.id) <= -1
-      ) {
-        activeLayers.push(e.currentTarget.id)
-        setActiveLayers(activeLayers)
-      }
+      activeLayers[index] = 1
+      setActiveLayers(activeLayers)
     } else {
       // Not checked.
-      const index = activeLayers.indexOf(e.currentTarget.id)
-      if (index > -1) {
-        activeLayers.splice(index, 1)
-        setActiveLayers(activeLayers)
-      }
+      activeLayers[index] = 0
+      setActiveLayers(activeLayers)
     }
-
-    // Get map layer.
-    const layer = CPAL_LAYER_GROUPS.find(
-      el => el.id === e.currentTarget.id,
-    )
-    // Get current visibility for each type in the map layer.
-    layer.types.forEach(el => {
-      const visibility = props.currentMap.getLayoutProperty(
-        el,
-        'visibility',
-      )
-      // toggle layer visibility by changing the layout object's visibility property
-      props.currentMap.setLayoutProperty(
-        el,
-        'visibility',
-        !!e.currentTarget.checked ? 'visible' : 'none',
-      )
-    })
   }
 
   const [showPanel, setShowPanel] = useState(false)
@@ -80,22 +57,26 @@ const MapLayerToggle = ({ ...props }) => {
           showPanel ? 'panel-show' : 'panel-hide',
         )}
       >
-        {CPAL_LAYER_GROUPS.map(el => {
+        {CPAL_LAYER_GROUPS.map((el, i) => {
+          // console.log(
+          //   'CPAL_LAYER_GROUPS, ',
+          //   el,
+          //   activeLayers &&
+          //     activeLayers.indexOf(el.id) > -1,
+          // )
           return (
             <div className="layer" key={`layer-${el.id}`}>
               <label key={`label-${el.id}`}>
                 <input
                   type="checkbox"
-                  id={el.id}
+                  id={'layer_' + i}
                   name="scales"
                   key={el.id}
-                  defaultChecked={
-                    activeLayers &&
-                    activeLayers.indexOf(el.id) > -1
-                      ? true
-                      : false
+                  checked={
+                    activeLayers[i] === 1 ? true : false
                   }
-                  onChange={e => {
+                  readOnly={true}
+                  onClick={e => {
                     updateLayers(e)
                   }}
                 />
