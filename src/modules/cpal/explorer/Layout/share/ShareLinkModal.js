@@ -9,7 +9,6 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupText,
 } from 'reactstrap'
 import i18n from '@pureartisan/simple-i18n'
 import { FaCopy } from 'react-icons/fa'
@@ -18,7 +17,7 @@ import copy from 'copy-to-clipboard'
 import useStore from './../../store'
 
 const ShareLinkModal = props => {
-  const { buttonLabel, className } = props
+  const { className } = props
   const shareLinkModal = useStore(
     state => state.shareLinkModal,
   )
