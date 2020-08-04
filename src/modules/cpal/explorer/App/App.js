@@ -115,103 +115,103 @@ const App = props => {
     }
 
     // returns true if the provided route is valid
-    function validRoute(route) {
-      if (route[0] === '/') {
-        route = route.substring(1)
-      } else if (route[0] === '#') {
-        route = route.substring(2)
-      }
-      // skip embed validation
-      if (route.indexOf('embed/') !== -1) {
-        return true
-      }
-      var parts = route.split('/')
-      var routeIds = [
-        'view',
-        'highlightedState',
-        'region',
-        'metric',
-        'secondary',
-        'demographic',
-        'zoom',
-        'latitude',
-        'longitude',
-        'locations',
-      ]
-      const params = routeIds.reduce(function (
-        acc,
-        curr,
-        i,
-      ) {
-        acc[curr] = parts[i]
-        return acc
-      },
-      {})
-      if (
-        !params.view ||
-        ['map', 'chart', 'split'].indexOf(params.view) ===
-          -1
-      ) {
-        return false
-      }
-      if (
-        !params.highlightedState ||
-        params.highlightedState.length !== 2
-      ) {
-        return false
-      }
-      if (
-        !params.region ||
-        ['counties', 'districts', 'schools'].indexOf(
-          params.region,
-        ) === -1
-      ) {
-        return false
-      }
-      if (
-        !params.metric ||
-        ['avg', 'grd', 'coh'].indexOf(params.metric) === -1
-      ) {
-        return false
-      }
-      if (
-        !params.secondary ||
-        ['ses', 'seg', 'min', 'frl'].indexOf(
-          params.secondary,
-        ) === -1
-      ) {
-        return false
-      }
-      if (
-        !params.demographic ||
-        (params.demographic !== 'all' &&
-          params.region === 'schools') ||
-        [
-          'all',
-          'w',
-          'b',
-          'a',
-          'h',
-          'm',
-          'f',
-          'wb',
-          'wh',
-          'pn',
-          'np',
-          'mf',
-        ].indexOf(params.demographic) === -1
-      ) {
-        return false
-      }
-      if (
-        !params.zoom ||
-        !params.latitude ||
-        !params.longitude
-      ) {
-        return false
-      }
-      return true
-    }
+    // function validRoute(route) {
+    //   if (route[0] === '/') {
+    //     route = route.substring(1)
+    //   } else if (route[0] === '#') {
+    //     route = route.substring(2)
+    //   }
+    //   // skip embed validation
+    //   if (route.indexOf('embed/') !== -1) {
+    //     return true
+    //   }
+    //   var parts = route.split('/')
+    //   var routeIds = [
+    //     'view',
+    //     'highlightedState',
+    //     'region',
+    //     'metric',
+    //     'secondary',
+    //     'demographic',
+    //     'zoom',
+    //     'latitude',
+    //     'longitude',
+    //     'locations',
+    //   ]
+    //   const params = routeIds.reduce(function (
+    //     acc,
+    //     curr,
+    //     i,
+    //   ) {
+    //     acc[curr] = parts[i]
+    //     return acc
+    //   },
+    //   {})
+    //   if (
+    //     !params.view ||
+    //     ['map', 'chart', 'split'].indexOf(params.view) ===
+    //       -1
+    //   ) {
+    //     return false
+    //   }
+    //   if (
+    //     !params.highlightedState ||
+    //     params.highlightedState.length !== 2
+    //   ) {
+    //     return false
+    //   }
+    //   if (
+    //     !params.region ||
+    //     ['counties', 'districts', 'schools'].indexOf(
+    //       params.region,
+    //     ) === -1
+    //   ) {
+    //     return false
+    //   }
+    //   if (
+    //     !params.metric ||
+    //     ['avg', 'grd', 'coh'].indexOf(params.metric) === -1
+    //   ) {
+    //     return false
+    //   }
+    //   if (
+    //     !params.secondary ||
+    //     ['ses', 'seg', 'min', 'frl'].indexOf(
+    //       params.secondary,
+    //     ) === -1
+    //   ) {
+    //     return false
+    //   }
+    //   if (
+    //     !params.demographic ||
+    //     (params.demographic !== 'all' &&
+    //       params.region === 'schools') ||
+    //     [
+    //       'all',
+    //       'w',
+    //       'b',
+    //       'a',
+    //       'h',
+    //       'm',
+    //       'f',
+    //       'wb',
+    //       'wh',
+    //       'pn',
+    //       'np',
+    //       'mf',
+    //     ].indexOf(params.demographic) === -1
+    //   ) {
+    //     return false
+    //   }
+    //   if (
+    //     !params.zoom ||
+    //     !params.latitude ||
+    //     !params.longitude
+    //   ) {
+    //     return false
+    //   }
+    //   return true
+    // }
 
     // default route to load if none specified, or invalid
     // var defaultRoute =
