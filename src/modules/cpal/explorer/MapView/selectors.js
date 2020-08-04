@@ -84,7 +84,7 @@ export const getSchoolCircleLayer = ({
   activeQuintiles,
   colors,
 }) => {
-  console.log('getSchoolCircleLayer(), ', metric)
+  // console.log('getSchoolCircleLayer(), ', metric)
   return fromJS({
     id: 'schools-circle',
     source: 'schools',

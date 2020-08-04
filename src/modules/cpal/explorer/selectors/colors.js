@@ -1,6 +1,6 @@
 import {
   SELECTED_COLORS,
-  CHOROPLETH_COLORS,
+  // CHOROPLETH_COLORS,
   CRI_COLORS,
   ECON_COLORS,
   NO_DATA_COLOR,
@@ -57,9 +57,9 @@ export const isColorInvertedForVarName = varName => {
 /**
  * Gets a color in the range of choropleth colors based on value
  */
-export const getChoroplethColorAtValue = interpolateRgbBasis(
-  CHOROPLETH_COLORS,
-)
+// export const getChoroplethColorAtValue = interpolateRgbBasis(
+//   CHOROPLETH_COLORS,
+// )
 
 /**
  * Gets a color for a provided value and context

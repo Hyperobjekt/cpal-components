@@ -41,6 +41,14 @@ export const DISABLED_COLORS = [
   '#D2D2D2',
 ]
 
+export const DEM_COLORS = [
+  '#303030',
+  '#595959',
+  '#7E7E7E',
+  '#A8A8A9',
+  '#D2D2D2',
+]
+
 /**
  * colors for CRI scale
  */

@@ -92,25 +92,16 @@ const MapView = props => {
   const flyToFeature = useFlyToFeature()
   const flyToReset = useFlyToReset()
   const isLoaded = useRef(false)
-  console.log(
-    'loading mapview, activeLayers, ',
-    activeLayers,
-    metric,
-  )
-  /** memoized array of choropleth and dot layers */
+
+  /** memoized array of shape and point layers */
   const layers = useMemo(() => {
-    console.log(
-      'activeLayers may have changed, ',
-      activeLayers,
-      metric,
-    )
+    console.log('updating layers')
     if (!metric || !activeQuintiles || !activeLayers) {
       return []
     }
     const context = { metric, activeQuintiles }
     return getLayers(context, activeLayers)
   }, [metric, activeQuintiles, activeLayers])
-  // }, [region, metric, demographic])
 
   /** aria label for screen readers */
   const ariaLabel = i18n.translate('UI_MAP_SR', {

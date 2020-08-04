@@ -59,16 +59,30 @@ const FeederSchoolsChart = ({ ...props }) => {
    */
   const getSchoolsData = () => {
     // Go through list of schools from feeder file
+    // const schoolsData = []
+    // feeders.forEach(el => {
+    //   const school = schools.find(item => {
+    //     return item.TEA === el.TEA
+    //   })
+    //   if (!school) return
+    //   const x = getRoundedValue(school.ci_weight, 0)
+    //   const y = getCountOfSameYValue(x, schoolsData)
+    //   schoolsData.push({
+    //     name: el.HIGH_SLN + ',' + el.TEA,
+    //     label: el.SCHOOLNAME,
+    //     value: [x, y],
+    //   })
+    // })
     const schoolsData = []
-    feeders.forEach(el => {
-      const school = schools.find(item => {
-        return item.TEA === el.TEA
-      })
-      if (!school) return
-      const x = getRoundedValue(school.ci_weight, 0)
+    schools.forEach(el => {
+      // const school = schools.find(item => {
+      //   return item.TEA === el.TEA
+      // })
+      // if (!school) return
+      const x = getRoundedValue(el.cri_weight, 0)
       const y = getCountOfSameYValue(x, schoolsData)
       schoolsData.push({
-        name: el.TEA + ',' + el.FEEDER_SLN,
+        name: el.TEA + ',' + el.HIGH_SLN,
         label: el.SCHOOLNAME,
         value: [x, y],
       })
@@ -85,7 +99,7 @@ const FeederSchoolsChart = ({ ...props }) => {
     const school = schools.find(item => {
       return item.TEA === Number(tea)
     })
-    return school.feeder
+    return school.Feeder
   }
 
   /**

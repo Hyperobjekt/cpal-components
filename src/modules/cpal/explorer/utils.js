@@ -4,7 +4,7 @@ import i18n from '@pureartisan/simple-i18n'
 
 import useStore from './store.js'
 import { schools } from './../../../data/schools'
-import { schoolsGeojson } from './../../../data/schoolsGeojson'
+// import { schoolsGeojson } from './../../../data/schoolsGeojson'
 import { feeders } from './../../../data/feeders'
 import {
   CPAL_METRICS,
@@ -207,7 +207,7 @@ export const getHashLeft = (value, min, max) => {
 }
 
 /**
- * Returns an array of color values, one for each quintile for the given metric
+ * Filters an array of metrics, returns an object of metric data
  * @param  String metric string for metric
  * @return {[type]}        [description]
  */
@@ -338,8 +338,6 @@ export const getFeederAverage = (metric, schoolSet) => {
 export const getSchoolGeojson = () => {
   console.log('getSchoolGeojson()')
   const data = schools
-  // const origJson = schoolsGeojson
-  // const feeders = feeders
   const newJson = {
     type: 'FeatureCollection',
     features: [],
@@ -364,50 +362,15 @@ export const getSchoolGeojson = () => {
       el.POINT_Y,
     ]
     newFeature.properties = el
-    const feeder = feeders.find(item => {
-      return Number(item.TEA) == Number(el.TEA)
-    })
-    if (!!feeder) {
-      newFeature.properties.feeder = feeder.FEEDER
-      newFeature.properties.feeder_sln = feeder.FEEDER_SLN
-    }
+    // const feeder = feeders.find(item => {
+    //   return Number(item.TEA) == Number(el.TEA)
+    // })
+    // if (!!feeder) {
+    //   newFeature.properties.feeder = feeder.FEEDER
+    //   newFeature.properties.feeder_sln = feeder.FEEDER_SLN
+    // }
     newJson.features.push(newFeature)
   })
-
-  // const features = origJson.features
-  // features.forEach(el => {
-  //   const found = data.find(
-  //     school => school.TEA_ID === el.properties.SLN,
-  //   )
-  //   // console.log('found, ', found)
-  //   if (!!found) {
-  //     // Add data to the properties.
-  //     el.id = found.TEA_ID
-  //     el.properties.tea_id = found.TEA_ID
-  //     const feeder = feeders.find(item => {
-  //       return Number(item.SLN) == Number(found.TEA_ID)
-  //     })
-  //     if (!!feeder) {
-  //       el.properties.feeder = feeder.FEEDER
-  //       el.properties.feeder_sln = feeder.FEEDER_SLN
-  //     }
-  //     CPAL_METRICS.forEach(item => {
-  //       // Add metric value
-  //       const node = 'metric_' + item.id
-  //       el.properties[node] = found[item.id]
-  //       // Also add quintile for each value
-  //       const quintile = 'metric_quintile_' + item.id
-  //       el.properties[quintile] = getQuintile(
-  //         found[item.id],
-  //         item.range[0],
-  //         item.range[1],
-  //         item.high_is_good,
-  //       )
-  //     })
-  //     // Insert into new json object.
-  //     newJson.features.push(el)
-  //   }
-  // })
   console.log(newJson)
   return newJson
 }
@@ -436,93 +399,6 @@ export const getSchoolZones = () => {
     // Insert into new json object.
     newJson.features.push(cir)
   })
-
-  // const features = origJson.features
-  // features.forEach(el => {
-  //   const found = data.find(
-  //     school => school.TEA_ID === el.properties.SLN,
-  //   )
-  //   if (!!found) {
-  //     // Add data to the properties.
-  //     var center = el.geometry.coordinates
-  //     var radius = 2
-  //     var options = {
-  //       steps: 64,
-  //       units: 'miles',
-  //       properties: {
-  //         tea_id: found.TEA_ID,
-  //         metric_cri: found.cri,
-  //       },
-  //     }
-  //     const cir = circle(center, radius, options)
-  //     cir.id = '200' + found.TEA_ID
-  //     // Insert into new json object.
-  //     newJson.features.push(cir)
-  //   }
-  // })
   // console.log('newJson', newJson)
   return newJson
 }
-
-/**
- * Returns an array of schools with feeder data added
- * @return Array Array of objects, one for each school
- */
-export const getFeederSchools = () => {
-  // console.log('getFeederSchools()')
-  const data = schools
-  const feederSchools = feeders
-  const json = []
-  data.forEach(el => {
-    const feeder = feederSchools.find(item => {
-      return Number(item.SLN) == Number(el.TEA_ID)
-    })
-    if (!!feeder) {
-      el.feeder = feeder.FEEDER
-      el.feeder_sln = feeder.FEEDER_SLN
-      el.schoolname = feeder.SCHOOLNAME
-      json.push(el)
-    }
-  })
-  // console.log('data, ', json)
-  return json
-}
-
-// More generic utils or utils from external sources
-
-import { useState, useEffect } from 'react'
-
-// // https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
-// export const useDebounce = (value, delay) => {
-//   // State and setters for debounced value
-//   const [debouncedValue, setDebouncedValue] = useState(
-//     value,
-//   )
-//
-//   useEffect(
-//     () => {
-//       // Set debouncedValue to value (passed in) after the specified delay
-//       const handler = setTimeout(() => {
-//         setDebouncedValue(value)
-//       }, delay)
-//
-//       // Return a cleanup function that will be called every time ...
-//       // ... useEffect is re-called. useEffect will only be re-called ...
-//       // ... if value changes (see the inputs array below).
-//       // This is how we prevent debouncedValue from changing if value is ...
-//       // ... changed within the delay period. Timeout gets cleared and restarted.
-//       // To put it in context, if the user is typing within our app's ...
-//       // ... search box, we don't want the debouncedValue to update until ...
-//       // ... they've stopped typing for more than 500ms.
-//       return () => {
-//         clearTimeout(handler)
-//       }
-//     },
-//     // Only re-call effect if value changes
-//     // You could also add the "delay" var to inputs array if you ...
-//     // ... need to be able to change that dynamically.
-//     [value, delay],
-//   )
-//
-//   return debouncedValue
-// }
