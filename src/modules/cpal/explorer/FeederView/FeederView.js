@@ -5,23 +5,6 @@ import { Row, Col } from 'reactstrap'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 
-// import {
-//   CPAL_METRICS,
-//   CPAL_FEEDERS,
-//   CPAL_FEEDER_TIP_ITEMS,
-// } from './../../../../constants/metrics'
-// import { feeders } from './../../../../data/feeders'
-// import { schools } from './../../../../data/schools'
-// import {
-//   CRI_COLORS,
-//   ECON_COLORS,
-//   EDU_COLORS,
-//   FAM_COLORS,
-//   HEL_COLORS,
-//   COMM_COLORS,
-// } from './../../../../constants/colors'
-// import useStore from './../store'
-// import { getFeederSchools } from './../utils'
 import FeederChart from './FeederChart'
 import FeederLegend from './FeederLegend'
 import FeederSchoolsChart from './FeederSchoolsChart'
@@ -33,32 +16,6 @@ import './FeederView.scss'
  */
 const FeederView = () => {
   const isLoaded = useRef(false)
-
-  // Array of feeder school objects
-  // const feederSchools = useStore(
-  //   state => state.feederSchools,
-  // )
-  // const setFeederSchools = useStore(
-  //   state => state.setFeederSchools,
-  // )
-  // /**
-  //  * On load, set feeder schools array of objects
-  //  * @param  {[type]} console [description]
-  //  * @return {[type]}         [description]
-  //  */
-  // useEffect(() => {
-  //   // console.log('loaded changed')
-  //   // If feeder schools is empty, fetch the feeder schools (one time)
-  //   if (feederSchools.length <= 0) {
-  //     // console.log('fetching feeder schools')
-  //     // const feederSchools = getFeederSchools()
-  //     setFeederSchools(getFeederSchools())
-  //   }
-  // }, [isLoaded])
-
-  // <h2>
-  //   {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
-  // </h2>
 
   return (
     <div className="layout-view-feeder">

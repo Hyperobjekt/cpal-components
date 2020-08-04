@@ -20,12 +20,10 @@ import {
 } from './../../../../constants/colors'
 import useStore from './../store'
 import {
-  // getFeederSchools,
   getMetric,
   getRoundedValue,
   toTitleCase,
 } from './../utils'
-import { feeders } from './../../../../data/feeders'
 import { schools } from './../../../../data/schools'
 
 const FeederChart = ({ ...props }) => {

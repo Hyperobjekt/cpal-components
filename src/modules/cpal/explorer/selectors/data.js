@@ -1,4 +1,3 @@
-// import circle from '@turf/circle'
 import {
   getMetricIdFromVarName,
   getMetricRange,
@@ -17,8 +16,6 @@ import {
 } from './../../../../shared/utils'
 import { getStateAbbr } from './../../../../shared/utils/states'
 import { getRegionFromLocationId } from './regions'
-// import { schools } from './../../../../data/schools'
-// import { schoolsGeojson } from './../../../../data/schoolsGeojson'
 
 // values provided by SEDA team for calulation distance from regression
 const FUNC_VARS = {

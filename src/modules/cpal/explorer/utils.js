@@ -4,8 +4,6 @@ import i18n from '@pureartisan/simple-i18n'
 
 import useStore from './store.js'
 import { schools } from './../../../data/schools'
-// import { schoolsGeojson } from './../../../data/schoolsGeojson'
-import { feeders } from './../../../data/feeders'
 import {
   CPAL_METRICS,
   CPAL_FEEDERS,
@@ -13,11 +11,6 @@ import {
 } from './../../../constants/metrics'
 import { BOUNDS } from './../../../constants/map'
 import { CPAL_LAYER_GROUPS } from './../../../constants/layers'
-
-// import { parseLocationsString } from './selectors/router'
-
-// const FLAGGED_ENDPOINT =
-//   process.env.REACT_APP_DATA_ENDPOINT + 'flagged/'
 
 /**
  * Loads map features based on a string of locations

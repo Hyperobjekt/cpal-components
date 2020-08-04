@@ -26,7 +26,6 @@ import {
   toTitleCase,
   getFeederAverage,
 } from './../utils'
-// import { feeders } from './../../../../data/feeders'
 import { schools } from './../../../../data/schools'
 
 const FeederLegend = ({ ...props }) => {

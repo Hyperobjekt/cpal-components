@@ -14,7 +14,6 @@ import {
   HEL_COLORS,
   COMM_COLORS,
 } from './../../../../constants/colors'
-import { feeders } from './../../../../data/feeders'
 import { schools } from './../../../../data/schools'
 import useStore from './../store'
 import {
