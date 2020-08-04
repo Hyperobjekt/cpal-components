@@ -308,7 +308,7 @@ const MapBase = ({
 
   // handler for feature hover
   const handleHover = ({ features, point, srcEvent }) => {
-    console.log('handleHover, ', features, point)
+    // console.log('handleHover, ', features, point)
     setMouseCoords(point)
     const newHoveredFeature =
       features && features.length > 0 ? features[0] : null

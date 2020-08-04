@@ -156,7 +156,8 @@ const MapView = props => {
 
   /** handler for map click */
   const handleClick = feature => {
-    addLocation(feature)
+    console.log('handle click')
+    // addLocation(feature)
   }
 
   /** handler for map load */
