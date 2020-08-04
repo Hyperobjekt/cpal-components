@@ -26,36 +26,35 @@ import {
   toTitleCase,
   getFeederAverage,
 } from './../utils'
+// import { feeders } from './../../../../data/feeders'
+import { schools } from './../../../../data/schools'
 
 const FeederLegend = ({ ...props }) => {
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
-  console.log('activeFeeder, ', activeFeeder)
-  // Array of feeder school objects
-  const feederSchools = useStore(
-    state => state.feederSchools,
-  )
+  // Slice out feeders to avoid rewrites
+  const feeders = CPAL_FEEDERS.slice()
+
   /**
    * Gets label for the feeder
    * @param  String tea TEA id for school
    * @return String     Label for the feeder
    */
   const getFeederLabel = tea => {
-    const school = feederSchools.find(item => {
-      return item.TEA_ID === Number(tea)
+    // console.log('getFeederLabel()', tea, feeders)
+    const feeder = feeders.find(el => {
+      return Number(el.id) === Number(tea)
     })
-    return school.feeder
+    return feeder.title ? feeder.title : ''
   }
   /**
    * Gets the set of schools that are in a feeder
    * @return Array Array of school data objects
    */
   const getSchoolSet = feeder => {
-    // console.log('getSchoolSet, ', feeder)
-    // console.log('feederSchools, ', feederSchools)
-    return feederSchools.filter(el => {
-      return Number(el.feeder_sln) === Number(feeder)
+    return schools.filter(el => {
+      return Number(el.HIGH_SLN) === Number(feeder)
     })
   }
 
@@ -124,10 +123,10 @@ const FeederLegend = ({ ...props }) => {
               return (
                 <span
                   className="school"
-                  id={'school_' + el.TEA_ID}
-                  key={'school_' + el.TEA_ID}
+                  id={'school_' + el.TEA}
+                  key={'school_' + el.TEA}
                 >
-                  {el.schoolname}
+                  {el.SCHOOLNAME}
                 </span>
               )
             })}

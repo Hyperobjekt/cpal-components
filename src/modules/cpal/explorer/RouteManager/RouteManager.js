@@ -5,8 +5,8 @@ import shallow from 'zustand/shallow'
 import useStore from './../store'
 import { getRoundedValue } from './../utils'
 import { schools } from './../../../../data/schools'
-import { schoolsGeojson } from './../../../../data/schoolsGeojson'
-import { feeders } from './../../../../data/feeders'
+// import { schoolsGeojson } from './../../../../data/schoolsGeojson'
+// import { feeders } from './../../../../data/feeders'
 import {
   CPAL_METRICS,
   CPAL_FEEDERS,

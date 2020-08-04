@@ -20,11 +20,13 @@ import {
 } from './../../../../constants/colors'
 import useStore from './../store'
 import {
-  getFeederSchools,
+  // getFeederSchools,
   getMetric,
   getRoundedValue,
   toTitleCase,
 } from './../utils'
+import { feeders } from './../../../../data/feeders'
+import { schools } from './../../../../data/schools'
 
 const FeederChart = ({ ...props }) => {
   // Currently active (hovered) feeder
@@ -38,10 +40,6 @@ const FeederChart = ({ ...props }) => {
   const setFeederLocked = useStore(
     state => state.setFeederLocked,
   )
-  // Array of feeder school objects
-  const feederSchools = useStore(
-    state => state.feederSchools,
-  )
   // To clear highlighted school when a feeder bar is clicked
   const setHighlightedSchool = useStore(
     state => state.setHighlightedSchool,
@@ -51,8 +49,8 @@ const FeederChart = ({ ...props }) => {
    * @return Array Array of school data objects
    */
   const getSchoolSet = feeder => {
-    return feederSchools.filter(el => {
-      return el.feeder_sln === feeder
+    return schools.filter(el => {
+      return el.HIGH_SLN === feeder
     })
   }
 
@@ -73,19 +71,24 @@ const FeederChart = ({ ...props }) => {
    * @return Array Array of objects
    */
   const buildFeederData = () => {
+    // console.log('buildFeederData, ', CPAL_FEEDERS)
     const feederData = []
     CPAL_FEEDERS.forEach(el => {
       feederData.push({
         name: el.title,
         id: el.id,
         label: el.title,
-        value: getFeederAverage('cri', getSchoolSet(el.id)),
+        value: getFeederAverage(
+          'cri_weight',
+          getSchoolSet(el.id),
+        ),
       })
     })
     // Sort ascending by cri average
     feederData.sort((a, b) => a.value - b.value)
     return feederData
   }
+  // buildFeederData()
 
   const onFeederMouseover = e => {
     // console.log('onFeederMouseover, ', e.currentTarget.id)

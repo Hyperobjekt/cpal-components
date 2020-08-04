@@ -8,6 +8,7 @@ import { MdClose } from 'react-icons/md'
 
 import { CoreButton } from './../../../core'
 import useStore from './../store'
+import { schools } from './../../../../data/schools'
 
 import './SchoolSearch.scss'
 
@@ -19,9 +20,9 @@ const SchoolSearch = ({ ...props }) => {
   // Active view, different actions depending on this
   const activeView = useStore(state => state.activeView)
   // Active view, different actions depending on this
-  const feederSchools = useStore(
-    state => state.feederSchools,
-  )
+  // const feederSchools = useStore(
+  //   state => state.feederSchools,
+  // )
   // Sets active feeder
   const setActiveFeeder = useStore(
     state => state.setActiveFeeder,
@@ -38,26 +39,18 @@ const SchoolSearch = ({ ...props }) => {
   const [value, setValue] = useState('')
 
   const updateUIWithResult = suggestion => {
-    console.log('updateUIWithResult')
+    // console.log('updateUIWithResult')
     if (activeView === 'map') {
       console.log('in map view')
     }
     if (activeView === 'feeder') {
-      console.log('in feeder view, ', suggestion)
-      setActiveFeeder(suggestion.suggestion.feeder_sln)
+      // console.log('in feeder view, ', suggestion)
+      setActiveFeeder(suggestion.suggestion.HIGH_SLN)
       setFeederLocked(true)
-      setHighlightedSchool(suggestion.suggestion.TEA_ID)
+      setHighlightedSchool(suggestion.suggestion.TEA)
       handleClear()
     }
   }
-
-  // useEffect(() => {
-  //   console.log('feederSchools changed')
-  //   console.log('feederSchools, ', feederSchools)
-  //   if (feederSchools.length > 0) {
-  //     // buildSuggestions()
-  //   }
-  // }, [feederSchools])
 
   const getSuggestions = value => {
     const inputValue = value.trim().toLowerCase()
@@ -65,11 +58,12 @@ const SchoolSearch = ({ ...props }) => {
 
     return inputLength === 0
       ? []
-      : feederSchools.filter(
+      : schools.filter(
           el =>
-            el.schoolname
-              .toLowerCase()
-              .slice(0, inputLength) === inputValue,
+            el.SCHOOLNAME.toLowerCase().slice(
+              0,
+              inputLength,
+            ) === inputValue,
         )
   }
   /**
@@ -106,7 +100,7 @@ const SchoolSearch = ({ ...props }) => {
   }
 
   const getSuggestionValue = suggestion => {
-    return suggestion.schoolname
+    return suggestion.SCHOOLNAME
   }
 
   const handleClear = () => {
@@ -120,10 +114,10 @@ const SchoolSearch = ({ ...props }) => {
     // console.log('renderSuggestion')
     return (
       <div
-        id={suggestion.TEA_ID}
-        data-feeder={suggestion.feeder_sln}
+        id={suggestion.TEA}
+        data-feeder={suggestion.HIGH_SLN}
       >
-        {suggestion.schoolname}
+        {suggestion.SCHOOLNAME}
       </div>
     )
   }

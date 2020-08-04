@@ -52,27 +52,27 @@ export const CPAL_FILTER_TABS = [
 // indices and indicators to save their fucking lives.
 export const CPAL_FEEDER_TIP_ITEMS = [
   {
-    id: 'cri',
+    id: 'cri_weight',
     title: 'UI_MAP_METRIC_TITLE_CRI',
   },
   {
-    id: 'econ',
+    id: 'eci_weight',
     title: 'UI_MAP_METRIC_TITLE_ECON',
   },
   {
-    id: 'edu',
+    id: 'edi_weight',
     title: 'UI_MAP_METRIC_TITLE_EDU',
   },
   {
-    id: 'fam',
+    id: 'fi_weight',
     title: 'UI_MAP_METRIC_TITLE_FAM',
   },
   {
-    id: 'com',
+    id: 'ci_weight',
     title: 'UI_MAP_METRIC_TITLE_COMM',
   },
   {
-    id: 'health',
+    id: 'hi_weight',
     title: 'UI_MAP_METRIC_TITLE_HEAL',
   },
 ]

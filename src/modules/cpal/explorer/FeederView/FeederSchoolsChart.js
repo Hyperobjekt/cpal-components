@@ -82,8 +82,8 @@ const FeederSchoolsChart = ({ ...props }) => {
    * @return String     Label for the feeder
    */
   const getFeederLabel = tea => {
-    const school = feederSchools.find(item => {
-      return item.TEA_ID === Number(tea)
+    const school = schools.find(item => {
+      return item.TEA === Number(tea)
     })
     return school.feeder
   }
@@ -223,8 +223,7 @@ const FeederSchoolsChart = ({ ...props }) => {
                 '<div class="school-tip">' +
                 '<p>' +
                 params.data.label +
-                '</p>' +
-                '<p>' +
+                '<br>' +
                 getFeederLabel(
                   getFeederSLN(params.data.name),
                 ) +
