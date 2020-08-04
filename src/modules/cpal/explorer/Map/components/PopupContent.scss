@@ -1,5 +1,7 @@
 .popup-content {
   padding: 0.75rem 0.5rem 0.5rem;
   width: 250px;
-  z-index: 5000;
+}
+.mapboxgl-popup {
+  z-index: 5000 !important;
 }

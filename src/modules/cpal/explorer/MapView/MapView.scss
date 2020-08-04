@@ -3,19 +3,35 @@
   height: 100%;
 }
 
-.mapbox-popup {
-  z-index: 5000;
-  width: 300px;
-  &.mapbox-popup-anchor-top {
+.view-parent {
+  &.display-feeder {
+    .layout-view-map {
+      width: 0 !important;
+      iframe,
+      .mapboxgl-map {
+        width: 0 !important;
+        display: none !important;
+      }
+    }
   }
-  .mapbox-popup-tip {
-    // Not displayed at present
-  }
-  .mapbox-popup-content {
-    width: 300px !important;
-    border: 3px solid blue;
-    .mapbox-popup-close-button {
-      // Not displayed at present
+}
+
+// Manage z-index for items in the .overlay map space,
+// so the popup can lay over all of them.
+.view-parent {
+  &.display-map {
+    .map {
+      .overlay {
+        .map-legend {
+          z-index: 250;
+        }
+        .map-layer-toggle {
+          z-index: 200;
+        }
+        .map__zoom {
+          z-index: 1;
+        }
+      }
     }
   }
 }
