@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
 
+import useStore from './../store.js'
 import Layout from '../Layout/Layout'
 import en_US from './../../../../constants/en_US'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -20,6 +21,11 @@ const App = props => {
       en_US: en_US,
     },
   })
+  const setHandleMenuClick = useStore(
+    state => state.setHandleMenuClick,
+  )
+  if (!!props.onMenuClick) {
+  }
 
   // SEDA namespace for globals
   window.CPAL = (function () {

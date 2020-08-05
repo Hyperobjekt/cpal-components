@@ -31,6 +31,7 @@ import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
+import Menu from './../Menu/Menu'
 import {
   onTwitterShare,
   onFacebookShare,
@@ -217,21 +218,24 @@ const Layout = ({ children, ...props }) => {
     }
   }
 
+  // Original menu button
+  // <CoreButton
+  //   id="button_toggle_menu"
+  //   aria-label={i18n.translate(`BUTTON_MENU`)}
+  //   onClick={handleClick}
+  //   color="secondary"
+  //   className="button-toggle-menu"
+  // >
+  //   <FiMenu />
+  // </CoreButton>
+
   return (
     <div className="layout" {...props}>
       <RouteManager routeSet={ROUTE_SET} />
       <Header>
         <Logo {...logoProps} />
         <SchoolSearch />
-        <CoreButton
-          id="button_toggle_menu"
-          aria-label={i18n.translate(`BUTTON_MENU`)}
-          onClick={handleClick}
-          color="secondary"
-          className="button-toggle-menu"
-        >
-          <FiMenu />
-        </CoreButton>
+        <Menu />
       </Header>
       <main>
         <Canvas>

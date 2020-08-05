@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
 
+import useStore from './../store.js'
 import PanelFilterView from './../PanelFilterView/PanelFilterView'
 import PanelInfoView from './../PanelInfoView/PanelInfoView'
 
