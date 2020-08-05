@@ -103,7 +103,9 @@ const Layout = ({ children, ...props }) => {
     }
     if (e.currentTarget.id === 'button_toggle_menu') {
       console.log('toggle menu clicked')
-      handleToggleMenu()
+      if (!!handleToggleMenu) {
+        handleToggleMenu()
+      }
     }
   }
 
