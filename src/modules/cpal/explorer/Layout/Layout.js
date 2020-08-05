@@ -31,7 +31,6 @@ import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
-import Menu from './../Menu/Menu'
 import {
   onTwitterShare,
   onFacebookShare,
