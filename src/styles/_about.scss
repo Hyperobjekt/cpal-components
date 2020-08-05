@@ -1,0 +1,330 @@
+// todo standardize page id
+#about-page {
+  $why-background: $green-white;
+  $hero-color: $bridal-heath;
+  $number-gray: #4B4B4B;
+  $jumper-width-md: 6 * $column;
+
+  p { // *?
+    color: $turtle-green;
+  }
+
+  .hero-wide {
+    .color-section {
+      background: $hero-color;
+
+      @include media-breakpoint-up(md) {
+        // for md plus, add white bg behind lower part of img
+        $white-bg-proportion: 0.55; // <- tune 0-1 to control how far from img bottom background color ends
+        $cutoff: (1/2) * $hero-wide-img-width-md * $white-bg-proportion; // 1/2 ~ image aspect ratio
+        background: linear-gradient(0deg, transparent 0, transparent $cutoff, $hero-color $cutoff);
+      }
+      
+      @include media-breakpoint-up(xl) {
+        // same as above, different img width (so different $cutoff)
+        $white-bg-proportion: 0.55; // <- tune 0-1 to control how far from img bottom background color ends
+        $cutoff: (1/2) * $hero-wide-img-width-xl * $white-bg-proportion; // 1/2 ~ image aspect ratio
+        background: linear-gradient(0deg, transparent 0, transparent $cutoff, $hero-color $cutoff);
+      }
+    }
+    .menu-section {
+      @include media-breakpoint-up(md) {
+        background: $hero-color;
+      }
+    }
+  }
+
+  #page {
+    margin-top: 8 * $spacer;
+    @include media-breakpoint-up(md) {
+      margin-top: 10 * $spacer;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-top: 15 * $spacer;
+    }
+  }
+
+  .cpal-defined .title {
+    font-weight: $font-weight-light;
+    font-size: 14px;
+    line-height: 18px;
+    @include media-breakpoint-up(xl) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    margin-bottom: 3 * $spacer;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 5 * $spacer;
+    }
+  }
+
+  .cpal-defined .text, .where-we-work .text {
+    font-weight: $font-weight-bold;
+    letter-spacing: -1px;
+    font-size: 20px;
+    line-height: 25px;
+    @include media-breakpoint-up(xl) {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+    
+  .cpal-defined {
+    margin-bottom: 5 * $spacer;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 6 * $spacer;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 9 * $spacer;
+    }
+  }
+    
+  .where-we-work {
+    margin-bottom: 8 * $spacer;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 9 * $spacer;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 11.5 * $spacer;
+    }
+
+  }
+
+  .numbered-points {
+    padding-left: $column;
+    padding-right: $column;
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: 5 * $spacer - 5 * $spacer; // decrement by numbered-point spacer
+    @include media-breakpoint-up(md) {
+      margin-bottom: 6 * $spacer - 4 * $spacer; // decrement by numbered-point spacer
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 9 * $spacer - 7 * $spacer; // decrement by numbered-point spacer
+    }
+
+    .numbered-point {
+      flex-basis: 100%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      
+      @include media-breakpoint-up(md) {
+        flex-basis: 4 * $column;
+      }
+      @include media-breakpoint-up(xl) {
+        flex-basis: 3 * $column;
+      }
+
+      &.n-1, &.n-2, &.n-4 {
+        .number {
+          height: 56px;
+        }
+      }
+      &.n-3, &.n-5 {
+        .number {
+          height: 62px;
+        }
+      }
+
+      margin-bottom: 5 * $spacer;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 4 * $spacer;
+      }
+      @include media-breakpoint-up(xl) {
+        margin-bottom: 7 * $spacer;
+      }
+      
+      display: flex;
+      .point {
+        padding: 0 $gutter;
+        color: $boulder;
+        color: $number-gray;
+        font-weight: $font-weight-light;
+        font-size: 15px;
+        line-height: 22px;
+        @include media-breakpoint-up(xl) {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+
+  .jumper-wrapper-xl {
+    display: none;
+    img {
+      width: 100%;
+    }
+
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 12 * $spacer;
+    width: 50%;
+
+    @include media-breakpoint-up(xl) {
+      display: block;
+    }
+  }
+
+  .funder-wrapper {
+    &.xl {
+      position: relative;
+      display: none;
+      @include media-breakpoint-up(xl) {
+        display: block;
+      }
+    }
+    &.md-down {
+      @include media-breakpoint-up(xl) {
+        display: none;
+      }
+    }
+
+    .funder {
+      &.xl {
+        position: absolute;
+        top: 21 * $spacer;
+        right: $column;
+      }
+
+      display: flex;
+      flex-direction: column;
+
+      a {
+        width: 214px;
+        margin: auto;
+      }
+
+      img {
+        width: 214px;
+        margin: auto;
+      }
+      .text {
+        margin: auto;
+        text-align: center;
+
+        font-size: 16px;
+        line-height: 25px;
+        width: 10 * $column;
+        margin-top: 3 * $spacer;
+        margin-bottom: 7 * $spacer;
+        
+        @include media-breakpoint-up(md) {
+          width: 6 * $column;
+          margin-top: 4 * $spacer;
+        }
+
+        @include media-breakpoint-up(xl) {
+          font-size: 18px;
+          line-height: 27px;
+          width: 3 * $column;
+        }
+      }
+    }
+  }
+
+  .explorer-why {
+    background: $why-background;
+
+    // _jumping boy__
+    @include media-breakpoint-down(md) {
+      // for md only, add white bg behind upper part of img
+      $white-bg-proportion: .6; // <- tune 0-1 to control how far down img background color begins
+      $cutoff: (2/3) * $jumper-width-md * $white-bg-proportion; // 2/3 ~ image aspect ratio
+      background: linear-gradient(transparent 0, transparent $cutoff, $why-background $cutoff);
+    }
+    .jumper-wrapper-md-down {
+      img {
+        width: 100%;
+      }
+      
+      margin-bottom: 8 * $spacer;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 9 * $spacer;
+        margin-left: $column;
+        width: $jumper-width-md;
+      }
+      @include media-breakpoint-up(xl) {
+        // use .jumper-wrapper-xl
+        display: none;
+        background: $why-background;
+      }
+    }
+    // ______________
+
+    margin-bottom: 8 * $spacer;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 7 * $spacer;
+    }
+    
+    .content {
+      margin-left: $column;
+      margin-right: $column;
+      padding-bottom: 8 * $spacer;
+      @include media-breakpoint-up(md) {
+        padding-bottom: 9 * $spacer;
+      }
+      @include media-breakpoint-up(xl) {
+        margin-right: 2 * $column;
+        padding-bottom: 14 * $spacer;
+      }
+    }
+
+    .title {
+      font-weight: $font-weight-bold;
+      font-size: 26px;
+      line-height: 30px;
+      letter-spacing: -1px;
+      @include media-breakpoint-up(md) {
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -2px;
+
+        max-width: 225px; // break into two lines
+      }
+      @include media-breakpoint-up(xl) {
+        font-size: 60px;
+        line-height: 65px;
+
+        max-width: 350px; // break into two lines
+        padding-top: 14 * $spacer; // other breakpoints have margin-bottom on the image
+      }
+
+      margin-bottom: 6 * $spacer;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 5 * $spacer;
+      }
+      @include media-breakpoint-up(xl) {
+        margin-bottom: 8 * $spacer;
+      }
+    }
+
+    .text-blocks {
+      font-weight: $font-weight-lighter;
+      font-size: 18px;
+      line-height: 27px;
+
+      p:not(:last-of-type) {
+        padding-bottom: 4 * $spacer;
+      }
+
+      margin-bottom: 6 * $spacer;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 5 * $spacer;
+      }
+      @include media-breakpoint-up(xl) {
+        margin-bottom: 8 * $spacer;
+      }
+    }
+  }
+
+  .funder-wrapper-md-down {
+
+    @include media-breakpoint-up(xl) {
+      display: none;
+    }
+  }
+}

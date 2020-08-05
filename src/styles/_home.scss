@@ -1,0 +1,19 @@
+
+#home-page {
+
+  #page {
+    margin-top: 8 * $spacer;
+    @include media-breakpoint-up(md) {
+      margin-top: 10 * $spacer;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-top: 15 * $spacer;
+    }
+  }
+
+  #hero {
+    .color-section {
+      background: $old-lace;
+    }
+  }
+}

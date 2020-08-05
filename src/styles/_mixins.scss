@@ -1,0 +1,49 @@
+// __@mixins for shared styles (consider all instances before modifying)____
+
+@mixin dallas-isd-styles {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .text {
+    text-align: center;
+    color: $orange-roughy;
+    transform: rotate(-90deg); // translate?
+    // display: block;
+    white-space: nowrap;
+
+    font-weight: $font-weight-bold;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 14px;
+    }
+  }
+}
+
+@mixin horizontal-branding-styles {
+  .site-logo {
+    width: 18px;
+    height: 28px;
+    background-image: url('./images/menu-logo.svg');
+    position: relative;
+    top: 7px;
+    margin-right: 5px;
+  }
+
+  .site-title {
+    // _figma_
+    font-size: 15px;
+    font-weight: $font-weight-light;
+    line-height: 15px;
+    /* or 100% */
+    color: $shark;
+    mix-blend-mode: normal;
+    // _______
+  }
+}
+
+// ______________________________________

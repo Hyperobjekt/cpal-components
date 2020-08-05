@@ -1,0 +1,372 @@
+#faqs-page {
+  $q-breath: 3 * $spacer;
+  $q-after-breath: 6 * $spacer;
+
+  // _______________RESPONSIVE SIZING_______________ //
+  $inter-section-breath-xs: 6 * $spacer - $q-breath;
+  $outer-section-breath-xs: 8 * $spacer - $q-breath;
+  $method-breath-xs: 7 * $spacer;
+
+  
+  $inter-section-breath-md: 9 * $spacer - $q-breath;
+  $outer-section-breath-md: 10 * $spacer - $q-breath;
+  $method-breath-md: 9 * $spacer;
+  
+
+  $inter-section-breath-xl: 10 * $spacer - $q-breath;
+  $outer-section-breath-xl: 12 * $spacer - $q-breath;
+  $method-breath-xl: 11 * $spacer;
+  
+
+  //\\//\\//\\//\\/ MOBILE (and larger) /\\//\\//\//
+  .side-menu.normal {
+    display: none;
+  }
+  .side-menu.mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .jump {
+      padding: 1.5 * $spacer 0;
+      width: 100%; //110%;
+      text-align: center;
+      background: $white;
+      border-bottom: 1px solid $alto;
+    }
+
+    &:not(.active) .sections {
+      display: none;
+    }
+    .sections {
+      padding-top: 2 * $spacer;
+      text-align: center;
+      border-bottom: 1px solid $alto;
+      background: $white;
+      position: absolute;
+      top: 100%;
+      width: 100%; //110%;
+    }
+  }
+  .side-menu {
+    // applies to both menus
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    .jump, .menu-title {
+      display: inline-block;
+      padding-bottom: 3 * $spacer;
+    }
+    .jump {
+      font-size: 16px;
+      // line-height: 25px;
+      letter-spacing: -0.5px;
+    }
+    .menu-title {
+      // _figma__
+      font-size: 26px;
+      line-height: 1; // 30px;
+      letter-spacing: -1px;
+      // ________
+    }
+  }
+
+  .section-title {
+    font-weight: $font-weight-bold;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -1px;
+    padding-top: $q-breath;
+    padding-bottom: $q-after-breath - $q-breath;
+  }
+
+  .questions {
+    padding-top: $inter-section-breath-xs;
+    padding-bottom: $inter-section-breath-xs;
+  }
+  .faq-section.first .questions {
+    padding-top: $outer-section-breath-xs;
+  }
+  .faq-section.last .questions {
+    padding-bottom: $outer-section-breath-xs;
+  }
+
+  .question {
+    .question-text {
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .question-body {
+      font-size: 15px;
+      line-height: 22px;
+      a {
+        color:rgb(212, 68, 28);
+      }
+    }
+  }
+
+  .methods-paper-section {
+    .methods-paper .content {
+      margin-left: $column;
+      margin-right: $column;
+    }
+
+    .section-title {
+      padding-top: 0;
+      padding-bottom: 6 * $spacer;
+    }
+
+    .row {
+      padding-top: $method-breath-xs;
+      padding-bottom: $method-breath-xs;
+    }
+    .description {
+      .text {
+        font-size: 18px;
+        line-height: 27px;
+        padding-bottom: 5 * $spacer;
+      }
+    }
+  }
+
+  //\\//\\//\\//\\/ TABLET (and larger) /\\//\\//\//
+  @media screen and (min-width: $md-start) {
+    .side-menu.mobile {
+      display: none;
+    }
+    .side-menu.normal {
+      display: block;
+      padding-left: $column;
+      transform: translate(0, $outer-section-breath-md + $q-breath);
+      height: 0; // trick to keep it from forcing question sections down
+    }
+
+    .section-title {
+      display: none;
+    }
+
+    .questions {
+      padding-top: $inter-section-breath-md;
+      padding-bottom: $inter-section-breath-md;
+    }
+    .faq-section.first .questions {
+      padding-top: $outer-section-breath-md;
+    }
+    .faq-section.last .questions {
+      padding-bottom: $outer-section-breath-md;
+    }
+    
+    .question {
+      max-width: 450px;
+    }
+
+    .methods-paper-section {
+      .row {
+        padding-top: $method-breath-md;
+        padding-bottom: $method-breath-md;
+      }
+
+      .description {
+        .text {
+          padding-bottom: 6 * $spacer;
+        }
+      }
+    }
+
+  }
+
+  //\\//\\//\\//\\/ DESKTOP /\\//\\//\//
+  @media screen and (min-width: $xl-start) {
+    .side-menu {
+      transform: translate(0, $outer-section-breath-xl + $q-breath);
+
+      .jump, a {
+        padding-bottom: 3 * $spacer;
+      }
+      .jump {
+        font-size: 20px;
+        // line-height: 25px;
+        letter-spacing: -0.5px;
+      }
+      a {
+        font-size: 44px;
+        // line-height: 58px; // 77px;
+        letter-spacing: -1.5px;
+      }
+    }
+
+    .questions {
+      padding-top: $inter-section-breath-xl;
+      padding-bottom: $inter-section-breath-xl;
+    }
+    .faq-section.first .questions {
+      padding-top: $outer-section-breath-xl;
+    }
+    .faq-section.last .questions {
+      padding-bottom: $outer-section-breath-xl;
+    }
+
+    .question {
+      .question-text {
+        font-size: 18px;
+        line-height: 27px;
+      }
+      .question-body {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+    
+    .methods-paper-section {
+      .methods-paper .content {
+        margin-left: $column;
+        margin-right: 2 * $column;
+      }
+
+      .row {
+        padding-top: $method-breath-xl;
+        padding-bottom: $method-breath-xl;
+      }
+
+      .description {
+        .text {
+          font-size: 20px;
+          line-height: 27px;
+          padding-bottom: 8 * $spacer;
+        }
+      }
+    }
+    
+  }
+
+  // _______________END RESPONSIVE SIZING_______________ //
+  
+  // _________________UNIVERSAL  STYLES_________________ //
+
+
+  .hero-square {
+    .color-section {
+      background: $old-lace;
+
+      .content {
+        // margin-right: 2 * $column;
+        // max-width: 700px;
+      }
+    }
+  }
+
+  .side-menu {
+    z-index: 90;
+    a {
+      // display: block;
+      cursor: pointer;
+      &.active {
+        color: $chalet-green;
+      }
+      // _figma_
+      font-weight: $font-weight-bold;
+    }
+    color: $cod-gray;      
+    .jump {
+      font-weight: $font-weight-bold;
+    }     
+    // _______
+  }
+
+  .faq-section {
+
+    &.even {
+      background: $alabaster;
+    }
+
+    .question {      
+      .question-text {
+        padding-top: $q-breath;
+        padding-bottom: $q-breath;
+        border-bottom: 1px solid black;
+      }
+      .question-body {
+        padding-top: $q-breath;
+        padding-bottom: $q-after-breath;
+      }
+
+      &:last-of-type {
+        &:not(.expanded) .question-text {
+          border-bottom: unset;
+        }
+
+        &.expanded .question-body {
+          padding-bottom: $q-breath; // so that total padding calculates correctly
+        }
+      }
+    }
+
+    .question-text {
+      // _figma_
+      font-weight: normal;
+      // _______
+
+      &:hover {
+        color: $chalet-green;
+      }      
+      &:not(:hover) .expander-icon {
+        // can't set stroke of svg in img w/CSS, so it's set to hover color and we make it black when not hovered like so:
+        filter: brightness(0) grayscale(1);
+      }
+
+      .text {
+        position: relative;
+        display: block; // at least for sm to keep + right
+        padding-right: 3 * $spacer;
+        .expander-icon {
+          width: 13px;
+          height: 13px;
+          position: absolute;
+          right: 0;
+          top: 9px;
+          &.expanded {
+            top: 15px;
+            height: 1px;
+          }
+        }
+      }
+    }
+    .question-body {
+      // _figma_
+      font-weight: $font-weight-light;
+      color:  $dk-gray;
+      mix-blend-mode: normal;
+      // _______
+    }
+  }
+
+  .methods-paper-section {
+    // overflow: hidden;
+    .methods-paper {
+      background: $tower-gray;
+
+      .title {
+        // _figma_
+        font-weight: $font-weight-bold;
+        font-size: 60px;
+        line-height: 65px;
+        /* or 108% */
+        letter-spacing: -2px;
+        color: $shark;
+        // _______
+      }
+
+      .description {
+
+        .text {
+          // _figma_
+          font-weight: normal;
+          /* or 135% */
+          color: $cape-cod;
+          mix-blend-mode: normal;
+          // _______
+        }
+      }
+    }
+  }
+}

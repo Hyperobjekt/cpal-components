@@ -1,0 +1,75 @@
+#data-page {
+  margin-top: calc((8 * #{$spacer}) + (#{$sticky-header-height}));
+  margin-bottom: 10 * $spacer;
+  
+  // .title {
+  //   font-weight: $font-weight-bold;
+  //   letter-spacing: -1px;
+  //   font-size: 20px;
+  //   line-height: 25px;
+  //   @include media-breakpoint-up(xl) {
+  //     font-size: 30px;
+  //     line-height: 36px;
+  //   }
+  // }
+  .title {
+      font-weight: $font-weight-bold;
+      font-size: 26px;
+      line-height: 30px;
+      letter-spacing: -1px;
+      @include media-breakpoint-up(md) {
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -2px;
+      }
+      @include media-breakpoint-up(xl) {
+        font-size: 60px;
+        line-height: 65px;
+      }
+
+      margin-bottom: 4 * $spacer;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 6 * $spacer;
+      }
+      @include media-breakpoint-up(xl) {
+        margin-bottom: 8 * $spacer;
+      }
+    }
+
+  .text-blocks {
+    font-weight: $font-weight-lighter;
+    font-size: 18px;
+    line-height: 27px;
+
+    p:not(:last-of-type) {
+      padding-bottom: 4 * $spacer;
+    }
+    p.citation {
+     // margin-left: $column;
+      font-weight: normal;
+      padding-left: 3.33333vw;
+      font-weight: normal;
+      border-left: 3px solid $turtle-green;
+    }
+
+    margin-bottom: 6 * $spacer;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 5 * $spacer;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 20px;
+      margin-bottom: 8 * $spacer;
+    }
+  }
+
+  table {
+    font-size: 14px;
+    // bold headers and Dataset titles
+    th, td:first-of-type {
+      font-weight: $font-weight-bold;
+    }
+    td {
+      font-weight: $font-weight-light;
+    }
+  }
+}

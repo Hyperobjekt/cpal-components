@@ -1,0 +1,33 @@
+.custom-link {
+  
+  font-size: 14px;
+  @include media-breakpoint-up(xl) {
+    font-size: 16px;
+  }
+
+  cursor: pointer;
+  
+  // _figma_
+  line-height: 40px; //25px;
+  /* or 156% */
+  letter-spacing: 0.22px;  
+  color: $black;
+  // _______
+  
+  display: inline-block;
+  
+  &.underlined {
+    padding: 0 2rem;
+    border-bottom: solid $black 1px;
+  }
+
+  .right-arrow {
+    display: inline-block;
+    svg {
+      stroke: black;
+      width: 11px;
+      height: 8px;
+      margin-left: 8px;
+    }
+  }
+}

@@ -1,0 +1,174 @@
+#blog {
+
+  $relative-white: #FBFAFF;
+  
+  // _______________RESPONSIVE SIZING_______________ //
+
+  //\\//\\//\\//\\/ MOBILE (and larger) /\\//\\//\//
+  #page {
+    margin-top: 8 * $spacer;
+    margin-bottom: 8 * $spacer;
+  }
+
+  .recent {
+    font-size: 14px;
+
+    .custom-underline {
+      padding-bottom: 2 * $spacer;
+      margin-bottom: 4 * $spacer;
+    }
+  }
+
+  .post-section {
+    padding-bottom: 6 * $spacer;
+
+    .post-details {
+      .post-title {
+        padding-top: 3 * $spacer;
+        font-size: 24px;
+      }
+      .post-contents {
+        font-size: 15px;
+        padding-top: 3 * $spacer;
+        padding-bottom: 3 * $spacer;
+      }
+    }
+  }
+
+  .load-more button {
+    font-size: 14px;
+    letter-spacing: 0.22px;
+    padding: $spacer 4*$spacer;
+  }
+
+  //\\//\\//\\//\\/ TABLET (and larger) /\\//\\//\//
+  @media screen and (min-width: $md-start) {
+    #page {
+      margin-top: 10 * $spacer;
+      margin-bottom: 10 * $spacer;
+    }
+
+    .recent {
+  
+      .custom-underline {
+        padding-bottom: 3 * $spacer;
+        margin-bottom: 5 * $spacer;
+      }
+    }
+
+    .post-section {
+      padding-bottom: 5 * $spacer;
+      
+      .post-details {
+        .post-title {
+          padding-top: 0;
+        }
+        .post-contents {
+          padding-bottom: 2 * $spacer;
+        }
+      }
+    }
+
+  }
+
+  //\\//\\//\\//\\/ DESKTOP /\\//\\//\//
+  @media screen and (min-width: $xl-start) {
+    .recent {
+      font-size: 18px;
+
+      .custom-underline {
+        padding-bottom: 4 * $spacer;
+        margin-bottom: 8 * $spacer;
+      }
+    }
+
+    .post-section {
+      padding-bottom: 8 * $spacer;
+    
+      .post-details {
+        .post-title {
+          font-size: 30px;
+        }
+        .post-contents {
+          font-size: 16px;
+          padding-bottom: 4 * $spacer;
+        }
+      }
+    }
+
+    .load-more button {
+      font-size: 16px;
+      padding: 1.5*$spacer 5*$spacer;
+    }
+    
+  }
+
+  // _______________END RESPONSIVE SIZING_______________ //
+
+
+  .hero-square {
+    .color-section {
+      background: $deluge;
+
+      .site-title {
+        color: $relative-white;
+      }
+
+      .content { // just pass in colors - sizing managed by Hero.scss
+        .headline {
+          color: $fog;          
+        }
+
+        .custom-link {
+          color: $relative-white;
+          svg { stroke: $relative-white; }
+        }
+      }
+    }
+  }
+
+  .recent {
+    font-weight: $font-weight-light;
+    color: $firefly;
+
+    .custom-underline {
+      display: inline-block;
+      border-bottom: 4px solid $cinnabar;
+    }
+  }
+  
+  .post-section {
+    .post-image {
+      // TODO responsivize on refactor (5spacer on xl)
+      margin-right: 2 * $gutter;
+      // center photo vertically when smaller than details
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .post-details {
+      // center details vertically when smaller than photo
+      margin-top: auto;
+      margin-bottom: auto;
+      .post-title {
+        // __figma_
+        font-weight: $font-weight-bold;
+        letter-spacing: -1px;
+        color: $firefly;
+      }
+      .post-contents {
+        font-weight: $font-weight-light;
+        color: $firefly;
+        mix-blend-mode: normal;
+        opacity: 0.5;
+        // ________
+      }
+    }
+  }
+
+}
