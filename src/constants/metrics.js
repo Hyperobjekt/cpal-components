@@ -898,6 +898,11 @@ export const CPAL_FEEDERS = [
     title: 'Kimball',
   },
   {
+    id: 9,
+    title: 'Lincoln',
+    desc: 'SCHOOL_PROSE_FEEDER_LINCOLN',
+  },
+  {
     id: 32,
     title: 'Madison',
   },
