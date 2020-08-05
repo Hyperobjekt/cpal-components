@@ -79,13 +79,17 @@ const Layout = ({ children, ...props }) => {
   const setSlideoutPanel = useStore(
     state => state.setSlideoutPanel,
   )
+  const handleToggleMenu = useStore(
+    state => state.handleToggleMenu,
+  )
+  console.log('handleToggleMenu, ', handleToggleMenu)
   // Handle clicks to any control panel button.
   const handleClick = e => {
     e.preventDefault()
     console.log('Button clicked, ', e.currentTarget.id)
     if (
       e.currentTarget.id === 'button_view_feeder' ||
-      (e.currentTarget.id = 'button_view_map')
+      e.currentTarget.id === 'button_view_map'
     ) {
       const val = String(e.currentTarget.id).replace(
         'button_view_',
@@ -96,6 +100,10 @@ const Layout = ({ children, ...props }) => {
         active: false,
         panel: '',
       })
+    }
+    if (e.currentTarget.id === 'button_toggle_menu') {
+      console.log('toggle menu clicked')
+      handleToggleMenu()
     }
   }
 
@@ -217,25 +225,25 @@ const Layout = ({ children, ...props }) => {
       setShareLinkModal(!shareLinkModal)
     }
   }
-
-  // Original menu button
-  // <CoreButton
-  //   id="button_toggle_menu"
-  //   aria-label={i18n.translate(`BUTTON_MENU`)}
-  //   onClick={handleClick}
-  //   color="secondary"
-  //   className="button-toggle-menu"
-  // >
-  //   <FiMenu />
-  // </CoreButton>
-
+  // <FiMenu />
   return (
     <div className="layout" {...props}>
       <RouteManager routeSet={ROUTE_SET} />
       <Header>
         <Logo {...logoProps} />
         <SchoolSearch />
-        <Menu />
+        <CoreButton
+          id="button_toggle_menu"
+          aria-label={i18n.translate(`BUTTON_MENU`)}
+          onClick={handleClick}
+          color="none"
+          className="button-toggle-menu"
+        >
+          <span class="menu-icon-group">
+            <span class="menu-icon svg-base"></span>
+            {i18n.translate(`BUTTON_MENU`)}
+          </span>
+        </CoreButton>
       </Header>
       <main>
         <Canvas>

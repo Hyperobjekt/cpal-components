@@ -6,8 +6,11 @@ import { render } from 'react-dom'
 import Explorer from '../../src'
 
 export default class Demo extends Component {
+  toggleMenu = () => {
+    console.log('demo page toggle menu blah')
+  }
   render() {
-    return <Explorer />
+    return <Explorer toggleMenu={this.toggleMenu} />
   }
 }
 

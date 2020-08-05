@@ -1,8 +1,21 @@
+$spacer: 0.8rem;
 .layout {
   height: 100%; // 100vh;
   // max-height: 100vh;
   .button-view-weights {
     display: none;
+  }
+  .menu-icon-group {
+    cursor: pointer;
+    display: inline; // so below padding doesn't shift element
+    padding-top: $spacer; // extends clickable area
+    padding-bottom: $spacer;
+  }
+  .menu-icon {
+    width: 20px;
+    height: 9px;
+    margin-right: 4px;
+    background-image: url('./../../../../styles/images/menu-icon.svg');
   }
 }
 main {

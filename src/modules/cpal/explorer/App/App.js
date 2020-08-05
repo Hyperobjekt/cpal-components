@@ -26,6 +26,21 @@ const App = props => {
   )
   if (!!props.onMenuClick) {
   }
+  const handleToggleMenu = useStore(
+    state => state.handleToggleMenu,
+  )
+  const setHandleToggleMenu = useStore(
+    state => state.setHandleToggleMenu,
+  )
+  if (!!props.toggleMenu) {
+    console.log(
+      'props.toggleMenu exists, ',
+      props.toggleMenu,
+    )
+
+    setHandleToggleMenu(props.toggleMenu)
+    console.log('handleToggleMenu, ', handleToggleMenu)
+  }
 
   // SEDA namespace for globals
   window.CPAL = (function () {
