@@ -135,7 +135,7 @@ const isFeederValid = feeder => {
   } else {
     // If not empty, verify that it's in the feeders collection.
     const filter = CPAL_FEEDERS.find(el => {
-      return el.id === Number(feeder)
+      return Number(el.id) === Number(feeder)
     })
     return !!filter ? true : false
   }
@@ -148,7 +148,7 @@ const isSchoolValid = school => {
   } else {
     // If not empty, verify that it's in the feeders collection.
     const filter = schools.find(el => {
-      return el.TEA_ID === Number(school)
+      return Number(el.SLN) === Number(school)
     })
     return !!filter ? true : false
   }

@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import circle from '@turf/circle'
 import i18n from '@pureartisan/simple-i18n'
 
@@ -30,9 +30,9 @@ export const loadFeaturesFromRouteParams = params =>
     ? loadFeaturesFromRoute(params.locations)
     : Promise.resolve([])
 
-export const loadFlaggedData = type => {
-  return axios.get(FLAGGED_ENDPOINT + type + '.json')
-}
+// export const loadFlaggedData = type => {
+//   return axios.get(FLAGGED_ENDPOINT + type + '.json')
+// }
 
 /**
  * Returns the feature with an id property that matches the
