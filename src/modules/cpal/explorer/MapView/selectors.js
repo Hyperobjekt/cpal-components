@@ -6,8 +6,10 @@ import {
 } from './../utils'
 import {
   DISTRICT_COLORS,
-  REDLINE_COLORS,
+  // REDLINE_COLORS,
   SCHOOL_ZONE_COLORS,
+  REDLINE_FILL_COLORS,
+  REDLINE_STROKE_COLORS,
 } from './../../../../constants/colors'
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import {
@@ -233,11 +235,11 @@ export const getRedlineShapes = (
         [
           'get',
           ['get', 'holc_grade'],
-          ['literal', REDLINE_COLORS],
+          ['literal', REDLINE_FILL_COLORS],
         ],
         'blue',
       ],
-      'fill-opacity': 0.2,
+      // 'fill-opacity': 0.2,
     },
   })
 }
@@ -263,11 +265,11 @@ export const getRedlineLines = (
         [
           'get',
           ['get', 'holc_grade'],
-          ['literal', REDLINE_COLORS],
+          ['literal', REDLINE_STROKE_COLORS],
         ],
         'blue',
       ],
-      'line-width': 2,
+      'line-width': 1,
     },
   })
 }
