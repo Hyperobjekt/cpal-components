@@ -86,7 +86,7 @@ const MapBase = ({
   ...rest
 }) => {
   // Mapbox API token from .env to pass into map.
-  const TOKEN = process.env.MAPBOX_API_TOKEN
+  const TOKEN = process.env.GATSBY_MAPBOX_API_TOKEN
 
   const [loaded, setLoaded] = useState(false)
 
