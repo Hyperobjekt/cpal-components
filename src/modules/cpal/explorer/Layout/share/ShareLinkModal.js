@@ -35,7 +35,11 @@ const ShareLinkModal = props => {
 
   const getLocation = () => {
     console.log('getLocation')
-    return window.location.href
+    if (window && window.location) {
+      return window.location.href
+    } else {
+      return ''
+    }
   }
 
   const onCopy = () => {
