@@ -274,6 +274,23 @@ const RouteManager = props => {
     state => state.setFeederLocked,
   )
 
+  // Track share hash and update when it changes
+  const setShareHash = useStore(state => state.setShareHash)
+  // Update location on load
+  useEffect(() => {
+    // console.log('setting share hash')
+    if (window && window.location) {
+      setShareHash(window.location.href)
+      window.addEventListener(
+        'hashchange',
+        () => {
+          setShareHash(window.location.href)
+        },
+        false,
+      )
+    }
+  }, [])
+
   /**
    * Returns a hash based on state
    * @return {String} [description]

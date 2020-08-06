@@ -26,21 +26,8 @@ const ShareLinkModal = props => {
   )
   const toggle = () => setShareLinkModal(!shareLinkModal)
 
-  const [location, setLocation] = useState('')
-  // Update location on load
-  useEffect(() => {
-    console.log('useEffect')
-    if (window && window.location) {
-      setLocation(window.location.href)
-      window.addEventListener(
-        'hashchange',
-        () => {
-          setLocation(window.location.href)
-        },
-        false,
-      )
-    }
-  }, [])
+  const defaultRoute = useStore(state => state.defaultRoute)
+  const shareHash = useStore(state => state.shareHash)
 
   const onCopy = () => {
     // console.log('oncopy')
@@ -61,7 +48,10 @@ const ShareLinkModal = props => {
           <p>{i18n.translate('MODAL_SHARE_LINK_INSTR')}</p>
           {i18n.translate('MODAL_SHARE_LINK_INPUT')}
           <InputGroup>
-            <Input value={location} readOnly={true} />
+            <Input
+              value={shareHash ? shareHash : ''}
+              readOnly={true}
+            />
             <InputGroupAddon addonType="append">
               <Button color="secondary" onClick={onCopy}>
                 <FaCopy />

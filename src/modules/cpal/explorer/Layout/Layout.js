@@ -179,12 +179,13 @@ const Layout = ({ children, ...props }) => {
     ])
   }
 
+  const shareHash = useStore(state => state.shareHash)
   const constructShareLink = () => {
     // If hash === default hash, send back only the root url.
-    if (window.location.hash === DEFAULT_ROUTE) {
-      return window.location.origin
+    if (!!shareHash) {
+      return shareHash
     } else {
-      return window.location.href
+      return window.location.origin + defaultRoute
     }
   }
 

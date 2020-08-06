@@ -5,11 +5,14 @@ import WebMercatorViewport from 'viewport-mercator-project'
 import * as ease from 'd3-ease'
 
 import en_US from './../../../constants/en_US'
-import { DEFAULT_VIEWPORT } from './../../../constants/map'
+import {
+  DEFAULT_VIEWPORT,
+  DEFAULT_ROUTE,
+} from './../../../constants/map'
 
 const [useStore] = create((set, get) => ({
   route: '',
-  defaultRoute: '/map/',
+  defaultRoute: DEFAULT_ROUTE,
   siteHref: '/',
   setSiteHref: newHref => set({ siteHref: newHref }),
   logoSrc: `<svg width="150" height="50">
@@ -102,6 +105,8 @@ const [useStore] = create((set, get) => ({
   handleToggleMenu: null,
   setHandleToggleMenu: newFunc =>
     set({ handleToggleMenu: newFunc }),
+  shareHash: null,
+  setShareHash: newStr => set({ shareHash: newStr }),
 }))
 
 export default useStore
