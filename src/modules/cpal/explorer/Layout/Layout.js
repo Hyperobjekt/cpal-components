@@ -240,8 +240,8 @@ const Layout = ({ children, ...props }) => {
           color="none"
           className="button-toggle-menu"
         >
-          <span class="menu-icon-group">
-            <span class="menu-icon svg-base"></span>
+          <span className="menu-icon-group">
+            <span className="menu-icon svg-base"></span>
             {i18n.translate(`BUTTON_MENU`)}
           </span>
         </CoreButton>

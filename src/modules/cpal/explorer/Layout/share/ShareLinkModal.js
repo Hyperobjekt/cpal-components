@@ -1,5 +1,5 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
   Button,
   Modal,
@@ -25,11 +25,18 @@ const ShareLinkModal = props => {
     state => state.setShareLinkModal,
   )
   const toggle = () => setShareLinkModal(!shareLinkModal)
+  const isLoaded = useRef(false)
 
-  let location
-  useEffect(() => {
-    location = window.location.href
-  })
+  // let location
+  // useEffect(() => {
+  //   location = window.location.href
+  //   console.log('useEffect in share, ', location)
+  // }, [isLoaded])
+
+  const getLocation = () => {
+    console.log('getLocation')
+    return window.location.href
+  }
 
   const onCopy = () => {
     // console.log('oncopy')
@@ -50,7 +57,7 @@ const ShareLinkModal = props => {
           <p>{i18n.translate('MODAL_SHARE_LINK_INSTR')}</p>
           {i18n.translate('MODAL_SHARE_LINK_INPUT')}
           <InputGroup>
-            <Input value={location} readOnly={true} />
+            <Input value={getLocation()} readOnly={true} />
             <InputGroupAddon addonType="append">
               <Button color="secondary" onClick={onCopy}>
                 <FaCopy />
