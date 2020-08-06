@@ -1,5 +1,5 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Button,
   Modal,
@@ -26,7 +26,10 @@ const ShareLinkModal = props => {
   )
   const toggle = () => setShareLinkModal(!shareLinkModal)
 
-  const location = window.location.href
+  let location
+  useEffect(() => {
+    location = window.location.href
+  })
 
   const onCopy = () => {
     // console.log('oncopy')
