@@ -329,7 +329,7 @@ export const getFeederAverage = (metric, schoolSet) => {
  * @return  Object   GeoJSON Object of all schools in client-supplied data
  */
 export const getSchoolGeojson = () => {
-  console.log('getSchoolGeojson()')
+  // console.log('getSchoolGeojson()')
   const data = schools
   const newJson = {
     type: 'FeatureCollection',
@@ -364,7 +364,7 @@ export const getSchoolGeojson = () => {
     // }
     newJson.features.push(newFeature)
   })
-  console.log(newJson)
+  // console.log(newJson)
   return newJson
 }
 
