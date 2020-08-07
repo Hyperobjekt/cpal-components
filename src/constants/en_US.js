@@ -1,5 +1,5 @@
 const en_US = {
-  SITE_TITLE: `Site Title`,
+  SITE_TITLE: `Community Resource Explorer`,
   TEA_ID: `TEA identification number`,
   TERM_SCHOOL: `school`,
   BUTTON_VIEW_FEEDER: `Toggle feeder view`,
@@ -31,7 +31,7 @@ const en_US = {
   UI_MAP_RESET: `Reset map`,
   UI_MAP_CAPTURE: `Screenshot map`,
   UI_MAP_CITY: `Dallas`,
-  UI_MAP_LEGEND_TITLE: `Active Metric:`,
+  UI_MAP_LEGEND_TITLE: `Active Metric`,
   UI_MAP_TOGGLE_LAYERS: `TOGGLE LAYERS`,
   UI_MAP_LEGEND_SCHOOL_DOT: `School`,
   UI_MAP_LEGEND_SCHOOL_ZONE: `School zone (2 mile radius)`,

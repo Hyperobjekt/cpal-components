@@ -1,6 +1,5 @@
 import React from 'react'
 
-import './NonInteractiveScale.scss'
 import { getRoundedValue, getMetric } from './../utils'
 import { CPAL_METRICS } from './../../../../constants/metrics'
 

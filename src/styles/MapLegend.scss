@@ -2,30 +2,66 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 250px;
+  width: 280px;
   background: #fff;
-  padding: 0.5rem 0.8rem;
-  box-shadow: 1px 1px 2px #ccc;
+  padding: 24px;
+  box-shadow: 3px 3px 5px #ccc;
   border-radius: 2px;
+  .map-legend-label {
+    font-family: Halyard;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    color: $turtle-green;
+  }
+  .map-legend-metric-title {
+    font-family: Halyard;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    color: $turtle-green;
+    margin: 1rem 0;
+  }
+  .n-i-scale {
+    .n-i-scale-minmax {
+      .n-i-scale-min,
+      .n-i-scale-max {
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1rem;
+        color: $turtle-green;
+      }
+    }
+  }
+  .map-legend-school-dot {
+    margin-top: 1rem;
+    padding-left: 5px;
+  }
+  .map-legend-school-zone {
+    margin-top: 1rem;
+  }
   .map-legend-school-dot,
   .map-legend-school-zone {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    color: $turtle-green;
     .map-legend-school-dot-icon {
       width: 6px;
       height: 6px;
       border-radius: 3px;
       vertical-align: bottom;
-      margin-right: 0.35rem;
+      margin-right: 10px; // 0.35rem;
       box-shadow: 1px 1px 2px #ccc;
     }
     .map-legend-school-zone-icon {
       width: 16px;
       height: 16px;
       position: relative;
-      margin-right: 0.35rem;
+      margin-right: 6px;
       .map-legend-school-zone-icon-knockout {
         position: absolute;
         left: 5px;

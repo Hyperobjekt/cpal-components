@@ -14,7 +14,6 @@ import {
   getHashLeft,
   getQuintile,
 } from './../../utils'
-import './MapLegend.scss'
 
 /**
  * Legend for map

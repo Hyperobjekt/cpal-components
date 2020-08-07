@@ -37,16 +37,8 @@ import {
   onMailShare,
 } from './share'
 import ShareLinkModal from './share/ShareLinkModal'
-// import ShareLinkDialog from './share'
 import { ROUTE_SET } from './../../../../constants/metrics'
 import { DEFAULT_ROUTE } from './../../../../constants/map'
-// import {
-//   isRouteValid,
-//   setStateFromHash,
-//   getHashFromState,
-// } from './../utils'
-
-import './Layout.scss'
 
 /**
  * Layout sets up the basic layout for the explorer.

@@ -2,33 +2,34 @@
 // name with http://chir.ag/projects/name-that-color/#D8CCFF
 $color-primary: #20232a; // comes with template
 
-$white: #FFFFFF;
-$bridal-heath: #FFFBF3;
-$alabaster: #F7F7F7;
-$old-lace: #FDF5E9;
-$magnolia: #FBFAFF;
-$green-white: #EBEDE3;
-$alto: #D7D7D7;
+$white: #ffffff;
+$bridal-heath: #fffbf3;
+$alabaster: #f7f7f7;
+$old-lace: #fdf5e9;
+$magnolia: #fbfaff;
+$green-white: #ebede3;
+$alto: #d7d7d7;
 $boulder: #757575;
-$cape-cod: #3C4748;
+$cape-cod: #3c4748;
 $cod-gray: #181818;
-$dk-gray: #4B4B4B;
-$firefly: #08131F;
+$dk-gray: #4b4b4b;
+$firefly: #08131f;
 $black: #000000;
 
-$tower-gray: #9DBAB7;
+$logo-text-color: #8f9287;
+$tower-gray: #9dbab7;
 $flax-smoke: #818967;
-$chalet-green: #4A6F34;
-$turtle-green: #2C390B;
-$shark: #292D33;
-$cinnabar: #E94F34;
-$orange-roughy: #D4441C; // consolidate with cinnabar?
-$fog: #D8CCFF;
-$deluge: #7768AE;
+$chalet-green: #4a6f34;
+$turtle-green: #2c390b;
+$shark: #292d33;
+$cinnabar: #e94f34;
+$orange-roughy: #d4441c; // consolidate with cinnabar?
+$fog: #d8ccff;
+$deluge: #7768ae;
 
 // _______________ SPACING _______________ //
 // space elements in increments of .8rem (8px)
-$spacer: .8rem;
+$spacer: 0.8rem;
 
 // can be used with <Row noGutters /> to selectively add margins
 // (and avoid shrinking column content)
@@ -40,18 +41,18 @@ $gutter: 16px;
 $column: 8.333333vw; // 100/12
 
 $sm-start: 320px;
-$md-start: 768px;  //\\
+$md-start: 768px; //\\
 $lg-start: 992px;
 $xl-start: 1280px; //\\
 
 $grid-breakpoints: (
   // WARNING: if we add another break beyond xs/md/xl, check any usages of media-breakpoint-only
-  // e.g. adding lg would "cap" any instance of media-breakpoint-only(md) at lg rather than xl
-  xs: 0,
+    // e.g. adding lg would "cap" any instance of media-breakpoint-only(md) at lg rather than xl
+    xs: 0,
   // sm: $sm-start,
-  md: $md-start,
+    md: $md-start,
   // lg: $lg-start,
-  xl: $xl-start,
+    xl: $xl-start
 );
 
 $font-weight-bolder: 500;

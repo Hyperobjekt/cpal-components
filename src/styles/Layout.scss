@@ -1,0 +1,89 @@
+$spacer: 0.8rem;
+.layout {
+  height: 100%; // 100vh;
+  // max-height: 100vh;
+  .button-view-weights {
+    display: none;
+  }
+  .menu-icon-group {
+    cursor: pointer;
+    display: inline; // so below padding doesn't shift element
+    padding-top: $spacer; // extends clickable area
+    padding-bottom: $spacer;
+  }
+  .menu-icon {
+    width: 20px;
+    height: 9px;
+    margin-right: 4px;
+    background-image: url('./images/menu-icon.svg');
+  }
+  .header {
+    h1 {
+      margin-left: 16px;
+      a {
+        display: flex;
+        text-decoration: none !important;
+        .logo {
+          width: 17px;
+          height: 28px;
+          background-image: url('./images/menu-logo.svg');
+          background-repeat: no-repeat;
+          background-size: 17px 28px;
+        }
+        .logo-sitename {
+          // font-style: normal;
+          // font-weight: 300;
+          // font-size: 14px;
+          // line-height: 12px;
+          letter-spacing: -1px;
+          color: $logo-text-color;
+          align-self: center;
+          margin-left: 6px;
+          width: 70px;
+          font-family: Halyard;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 11px;
+          @include media-breakpoint-up(md) {
+            width: auto;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 12px;
+          }
+          // text-decoration: none !important;
+          // &:hover,
+          // &:active {
+          //   text-decoration: none !important;
+          // }
+        }
+      }
+    }
+  }
+}
+main {
+  height: calc(100vh - 80px);
+  // display: none;
+}
+.view-parent {
+  // width: calc(100% - 80px);
+  // height: 100vh;
+  height: 100%;
+  @media only screen and (min-width: 1024px) {
+    padding-left: 80px;
+  }
+
+  // position: absolute;
+  // right: 0;
+  &.display-feeder {
+    .layout-view-map {
+      display: none;
+    }
+  }
+  &.display-map {
+    .layout-view-feeder {
+      display: none;
+    }
+  }
+}

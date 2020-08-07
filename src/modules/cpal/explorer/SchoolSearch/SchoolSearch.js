@@ -10,8 +10,6 @@ import { CoreButton } from './../../../core'
 import useStore from './../store'
 import { schools } from './../../../../data/schools'
 
-import './SchoolSearch.scss'
-
 /**
  * MenuSearch: Autosuggest search input for header.
  */

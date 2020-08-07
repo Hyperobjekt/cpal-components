@@ -1,0 +1,54 @@
+.popup-content {
+  padding: 24px;
+  margin: 0 !important;
+  width: 252px;
+  border-radius: 0;
+  h4 {
+    font-family: Halyard;
+    font-size: 1.6rem;
+    line-height: 2.3rem;
+    color: $turtle-green;
+  }
+  h5 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 14px;
+  }
+  .n-i-scale {
+    margin-top: 6px;
+    margin-bottom: 8px;
+    padding-right: 1px;
+    padding-left: 1px;
+  }
+  .popup-metric-label {
+    color: $turtle-green;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    .metric-value {
+      color: $turtle-green;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.5rem;
+      line-height: 1.6rem;
+    }
+  }
+}
+.mapboxgl-popup {
+  // Set z-index to make tooltip overlay any other controls.
+  z-index: 5000 !important;
+  border-radius: 0;
+  box-shadow: 3px 3px 5px #ccc;
+  // Reset padding and margins.
+  padding: 0 !important;
+  margin: 0 !important;
+  .mapboxgl-popup-content {
+    // Reset padding and margins.
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0;
+  }
+}

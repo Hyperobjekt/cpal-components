@@ -9,7 +9,7 @@ import {
   getHashLeft,
   getQuintile,
 } from './../../utils'
-import './PopupContent.scss'
+// import './PopupContent.scss'
 
 /**
  * Returns popup contents for map feature mouseover
@@ -59,10 +59,12 @@ const PopupContent = ({ ...props }) => {
               key={`popup-metric-${metric}`}
             >
               <div className="popup-metric-label">
-                {label}&nbsp;
-                {!!value
-                  ? getRoundedValue(value, 0, false)
-                  : ''}
+                {label}&nbsp;&nbsp;
+                <span className="metric-value">
+                  {!!value
+                    ? getRoundedValue(value, 0, false)
+                    : ''}
+                </span>
               </div>
               <div className="popup-metric-scale">
                 <NonInteractiveScale
@@ -78,7 +80,7 @@ const PopupContent = ({ ...props }) => {
                     ),
                   )}
                   colors={metricData.colors}
-                  showMinMax={true}
+                  showMinMax={false}
                   min={min}
                   max={max}
                 />
