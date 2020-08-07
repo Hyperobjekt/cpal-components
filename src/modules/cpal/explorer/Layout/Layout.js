@@ -78,11 +78,11 @@ const Layout = ({ children, ...props }) => {
   )
   const breakpoint = useStore(state => state.breakpoint)
   const browserWidth = useStore(state => state.browserWidth)
-  console.log('handleToggleMenu, ', handleToggleMenu)
+  // console.log('handleToggleMenu, ', handleToggleMenu)
   // Handle clicks to any control panel button.
   const handleClick = e => {
     e.preventDefault()
-    console.log('Button clicked, ', e.currentTarget.id)
+    // console.log('Button clicked, ', e.currentTarget.id)
     if (
       e.currentTarget.id === 'button_view_feeder' ||
       e.currentTarget.id === 'button_view_map'
