@@ -47,6 +47,9 @@ const MapLegend = ({ ...props }) => {
       <div className="map-legend-metric-title">
         {i18n.translate(metricData.title)}
       </div>
+      <div className="map-legend-open-filter-panel">
+        i18n.translate('LINK_OPEN_FILTER_PANEL')
+      </div>
       <NonInteractiveScale
         metric={activeMetric}
         quintiles={activeQuintiles}
