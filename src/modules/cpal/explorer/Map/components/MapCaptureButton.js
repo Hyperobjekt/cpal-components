@@ -3,6 +3,7 @@ import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
 import { MdPhotoCamera } from 'react-icons/md'
 import { CoreButton } from './../../../../core'
+import { Tooltip } from 'reactstrap'
 
 import './MapCaptureButton.scss'
 
@@ -26,12 +27,14 @@ const MapCaptureButton = ({ currentMap, ...props }) => {
     <CoreButton
       color="light"
       active={true}
+      id="map_capture_button"
       className={clsx(
         `map-capture-btn`,
         `mapboxgl-ctrl-icon`,
       )}
       onClick={captureMap}
-      title={i18n.translate(`UI_MAP_CAPTURE`)}
+      label={i18n.translate(`UI_MAP_CAPTURE`)}
+      tooltip="left"
     >
       <MdPhotoCamera className="icon" />
       <span className="sr-only">

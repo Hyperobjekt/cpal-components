@@ -17,6 +17,7 @@ const MapResetButton = ({ ...props }) => {
     <CoreButton
       color="light"
       active={true}
+      id="map_reset_button"
       className={clsx(
         `map-reset-btn`,
         `mapboxgl-ctrl-icon`,
@@ -24,7 +25,8 @@ const MapResetButton = ({ ...props }) => {
       onClick={e => {
         resetViewport(e)
       }}
-      title={i18n.translate(`UI_MAP_RESET`)}
+      label={i18n.translate(`UI_MAP_RESET`)}
+      tooltip="left"
     >
       <MdRefresh className="icon" />
       <span className="sr-only">

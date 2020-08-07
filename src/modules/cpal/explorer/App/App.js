@@ -5,6 +5,7 @@ import i18n from '@pureartisan/simple-i18n'
 import useStore from './../store.js'
 import Layout from '../Layout/Layout'
 import en_US from './../../../../constants/en_US'
+import { BREAKPOINTS } from './../../../../constants/layers'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import './App.scss'
@@ -41,6 +42,36 @@ const App = props => {
     setHandleToggleMenu(props.toggleMenu)
     console.log('handleToggleMenu, ', handleToggleMenu)
   }
+
+  /**
+   * Manage browser width and breakpoint for use in the app.
+   */
+  const setBreakpoint = useStore(
+    state => state.setBreakpoint,
+  )
+  const setBrowserWidth = useStore(
+    state => state.setBrowserWidth,
+  )
+  const setBrowserWidthAndBreakpoint = () => {
+    const breakpoint = BREAKPOINTS.filter((el, i) => {
+      return (
+        window.innerWidth > BREAKPOINTS[i].max &&
+        (!BREAKPOINTS[i + 1] ||
+          window.innerWidth < BREAKPOINTS[i + 1].max)
+      )
+    })[0].id
+    // console.log('breakpoint is, ', breakpoint)
+    setBreakpoint(breakpoint)
+    setBrowserWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    // console.log('useEffect')
+    setBrowserWidthAndBreakpoint()
+    window.addEventListener('resize', () => {
+      // console.log('resize, ', window.innerWidth)
+      setBrowserWidthAndBreakpoint()
+    })
+  }, [])
 
   useEffect(() => {
     window.CPAL = (function () {

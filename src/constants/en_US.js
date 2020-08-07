@@ -37,6 +37,7 @@ const en_US = {
   UI_MAP_LEGEND_SCHOOL_DOT: `School`,
   UI_MAP_LEGEND_SCHOOL_ZONE: `School zone (2 mile radius)`,
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,
+  UI_MAP_LAYERS_REDLINING_TIP: `Neighborhood zones created for the purpose of discriminatory lending and resource distribution. <a href="/faq/" target="_blank">See FAQ page for more.</a>`,
   UI_MAP_LAYERS_DISTRICTS: `District boundaries`,
   // UI_MAP_METRIC_TITLE_CRI: `Weighted Community Resource Index`,
   UI_MAP_METRIC_ABBREV_CRI: `CRI`,

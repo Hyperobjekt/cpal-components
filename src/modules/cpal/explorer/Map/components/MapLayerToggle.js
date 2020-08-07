@@ -82,6 +82,7 @@ const MapLayerToggle = ({ ...props }) => {
                 />
                 {i18n.translate(getLayerLabel(el.id))}
               </label>
+              // UI_MAP_LAYERS_REDLINING_TIP
             </div>
           )
         })}

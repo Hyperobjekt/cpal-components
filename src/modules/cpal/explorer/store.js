@@ -107,6 +107,10 @@ const [useStore] = create((set, get) => ({
     set({ handleToggleMenu: newFunc }),
   shareHash: null,
   setShareHash: newStr => set({ shareHash: newStr }),
+  breakpoint: null,
+  setBreakpoint: newVal => set({ breakpoint: newVal }),
+  browserWidth: null,
+  setBrowserWidth: newVal => set({ browserWidth: newVal }),
 }))
 
 export default useStore

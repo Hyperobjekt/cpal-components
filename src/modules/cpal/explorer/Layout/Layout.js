@@ -76,6 +76,8 @@ const Layout = ({ children, ...props }) => {
   const handleToggleMenu = useStore(
     state => state.handleToggleMenu,
   )
+  const breakpoint = useStore(state => state.breakpoint)
+  const browserWidth = useStore(state => state.browserWidth)
   console.log('handleToggleMenu, ', handleToggleMenu)
   // Handle clicks to any control panel button.
   const handleClick = e => {
@@ -222,9 +224,46 @@ const Layout = ({ children, ...props }) => {
       setShareLinkModal(!shareLinkModal)
     }
   }
-  // <FiMenu />
+
+  /**
+   * Determines control panel button position based on breakpoint
+   * @param  {String} breakpoint
+   * @return {String}
+   */
+  const getPositionFromBreakpoint = breakpoint => {
+    console.log('getPositionFromBreakpoint')
+    if (breakpoint === 'sm' || breakpoint === 'xs') {
+      return 'bottom'
+    } else {
+      return 'right'
+    }
+  }
+  /**
+   * Updates positioning for tooltips on buttons in control panel.
+   */
+  const [buttonPosition, setButtonPosition] = useState(
+    'right',
+  )
+  useEffect(() => {
+    // console.log(
+    //   'browserWidth changed',
+    //   getPositionFromBreakpoint(breakpoint),
+    // )
+    setButtonPosition(getPositionFromBreakpoint(breakpoint))
+  }, [browserWidth])
+  useEffect(() => {
+    // console.log(
+    //   'component loaded',
+    //   getPositionFromBreakpoint(breakpoint),
+    // )
+    setButtonPosition(getPositionFromBreakpoint(breakpoint))
+  }, [])
+
   return (
-    <div className="layout" {...props}>
+    <div
+      className={clsx('layout', 'breakpoint-' + breakpoint)}
+      {...props}
+    >
       <RouteManager routeSet={ROUTE_SET} />
       <Header>
         <Logo {...logoProps} />
@@ -258,9 +297,7 @@ const Layout = ({ children, ...props }) => {
             />
             <CoreButton
               id="button_view_map"
-              aria-label={i18n.translate(`BUTTON_VIEW_MAP`)}
-              title={i18n.translate(`BUTTON_VIEW_MAP`)}
-              tooltip="right"
+              label={i18n.translate(`BUTTON_VIEW_MAP`)}
               onClick={handleClick}
               color="light"
               className={clsx(
@@ -269,6 +306,7 @@ const Layout = ({ children, ...props }) => {
                   ? 'active'
                   : '',
               )}
+              tooltip={buttonPosition}
             >
               <FiMap />
               <span className="sr-only">
@@ -277,11 +315,7 @@ const Layout = ({ children, ...props }) => {
             </CoreButton>
             <CoreButton
               id="button_view_feeder"
-              aria-label={i18n.translate(
-                `BUTTON_VIEW_FEEDER`,
-              )}
-              title={i18n.translate(`BUTTON_VIEW_FEEDER`)}
-              tooltip="right"
+              label={i18n.translate(`BUTTON_VIEW_FEEDER`)}
               onClick={handleClick}
               color="light"
               className={clsx(
@@ -290,6 +324,7 @@ const Layout = ({ children, ...props }) => {
                   ? 'active'
                   : '',
               )}
+              tooltip={buttonPosition}
             >
               <FiList />
               <span className="sr-only">
@@ -301,15 +336,12 @@ const Layout = ({ children, ...props }) => {
               <>
                 <CoreButton
                   id="button_toggle_panel_filters"
-                  aria-label={i18n.translate(
-                    `BUTTON_TOGGLE_PANEL_FILTERS`,
-                  )}
-                  title={i18n.translate(
+                  label={i18n.translate(
                     `BUTTON_TOGGLE_PANEL_FILTERS`,
                   )}
                   onClick={handlePanel}
                   color="light"
-                  tooltip="right"
+                  tooltip={buttonPosition}
                   className={clsx(
                     'button-panel-filters',
                     slideoutPanel.active &&
@@ -331,13 +363,10 @@ const Layout = ({ children, ...props }) => {
             )}
             <CoreButton
               id="button_toggle_panel_info"
-              aria-label={i18n.translate(
+              label={i18n.translate(
                 `BUTTON_TOGGLE_PANEL_INFO`,
               )}
-              title={i18n.translate(
-                `BUTTON_TOGGLE_PANEL_INFO`,
-              )}
-              tooltip="right"
+              tooltip={buttonPosition}
               onClick={handlePanel}
               color="light"
               styles={{ display: 'none' }}
@@ -357,11 +386,8 @@ const Layout = ({ children, ...props }) => {
             <Divider />
             <CoreButton
               id="button_share_twitter"
-              aria-label={i18n.translate(
-                `BUTTON_SHARE_TWITTER`,
-              )}
-              title={i18n.translate(`BUTTON_SHARE_TWITTER`)}
-              tooltip="right"
+              label={i18n.translate(`BUTTON_SHARE_TWITTER`)}
+              tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
               className="button-share-twitter"
@@ -373,13 +399,10 @@ const Layout = ({ children, ...props }) => {
             </CoreButton>
             <CoreButton
               id="button_share_facebook"
-              aria-label={i18n.translate(
+              label={i18n.translate(
                 `BUTTON_SHARE_FACEBOOK`,
               )}
-              title={i18n.translate(
-                `BUTTON_SHARE_FACEBOOK`,
-              )}
-              tooltip="right"
+              tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
               className="button-share-facebook"
@@ -391,11 +414,8 @@ const Layout = ({ children, ...props }) => {
             </CoreButton>
             <CoreButton
               id="button_share_email"
-              aria-label={i18n.translate(
-                `BUTTON_SHARE_EMAIL`,
-              )}
-              title={i18n.translate(`BUTTON_SHARE_EMAIL`)}
-              tooltip="right"
+              label={i18n.translate(`BUTTON_SHARE_EMAIL`)}
+              tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
               className="button-share-email"
@@ -407,11 +427,8 @@ const Layout = ({ children, ...props }) => {
             </CoreButton>
             <CoreButton
               id="button_share_link"
-              aria-label={i18n.translate(
-                `BUTTON_SHARE_LINK`,
-              )}
-              title={i18n.translate(`BUTTON_SHARE_LINK`)}
-              tooltip="right"
+              label={i18n.translate(`BUTTON_SHARE_LINK`)}
+              tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
               className="button-share-link"

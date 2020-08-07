@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Tooltip } from 'reactstrap'
 import clsx from 'clsx'
@@ -18,6 +18,16 @@ const CoreButton = ({ children, ...props }) => {
   // to manage tooltip state
   const [tooltipOpen, setTooltipOpen] = useState(false)
   const toggle = () => setTooltipOpen(!tooltipOpen)
+
+  // Updates tooltip position when props.tooltip changes
+  const [position, setPosition] = useState('right')
+  useEffect(() => {
+    // console.log('tooltip changed')
+    if (!!props.tooltip) {
+      setPosition(props.tooltip)
+    }
+  }, [props.tooltip])
+
   return (
     <Button
       id={props.id}
@@ -30,12 +40,12 @@ const CoreButton = ({ children, ...props }) => {
       {children}
       {props.tooltip && props.tooltip.length > 0 ? (
         <Tooltip
-          placement={props.tooltip}
+          placement={position}
           isOpen={tooltipOpen}
           target={props.id}
           toggle={toggle}
         >
-          {props.title}
+          {props.label}
         </Tooltip>
       ) : (
         ''
