@@ -3,7 +3,9 @@ import i18n from '@pureartisan/simple-i18n'
 import { Button, Label, Input } from 'reactstrap'
 import { FiLayers } from 'react-icons/fi'
 import clsx from 'clsx'
+import { FiInfo } from 'react-icons/fi'
 
+import { CoreButton } from './../../../../core'
 import useStore from './../../store'
 import { CPAL_LAYER_GROUPS } from './../../../../../constants/layers'
 import './MapLayerToggle.scss'
@@ -82,7 +84,23 @@ const MapLayerToggle = ({ ...props }) => {
                 />
                 {i18n.translate(getLayerLabel(el.id))}
               </label>
-              // UI_MAP_LAYERS_REDLINING_TIP
+              {!!el.tooltip && el.tooltip.length > 0 && (
+                <CoreButton
+                  id={'button_toggle_layer_info_' + el.id}
+                  label={i18n.translate(el.tooltip)}
+                  popover="top"
+                  externalPopoverToggle={showPanel}
+                  onClick={null}
+                  color="none"
+                  styles={{ display: 'none' }}
+                  className={clsx('button-layer-info')}
+                >
+                  <FiInfo />
+                  <span className="sr-only">
+                    {i18n.translate(el.tooltip)}
+                  </span>
+                </CoreButton>
+              )}
             </div>
           )
         })}

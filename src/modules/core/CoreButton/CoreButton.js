@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Tooltip } from 'reactstrap'
+import {
+  Button,
+  Tooltip,
+  Popover,
+  PopoverBody,
+} from 'reactstrap'
 import clsx from 'clsx'
 
 import './CoreButton.css'
@@ -28,6 +33,19 @@ const CoreButton = ({ children, ...props }) => {
     }
   }, [props.tooltip])
 
+  // Manage popover state
+  const [popoverOpen, setPopoverOpen] = useState(false)
+  const togglePopover = () => setPopoverOpen(!popoverOpen)
+
+  // External state handler for popover, if provided
+  useEffect(() => {
+    console.log('externalPopoverToggle changed')
+    // Don't mess with it unless we're closing the panel.
+    if (!props.externalPopoverToggle) {
+      setPopoverOpen(false)
+    }
+  }, [props.externalPopoverToggle])
+
   return (
     <Button
       id={props.id}
@@ -47,6 +65,22 @@ const CoreButton = ({ children, ...props }) => {
         >
           {props.label}
         </Tooltip>
+      ) : (
+        ''
+      )}
+      {props.popover && props.popover.length > 0 ? (
+        <Popover
+          placement={props.popover}
+          isOpen={popoverOpen}
+          target={props.id}
+          toggle={togglePopover}
+        >
+          <PopoverBody
+            dangerouslySetInnerHTML={{
+              __html: props.label,
+            }}
+          ></PopoverBody>
+        </Popover>
       ) : (
         ''
       )}

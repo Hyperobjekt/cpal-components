@@ -242,7 +242,7 @@ const Layout = ({ children, ...props }) => {
    * Updates positioning for tooltips on buttons in control panel.
    */
   const [buttonPosition, setButtonPosition] = useState(
-    'right',
+    'auto',
   )
   useEffect(() => {
     // console.log(
