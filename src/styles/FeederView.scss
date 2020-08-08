@@ -57,11 +57,24 @@ $bar-highlight: #d0421b;
               display: block;
               height: 24px;
               background: $cri-color-3; // lighten($base-cri-color, 40%);
+              .click-prompt {
+                display: none;
+                float: left;
+                font-weight: 300;
+                font-size: 1.4rem;
+                line-height: 1.4rem;
+                color: white;
+                line-height: 2.4rem;
+                margin-left: 3rem;
+              }
             }
             &.active,
             &:hover {
               .bar {
                 background: $bar-highlight; // lighten($base-cri-color, 30%);
+                .click-prompt {
+                  display: inline;
+                }
               }
             }
           }
