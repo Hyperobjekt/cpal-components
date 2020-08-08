@@ -15,6 +15,7 @@ import { MdCallSplit } from 'react-icons/md'
 import { FaTwitter, FaFacebookF } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
 import { BsLink45Deg } from 'react-icons/bs'
+import { AiOutlineControl } from 'react-icons/ai'
 
 import useStore from './../store'
 import {
@@ -350,7 +351,7 @@ const Layout = ({ children, ...props }) => {
                       : '',
                   )}
                 >
-                  <FiFilter />
+                  <AiOutlineControl />
                   <span className="sr-only">
                     {i18n.translate(
                       `BUTTON_TOGGLE_FILTERS`,

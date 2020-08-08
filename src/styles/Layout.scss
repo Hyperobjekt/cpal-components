@@ -5,6 +5,11 @@ $spacer: 0.8rem;
   .button-view-weights {
     display: none;
   }
+  .button-panel-filters {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
   .menu-icon-group {
     cursor: pointer;
     display: inline; // so below padding doesn't shift element
