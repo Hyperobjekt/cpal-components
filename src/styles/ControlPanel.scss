@@ -10,6 +10,13 @@
   padding: 16px;
   z-index: 401; // 2000;
   border-right: 1px solid #ccc;
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    width: 280px;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+  }
   // Hide the map and feeder buttons at the smaller views.
   hr,
   .button-view-map,
@@ -27,11 +34,11 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .layout-control-panel {
-    display: flex;
-    width: 280px;
-    position: absolute;
-    left: 16px;
-    top: 16px;
+    // display: flex;
+    // width: 280px;
+    // position: absolute;
+    // left: 16px;
+    // top: 16px;
     hr,
     .button-view-map,
     .button-view-feeder {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
-// import echarts from 'echarts/lib/echarts'
+import { Tooltip } from 'reactstrap'
 
 import {
   CPAL_METRICS,
@@ -42,6 +42,7 @@ const FeederChart = ({ ...props }) => {
   const setHighlightedSchool = useStore(
     state => state.setHighlightedSchool,
   )
+
   /**
    * Gets the set of schools that are in a feeder
    * @return Array Array of school data objects
@@ -139,32 +140,47 @@ const FeederChart = ({ ...props }) => {
       )}
     >
       {buildFeederData().map(el => {
+        // to manage tooltip state
+        const [tooltipOpen, setTooltipOpen] = useState(
+          false,
+        )
+        const toggle = () => setTooltipOpen(!tooltipOpen)
         return (
-          <button
-            id={'feeder_bar_' + el.id}
-            key={'feeder_bar_' + el.id}
-            className={clsx(
-              'feeder-bar-button',
-              Number(el.id) === Number(activeFeeder)
-                ? 'active'
-                : '',
-            )}
-            onClick={onFeederClick}
-            onMouseOver={onFeederMouseover}
-            onMouseOut={onFeederMouseout}
-          >
-            <span className="label">{el.label}</span>
-            <div
-              className="bar"
-              style={{
-                width: el.value + '%',
-              }}
-              aria-hidden="true"
-            ></div>
-            <span className="data">
-              {getRoundedValue(el.value, 1, 1)}
-            </span>
-          </button>
+          <>
+            <button
+              id={'feeder_bar_' + el.id}
+              key={'feeder_bar_' + el.id}
+              className={clsx(
+                'feeder-bar-button',
+                Number(el.id) === Number(activeFeeder)
+                  ? 'active'
+                  : '',
+              )}
+              onClick={onFeederClick}
+              onMouseOver={onFeederMouseover}
+              onMouseOut={onFeederMouseout}
+            >
+              <span className="label">{el.label}</span>
+              <div
+                className="bar"
+                style={{
+                  width: el.value + '%',
+                }}
+                aria-hidden="true"
+              ></div>
+              <span className="data">
+                {getRoundedValue(el.value, 1, 1)}
+              </span>
+            </button>
+            <Tooltip
+              placement="auto"
+              isOpen={tooltipOpen}
+              target={'feeder_bar_' + el.id}
+              toggle={toggle}
+            >
+              Click for additional information
+            </Tooltip>
+          </>
         )
       })}
     </div>

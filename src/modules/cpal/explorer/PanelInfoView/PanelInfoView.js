@@ -10,11 +10,26 @@ import {
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 
+// UI_PANEL_INFO_FEEDER
+// UI_PANEL_INFO_MAP
+//
+
 const PanelInfoView = ({ ...props }) => {
+  const activeView = useStore(state => state.activeView)
+
+  const getContents = () => {
+    // Right now, just check for feeder OR map.
+    if (activeView === 'feeder') {
+      return i18n.translate('UI_PANEL_INFO_FEEDER')
+    } else {
+      return i18n.translate('UI_PANEL_INFO_MAP')
+    }
+  }
   return (
-    <div className="map-panel-slideout-info">
-      Panel info view
-    </div>
+    <div
+      className="map-panel-slideout-info"
+      dangerouslySetInnerHTML={{ __html: getContents() }}
+    ></div>
   )
 }
 

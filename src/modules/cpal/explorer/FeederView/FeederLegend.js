@@ -116,13 +116,13 @@ const FeederLegend = ({ ...props }) => {
             </i>
           </div>
           <div className="feeder-legend-schools">
-            <h3>
+            <h4>
               {toTitleCase(
                 i18n.translate('TERM_PLURAL', {
                   term: i18n.translate('TERM_SCHOOL'),
                 }),
               )}
-            </h3>
+            </h4>
             {getSchoolSet(activeFeeder).map(el => {
               return (
                 <span
