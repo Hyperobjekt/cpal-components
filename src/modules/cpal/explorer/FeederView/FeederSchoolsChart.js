@@ -265,13 +265,16 @@ const FeederSchoolsChart = ({ ...props }) => {
                 '</div>'
               )
             },
-            padding: [15, 20, 0, 20],
+            padding: 16,
             backgroundColor: '#fff',
             textStyle: {
               color: '#000',
+              fontWeight: 300,
+              fontSize: 14,
+              lineHeight: 14,
             },
             extraCssText:
-              'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);',
+              'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);border-radius:0;',
           },
         },
       ],
