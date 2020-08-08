@@ -1,15 +1,31 @@
-@import 'breakpoints';
-@import 'mixins';
+@import '~bootstrap/scss/bootstrap.scss';
+
+// @import 'breakpoints';
+// @import 'mixins';
 @import 'variables';
 
 @import 'images/logos';
+// Core components
+@import 'Canvas';
+// Explorer components
+@import 'App';
 @import 'Layout';
+@import 'ControlPanel';
+@import 'FeederView';
+@import 'MapView';
 @import 'MapLegend';
 @import 'PopupContent';
+// Slideout panel & children
+@import 'SlideoutPanel';
+@import 'PanelFilterView';
+@import 'PanelInfoView';
+// Interactive scale appears in filter panel
+@import 'InteractiveScale';
+// Non-interactive scale appears in legend and popup tooltips
 @import 'NonInteractiveScale';
+// Search in header
 @import 'SchoolSearch';
-
-@import '~bootstrap/scss/bootstrap.scss';
+@import 'MapLayerToggle';
 
 @font-face {
   font-family: 'Halyard';

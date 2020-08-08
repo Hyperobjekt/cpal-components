@@ -8,7 +8,6 @@ import { FiInfo } from 'react-icons/fi'
 import { CoreButton } from './../../../../core'
 import useStore from './../../store'
 import { CPAL_LAYER_GROUPS } from './../../../../../constants/layers'
-import './MapLayerToggle.scss'
 
 /**
  * Provides toggle functionality for provided array of layer objects

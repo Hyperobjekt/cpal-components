@@ -8,8 +8,6 @@ import en_US from './../../../../constants/en_US'
 import { BREAKPOINTS } from './../../../../constants/layers'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import './App.scss'
-
 /**
  * App is the base component for the explorer.
  * @param Object props Any props passed into the component

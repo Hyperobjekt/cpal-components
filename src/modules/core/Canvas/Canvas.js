@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 import clsx from 'clsx'
 
-import './Canvas.scss'
-
 /**
  * Canvas is the base container for visible elements not header or footer.
  * @param Object children   Child elements to render

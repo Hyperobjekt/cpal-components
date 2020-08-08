@@ -5,8 +5,6 @@ import { MdPhotoCamera } from 'react-icons/md'
 import { CoreButton } from './../../../../core'
 import { Tooltip } from 'reactstrap'
 
-import './MapCaptureButton.scss'
-
 /**
  * Button that captures map canvas and triggers download
  */

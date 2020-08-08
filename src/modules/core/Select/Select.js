@@ -9,8 +9,6 @@ import {
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 
-import './Select.css'
-
 /**
  * Select element.
  *

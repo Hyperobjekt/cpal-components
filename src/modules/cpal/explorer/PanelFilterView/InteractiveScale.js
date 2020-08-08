@@ -15,8 +15,6 @@ import {
 } from './../../../../constants/colors'
 import { getQuintileDesc } from './../utils'
 
-import './InteractiveScale.scss'
-
 const InteractiveScale = ({ ...props }) => {
   const isLoaded = useRef(false)
   // Active metric

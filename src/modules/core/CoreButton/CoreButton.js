@@ -8,8 +8,6 @@ import {
 } from 'reactstrap'
 import clsx from 'clsx'
 
-import './CoreButton.css'
-
 /**
  * CoreButton is a core button for the library.
  *

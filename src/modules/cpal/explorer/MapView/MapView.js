@@ -32,8 +32,6 @@ import useData from './../hooks/useData'
 import { getMetric, getQuintilesPhrase } from './../utils'
 import useStore from './../store'
 
-import './MapView.scss'
-
 // const selectedColors = getSelectedColors()
 
 // const useStyles = makeStyles(theme => ({

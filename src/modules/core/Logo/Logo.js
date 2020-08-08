@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import './Logo.css'
-
 /**
  * Renders site logo with image and site name as screen-reader only h1 content.
  * @param String siteName Site name text string, read by screen readers

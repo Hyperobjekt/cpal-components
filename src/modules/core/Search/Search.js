@@ -9,8 +9,6 @@ import {
 import clsx from 'clsx'
 import { FiSearch } from 'react-icons/fi'
 
-import './Search.css'
-
 /**
  * Search input group
  *

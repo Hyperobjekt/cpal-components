@@ -18,8 +18,6 @@ import {
 } from './../../../../constants/metrics'
 import TabSeries from './TabSeries'
 
-import './PanelFilterView.scss'
-
 const PanelFilterView = ({ ...props }) => {
   // Active filter tab
   const defaultFilterTab = useStore(

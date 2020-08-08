@@ -7,8 +7,6 @@ import useStore from './../store.js'
 import PanelFilterView from './../PanelFilterView/PanelFilterView'
 import PanelInfoView from './../PanelInfoView/PanelInfoView'
 
-import './SlideoutPanel.scss'
-
 const SlideoutPanel = ({ ...props }) => {
   const slideoutPanel = useStore(
     state => state.slideoutPanel,

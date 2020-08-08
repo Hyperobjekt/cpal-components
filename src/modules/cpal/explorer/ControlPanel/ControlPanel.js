@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './ControlPanel.scss'
-
 /**
  * Control panel that contains selectors and filters which alter map display.
  * @param Object children Child components

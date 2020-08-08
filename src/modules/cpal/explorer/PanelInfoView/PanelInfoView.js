@@ -10,8 +10,6 @@ import {
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 
-import './PanelInfoView.scss'
-
 const PanelInfoView = ({ ...props }) => {
   return (
     <div className="map-panel-slideout-info">

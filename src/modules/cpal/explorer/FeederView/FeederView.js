@@ -9,8 +9,6 @@ import FeederChart from './FeederChart'
 import FeederLegend from './FeederLegend'
 import FeederSchoolsChart from './FeederSchoolsChart'
 
-import './FeederView.scss'
-
 /**
  * FeederView contains the feeder schools view.
  */

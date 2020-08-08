@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-import './View.css'
-
 /**
  * View is the container for any views provided by the explorer.
  * @param String displayView ID of view to display

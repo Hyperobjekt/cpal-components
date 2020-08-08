@@ -5,8 +5,6 @@ import { MdRefresh } from 'react-icons/md'
 
 import { CoreButton } from './../../../../core'
 
-import './MapResetButton.scss'
-
 /**
  * Button to reset zoom and pan to default viewport settings
  */
