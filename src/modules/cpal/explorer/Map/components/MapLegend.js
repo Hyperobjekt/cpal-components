@@ -3,8 +3,10 @@ import i18n from '@pureartisan/simple-i18n'
 import PropTypes from 'prop-types'
 import { Card, Button } from 'reactstrap'
 import clsx from 'clsx'
+import { AiOutlineControl } from 'react-icons/ai'
 
 import useStore from './../../store'
+import { CoreButton } from './../../../../core/'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
 import { SCHOOL_ZONE_COLORS } from './../../../../../constants/colors'
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
@@ -24,6 +26,21 @@ const MapLegend = ({ ...props }) => {
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
+
+  const slideoutPanel = useStore(
+    state => state.slideoutPanel,
+  )
+  const setSlideoutPanel = useStore(
+    state => state.setSlideoutPanel,
+  )
+  const toggleFilterPanel = () => {
+    console.log('toggleFilterPanel()')
+    setSlideoutPanel({
+      active: true,
+      panel: 'filters', // filters or weights, presumably, possibly info
+    })
+  }
+
   const intl = useStore(state => state.intl)
   const metricData = getMetric(activeMetric, CPAL_METRICS)
   const schoolStyle = {
@@ -39,16 +56,27 @@ const MapLegend = ({ ...props }) => {
     backgroundColor: metricData.colors[0],
     borderColor: '1px solid #fff',
   }
+
   return (
     <div className="map-legend">
       <div className="map-legend-label">
         {i18n.translate(`UI_MAP_LEGEND_TITLE`)}
+        <span
+          id="map_legend_open_filter"
+          className={clsx(
+            'map-legend-open-filter-panel',
+            !!slideoutPanel.active &&
+              slideoutPanel.panel === 'filters'
+              ? 'disabled'
+              : '',
+          )}
+          onClick={toggleFilterPanel}
+        >
+          {i18n.translate('LINK_OPEN_FILTER_PANEL')}
+        </span>
       </div>
       <div className="map-legend-metric-title">
         {i18n.translate(metricData.title)}
-      </div>
-      <div className="map-legend-open-filter-panel">
-        i18n.translate('LINK_OPEN_FILTER_PANEL')
       </div>
       <NonInteractiveScale
         metric={activeMetric}

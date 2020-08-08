@@ -8,7 +8,7 @@ const en_US = {
   BUTTON_SEARCH: `Select to search`,
   INPUT_SEARCH: `Search for a Dallas ISD school`,
   INPUT_PLACEHOLDER_SEARCH: `Search... `,
-  LINK_OPEN_FILTER_PANEL: `Change Index`,
+  LINK_OPEN_FILTER_PANEL: `(change)`,
   BUTTON_TOGGLE_PANEL_FILTERS: `Toggle filters panel`,
   BUTTON_TOGGLE_PANEL_WEIGHT: `Toggle weights panel`,
   BUTTON_TOGGLE_PANEL_INFO: `Toggle info panel`,
