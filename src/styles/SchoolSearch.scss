@@ -38,6 +38,7 @@
     }
     .react-autosuggest__suggestions-container {
       top: 30px;
+      z-index: 3000;
       .react-autosuggest__suggestions-list {
         border: 1px solid #ddd;
         max-width: 300px;

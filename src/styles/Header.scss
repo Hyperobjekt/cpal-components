@@ -1,7 +1,7 @@
 .header {
   position: relative;
   width: 100%;
-  height: 80px;
+  height: $sticky-header-height;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -44,7 +44,7 @@
 @media only screen and (min-width: 1024px) {
   .layout-control-panel {
     width: 80px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 64px);
     flex-direction: column;
     position: absolute;
     left: 0;

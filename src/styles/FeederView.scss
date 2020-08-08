@@ -1,4 +1,7 @@
-$base-cri-color: #3800d9;
+// $base-cri-color: #3800d9;
+$cri-color-1: #7b53ef;
+$cri-color-3: #cabbf5;
+$bar-highlight: #d0421b;
 
 .layout-view-feeder {
   // Header row
@@ -8,6 +11,7 @@ $base-cri-color: #3800d9;
 
   // Bar chart row
   .row-bar-chart {
+    padding-top: 2rem;
     .feeders-bar-chart {
       .echarts-for-react {
         min-height: 600px;
@@ -23,31 +27,42 @@ $base-cri-color: #3800d9;
           border: 0;
           display: flex;
           flex-wrap: nowrap;
-          margin-bottom: 0.5rem;
+          margin-bottom: 10px;
+          height: 24px;
           .label {
-            flex: 0 0 160px;
+            flex: 0 0 140px;
             text-align: right;
+            font-family: Halyard;
+            font-size: 1.4rem;
+            line-height: 1.5rem;
             padding-right: 0.5rem;
+            font-weight: 300;
+            align-self: center;
             // vertical-align: top;
-            line-height: 1.3rem;
+            // line-height: 1.3rem;
           }
           .data {
             flex: 0 1 auto;
             padding-left: 0.5rem;
-            line-height: 1.3rem;
+            // line-height: 1.3rem;
+            font-family: Halyard;
+            font-size: 1.5rem;
+            line-height: 1.6rem;
+            font-weight: 300;
+            align-self: center;
           }
           &:focus {
             outline: none;
           }
           .bar {
             display: block;
-            height: 1.3rem;
-            background: lighten($base-cri-color, 40%);
+            height: 24px;
+            background: $cri-color-3; // lighten($base-cri-color, 40%);
           }
           &.active,
           &:hover {
             .bar {
-              background: lighten($base-cri-color, 30%);
+              background: $bar-highlight; // lighten($base-cri-color, 30%);
             }
           }
         }
@@ -57,11 +72,25 @@ $base-cri-color: #3800d9;
         display: flex;
         flex-wrap: wrap;
         font-size: 12px;
+        font-family: Halyard;
+        font-size: 1.4rem;
+        line-height: 1.5rem;
+        padding-right: 0.5rem;
+        padding: 24px;
+        p {
+          font-weight: 300;
+          font-size: 1.4rem;
+          line-height: 1.5rem;
+        }
         h2 {
-          font-size: 16px;
+          font-size: 1.8rem;
+          line-height: 100%;
         }
         h3 {
-          font-size: 14px;
+          font-size: 1.4rem;
+          line-height: 1.4rem;
+          font-weight: 300;
+          margin-bottom: 20px;
         }
         h4 {
           font-size: 12px;
@@ -78,9 +107,27 @@ $base-cri-color: #3800d9;
           width: 45%;
           flex: 0 0 auto;
           margin: 0.6rem auto 0.6rem;
+          .index-value {
+            font-size: 1.5rem;
+            line-height: 1.6rem;
+            display: inline;
+            font-weight: 400;
+          }
           span {
+            height: 27px;
+          }
+          span,
+          i {
             width: 100%;
             display: block;
+            font-weight: 300;
+            font-size: 1.4rem;
+            line-height: 1.5rem;
+          }
+          i {
+            margin-top: 0.5rem;
+          }
+          p {
           }
         }
       }
@@ -93,27 +140,38 @@ $base-cri-color: #3800d9;
     bottom: 0;
     background: #fff;
     width: 100%;
-    padding-top: 1rem;
+    height: 200px;
     .feeders-schools-scatter {
       background: #fff;
       padding-top: 2rem;
       box-shadow: 0 -2px 2px #ccc;
       h2 {
         font-size: 16px;
-        margin-bottom: -90px;
-        margin-left: 3rem;
+        position: absolute;
+        top: 40px;
+        left: 100px;
+      }
+      .echarts-for-react {
+        // position: absolute;
+        // bottom: -30px;
+        // left: 0;
+        margin-bottom: -20px;
       }
     }
   }
 
   .layout-view-feeder {
   }
-  @media only screen and (min-width: 1028px) {
-    .feeders-bar-chart-parent {
-      height: 110%;
-      overflow-y: scroll;
-      .feeder-chart-bar {
-        height: 110%;
+  @include media-breakpoint-up(lg) {
+    .feeders-bar-chart {
+      // overflow-y: scroll;
+      height: 100%;
+      .feeders-bar-chart-parent {
+        height: calc(100vh - 64px - 230px - 3rem); // 125%;
+        overflow-y: scroll;
+        .feeder-chart-bar {
+          height: 110%;
+        }
       }
     }
     .layout-view-feeder {
@@ -128,9 +186,12 @@ $base-cri-color: #3800d9;
       width: 25% !important;
       background: #fff;
       padding: 0.6rem;
-      border-radius: 3px;
-      box-shadow: 0px 0px 4px #ccc;
+      // border-radius: 3px;
+      box-shadow: 0px 0px 3px #ccc;
       min-height: 40vh;
+      max-height: 400px;
+      overflow-y: scroll;
+      z-index: 500;
 
       .feeder-legend-metrics,
       .feeder-legend-schools {
@@ -138,7 +199,7 @@ $base-cri-color: #3800d9;
       }
     }
   }
-  @media only screen and (max-width: 1028px) {
+  @include media-breakpoint-down(md) {
     .row-schools-chart {
       display: none;
     }

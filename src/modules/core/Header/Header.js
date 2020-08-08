@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
-import './Header.scss'
-
 /**
  * Displays the site header.
  */

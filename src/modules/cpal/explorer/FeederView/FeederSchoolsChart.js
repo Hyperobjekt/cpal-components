@@ -123,6 +123,19 @@ const FeederSchoolsChart = ({ ...props }) => {
 
   const getSchoolsOptions = () => {
     const options = {
+      title: {
+        show: true,
+        text: i18n.translate(
+          'UI_FEEDER_TITLE_SCHOOLS_CHART',
+        ),
+        textStyle: {
+          fontFamily: 'Halyard',
+          fontSize: 18,
+          lineHeight: 18,
+        },
+        top: 20,
+        left: 80,
+      },
       grid: {
         show: false,
       },
@@ -146,13 +159,13 @@ const FeederSchoolsChart = ({ ...props }) => {
       xAxis: {
         show: true,
         position: 'right',
-        name: i18n.translate(
-          'UI_FEEDER_TITLE_SCHOOLS_CHART',
-        ),
+        // name: i18n.translate(
+        //   'UI_FEEDER_TITLE_SCHOOLS_CHART',
+        // ),
         nameLocation: 'middle',
         min: 0,
         max: 100,
-        nameGap: 26,
+        nameGap: 0,
         axisLine: {
           show: false,
         },
@@ -162,8 +175,8 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       emphasis: {
         itemStyle: {
-          color: getMetric(defaultMetric, CPAL_METRICS)
-            .colors[0],
+          color: '#d0421b', // getMetric(defaultMetric, CPAL_METRICS)
+          // .colors[0],
           opacity: 1,
           borderColor: '#fff',
         },
@@ -189,7 +202,8 @@ const FeederSchoolsChart = ({ ...props }) => {
           },
           data: getSchoolsData(),
           type: 'scatter',
-          symbol: 'rectangle',
+          symbol: 'roundRect',
+          symbolSize: [8, 6],
           itemStyle: {
             color: params => {
               // If it's highlighted, return that, else check for feeder.
@@ -197,10 +211,11 @@ const FeederSchoolsChart = ({ ...props }) => {
                 Number(getSchoolSLN(params.data.name)) ===
                 Number(highlightedSchool)
               ) {
-                return getMetric(
-                  defaultMetric,
-                  CPAL_METRICS,
-                ).colors[0]
+                return '#d0421b'
+                // getMetric(
+                //   defaultMetric,
+                //   CPAL_METRICS,
+                // ).colors[0]
               } else {
                 return Number(
                   getFeederSLN(params.data.name),
@@ -218,13 +233,13 @@ const FeederSchoolsChart = ({ ...props }) => {
                 ? 1
                 : 0.2
             },
-            borderColor: params => {
-              return Number(
-                getFeederSLN(params.data.name),
-              ) === Number(activeFeeder)
-                ? '#fff'
-                : 'transparent'
-            },
+            // borderColor: params => {
+            //   return Number(
+            //     getFeederSLN(params.data.name),
+            //   ) === Number(activeFeeder)
+            //     ? '#fff'
+            //     : 'transparent'
+            // },
           },
           clip: false,
           hoverAnimation: true,
@@ -293,8 +308,8 @@ const FeederSchoolsChart = ({ ...props }) => {
       onChartReady={schoolChartReady}
       classNames={clsx('chart-schools')}
       style={{
-        height: '240px',
-        width: '100%',
+        height: '200px',
+        width: '1200px',
         float: 'left',
       }}
       option={getSchoolsOptions()}

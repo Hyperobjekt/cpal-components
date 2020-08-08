@@ -32,6 +32,7 @@ const FeederLegend = ({ ...props }) => {
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
+  const feederLocked = useStore(state => state.feederLocked)
   // Slice out feeders to avoid rewrites
   const feeders = CPAL_FEEDERS.slice()
 
@@ -59,7 +60,7 @@ const FeederLegend = ({ ...props }) => {
 
   return (
     <div className="feeder-chart-legend">
-      {!!activeFeeder ? (
+      {!!activeFeeder && !!feederLocked ? (
         <>
           <h2>
             {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
@@ -92,15 +93,19 @@ const FeederLegend = ({ ...props }) => {
                 <span
                   id={'index_avg_' + el.id}
                   key={'index_avg_' + el.id}
+                  className="feeder-index"
                 >
-                  {i18n.translate(el.title)}:{' '}
-                  {getRoundedValue(
-                    getFeederAverage(
-                      el.id,
-                      getSchoolSet(activeFeeder),
-                    ),
-                    0,
-                  )}
+                  {i18n.translate(el.title)}:
+                  <span className="index-value">
+                    {'   '}
+                    {getRoundedValue(
+                      getFeederAverage(
+                        el.id,
+                        getSchoolSet(activeFeeder),
+                      ),
+                      0,
+                    )}
+                  </span>
                 </span>
               )
             })}

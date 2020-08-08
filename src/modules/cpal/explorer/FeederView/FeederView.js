@@ -9,6 +9,13 @@ import FeederChart from './FeederChart'
 import FeederLegend from './FeederLegend'
 import FeederSchoolsChart from './FeederSchoolsChart'
 
+// <Row className="row-feeder-top">
+//   <Col
+//     xs={{ size: 12, order: 1, offset: 0 }}
+//     md={{ size: 12, order: 1, offset: 0 }}
+//   ></Col>
+// </Row>
+
 /**
  * FeederView contains the feeder schools view.
  */
@@ -17,12 +24,6 @@ const FeederView = () => {
 
   return (
     <div className="layout-view-feeder">
-      <Row className="row-feeder-top">
-        <Col
-          xs={{ size: 12, order: 1, offset: 0 }}
-          md={{ size: 12, order: 1, offset: 0 }}
-        ></Col>
-      </Row>
       <Row className="row-bar-chart">
         <Col
           xs={{ size: 12, order: 2, offset: 0 }}
@@ -49,11 +50,6 @@ const FeederView = () => {
             'UI_FEEDER_TITLE_SCHOOLS_CHART',
           )}
         >
-          <h2>
-            {i18n.translate(
-              'UI_FEEDER_TITLE_SCHOOLS_CHART',
-            )}
-          </h2>
           <FeederSchoolsChart />
         </Col>
       </Row>
