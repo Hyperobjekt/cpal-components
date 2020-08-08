@@ -3,10 +3,12 @@
   height: 36px;
   cursor: pointer;
   display: flex;
+  opacity: 0.2;
   // padding: 1rem;
   // border: 2px solid transparent;
   margin-bottom: 0.7rem;
   &.active {
+    opacity: 1;
     // background-color: #ccc;
     // border-color: orange;
   }
