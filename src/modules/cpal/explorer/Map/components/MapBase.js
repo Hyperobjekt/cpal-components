@@ -150,12 +150,12 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      console.log(
-        'setFeatureStateNew',
-        featureId,
-        type,
-        state,
-      )
+      // console.log(
+      //   'setFeatureStateNew',
+      //   featureId,
+      //   type,
+      //   state,
+      // )
       // console.log('layers = ', layers)
       const layer = layers.find(l => l.type === type)
       // console.log('layer = ', layer)
@@ -327,21 +327,33 @@ const MapBase = ({
   }
 
   // handler for feature click
-  const handleClick = ({ features, srcEvent, ...rest }) => {
-    // console.log('feature click')
+  const handleClick = ({
+    features,
+    point,
+    srcEvent,
+    ...rest
+  }) => {
     // was the click on a control
-    const isControl = getClosest(
-      srcEvent.target,
-      '.mapboxgl-ctrl-group',
-    )
+    const isControl =
+      getClosest(srcEvent.target, '.mapboxgl-ctrl-group') ||
+      getClosest(srcEvent.target, '.map-legend') ||
+      getClosest(srcEvent.target, '#map_reset_button') ||
+      getClosest(srcEvent.target, '#map_capture_button')
     // activate feature if one was clicked and this isn't a control click
-    if (
-      features &&
-      features.length > 0 &&
-      !isControl &&
-      onClick(features[0])
-    ) {
-      console.log('click, ', features[0].properties)
+    if (features && features.length > 0 && !isControl) {
+      const coords =
+        srcEvent && srcEvent.pageX && srcEvent.pageY
+          ? [
+              Math.round(srcEvent.pageX),
+              Math.round(srcEvent.pageY),
+            ]
+          : null
+      const geoCoordinates =
+        features[0] && features[0].geometry
+          ? features[0].geometry.coordinates
+          : null
+      onClick(features[0], coords, geoCoordinates)
+      // console.log('click, ', features[0].properties)
     }
   }
 
@@ -511,6 +523,10 @@ const MapBase = ({
     return tooltip
   }
 
+  const handleTouch = () => {
+    console.log('touch is happening')
+  }
+
   return (
     <div
       id="map"
@@ -540,6 +556,7 @@ const MapBase = ({
         interactiveLayerIds={interactiveLayerIds}
         onViewportChange={handleViewportChange}
         onHover={handleHover}
+        onTouchStart={handleTouch}
         getCursor={getCursor}
         onClick={handleClick}
         onLoad={handleLoad}

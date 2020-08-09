@@ -93,7 +93,6 @@ const MapView = props => {
 
   /** memoized array of shape and point layers */
   const layers = useMemo(() => {
-    console.log('updating layers')
     if (!metric || !activeQuintiles || !activeLayers) {
       return []
     }
@@ -153,18 +152,28 @@ const MapView = props => {
   }
 
   /** handler for map click */
-  const handleClick = feature => {
-    // console.log('handle click, ', feature)
-    // addLocation(feature)
+  const handleClick = (feature, coords, geoCoords) => {
+    console.log('handle click, ', feature)
+    // If the item is hovered, navigate to the school.
+    // If the item is not hovered, set it as hovered.
+    // setHovered(id, type, geoCoords, feature)
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
-      if (!!window) {
-        const href =
-          window.location.origin +
-          '/schools/' +
-          feature.properties.SLN +
-          '/'
-        window.open(href, '_blank')
+      if (feature.state.hover !== true) {
+        // If it's not yet hovered, set it as hovered.
+        const type = `schools`
+        const id = getFeatureProperty(feature, 'TEA')
+        setHovered(id, type, geoCoords, feature)
+      } else {
+        // If it is hovered, then navigate to new window.
+        if (!!window) {
+          const href =
+            window.location.origin +
+            '/schools/' +
+            feature.properties.SLN +
+            '/'
+          window.open(href, '_blank')
+        }
       }
     }
   }
@@ -173,10 +182,6 @@ const MapView = props => {
   const handleLoad = () => {
     // inform global listener that map has loaded
     window.CPAL.trigger('map')
-    // zoom to US if needed once cover is shown
-    // setTimeout(() => {
-    //   flyToReset()
-    // }, 1000)
     isLoaded.current = true
   }
 
