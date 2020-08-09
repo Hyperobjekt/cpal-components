@@ -59,7 +59,14 @@ const FeederLegend = ({ ...props }) => {
   }
 
   return (
-    <div className="feeder-chart-legend">
+    <div
+      className={clsx(
+        'feeder-chart-legend',
+        !!activeFeeder && !!feederLocked
+          ? 'feeder-locked'
+          : '',
+      )}
+    >
       {!!activeFeeder && !!feederLocked ? (
         <>
           <h2>
