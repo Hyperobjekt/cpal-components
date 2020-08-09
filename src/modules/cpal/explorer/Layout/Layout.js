@@ -406,7 +406,7 @@ const Layout = ({ children, ...props }) => {
               tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
-              className="button-share-twitter"
+              className="button-share-twitter button-share"
             >
               <FaTwitter />
               <span className="sr-only">
@@ -421,7 +421,7 @@ const Layout = ({ children, ...props }) => {
               tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
-              className="button-share-facebook"
+              className="button-share-facebook button-share"
             >
               <FaFacebookF />
               <span className="sr-only">
@@ -434,7 +434,7 @@ const Layout = ({ children, ...props }) => {
               tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
-              className="button-share-email"
+              className="button-share-email button-share"
             >
               <GrMail />
               <span className="sr-only">
@@ -447,7 +447,7 @@ const Layout = ({ children, ...props }) => {
               tooltip={buttonPosition}
               onClick={handleShare}
               color="none"
-              className="button-share-link"
+              className="button-share-link button-share"
             >
               <IoMdShare />
               <span className="sr-only">

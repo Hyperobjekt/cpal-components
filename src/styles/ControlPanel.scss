@@ -114,6 +114,13 @@
     justify-content: flex-start;
     left: 0;
     top: 0;
+    .btn.button-core {
+      font-size: 20px;
+      &.button-share {
+        font-size: 14px;
+      }
+    }
+    
     .select-view {
       display: none;
     }
