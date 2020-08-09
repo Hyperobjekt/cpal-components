@@ -32,11 +32,14 @@ $bar-highlight: #d0421b;
             margin-bottom: 10px;
             height: 24px;
             .label {
-              flex: 0 0 140px;
+              flex: 0 0 60px;
+              // flex: 0 0 140px; // md
               text-align: right;
               font-family: Halyard;
-              font-size: 1.4rem;
+              font-size: 0.8rem;
               line-height: 1.5rem;
+              // font-size: 1.4rem; // md
+              // line-height: 1.5rem;
               padding-right: 0.5rem;
               font-weight: 300;
               align-self: center;
@@ -90,10 +93,12 @@ $bar-highlight: #d0421b;
         left: 0;
         display: block;
         width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
+        &.feeder-locked {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
         font-size: 12px;
         font-family: Halyard;
         font-size: 1.4rem;
@@ -174,7 +179,10 @@ $bar-highlight: #d0421b;
   }
   // Scatterplot (school) chart row
   .row-schools-chart {
-    display: none;
+    // display: none;
+    .echarts-for-react {
+      width: 100% !important;
+    }
   }
 }
 
@@ -188,8 +196,9 @@ $bar-highlight: #d0421b;
     .feeder-chart-legend {
     display: block !important;
     position: absolute;
-    top: 0;
+    top: 16px;
     right: 10%;
+    left: auto;
     width: 25% !important;
     background: #fff;
     padding: 1.6rem;
@@ -212,6 +221,9 @@ $bar-highlight: #d0421b;
     .feeders-bar-chart-parent {
     height: calc(100vh - 64px - 230px); // 125%;
     overflow-y: scroll;
+    .feeder-chart-bar {
+      margin-top: 16px;
+    }
   }
   .layout-view-feeder .row-schools-chart {
     display: block;
