@@ -154,8 +154,20 @@ const en_US = {
   UI_MAP_METRIC_DEM_POPM: `not available`,
   UI_MAP_METRIC_DEM_THH: `not available`,
   UI_MAP_METRIC_DEM_POPSE: `not available`,
-  UI_PANEL_INFO_MAP: ``,
-  UI_PANEL_INFO_FEEDER: `<h3>About the Feeder Pattern View</h3><p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on where they live.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p> <p>Hover and click within the charts to see more data about each feeder pattern and its schools. You can also use the search bar to find a school and highlight its feeder pattern and campus.</p>`,
+  UI_PANEL_INFO_MAP: `<h5>Exploring in the map view</h5>
+
+  <p>The map displays 189 Dallas ISD schools, each color-coded to show how they score within the metrics that make up the Community Resource Index. The color scale has 5 blocks, each representing a quintile within the scale. The lighter the color, the higher the score.</p>
+  
+  <p>You can change the metric shown on the map by clicking the METRICS button and making selections. You can also use this feature to filter schools on the map by quintiles.</p>
+  
+  <p>To see the entire list of metrics for a school, click its dot on the map. A full report about this school will appear in a new tab in your browser.</p>
+  
+  <p>Use the “toggle map layers” feature to see historical redlining zones (see FAQ here) and toggle district boundaries on and off.</p>
+  
+  <p>You can also grab a snapshot of your screen using the camera button, and share a custom link to your current Explorer view via the SHARE buttons.</p>
+  
+  <p>Questions? Visit our FAQ.</p>`,
+  UI_PANEL_INFO_FEEDER: `<h5>Exploring in the Feeder Pattern View</h5><p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on where they live.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p> <p>Hover and click within the charts to see more data about each feeder pattern and its schools. You can also use the search bar to find a school and highlight its feeder pattern and campus.</p>`,
   UI_MAP_CLICK_SCHOOL_PROMPT: `Click on school to view full report.`,
 }
 export default en_US
