@@ -1,6 +1,6 @@
 .map-legend {
   position: absolute;
-  top: 16px;
+  top: calc(16px + 64px); // Changes on smallest device.
   right: 16px;
   width: 280px;
   background: #fff;
@@ -94,5 +94,11 @@
         align-items: center;
       }
     }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .map-legend {
+    top: 16px;
   }
 }

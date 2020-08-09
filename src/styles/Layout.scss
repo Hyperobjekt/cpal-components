@@ -67,6 +67,10 @@ $spacer: 0.8rem;
     }
   }
 }
+html,
+body {
+  height: 100%;
+}
 main {
   height: calc(100vh - 64px);
 }
@@ -75,7 +79,7 @@ main {
   // height: 100vh;
   height: 100%;
   @media only screen and (min-width: 1024px) {
-    padding-left: 80px;
+    padding-left: 64px;
   }
 
   // position: absolute;
