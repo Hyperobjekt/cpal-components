@@ -112,12 +112,12 @@ const MapView = props => {
 
   /** handler for map hover */
   const handleHover = (feature, coords, geoCoords) => {
-    // console.log(
-    //   'handleHover in mapview, ',
-    //   feature,
-    //   coords,
-    //   geoCoords,
-    // )
+    console.log(
+      'handleHover in mapview, ',
+      feature,
+      coords,
+      geoCoords,
+    )
     let type = null
     let id = null
     if (
@@ -159,7 +159,10 @@ const MapView = props => {
     // setHovered(id, type, geoCoords, feature)
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
-      if (feature.state.hover !== true) {
+      if (
+        feature.state.hover &&
+        feature.state.hover !== true
+      ) {
         // If it's not yet hovered, set it as hovered.
         const type = `schools`
         const id = getFeatureProperty(feature, 'TEA')
