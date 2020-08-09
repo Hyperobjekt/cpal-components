@@ -24,6 +24,9 @@
     //   display: block;
     // }
   }
+  .control-label {
+    display: none;
+  }
   .select-view {
     margin-right: 16px;
   }
@@ -121,6 +124,7 @@
     }
     .control-label {
       text-align: center;
+      display: block;
       color: #606B44;
       font-weight: 300;
       font-size: 1.3rem;
