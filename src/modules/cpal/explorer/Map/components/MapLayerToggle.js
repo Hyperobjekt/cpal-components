@@ -88,6 +88,7 @@ const MapLayerToggle = ({ ...props }) => {
                     updateLayers(e)
                   }}
                 />
+                <div className="checkmark"></div>
                 {i18n.translate(getLayerLabel(el.id))}
                 {!!el.tooltip && el.tooltip.length > 0 && (
                   <FiInfo id={'tip_prompt_' + el.id} />
