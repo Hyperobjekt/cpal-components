@@ -36,6 +36,13 @@
       line-height: 1.6rem;
     }
   }
+  .click-school-prompt {
+    color: $turtle-green;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+  }
 }
 .mapboxgl-popup {
   // Set z-index to make tooltip overlay any other controls.

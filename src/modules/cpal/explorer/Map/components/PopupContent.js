@@ -91,6 +91,9 @@ const PopupContent = ({ ...props }) => {
           return ''
         }
       })}
+      <div className="click-school-prompt">
+        {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
+      </div>
     </div>
   )
 }
