@@ -81,6 +81,7 @@ const MapBase = ({
   ariaLabel,
   onHover,
   onClick,
+  onTouch,
   onLoad,
   schoolZonesAffix,
   ...rest
@@ -524,7 +525,8 @@ const MapBase = ({
   }
 
   const handleTouch = () => {
-    console.log('touch is happening')
+    // console.log('touch is happening')
+    onTouch()
   }
 
   return (

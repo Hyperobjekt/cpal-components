@@ -128,6 +128,8 @@ const [useStore] = create((set, get) => ({
   setBreakpoint: newVal => set({ breakpoint: newVal }),
   browserWidth: null,
   setBrowserWidth: newVal => set({ browserWidth: newVal }),
+  isTouch: false,
+  setIsTouch: newVal => set({ isTouch: newVal }),
 }))
 
 export default useStore
