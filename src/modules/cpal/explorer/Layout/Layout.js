@@ -297,6 +297,9 @@ const Layout = ({ children, ...props }) => {
               title={i18n.translate(`SELECT_VIEW`)}
               active={'select_view_' + activeView}
             />
+            <div className="control-label">
+              VIEW
+            </div>
             <CoreButton
               id="button_view_map"
               label={i18n.translate(`BUTTON_VIEW_MAP`)}
@@ -336,6 +339,9 @@ const Layout = ({ children, ...props }) => {
             <Divider />
             {activeView === 'map' ? (
               <>
+                <div className="control-label">
+                  METRICS
+                </div>
                 <CoreButton
                   id="button_toggle_panel_filters"
                   label={i18n.translate(
@@ -363,6 +369,9 @@ const Layout = ({ children, ...props }) => {
             ) : (
               ''
             )}
+            <div className="control-label">
+              INFO
+            </div>
             <CoreButton
               id="button_toggle_panel_info"
               label={i18n.translate(
@@ -386,6 +395,9 @@ const Layout = ({ children, ...props }) => {
               </span>
             </CoreButton>
             <Divider />
+            <div className="control-label">
+              SHARE
+            </div>
             <CoreButton
               id="button_share_twitter"
               label={i18n.translate(`BUTTON_SHARE_TWITTER`)}
