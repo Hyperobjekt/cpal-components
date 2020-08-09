@@ -53,8 +53,8 @@ const CoreButton = ({ children, ...props }) => {
       aria-label={props.label}
       onClick={props.onClick}
       color={props.color}
-      className={clsx('button-core', props.className)}
       {...props}
+      className={clsx('button-core', props.className)}
     >
       {children}
       {props.tooltip && props.tooltip.length > 0 ? (

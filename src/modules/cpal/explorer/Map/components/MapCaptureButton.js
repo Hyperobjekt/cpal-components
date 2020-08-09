@@ -23,7 +23,7 @@ const MapCaptureButton = ({ currentMap, ...props }) => {
 
   return (
     <CoreButton
-      color="light"
+      color="none"
       active={true}
       id="map_capture_button"
       className={clsx(

@@ -5,23 +5,49 @@
 /* Extra small devices (phones, 767px and down) */
 .layout-control-panel {
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 100%;
   background: #fff;
   padding: 16px;
   z-index: 401; // 2000;
   border-right: 1px solid #ccc;
+  hr {
+    // transform: rotate(90deg);
+    // color: transparent;
+    // width: 1px;
+    // ::after {
+    //   height: 64px;
+    //   width: 1px;
+    //   background-color: red;
+    // }
+  }
+
+  // @include media-breakpoint-up(md) {
+  //   hr,
+  //   .button-view-map,
+  //   .button-view-feeder {
+  //     display: none;
+  //   }
+  // }
   @include media-breakpoint-up(lg) {
-    display: flex;
+    // display: flex;
     // width: 280px;
     position: absolute;
-    left: 16px;
-    top: 16px;
+    left: 0;
+    top: 0;
+    // hr {
+    //   transform: none;
+    // }
   }
   // Hide the map and feeder buttons at the smaller views.
   hr,
   .button-view-map,
   .button-view-feeder {
     display: none;
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
   }
   .select-view {
     margin-right: 16px;
@@ -29,7 +55,7 @@
   .button-view-filters {
     margin-right: 8px;
   }
-  .btn {
+  .btn.button-core {
     width: 40px;
     height: 40px;
     border-radius: 20px;
@@ -53,16 +79,17 @@
     // position: absolute;
     // left: 16px;
     // top: 16px;
-    hr,
-    .button-view-map,
-    .button-view-feeder {
-      display: none;
-    }
+    // hr,
+    // .button-view-map,
+    // .button-view-feeder {
+    //   display: none;
+    // }
   }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 1024px) {
+// @media only screen and (min-width: 992px) {
+@include media-breakpoint-up(lg) {
   .layout-control-panel {
     width: 80px;
     height: calc(100vh - 64px);
@@ -73,11 +100,11 @@
     .select-view {
       display: none;
     }
-    hr,
-    .button-view-map,
-    .button-view-feeder {
-      display: block;
-    }
+    // hr,
+    // .button-view-map,
+    // .button-view-feeder {
+    //   display: block;
+    // }
     hr {
       width: 100%;
       margin-top: 0;
