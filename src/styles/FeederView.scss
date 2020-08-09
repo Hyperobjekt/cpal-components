@@ -8,17 +8,20 @@ $bar-highlight: #d0421b;
   height: 100%;
   // overflow: hidden;
   .row-bar-chart {
-    padding-top: 2rem;
+    // padding-top: 2rem;
     .feeders-bar-chart {
       height: 100%;
+      margin-top: 64px; // calc(64px + 16px);
       .feeders-bar-chart-parent {
         height: 100%;
-        @include media-breakpoint-up(lg) {
-          height: calc(100vh - 64px - 230px); // 125%;
-          overflow-y: scroll;
-        }
+        // @include media-breakpoint-up(lg) {
+        //   height: calc(100vh - 64px - 230px); // 125%;
+        //   overflow-y: scroll;
+        // }
         .feeder-chart-bar {
           width: 90%;
+          margin-top: 350px;
+          padding-top: 2rem;
           .feeder-bar-button {
             position: relative;
             width: 100%;
@@ -82,31 +85,25 @@ $bar-highlight: #d0421b;
       }
 
       .feeder-chart-legend {
-        display: inline !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
         font-size: 12px;
         font-family: Halyard;
         font-size: 1.4rem;
         line-height: 1.5rem;
         padding-right: 0.5rem;
         padding: 24px;
-        @include media-breakpoint-up(lg) {
-          display: block !important;
-          position: absolute;
-          top: 0;
-          right: 10%;
-          width: 25% !important;
-          background: #fff;
-          padding: 0.6rem;
-          // border-radius: 3px;
-          box-shadow: 0px 0px 3px #ccc;
-          min-height: 40vh;
-          max-height: 400px;
-          overflow-y: scroll;
-          z-index: 500;
-        }
+        height: 350px;
+        overflow-y: scroll;
+        background-color: #fff;
+        box-shadow: 0 1px 3px #ccc;
         p {
           font-weight: 300;
           font-size: 1.4rem;
@@ -115,12 +112,14 @@ $bar-highlight: #d0421b;
         h2 {
           font-size: 1.8rem;
           line-height: 100%;
+          width: 100%;
         }
         h3 {
           font-size: 1.4rem;
           line-height: 1.4rem;
           font-weight: 300;
           margin-bottom: 20px;
+          width: 100%;
         }
         h4 {
           font-family: Halyard;
@@ -142,7 +141,7 @@ $bar-highlight: #d0421b;
         .feeder-legend-metrics,
         .feeder-legend-schools {
           width: 45%;
-          flex: 0 0 auto;
+          flex: 0 0 45%;
           margin: 0.6rem auto 0.6rem;
           .index-value {
             font-size: 1.5rem;
@@ -176,14 +175,51 @@ $bar-highlight: #d0421b;
   // Scatterplot (school) chart row
   .row-schools-chart {
     display: none;
-    @include media-breakpoint-up(lg) {
-      display: block;
-      position: fixed;
-      bottom: 0;
-      background: #fff;
-      width: 100%;
-      height: 200px;
-    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .layout-view-feeder .row-bar-chart .feeders-bar-chart {
+    margin-top: calc(64px + 16px);
+  }
+  .layout-view-feeder
+    .row-bar-chart
+    .feeders-bar-chart
+    .feeder-chart-legend {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 10%;
+    width: 25% !important;
+    background: #fff;
+    padding: 1.6rem;
+    // border-radius: 3px;
+    box-shadow: 0px 0px 3px #ccc;
+    min-height: 40vh;
+    max-height: 400px;
+    overflow-y: scroll;
+    z-index: 500;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .layout-view-feeder .row-bar-chart .feeders-bar-chart {
+    margin-top: 0;
+  }
+  .layout-view-feeder
+    .row-bar-chart
+    .feeders-bar-chart
+    .feeders-bar-chart-parent {
+    height: calc(100vh - 64px - 230px); // 125%;
+    overflow-y: scroll;
+  }
+  .layout-view-feeder .row-schools-chart {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%;
+    height: 200px;
     .feeders-schools-scatter {
       background: #fff;
       padding-top: 2rem;
@@ -196,12 +232,6 @@ $bar-highlight: #d0421b;
       }
     }
   }
-}
-
-@media only screen and (min-width: 768px) {
-}
-
-@media only screen and (min-width: 992px) {
 }
 
 @media only screen and (min-width: 1280px) {
