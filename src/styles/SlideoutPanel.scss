@@ -1,15 +1,18 @@
 .map-panel-slideout {
-  background-color: #fff;
-  height: 100%;
-  position: absolute;
-  top: 0;
+  // These change based on device width.
+  height: calc(100vh - 64px - 64px - 16px - 16px);
+  // max-height: 480px;
+  top: calc(64px + 16px);
   left: -350px;
+  // Do not change based on device width.
+  background-color: #fff;
+  position: absolute;
   transition: left 500ms ease-in-out;
   width: 350px;
   z-index: 400; // 1999;
   box-shadow: 1px 1px 2px #ddd;
   &.active {
-    left: 80px;
+    left: 0px;
     transition: left 500ms ease-in-out;
   }
   .map-panel-slideout-filters,
@@ -24,6 +27,27 @@
   &.panel-view-info {
     .map-panel-slideout-info {
       display: block;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .map-panel-slideout {
+    // These change based on device width.
+    height: calc(100vh - 64px - 64px - 16px - 16px);
+    // max-height: 480px;
+    top: calc(64px + 16px + 16px);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .map-panel-slideout {
+    top: 0;
+    height: 100%;
+    left: -350px;
+    &.active {
+      left: 64px;
+      transition: left 500ms ease-in-out;
     }
   }
 }

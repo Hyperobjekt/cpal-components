@@ -4,50 +4,25 @@
 
 /* Extra small devices (phones, 767px and down) */
 .layout-control-panel {
+  height: 64px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  position: absolute;
   width: 100%;
   background: #fff;
   padding: 16px;
   z-index: 401; // 2000;
-  border-right: 1px solid #ccc;
-  hr {
-    // transform: rotate(90deg);
-    // color: transparent;
-    // width: 1px;
-    // ::after {
-    //   height: 64px;
-    //   width: 1px;
-    //   background-color: red;
-    // }
-  }
-
-  // @include media-breakpoint-up(md) {
-  //   hr,
-  //   .button-view-map,
-  //   .button-view-feeder {
-  //     display: none;
-  //   }
-  // }
-  @include media-breakpoint-up(lg) {
-    // display: flex;
-    // width: 280px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    // hr {
-    //   transform: none;
-    // }
-  }
-  // Hide the map and feeder buttons at the smaller views.
+  border-bottom: 1px solid #ccc;
+  flex-direction: row;
+  box-shadow: 0 1px 3px #ccc;
   hr,
   .button-view-map,
   .button-view-feeder {
     display: none;
-    @include media-breakpoint-up(lg) {
-      display: block;
-    }
+    // @include media-breakpoint-up(lg) {
+    //   display: block;
+    // }
   }
   .select-view {
     margin-right: 16px;
@@ -55,47 +30,85 @@
   .button-view-filters {
     margin-right: 8px;
   }
+  .dropdown.select-view {
+    // min-width: 200px;
+    .btn {
+      border-radius: 0;
+      font-size: 1.4rem;
+      line-height: 1.5rem;
+      font-weight: 300;
+      padding: 0.8rem 1.2rem;
+      &:after {
+        margin-left: 1rem;
+        margin-bottom: -2px;
+      }
+    }
+    .dropdown-menu.show {
+      width: 100%;
+      border-radius: 0;
+      font-size: 1.4rem;
+      line-height: 1.5rem;
+      font-weight: 300;
+      align-self: center;
+      button {
+        padding: 0.8rem 1.2rem;
+        &.active {
+          background-color: #e55934;
+        }
+      }
+    }
+  }
   .btn.button-core {
     width: 40px;
     height: 40px;
     border-radius: 20px;
     font-size: 14px;
     line-height: 14px;
+    margin-right: 1rem;
+    flex: 0 0 40px;
+    align-self: center;
     &:hover {
       background-color: #f6f6eb;
     }
-    &.active {
+    &.active,
+    &:focus {
       background-color: #ffeee5;
       color: #e55934;
     }
   }
 }
-
-/* Medium devices (landscape tablets, 768px and up) */
+// /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .layout-control-panel {
-    // display: flex;
-    // width: 280px;
-    // position: absolute;
-    // left: 16px;
-    // top: 16px;
-    // hr,
-    // .button-view-map,
-    // .button-view-feeder {
-    //   display: none;
-    // }
+    // height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    width: 460px;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    .btn.btn-core {
+      margin-right: 0;
+    }
+    hr,
+    .button-view-map,
+    .button-view-feeder {
+      display: none;
+    }
   }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-// @media only screen and (min-width: 992px) {
-@include media-breakpoint-up(lg) {
+// /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  // @include media-breakpoint-up(lg) {
   .layout-control-panel {
-    width: 80px;
+    width: 64px;
     height: calc(100vh - 64px);
     flex-direction: column;
     align-items: center;
     position: absolute;
+    justify-content: flex-start;
     left: 0;
     top: 0;
     .select-view {
@@ -189,8 +202,12 @@
       margin: 0.8rem 0 1.6rem;
       border-top: 1px solid #E8EAE4;
     }
-    button {
+    button,
+    .btn.btn-core {
+      margin-bottom: 16px;
       margin-bottom: 8px;
+      align-self: center;
+      margin-right: 0 !important;
     }
     .button-view-filters {
       margin-right: 0;

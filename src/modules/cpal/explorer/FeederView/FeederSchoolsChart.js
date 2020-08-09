@@ -313,7 +313,9 @@ const FeederSchoolsChart = ({ ...props }) => {
       style={{
         height: '200px',
         width: '1200px',
-        float: 'left',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'block',
       }}
       option={getSchoolsOptions()}
       notMerge={false}

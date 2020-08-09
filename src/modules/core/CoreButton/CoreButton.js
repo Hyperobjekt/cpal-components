@@ -51,7 +51,7 @@ const CoreButton = ({ children, ...props }) => {
           isOpen={tooltipOpen}
           target={props.id}
           toggle={toggle}
-          autoHide={props.tooltipAutoHide}
+          autohide={props.tooltipAutoHide}
         >
           {props.label}
         </Tooltip>
