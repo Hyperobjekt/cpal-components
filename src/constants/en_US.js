@@ -153,5 +153,6 @@ const en_US = {
   UI_MAP_METRIC_DEM_POPSE: `not available`,
   UI_PANEL_INFO_MAP: ``,
   UI_PANEL_INFO_FEEDER: `<p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on their residing address.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p>`,
+  UI_MAP_CLICK_SCHOOL_PROMPT: `Click on school to view full report.`,
 }
 export default en_US

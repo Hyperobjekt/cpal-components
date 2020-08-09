@@ -27,6 +27,12 @@
     top: 10px;
     color: #bbb;
   }
+  .button-search-clear {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    background-color: #fff;
+  }
   .react-autosuggest__container {
     flex: 1 1 80%;
     .react-autosuggest__input {
@@ -39,9 +45,11 @@
     .react-autosuggest__suggestions-container {
       top: 30px;
       z-index: 3000;
+      background-color: transparent;
       .react-autosuggest__suggestions-list {
         border: 1px solid #ddd;
         max-width: 300px;
+        background-color: #fff;
         .react-autosuggest__suggestion {
           height: 30px;
           // color: #ddd;

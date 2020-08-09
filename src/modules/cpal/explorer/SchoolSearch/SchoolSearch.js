@@ -33,6 +33,10 @@ const SchoolSearch = ({ ...props }) => {
   const setHighlightedSchool = useStore(
     state => state.setHighlightedSchool,
   )
+  // Reset viewport to zoom in to school
+  const flyToSchool = useStore(state => state.flyToSchool)
+
+  // Tracking autosuggest suggestions
   const [suggestions, setSuggestions] = useState([])
   const [value, setValue] = useState('')
 
@@ -40,6 +44,10 @@ const SchoolSearch = ({ ...props }) => {
     // console.log('updateUIWithResult')
     if (activeView === 'map') {
       console.log('in map view')
+      flyToSchool(
+        suggestion.suggestion.POINT_Y,
+        suggestion.suggestion.POINT_X,
+      )
     }
     if (activeView === 'feeder') {
       // console.log('in feeder view, ', suggestion)

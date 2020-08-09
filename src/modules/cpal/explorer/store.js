@@ -66,6 +66,23 @@ const [useStore] = create((set, get) => ({
       },
     }))
   },
+  flyToSchool: (lat, lng) => {
+    console.log('fly to school, ', lat)
+    const newViewport = {
+      latitude: lat,
+      longitude: lng,
+      zoom: 14,
+    }
+    set(state => ({
+      viewport: {
+        ...state.viewport,
+        ...newViewport,
+        transitionDuration: 3000,
+        transitionInterpolator: new FlyToInterpolator(),
+        transitionEasing: ease.easeCubic,
+      },
+    }))
+  },
   schoolZonesAffix: `200`,
   activeLayers: [1, 0],
   setActiveLayers: newArr => set({ activeLayers: newArr }),
