@@ -365,11 +365,11 @@ const Layout = ({ children, ...props }) => {
                     )}
                   </span>
                 </CoreButton>
+                <Divider />
               </>
             ) : (
               ''
             )}
-            <Divider />
             <div className="control-label">
               INFO
             </div>
