@@ -35,18 +35,6 @@ const CoreButton = ({ children, ...props }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
   const togglePopover = () => setPopoverOpen(!popoverOpen)
 
-  // External state handler for popover, if provided
-  useEffect(() => {
-    // console.log('externalPopoverToggle changed')
-    // Don't mess with it unless we're closing the panel.
-    if (
-      props.externalPopoverToggle &&
-      !props.externalPopoverToggle
-    ) {
-      setPopoverOpen(false)
-    }
-  }, [props.externalPopoverToggle])
-
   return (
     <Button
       id={props.id}
@@ -97,14 +85,12 @@ CoreButton.propTypes = {
   onClick: PropTypes.func,
   /** Bootstrap button color type */
   color: PropTypes.string,
-  externalPopoverToggle: PropTypes.boolean,
 }
 
 CoreButton.defaultProps = {
   label: ``,
   onClick: null,
   color: `secondary`,
-  externalPopoverToggle: false,
 }
 
 export default CoreButton
