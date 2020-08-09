@@ -38,6 +38,7 @@
     .react-autosuggest__input {
       padding-left: 16px;
       height: 30px;
+      font-size: 15px;
     }
     ::-webkit-search-cancel-button {
       display: none;
@@ -55,6 +56,8 @@
           // color: #ddd;
           line-height: 30px;
           padding-left: 16px;
+          font-size: 15px;
+          font-weight: 300;
           & > div {
             width: 264px;
             white-space: nowrap;

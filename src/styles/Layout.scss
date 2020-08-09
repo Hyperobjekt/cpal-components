@@ -34,6 +34,7 @@ $spacer: 0.8rem;
           background-image: url('./images/menu-logo.svg');
           background-repeat: no-repeat;
           background-size: 17px 28px;
+          margin-right: 4px;
         }
         .logo-sitename {
           // font-style: normal;
@@ -53,9 +54,14 @@ $spacer: 0.8rem;
           @include media-breakpoint-up(md) {
             width: auto;
             font-style: normal;
+            font-size: 15px;
             font-weight: 300;
-            font-size: 14px;
-            line-height: 12px;
+            line-height: 15px;
+            color: #292d33;
+            mix-blend-mode: normal;
+            color: #484e56;
+            font-weight: 400;
+            letter-spacing: 0.01rem;
           }
           // text-decoration: none !important;
           // &:hover,
