@@ -84,6 +84,10 @@
       color: #606B44;
       font-weight: 300;
       font-size: 1.3rem;
+      margin-bottom: 16px;
+      &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5)  {
+        margin-bottom: 8px;
+      }
     }
     .button-view-map,
     .button-view-feeder,
@@ -94,6 +98,7 @@
       border-radius: 50%;
       height: 40px;
       width: 40px;
+      min-height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -126,6 +131,7 @@
       font-size: 1.4rem;
       height: 40px;
       width: 40px;
+      min-height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -148,7 +154,8 @@
     }
     hr {
       width: 100%;
-      margin-top: 0;
+      margin: 0.8rem 0 1.6rem;
+      border-top: 1px solid #E8EAE4;
     }
     button {
       margin-bottom: 8px;

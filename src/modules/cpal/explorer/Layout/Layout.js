@@ -369,6 +369,7 @@ const Layout = ({ children, ...props }) => {
             ) : (
               ''
             )}
+            <Divider />
             <div className="control-label">
               INFO
             </div>
