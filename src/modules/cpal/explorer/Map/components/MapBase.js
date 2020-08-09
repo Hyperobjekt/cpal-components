@@ -328,21 +328,21 @@ const MapBase = ({
 
   // handler for feature click
   const handleClick = ({ features, srcEvent, ...rest }) => {
-    console.log('feature click')
+    // console.log('feature click')
     // was the click on a control
-    // const isControl = getClosest(
-    //   srcEvent.target,
-    //   '.mapboxgl-ctrl-group',
-    // )
+    const isControl = getClosest(
+      srcEvent.target,
+      '.mapboxgl-ctrl-group',
+    )
     // activate feature if one was clicked and this isn't a control click
-    // if (
-    //   features &&
-    //   features.length > 0 &&
-    //   !isControl &&
-    //   onClick(features[0])
-    // ) {
-    //   console.log(features[0].properties)
-    // }
+    if (
+      features &&
+      features.length > 0 &&
+      !isControl &&
+      onClick(features[0])
+    ) {
+      console.log('click, ', features[0].properties)
+    }
   }
 
   // set the default / reset viewport when it changes
