@@ -81,6 +81,9 @@ main {
   @media only screen and (min-width: 1024px) {
     padding-left: 64px;
   }
+  // @include media-breakpoint-up(lg) {
+  //   padding-left: 64px;
+  // }
 
   // position: absolute;
   // right: 0;
