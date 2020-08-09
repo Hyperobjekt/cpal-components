@@ -265,7 +265,7 @@ const FeederSchoolsChart = ({ ...props }) => {
                 '</div>'
               )
             },
-            padding: 16,
+            padding: [16, 16, 8, 16],
             backgroundColor: '#fff',
             textStyle: {
               color: '#000',
