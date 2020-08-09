@@ -1,0 +1,35 @@
+.overlays {
+  .map-layer-toggle {
+    .map-layer-toggle-btn {
+      border-radius: 0;
+      background-color: black;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      padding: 0.5rem;
+      .icon {
+        width: 13px;
+        height: 13px;
+        margin-top: -4px;
+      }
+    }
+    .map-layer-toggle-pane {
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      font-weight: 300;
+      padding: 1rem 1.5rem;
+      .layer {
+        padding: 0.5rem 0;
+        label {
+          input {
+            vertical-align: baseline;
+          }
+          svg {
+            width: 12px;
+            height: 12px;
+            margin-left: 0.35rem;
+          }
+        }
+      }
+    }
+  }
+}

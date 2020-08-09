@@ -134,7 +134,7 @@ const MapView = props => {
       feature.layer &&
       feature.layer.id === 'schools-circle'
     ) {
-      console.log('School circle hovered.', feature)
+      // console.log('School circle hovered.', feature)
       type = `schools`
       // console.log('handleHover, ', feature, coords)
       id = getFeatureProperty(feature, 'TEA')
@@ -154,8 +154,16 @@ const MapView = props => {
 
   /** handler for map click */
   const handleClick = feature => {
-    console.log('handle click')
+    console.log('handle click, ', feature)
     // addLocation(feature)
+    if (feature.source === 'schools') {
+      console.log('school clicked, ', feature)
+      window.location.href =
+        window.location.origin +
+        '/schools/' +
+        feature.properties.SLN +
+        '/'
+    }
   }
 
   /** handler for map load */

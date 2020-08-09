@@ -16,6 +16,7 @@ import { FaTwitter, FaFacebookF } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
 import { BsLink45Deg } from 'react-icons/bs'
 import { AiOutlineControl } from 'react-icons/ai'
+import { IoMdShare } from 'react-icons/io'
 
 import useStore from './../store'
 import {
@@ -300,7 +301,7 @@ const Layout = ({ children, ...props }) => {
               id="button_view_map"
               label={i18n.translate(`BUTTON_VIEW_MAP`)}
               onClick={handleClick}
-              color="light"
+              color="none"
               className={clsx(
                 'button-view-map',
                 activeView && activeView === 'map'
@@ -318,7 +319,7 @@ const Layout = ({ children, ...props }) => {
               id="button_view_feeder"
               label={i18n.translate(`BUTTON_VIEW_FEEDER`)}
               onClick={handleClick}
-              color="light"
+              color="none"
               className={clsx(
                 'button-view-feeder',
                 activeView && activeView === 'feeder'
@@ -341,7 +342,7 @@ const Layout = ({ children, ...props }) => {
                     `BUTTON_TOGGLE_PANEL_FILTERS`,
                   )}
                   onClick={handlePanel}
-                  color="light"
+                  color="none"
                   tooltip={buttonPosition}
                   className={clsx(
                     'button-panel-filters',
@@ -369,7 +370,7 @@ const Layout = ({ children, ...props }) => {
               )}
               tooltip={buttonPosition}
               onClick={handlePanel}
-              color="light"
+              color="none"
               styles={{ display: 'none' }}
               className={clsx(
                 'button-panel-info',
@@ -434,7 +435,7 @@ const Layout = ({ children, ...props }) => {
               color="none"
               className="button-share-link"
             >
-              <BsLink45Deg />
+              <IoMdShare />
               <span className="sr-only">
                 {i18n.translate(`BUTTON_SHARE_LINK`)}
               </span>

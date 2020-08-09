@@ -13,6 +13,7 @@
 @import 'ControlPanel';
 @import 'FeederView';
 @import 'MapView';
+@import 'Map';
 @import 'MapLegend';
 @import 'Header';
 // Child content component for the popup.
@@ -28,7 +29,7 @@
 // Search in header
 @import 'SchoolSearch';
 @import 'MapLayerToggle';
-
+@import 'tooltip';
 @font-face {
   font-family: 'Halyard';
   src: url('./fonts/Halyard Text Regular.ttf')

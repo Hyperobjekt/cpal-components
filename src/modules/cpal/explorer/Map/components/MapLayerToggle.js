@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import i18n from '@pureartisan/simple-i18n'
-import { Button, Label, Input } from 'reactstrap'
+import { Button, Label, Input, Tooltip } from 'reactstrap'
 import { FiLayers } from 'react-icons/fi'
 import clsx from 'clsx'
 import { FiInfo } from 'react-icons/fi'
@@ -24,6 +24,10 @@ const MapLayerToggle = ({ ...props }) => {
   const setActiveLayers = useStore(
     state => state.setActiveLayers,
   )
+
+  // to manage tooltip state
+  const [tooltipOpen, setTooltipOpen] = useState(false)
+  const toggle = () => setTooltipOpen(!tooltipOpen)
 
   const getLayerLabel = id => {
     const layer = CPAL_LAYER_GROUPS.find(gr => gr.id === id)
@@ -67,7 +71,10 @@ const MapLayerToggle = ({ ...props }) => {
           // )
           return (
             <div className="layer" key={`layer-${el.id}`}>
-              <label key={`label-${el.id}`}>
+              <label
+                key={`label-${el.id}`}
+                id={`label-${el.id}`}
+              >
                 <input
                   type="checkbox"
                   id={'layer_' + i}
@@ -82,23 +89,22 @@ const MapLayerToggle = ({ ...props }) => {
                   }}
                 />
                 {i18n.translate(getLayerLabel(el.id))}
+                {!!el.tooltip && el.tooltip.length > 0 && (
+                  <FiInfo id={'tip_prompt_' + el.id} />
+                )}
               </label>
               {!!el.tooltip && el.tooltip.length > 0 && (
-                <CoreButton
-                  id={'button_toggle_layer_info_' + el.id}
-                  label={i18n.translate(el.tooltip)}
-                  popover="top"
-                  externalPopoverToggle={showPanel}
-                  onClick={null}
-                  color="none"
-                  styles={{ display: 'none' }}
-                  className={clsx('button-layer-info')}
-                >
-                  <FiInfo />
-                  <span className="sr-only">
-                    {i18n.translate(el.tooltip)}
-                  </span>
-                </CoreButton>
+                <Tooltip
+                  placement="top"
+                  isOpen={tooltipOpen}
+                  target={'tip_prompt_' + el.id}
+                  toggle={toggle}
+                  autohide={false}
+                  className={'tip-prompt-layer'}
+                  dangerouslySetInnerHTML={{
+                    __html: i18n.translate(el.tooltip),
+                  }}
+                ></Tooltip>
               )}
             </div>
           )
@@ -117,3 +123,20 @@ const MapLayerToggle = ({ ...props }) => {
 }
 
 export default MapLayerToggle
+
+// <CoreButton
+//   id={'button_toggle_layer_info_' + el.id}
+//   label={i18n.translate(el.tooltip)}
+//   tooltip="top"
+//   tooltipAutoHide="false"
+//   onClick={null}
+//   color="none"
+//   styles={{ display: 'none' }}
+//   className={clsx('button-layer-info')}
+// >
+//   <FiInfo />
+//   <span className="sr-only">
+//     {i18n.translate(el.tooltip)}
+//   </span>
+// </CoreButton>
+//
