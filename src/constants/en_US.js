@@ -111,7 +111,7 @@ const en_US = {
   UI_MAP_METRIC_HEL_PERINS: `Percent of population that is insured`,
   UI_MAP_METRIC_HEL_PERUNIN: `Percent of population that is uninsured`,
   UI_FEEDER_TITLE_FEEDER_CHART: `Dallas ISD School Feeder Patterns`,
-  UI_PANEL_INFO_FEEDER_DESC: `<p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on their residing address.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p>`,
+  UI_PANEL_INFO_FEEDER_DESC: `<h3>About the Feeder Pattern View</h3><p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on their residing address.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p>`,
   UI_FEEDER_TITLE_FEEDER_DESC: `<p>Hover and click within the charts to see more data about each feeder pattern and its schools. You can also use the search bar to find a school and highlight its feeder pattern and campus.</p>`,
   UI_FEEDER_TITLE_SCHOOLS_CHART: `Distribution of campuses across CRI`,
   UI_FEEDER_TOOLTIP_INDEX_DESC: `*Index scores measured 0 to 100`,
@@ -155,7 +155,7 @@ const en_US = {
   UI_MAP_METRIC_DEM_THH: `not available`,
   UI_MAP_METRIC_DEM_POPSE: `not available`,
   UI_PANEL_INFO_MAP: ``,
-  UI_PANEL_INFO_FEEDER: `<p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on their residing address.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p>`,
+  UI_PANEL_INFO_FEEDER: `<h3>About the Feeder Pattern View</h3><p>A feeder pattern is the sequence of schools a student attends as they advance from grade to grade, based on where they live.</p><p>The first chart shows each feeder pattern’s average Community Resource Index on a scale from 0-100.</p><p>The second chart shows the distribution of campuses across the range of the Community Resource Index.</p> <p>Hover and click within the charts to see more data about each feeder pattern and its schools. You can also use the search bar to find a school and highlight its feeder pattern and campus.</p>`,
   UI_MAP_CLICK_SCHOOL_PROMPT: `Click on school to view full report.`,
 }
 export default en_US
