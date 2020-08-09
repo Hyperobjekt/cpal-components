@@ -306,6 +306,7 @@ const Layout = ({ children, ...props }) => {
               onClick={handleClick}
               color="none"
               className={clsx(
+                'button-core',
                 'button-view-map',
                 activeView && activeView === 'map'
                   ? 'active'

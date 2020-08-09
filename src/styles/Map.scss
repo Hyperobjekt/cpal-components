@@ -1,0 +1,19 @@
+.overlays {
+  .map__zoom {
+    .mapboxgl-ctrl-group {
+      box-shadow: 1px 1px 3px #ccc;
+    }
+    .btn {
+      background-color: #fff;
+      box-shadow: 1px 1px 3px #ccc;
+      border-radius: 0;
+      height: 30px;
+      width: 30px;
+      // margin-bottom: 0.5rem;
+    }
+    .map-reset-btn {
+    }
+    .map-capture-btn {
+    }
+  }
+}

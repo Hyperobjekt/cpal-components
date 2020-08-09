@@ -32,13 +32,11 @@ const App = props => {
     state => state.setHandleToggleMenu,
   )
   if (!!props.toggleMenu) {
-    console.log(
-      'props.toggleMenu exists, ',
-      props.toggleMenu,
-    )
-
+    // console.log(
+    //   'props.toggleMenu exists, ',
+    //   props.toggleMenu,
+    // )
     setHandleToggleMenu(props.toggleMenu)
-    console.log('handleToggleMenu, ', handleToggleMenu)
   }
 
   /**

@@ -35,26 +35,14 @@ const CoreButton = ({ children, ...props }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
   const togglePopover = () => setPopoverOpen(!popoverOpen)
 
-  // External state handler for popover, if provided
-  useEffect(() => {
-    // console.log('externalPopoverToggle changed')
-    // Don't mess with it unless we're closing the panel.
-    if (
-      props.externalPopoverToggle &&
-      !props.externalPopoverToggle
-    ) {
-      setPopoverOpen(false)
-    }
-  }, [props.externalPopoverToggle])
-
   return (
     <Button
       id={props.id}
       aria-label={props.label}
       onClick={props.onClick}
       color={props.color}
-      className={clsx('button-core', props.className)}
       {...props}
+      className={clsx('button-core', props.className)}
     >
       {children}
       {props.tooltip && props.tooltip.length > 0 ? (
@@ -97,14 +85,12 @@ CoreButton.propTypes = {
   onClick: PropTypes.func,
   /** Bootstrap button color type */
   color: PropTypes.string,
-  externalPopoverToggle: PropTypes.boolean,
 }
 
 CoreButton.defaultProps = {
   label: ``,
   onClick: null,
   color: `secondary`,
-  externalPopoverToggle: false,
 }
 
 export default CoreButton

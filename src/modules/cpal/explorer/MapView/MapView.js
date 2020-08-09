@@ -154,15 +154,18 @@ const MapView = props => {
 
   /** handler for map click */
   const handleClick = feature => {
-    console.log('handle click, ', feature)
+    // console.log('handle click, ', feature)
     // addLocation(feature)
     if (feature.source === 'schools') {
-      console.log('school clicked, ', feature)
-      window.location.href =
-        window.location.origin +
-        '/schools/' +
-        feature.properties.SLN +
-        '/'
+      // console.log('school clicked, ', feature)
+      if (!!window) {
+        const href =
+          window.location.origin +
+          '/schools/' +
+          feature.properties.SLN +
+          '/'
+        window.open(href, '_blank')
+      }
     }
   }
 

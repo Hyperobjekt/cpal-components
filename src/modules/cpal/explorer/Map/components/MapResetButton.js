@@ -13,7 +13,7 @@ const MapResetButton = ({ ...props }) => {
 
   return (
     <CoreButton
-      color="light"
+      color="none"
       active={true}
       id="map_reset_button"
       className={clsx(
