@@ -65,7 +65,9 @@
       display: block;
     }
     .button-view-map,
-    .button-view-feeder {
+    .button-view-feeder,
+    .button-panel-filters, 
+    .button-panel-info {
       display: block;
       font-size: 2.1rem;
       border-radius: 50%;
@@ -75,8 +77,44 @@
       justify-content: center;
       align-items: center;
       border: none;
+      background-color: #F6F6EB;
+      &:focus {
+        box-shadow: none;
+      }
       &.btn-light:not(:disabled):not(.disabled).active {
         background-color: #FFEEE5;
+        border: none;
+        &:focus {
+          border: none;
+          box-shadow: none;
+        }
+        svg {
+          stroke: #E55934;
+        }
+      }
+    }
+    .button-panel-filters, 
+    .button-panel-info {
+      background-color: transparent;
+    }
+    .button-share-facebook, 
+    .button-share-twitter,
+    .button-share-email,
+    .button-share-link
+     {
+      font-size: 1.4rem;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: transparent;
+      &:focus {
+        box-shadow: none;
+      }
+      &.btn-light:not(:disabled):not(.disabled).active {
+        background-color: transparent;
         border: none;
         &:focus {
           border: none;
