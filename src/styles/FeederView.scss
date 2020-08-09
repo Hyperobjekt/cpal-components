@@ -45,6 +45,10 @@ $bar-highlight: #d0421b;
               align-self: center;
               // vertical-align: top;
               // line-height: 1.3rem;
+              @media (min-width: 992px) {
+                flex: 0 0 68px;
+                font-size: 1.3rem;
+              }
             }
             .data {
               flex: 0 1 auto;
@@ -225,6 +229,11 @@ $bar-highlight: #d0421b;
       margin-top: 16px;
     }
   }
+  .layout-view-feeder .row-bar-chart .feeders-bar-chart .feeder-chart-legend {
+    right: 103px;
+  }
+  
+  
   .layout-view-feeder .row-schools-chart {
     display: block;
     position: fixed;
