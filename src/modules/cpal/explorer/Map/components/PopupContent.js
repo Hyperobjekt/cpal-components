@@ -115,9 +115,10 @@ const PopupContent = ({ ...props }) => {
         <Button
           className="click-school-prompt is-touch"
           onClick={navigateToSchool}
-          label={i18n.translate(
+          aira-label={i18n.translate(
             'UI_MAP_SCHOOL_ACCESS_LINK',
           )}
+          color="none"
         >
           <FaExternalLinkSquareAlt />
           {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}

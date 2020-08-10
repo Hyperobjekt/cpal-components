@@ -339,7 +339,9 @@ const MapBase = ({
       getClosest(srcEvent.target, '.mapboxgl-ctrl-group') ||
       getClosest(srcEvent.target, '.map-legend') ||
       getClosest(srcEvent.target, '#map_reset_button') ||
-      getClosest(srcEvent.target, '#map_capture_button')
+      getClosest(srcEvent.target, '#map_capture_button') ||
+      getClosest(srcEvent.target, '.mapboxgl-popup') ||
+      getClosest(srcEvent.target, '.mapboxgl-popup-content')
     // activate feature if one was clicked and this isn't a control click
     if (features && features.length > 0 && !isControl) {
       const coords =
