@@ -102,3 +102,22 @@
     top: 16px;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .map-legend {
+    padding: 16px;
+    .map-legend-title {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+    }
+    .map-legend-metric-title {
+      font-size: 1.4rem;
+      line-height: 2rem;
+      margin: 0.5rem 0;
+    }
+    .map-legend-school-dot,
+    .map-legend-school-zone {
+      margin-top: 0.25rem;
+    }
+  }
+}

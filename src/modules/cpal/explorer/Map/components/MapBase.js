@@ -110,6 +110,9 @@ const MapBase = ({
     state => state.setResetViewport,
   )
 
+  // Touch device tracking
+  const isTouch = useStore(state => state.isTouch)
+
   // const flyToReset = useFlyToReset()
 
   // reference to map container DOM element
@@ -568,14 +571,15 @@ const MapBase = ({
       >
         {!!hoveredId && (
           <Popup
+            className={clsx(!!isTouch ? 'is-touch' : '')}
             latitude={
               getTooltipOffset(hoveredFeature).coords[1]
             }
             longitude={
               getTooltipOffset(hoveredFeature).coords[0]
             }
-            closeButton={false}
-            closeOnClick={false}
+            closeButton={isTouch}
+            closeOnClick={isTouch}
             onClose={() =>
               this.setState({ showPopup: false })
             }
