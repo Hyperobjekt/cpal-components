@@ -39,15 +39,19 @@ const SchoolSearch = ({ ...props }) => {
   // Tracking autosuggest suggestions
   const [suggestions, setSuggestions] = useState([])
   const [value, setValue] = useState('')
-
+  // Set fly to sln so know to set hovered.
+  const setFlyToSchoolSLN = useStore(
+    state => state.setFlyToSchoolSLN,
+  )
   const updateUIWithResult = suggestion => {
     // console.log('updateUIWithResult')
     if (activeView === 'map') {
-      console.log('in map view')
+      console.log('in map view, ', suggestion.suggestion)
       flyToSchool(
         suggestion.suggestion.POINT_Y,
         suggestion.suggestion.POINT_X,
       )
+      setFlyToSchoolSLN(suggestion.suggestion.SLN)
     }
     if (activeView === 'feeder') {
       // console.log('in feeder view, ', suggestion)

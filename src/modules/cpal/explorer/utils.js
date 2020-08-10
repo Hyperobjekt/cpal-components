@@ -53,6 +53,25 @@ const getFeatureFromCollection = (id, collection) => {
   return feature
 }
 
+/**
+ * Returns the feature with an id property that matches the
+ * provided ID
+ * @param {string} id
+ * @param {FeatureCollection} collection
+ * @returns {Feature}
+ */
+const getSchoolFeatureFromCollection = (id, collection) => {
+  const feature = collection.find(
+    f => f.properties.SLN === id,
+  )
+  if (!feature) {
+    throw new Error(
+      'feature ' + id + ' not found from tilequery API',
+    )
+  }
+  return feature
+}
+
 //
 // /**
 //  * Loads a feature from a location object containing a feature ID,

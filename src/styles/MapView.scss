@@ -7,10 +7,19 @@
   &.display-feeder {
     .layout-view-map {
       width: 0 !important;
+      display: none !important;
+      visibility: none !important;
+      pointer-events: none !important;
+      & > div {
+        display: none !important;
+        visibility: none !important;
+        pointer-events: none !important;
+      }
       iframe,
       .mapboxgl-map {
         width: 0 !important;
         display: none !important;
+        pointer-events: none !important;
       }
     }
   }

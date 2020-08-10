@@ -130,6 +130,11 @@ const [useStore] = create((set, get) => ({
   setBrowserWidth: newVal => set({ browserWidth: newVal }),
   isTouch: false,
   setIsTouch: newVal => set({ isTouch: newVal }),
+  flyToSchoolSLN: null,
+  setFlyToSchoolSLN: newVal =>
+    set({ flyToSchoolSLN: newVal }),
+  schoolHint: null,
+  setSchoolHint: newVal => set({ schoolHint: newVal }),
 }))
 
 export default useStore

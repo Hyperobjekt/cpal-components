@@ -47,7 +47,7 @@
     "polylabel": "^1.0.2",
     "react-autosuggest": "^10.0.2",
     "react-icons": "^3.10.0",
-    "react-map-gl": "^4.1.13",
+    "react-map-gl": "^5.0.7",
     "react-resize-aware": "^3.0.1",
     "react-transition-group": "^4.1.1",
     "reactstrap": "^8.4.1",
