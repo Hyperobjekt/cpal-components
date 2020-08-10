@@ -1,5 +1,6 @@
 import React from 'react'
 import i18n from '@pureartisan/simple-i18n'
+import { Button } from 'reactstrap'
 
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
@@ -36,6 +37,7 @@ const PopupContent = ({ ...props }) => {
   }
 
   const navigateToSchool = sln => {
+    console.log('navigateToSchool()')
     if (!!window) {
       const href =
         window.location.origin + '/schools/' + sln + '/'
@@ -102,14 +104,17 @@ const PopupContent = ({ ...props }) => {
         }
       })}
       {!!isTouch && (
-        <div
+        <Button
           className="click-school-prompt is-touch"
           onClick={navigateToSchool(
             props.feature.properties.SLN,
           )}
+          label={i18n.translate(
+            'UI_MAP_SCHOOL_ACCESS_LINK',
+          )}
         >
           {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
-        </div>
+        </Button>
       )}
       {!isTouch && (
         <div className="click-school-prompt">
