@@ -35,6 +35,13 @@ const SchoolSearch = ({ ...props }) => {
   )
   // Reset viewport to zoom in to school
   const flyToSchool = useStore(state => state.flyToSchool)
+  // Track intro modal display and update.
+  const showIntroModal = useStore(
+    state => state.showIntroModal,
+  )
+  const setShowIntroModal = useStore(
+    state => state.setShowIntroModal,
+  )
 
   // Tracking autosuggest suggestions
   const [suggestions, setSuggestions] = useState([])
@@ -52,6 +59,10 @@ const SchoolSearch = ({ ...props }) => {
         suggestion.suggestion.POINT_X,
       )
       setFlyToSchoolSLN(suggestion.suggestion.SLN)
+      // If intro panel is idsplayed, hide it.
+      if (!!showIntroModal) {
+        setShowIntroModal(false)
+      }
     }
     if (activeView === 'feeder') {
       // console.log('in feeder view, ', suggestion)
