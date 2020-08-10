@@ -156,12 +156,7 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      // console.log(
-      //   'setFeatureStateNew',
-      //   featureId,
-      //   type,
-      //   state,
-      // )
+      console.log('setFeatureState', featureId, type, state)
       // console.log('layers = ', layers)
       const layer = layers.find(l => l.type === type)
       // console.log('layer = ', layer)
@@ -344,7 +339,9 @@ const MapBase = ({
       getClosest(srcEvent.target, '.mapboxgl-ctrl-group') ||
       getClosest(srcEvent.target, '.map-legend') ||
       getClosest(srcEvent.target, '#map_reset_button') ||
-      getClosest(srcEvent.target, '#map_capture_button')
+      getClosest(srcEvent.target, '#map_capture_button') ||
+      getClosest(srcEvent.target, '.mapboxgl-popup') ||
+      getClosest(srcEvent.target, '.mapboxgl-popup-content')
     // activate feature if one was clicked and this isn't a control click
     if (features && features.length > 0 && !isControl) {
       const coords =
@@ -534,6 +531,10 @@ const MapBase = ({
     onTouch()
   }
 
+  const handlePopupClose = () => {
+    //
+  }
+
   return (
     <div
       id="map"
@@ -582,9 +583,10 @@ const MapBase = ({
             }
             closeButton={isTouch}
             closeOnClick={isTouch}
-            onClose={() =>
+            onClose={() => {
               this.setState({ showPopup: false })
-            }
+              handlePopupClose()
+            }}
             anchor={getTooltipOffset(hoveredFeature).anchor}
             tipSize={0}
             dynamicPosition={false}

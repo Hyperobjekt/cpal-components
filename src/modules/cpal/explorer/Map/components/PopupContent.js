@@ -1,5 +1,7 @@
 import React from 'react'
 import i18n from '@pureartisan/simple-i18n'
+import { Button } from 'reactstrap'
+import { FaExternalLinkSquareAlt } from 'react-icons/fa'
 
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
@@ -9,7 +11,7 @@ import {
   getHashLeft,
   getQuintile,
 } from './../../utils'
-// import './PopupContent.scss'
+import useStore from './../../store'
 
 /**
  * Returns popup contents for map feature mouseover
@@ -19,6 +21,8 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature exists')
   //   console.log('props.feature, ', props.feature)
   // }
+
+  const isTouch = useStore(state => state.isTouch)
 
   const metrics = []
   CPAL_METRICS.forEach(el => {
@@ -31,6 +35,22 @@ const PopupContent = ({ ...props }) => {
     const arr = [0, 0, 0, 0, 0]
     arr[quintile] = 1
     return arr
+  }
+
+  const navigateToSchool = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log('navigateToSchool()')
+    if (!!window) {
+      console.log('navigateToSchool() window exists')
+      const href =
+        window.location.origin +
+        '/schools/' +
+        props.feature.properties.SLN +
+        '/'
+      console.log('navigateToSchool() href is ', href)
+      window.open(href, '_blank')
+    }
   }
 
   return (
@@ -91,9 +111,24 @@ const PopupContent = ({ ...props }) => {
           return ''
         }
       })}
-      <div className="click-school-prompt">
-        {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
-      </div>
+      {!!isTouch && (
+        <Button
+          className="click-school-prompt is-touch"
+          onClick={navigateToSchool}
+          aira-label={i18n.translate(
+            'UI_MAP_SCHOOL_ACCESS_LINK',
+          )}
+          color="none"
+        >
+          <FaExternalLinkSquareAlt />
+          {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
+        </Button>
+      )}
+      {!isTouch && (
+        <div className="click-school-prompt">
+          {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
+        </div>
+      )}
     </div>
   )
 }
