@@ -14,6 +14,8 @@ import ReactMapGL, {
 import destination from '@turf/destination'
 import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
+
 import usePrevious from './../../../../../shared/hooks/usePrevious'
 import { defaultMapStyle } from '../selectors'
 import { getClosest } from '../utils'
