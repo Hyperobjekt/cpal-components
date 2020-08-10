@@ -582,7 +582,7 @@ const MapBase = ({
             longitude={
               getTooltipOffset(hoveredFeature).coords[0]
             }
-            closeButton={isTouch}
+            closeButton={false}
             closeOnClick={false}
             onClose={() =>
               this.setState({ showPopup: false })
