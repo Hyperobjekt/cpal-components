@@ -62,6 +62,11 @@ const PopupContent = ({ ...props }) => {
             name: props.feature.properties.Feeder,
           })}
         </h5>
+        {!isTouch && (
+          <div className="click-school-prompt">
+            {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
+          </div>
+        )}
       </div>
       {metrics.map(metric => {
         const metricData = getMetric(metric, CPAL_METRICS)
@@ -123,11 +128,6 @@ const PopupContent = ({ ...props }) => {
           <FaExternalLinkSquareAlt />
           {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
         </Button>
-      )}
-      {!isTouch && (
-        <div className="click-school-prompt">
-          {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
-        </div>
       )}
     </div>
   )

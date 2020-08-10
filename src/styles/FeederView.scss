@@ -7,6 +7,9 @@ $bar-highlight: #d0421b;
 .layout-view-feeder {
   height: 100%;
   // overflow: hidden;
+  .feeder-chart-header { // Temporarily deactivated header, can be cleaned up if desired
+    display: none;
+  }
   .row-bar-chart {
     // padding-top: 2rem;
     .feeders-bar-chart {
