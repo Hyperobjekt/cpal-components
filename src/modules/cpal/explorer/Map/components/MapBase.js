@@ -565,6 +565,7 @@ const MapBase = ({
         onViewportChange={handleViewportChange}
         onHover={handleHover}
         onTouchStart={handleTouch}
+        onTouchMove={handleTouch}
         getCursor={getCursor}
         onClick={handleClick}
         onLoad={handleLoad}
@@ -581,15 +582,18 @@ const MapBase = ({
             longitude={
               getTooltipOffset(hoveredFeature).coords[0]
             }
-            closeButton={isTouch}
-            closeOnClick={isTouch}
-            onClose={() => {
+            closeButton={false}
+            closeOnClick={false}
+            onClose={() =>
               this.setState({ showPopup: false })
-              handlePopupClose()
-            }}
+            }
             anchor={getTooltipOffset(hoveredFeature).anchor}
             tipSize={0}
             dynamicPosition={false}
+            captureClick={true}
+            captureDrag={true}
+            captureDoubleClick={true}
+            captureScroll={true}
           >
             <PopupContent feature={hoveredFeature} />
           </Popup>
