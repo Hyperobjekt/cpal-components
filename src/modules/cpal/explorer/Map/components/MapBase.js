@@ -535,6 +535,10 @@ const MapBase = ({
     //
   }
 
+  const handlePopupClick = e => {
+    console.log('popup clicked, ', e.currentTarget)
+    e.preventDefault()
+  }
   return (
     <div
       id="map"
@@ -582,7 +586,8 @@ const MapBase = ({
             longitude={
               getTooltipOffset(hoveredFeature).coords[0]
             }
-            closeButton={false}
+            onClick={handlePopupClick}
+            closeButton={!!isTouch}
             closeOnClick={false}
             onClose={() =>
               this.setState({ showPopup: false })
