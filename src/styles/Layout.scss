@@ -15,6 +15,10 @@ $spacer: 0.8rem;
     display: inline; // so below padding doesn't shift element
     padding-top: $spacer; // extends clickable area
     padding-bottom: $spacer;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    color: #08131F;
   }
   .menu-icon {
     width: 20px;
