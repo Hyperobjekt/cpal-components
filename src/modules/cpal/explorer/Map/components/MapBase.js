@@ -15,6 +15,7 @@ import destination from '@turf/destination'
 import { fromJS } from 'immutable'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import i18n from '@pureartisan/simple-i18n'
 
 import usePrevious from './../../../../../shared/hooks/usePrevious'
 import { defaultMapStyle } from '../selectors'
@@ -117,6 +118,9 @@ const MapBase = ({
 
   const flyToSchoolSLN = useStore(
     state => state.flyToSchoolSLN,
+  )
+  const setFlyToSchoolSLN = useStore(
+    state => state.setFlyToSchoolSLN,
   )
 
   // const flyToReset = useFlyToReset()
@@ -420,6 +424,11 @@ const MapBase = ({
   // sourceLayer: 'original',
   // filter: ['in', 'COUNTY', feature.properties.COUNTY]
   // });
+  //
+  const schoolHint = useStore(state => state.schoolHint)
+  const setSchoolHint = useStore(
+    state => state.setSchoolHint,
+  )
   const handleFlyToSchool = () => {
     console.log('handleFlyToSchool')
     if (!!flyToSchoolSLN) {
@@ -428,18 +437,34 @@ const MapBase = ({
         {
           filter: ['in', 'SLN', flyToSchoolSLN],
         },
-      )
+      )[0]
       console.log(feature)
-      feature[0].layer = {}
-      feature[0].layer.id === 'schools-circle'
-      onHover(
-        feature[0],
-        [
-          feature[0]._vectorTileFeature._x,
-          feature[0]._vectorTileFeature._y,
-        ],
-        feature[0].geometry.coords,
-      )
+      // feature[0].layer = {}
+      // feature[0].layer.id = 'schools-circle'
+      // setTimeout(() => {
+      //   console.log('calling onHover')
+      //   onHover(
+      //     feature[0],
+      //     // [],
+      //     [
+      //       feature[0].vectorTileFeature.x,
+      //       feature[0].vectorTileFeature.y,
+      //     ],
+      //     feature[0].geometry.coords,
+      //   )
+      // }, 5000)
+      if (!!feature) {
+        const hint = {}
+        hint.coords = feature.geometry.coordinates
+        console.log('hint = ', hint)
+        setTimeout(() => {
+          console.log('calling onHover')
+          setSchoolHint(hint)
+          setTimeout(() => {
+            setSchoolHint(null)
+          }, 4000)
+        }, 2000)
+      }
     }
   }
 
@@ -615,7 +640,10 @@ const MapBase = ({
       >
         {!!hoveredId && (
           <Popup
-            className={clsx(!!isTouch ? 'is-touch' : '')}
+            className={clsx(
+              !!isTouch ? 'is-touch' : '',
+              'school-details-tip',
+            )}
             latitude={
               getTooltipOffset(hoveredFeature).coords[1]
             }
@@ -637,6 +665,33 @@ const MapBase = ({
             captureScroll={true}
           >
             <PopupContent feature={hoveredFeature} />
+          </Popup>
+        )}
+        {!!schoolHint && (
+          <Popup
+            className={clsx(
+              !!isTouch ? 'is-touch' : '',
+              'school-interact-hint',
+            )}
+            latitude={schoolHint.coords[1]}
+            longitude={schoolHint.coords[0]}
+            closeButton={false}
+            closeOnClick={true}
+            onClose={() =>
+              this.setState({ showPopup: false })
+            }
+            tipSize={0}
+            anchor="top"
+            offsetTop={-55}
+            dynamicPosition={true}
+            captureClick={false}
+            captureDrag={false}
+            captureDoubleClick={false}
+            captureScroll={false}
+          >
+            <div className="inner">
+              {i18n.translate('UI_MAP_FLY_TO_PROMPT')}
+            </div>
           </Popup>
         )}
         <MapLegend />

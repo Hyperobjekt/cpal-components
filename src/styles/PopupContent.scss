@@ -76,3 +76,13 @@
     }
   }
 }
+
+.mapboxgl-popup.school-interact-hint {
+  .mapboxgl-popup-content {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    padding: 8px !important;
+    // margin: 4rem;
+    border-color: rgba(0, 0, 0, 0.5) !important;
+    color: #fff !important;
+  }
+}
