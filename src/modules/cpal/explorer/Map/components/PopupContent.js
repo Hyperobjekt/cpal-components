@@ -9,7 +9,7 @@ import {
   getHashLeft,
   getQuintile,
 } from './../../utils'
-// import './PopupContent.scss'
+import useStore from './../../store'
 
 /**
  * Returns popup contents for map feature mouseover
@@ -19,6 +19,8 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature exists')
   //   console.log('props.feature, ', props.feature)
   // }
+
+  const isTouch = useStore(state => state.isTouch)
 
   const metrics = []
   CPAL_METRICS.forEach(el => {
@@ -91,9 +93,22 @@ const PopupContent = ({ ...props }) => {
           return ''
         }
       })}
-      <div className="click-school-prompt">
-        {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
-      </div>
+      {!!isTouch && (
+        <a
+          className="click-school-prompt is-touch"
+          href={
+            '/schools/' + props.feature.properties.SLN + '/'
+          }
+          target="_blank"
+        >
+          {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
+        </a>
+      )}
+      {!isTouch && (
+        <div className="click-school-prompt">
+          {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
+        </div>
+      )}
     </div>
   )
 }

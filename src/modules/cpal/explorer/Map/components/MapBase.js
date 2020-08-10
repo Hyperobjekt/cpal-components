@@ -156,12 +156,7 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      // console.log(
-      //   'setFeatureStateNew',
-      //   featureId,
-      //   type,
-      //   state,
-      // )
+      console.log('setFeatureState', featureId, type, state)
       // console.log('layers = ', layers)
       const layer = layers.find(l => l.type === type)
       // console.log('layer = ', layer)
@@ -534,6 +529,10 @@ const MapBase = ({
     onTouch()
   }
 
+  const handlePopupClose = () => {
+    //
+  }
+
   return (
     <div
       id="map"
@@ -582,9 +581,10 @@ const MapBase = ({
             }
             closeButton={isTouch}
             closeOnClick={isTouch}
-            onClose={() =>
+            onClose={() => {
               this.setState({ showPopup: false })
-            }
+              handlePopupClose()
+            }}
             anchor={getTooltipOffset(hoveredFeature).anchor}
             tipSize={0}
             dynamicPosition={false}
