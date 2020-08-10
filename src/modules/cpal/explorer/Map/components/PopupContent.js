@@ -36,11 +36,16 @@ const PopupContent = ({ ...props }) => {
     return arr
   }
 
-  const navigateToSchool = sln => {
+  const navigateToSchool = () => {
     console.log('navigateToSchool()')
     if (!!window) {
+      console.log('navigateToSchool() window exists')
       const href =
-        window.location.origin + '/schools/' + sln + '/'
+        window.location.origin +
+        '/schools/' +
+        props.feature.properties.SLN +
+        '/'
+      console.log('navigateToSchool() href is ', href)
       window.open(href, '_blank')
     }
   }
@@ -106,9 +111,7 @@ const PopupContent = ({ ...props }) => {
       {!!isTouch && (
         <Button
           className="click-school-prompt is-touch"
-          onClick={navigateToSchool(
-            props.feature.properties.SLN,
-          )}
+          onClick={navigateToSchool}
           label={i18n.translate(
             'UI_MAP_SCHOOL_ACCESS_LINK',
           )}
