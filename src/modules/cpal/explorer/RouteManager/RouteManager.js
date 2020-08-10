@@ -409,22 +409,34 @@ const RouteManager = props => {
       const localStorageHash = localStorage.getItem(
         'cpal_hash',
       )
+      console.log(
+        'localStorageHash is , ',
+        localStorageHash,
+      )
+      console.log(
+        'isEmptyRoute(path), ',
+        isEmptyRoute(path),
+      )
       if (
         !isEmptyRoute(path) &&
         isRouteValid(params, props.routeSet)
       ) {
         // Update state based on params
         setStateFromHash(params)
-      } else if (localStorageHash.length > 0) {
-        const lsparams = getParamsFromPathname(
-          localStorageHash,
-          props.routeSet,
-        )
-        if (isRouteValid(lsparams, props.routeSet)) {
-          setStateFromHash(lsparams)
+      }
+      if (!!localStorageHash) {
+        if (localStorageHash.length > 0) {
+          const lsparams = getParamsFromPathname(
+            localStorageHash,
+            props.routeSet,
+          )
+          if (isRouteValid(lsparams, props.routeSet)) {
+            setStateFromHash(lsparams)
+          }
         }
-      } else {
-        // No valid route. Throw the intro modal.
+      }
+      if (isEmptyRoute(path) && !localStorageHash) {
+        console.log('showing intro modal')
         setShowIntroModal(true)
       }
     }

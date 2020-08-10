@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
-import { Button, Tooltip } from 'reactstrap'
+import {
+  Button,
+  Tooltip,
+  Modal,
+  ModalBody,
+} from 'reactstrap'
 import {
   FiFilter,
   FiMap,
@@ -80,6 +85,19 @@ const Layout = ({ children, ...props }) => {
   )
   const breakpoint = useStore(state => state.breakpoint)
   const browserWidth = useStore(state => state.browserWidth)
+
+  const [introModal, setIntroModal] = useState(false)
+
+  const showIntroModal = useStore(
+    state => state.showIntroModal,
+  )
+  const setShowIntroModal = useStore(
+    state => state.setShowIntroModal,
+  )
+  const toggleIntroModal = () =>
+    setShowIntroModal(!showIntroModal)
+  console.log('in layout, ', showIntroModal)
+
   // console.log('handleToggleMenu, ', handleToggleMenu)
   // Handle clicks to any control panel button.
   const handleClick = e => {
@@ -297,9 +315,7 @@ const Layout = ({ children, ...props }) => {
               title={i18n.translate(`SELECT_VIEW`)}
               active={'select_view_' + activeView}
             />
-            <div className="control-label">
-              VIEW
-            </div>
+            <div className="control-label">VIEW</div>
             <CoreButton
               id="button_view_map"
               label={i18n.translate(`BUTTON_VIEW_MAP`)}
@@ -340,9 +356,7 @@ const Layout = ({ children, ...props }) => {
             <Divider />
             {activeView === 'map' ? (
               <>
-                <div className="control-label">
-                  METRICS
-                </div>
+                <div className="control-label">METRICS</div>
                 <CoreButton
                   id="button_toggle_panel_filters"
                   label={i18n.translate(
@@ -371,9 +385,7 @@ const Layout = ({ children, ...props }) => {
             ) : (
               ''
             )}
-            <div className="control-label">
-              INFO
-            </div>
+            <div className="control-label">INFO</div>
             <CoreButton
               id="button_toggle_panel_info"
               label={i18n.translate(
@@ -397,9 +409,7 @@ const Layout = ({ children, ...props }) => {
               </span>
             </CoreButton>
             <Divider />
-            <div className="control-label">
-              SHARE
-            </div>
+            <div className="control-label">SHARE</div>
             <CoreButton
               id="button_share_twitter"
               label={i18n.translate(`BUTTON_SHARE_TWITTER`)}
@@ -467,6 +477,27 @@ const Layout = ({ children, ...props }) => {
             <FeederView />
           </div>
           <ShareLinkModal />
+          <Modal
+            isOpen={showIntroModal}
+            toggle={toggleIntroModal}
+            className={'intro-modal'}
+            backdrop={false}
+            keyboard={true}
+          >
+            <ModalBody>
+              Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor
+              in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </ModalBody>
+          </Modal>
         </Canvas>
       </main>
     </div>
