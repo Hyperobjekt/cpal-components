@@ -115,6 +115,10 @@ const MapBase = ({
   // Touch device tracking
   const isTouch = useStore(state => state.isTouch)
 
+  const flyToSchoolSLN = useStore(
+    state => state.flyToSchoolSLN,
+  )
+
   // const flyToReset = useFlyToReset()
 
   // reference to map container DOM element
@@ -411,6 +415,38 @@ const MapBase = ({
     }
     // eslint-disable-next-line
   }, [hoveredId, loaded]) // update only when hovered id changes
+
+  //   var relatedFeatures = map.querySourceFeatures('counties', {
+  // sourceLayer: 'original',
+  // filter: ['in', 'COUNTY', feature.properties.COUNTY]
+  // });
+  const handleFlyToSchool = () => {
+    console.log('handleFlyToSchool')
+    if (!!flyToSchoolSLN) {
+      const feature = currentMap.querySourceFeatures(
+        'schools',
+        {
+          filter: ['in', 'SLN', flyToSchoolSLN],
+        },
+      )
+      console.log(feature)
+      feature[0].layer = {}
+      feature[0].layer.id === 'schools-circle'
+      onHover(
+        feature[0],
+        [
+          feature[0]._vectorTileFeature._x,
+          feature[0]._vectorTileFeature._y,
+        ],
+        feature[0].geometry.coords,
+      )
+    }
+  }
+
+  useEffect(() => {
+    console.log('fly to school changed')
+    handleFlyToSchool()
+  }, [flyToSchoolSLN])
 
   /** handler for resetting the viewport */
   const handleResetViewport = e => {
