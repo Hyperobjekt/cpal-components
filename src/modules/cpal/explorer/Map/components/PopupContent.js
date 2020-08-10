@@ -36,7 +36,9 @@ const PopupContent = ({ ...props }) => {
     return arr
   }
 
-  const navigateToSchool = () => {
+  const navigateToSchool = e => {
+    e.preventDefault()
+    e.stopPropagation()
     console.log('navigateToSchool()')
     if (!!window) {
       console.log('navigateToSchool() window exists')
