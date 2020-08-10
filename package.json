@@ -1,6 +1,6 @@
 {
   "name": "cpal-components",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "cpal-components React component",
   "main": "lib/index.js",
   "module": "es/index.js",
