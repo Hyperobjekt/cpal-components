@@ -117,6 +117,7 @@ const PopupContent = ({ ...props }) => {
       })}
       {!!isTouch && (
         <Button
+          id="popup_access_school"
           className="click-school-prompt is-touch"
           onClick={navigateToSchool}
           aira-label={i18n.translate(
