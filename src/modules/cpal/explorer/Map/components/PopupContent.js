@@ -1,6 +1,7 @@
 import React from 'react'
 import i18n from '@pureartisan/simple-i18n'
 import { Button } from 'reactstrap'
+import { FaExternalLinkSquareAlt } from 'react-icons/fa'
 
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
@@ -118,6 +119,7 @@ const PopupContent = ({ ...props }) => {
             'UI_MAP_SCHOOL_ACCESS_LINK',
           )}
         >
+          <FaExternalLinkSquareAlt />
           {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
         </Button>
       )}
