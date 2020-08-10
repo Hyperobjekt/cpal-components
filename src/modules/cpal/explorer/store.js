@@ -135,6 +135,9 @@ const [useStore] = create((set, get) => ({
     set({ flyToSchoolSLN: newVal }),
   schoolHint: null,
   setSchoolHint: newVal => set({ schoolHint: newVal }),
+  showIntroModal: false,
+  setShowIntroModal: newVal =>
+    set({ setShowIntroModal: newVal }),
 }))
 
 export default useStore

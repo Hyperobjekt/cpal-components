@@ -270,6 +270,10 @@ const RouteManager = props => {
   const viewport = useStore(state => state.viewport)
   const setViewport = useStore(state => state.setViewport)
 
+  const setShowIntroModal = useStore(
+    state => state.setShowIntroModal,
+  )
+
   const setFeederLocked = useStore(
     state => state.setFeederLocked,
   )
@@ -313,7 +317,7 @@ const RouteManager = props => {
       '/' +
       getRoundedValue(viewport.longitude, 4) +
       '/' +
-      viewport.zoom +
+      getRoundedValue(viewport.zoom, 2) +
       '/'
 
     return hash
@@ -383,6 +387,10 @@ const RouteManager = props => {
     // only change the hash if the initial route has loaded
     if (isLoaded.current) {
       window.location.hash = '#/' + debouncedRoute
+      localStorage.setItem(
+        'cpal_hash',
+        '#/' + debouncedRoute,
+      )
     }
   }, [debouncedRoute])
 
@@ -398,12 +406,26 @@ const RouteManager = props => {
         path,
         props.routeSet,
       )
+      const localStorageHash = localStorage.getItem(
+        'cpal_hash',
+      )
       if (
         !isEmptyRoute(path) &&
         isRouteValid(params, props.routeSet)
       ) {
         // Update state based on params
         setStateFromHash(params)
+      } else if (localStorageHash.length > 0) {
+        const lsparams = getParamsFromPathname(
+          localStorageHash,
+          props.routeSet,
+        )
+        if (isRouteValid(lsparams, props.routeSet)) {
+          setStateFromHash(lsparams)
+        }
+      } else {
+        // No valid route. Throw the intro modal.
+        setShowIntroModal(true)
       }
     }
     loadRoute()
