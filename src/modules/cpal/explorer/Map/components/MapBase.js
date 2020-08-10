@@ -590,6 +590,10 @@ const MapBase = ({
             anchor={getTooltipOffset(hoveredFeature).anchor}
             tipSize={0}
             dynamicPosition={false}
+            captureClick={true}
+            captureDrag={true}
+            captureDoubleClick={true}
+            captureScroll={true}
           >
             <PopupContent feature={hoveredFeature} />
           </Popup>
