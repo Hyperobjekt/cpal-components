@@ -139,6 +139,7 @@ const FeederChart = ({ ...props }) => {
         'UI_FEEDER_FEEDER_CHART_DESC',
       )}
     >
+      <h2>Dallas ISD School Feeder Patterns</h2>
       {buildFeederData().map(el => {
         // to manage tooltip state
         const [tooltipOpen, setTooltipOpen] = useState(
