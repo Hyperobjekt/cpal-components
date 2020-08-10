@@ -2,11 +2,15 @@
 // @import '~bootstrap/scss/bootstrap.scss';
 $cri-color-1: #7b53ef;
 $cri-color-3: #cabbf5;
-$bar-highlight: #d0421b;
+//$bar-highlight: #d0421b;
+$bar-highlight: #E94F34;
 
 .layout-view-feeder {
   height: 100%;
   // overflow: hidden;
+  .feeder-chart-header { // Temporarily deactivated header, can be cleaned up if desired
+    display: none;
+  }
   .row-bar-chart {
     // padding-top: 2rem;
     .feeders-bar-chart {
@@ -67,6 +71,7 @@ $bar-highlight: #d0421b;
               display: block;
               height: 24px;
               background: $cri-color-3; // lighten($base-cri-color, 40%);
+              transition: background-color .1s ease;
               .click-prompt {
                 display: none;
                 float: left;
@@ -81,7 +86,7 @@ $bar-highlight: #d0421b;
             &.active,
             &:hover {
               .bar {
-                background: $bar-highlight; // lighten($base-cri-color, 30%);
+                background-color: $bar-highlight; // lighten($base-cri-color, 30%);
                 .click-prompt {
                   display: inline;
                 }
@@ -114,9 +119,13 @@ $bar-highlight: #d0421b;
         background-color: #fff;
         box-shadow: 0 1px 3px #ccc;
         p {
-          font-weight: 300;
-          font-size: 1.4rem;
-          line-height: 1.5rem;
+          margin: 1rem 0;
+          font-family: Halyard Text;
+          font-weight: 200;
+          font-size: 15px;
+          line-height: 22px;
+          color: #606B44;
+          margin-bottom: .8rem;
         }
         h2 {
           font-size: 1.8rem;
@@ -138,7 +147,7 @@ $bar-highlight: #d0421b;
           margin-bottom: 10px;
         }
         p {
-          font-size: 10px;
+         // font-size: 10px;
         }
         h4 {
           width: 100%;
@@ -223,14 +232,14 @@ $bar-highlight: #d0421b;
     .row-bar-chart
     .feeders-bar-chart
     .feeders-bar-chart-parent {
-    height: calc(100vh - 64px - 230px); // 125%;
+    height: calc(100vh - 64px - 200px); // 125%;
     overflow-y: scroll;
     .feeder-chart-bar {
       margin-top: 16px;
     }
   }
   .layout-view-feeder .row-bar-chart .feeders-bar-chart .feeder-chart-legend {
-    right: 103px;
+    right: 36px;
   }
   
   

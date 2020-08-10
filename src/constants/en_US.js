@@ -24,7 +24,7 @@ const en_US = {
   MODAL_SHARE_LINK_INPUT: `Current View URL`,
   BTN_CLOSE: `Close`,
   UI_MAP_BUTTON_RESET_FILTER: `Reset active filter`,
-  UI_MAP_FILTER_INSTRUCTIONS: `<p>Use the dropdown menu above to select an index category. You can filter which schools appear on the map by clicking the colored sections (representing quintiles) for each metric. To clear filters and return to the default Community Resource Index display, press the "reset" button {icon} above.</p>`,
+  UI_MAP_FILTER_INSTRUCTIONS: `<p>Click the buttons below to select metrics and filter by quintile(s). Clear filters by pressing the "reset" {icon} button above.</p>`,
   SELECT_VIEW: `Select a view`,
   SELECT_ITEM_MAP: `Map view`,
   SELECT_ITEM_FEEDER: `Feeder view`,
