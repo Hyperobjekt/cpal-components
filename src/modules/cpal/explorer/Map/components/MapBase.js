@@ -565,6 +565,7 @@ const MapBase = ({
         onViewportChange={handleViewportChange}
         onHover={handleHover}
         onTouchStart={handleTouch}
+        onTouchMove={handleTouch}
         getCursor={getCursor}
         onClick={handleClick}
         onLoad={handleLoad}
