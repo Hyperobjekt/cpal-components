@@ -582,11 +582,10 @@ const MapBase = ({
               getTooltipOffset(hoveredFeature).coords[0]
             }
             closeButton={isTouch}
-            closeOnClick={isTouch}
-            onClose={() => {
+            closeOnClick={false}
+            onClose={() =>
               this.setState({ showPopup: false })
-              handlePopupClose()
-            }}
+            }
             anchor={getTooltipOffset(hoveredFeature).anchor}
             tipSize={0}
             dynamicPosition={false}
