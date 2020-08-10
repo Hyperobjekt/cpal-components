@@ -39,6 +39,7 @@ import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
+import IntroModal from './../IntroModal/IntroModal'
 import {
   onTwitterShare,
   onFacebookShare,
@@ -477,27 +478,7 @@ const Layout = ({ children, ...props }) => {
             <FeederView />
           </div>
           <ShareLinkModal />
-          <Modal
-            isOpen={showIntroModal}
-            toggle={toggleIntroModal}
-            className={'intro-modal'}
-            backdrop={false}
-            keyboard={true}
-          >
-            <ModalBody>
-              Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor
-              in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </ModalBody>
-          </Modal>
+          <IntroModal />
         </Canvas>
       </main>
     </div>

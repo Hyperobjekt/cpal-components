@@ -1,0 +1,31 @@
+.modal-dialog.intro-modal {
+  .modal-content {
+    font-family: Halyard;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    .modal-body {
+      padding: 0 24px 24px 24px;
+      .intro-modal-option {
+        margin: 0 0 2rem 0;
+        .search-autosuggest {
+          margin-left: 0;
+          margin-right: auto;
+        }
+      }
+      .btn.button-core {
+        border-radius: 0;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        font-weight: 300;
+        padding: 1rem;
+        svg {
+          margin-right: 1rem;
+        }
+      }
+    }
+    .modal-header {
+      border-bottom: none;
+    }
+  }
+}
