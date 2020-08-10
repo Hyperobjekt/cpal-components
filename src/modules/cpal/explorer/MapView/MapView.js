@@ -76,6 +76,9 @@ const MapView = props => {
     state => [...state.activeLayers],
     shallow,
   )
+  // Touch device tracking
+  const isTouch = useStore(state => state.isTouch)
+  const setIsTouch = useStore(state => state.setIsTouch)
   // Active view
   const activeView = useStore(state => state.activeView)
   /** id of the active location */
@@ -83,17 +86,16 @@ const MapView = props => {
   /** boolean determining if the hovered location should show */
   const [showHovered] = useMarkersVisibility()
   /** function to add a location to the selected locations */
-  const addLocation = useAddLocation()
-  const addFeatureData = useData(state => state.addData)
+  // const addLocation = useAddLocation()
+  // const addFeatureData = useData(state => state.addData)
   const [idMap, addToIdMap] = useIdMap()
-  const flyToState = useFlyToState()
-  const flyToFeature = useFlyToFeature()
-  const flyToReset = useFlyToReset()
+  // const flyToState = useFlyToState()
+  // const flyToFeature = useFlyToFeature()
+  // const flyToReset = useFlyToReset()
   const isLoaded = useRef(false)
 
   /** memoized array of shape and point layers */
   const layers = useMemo(() => {
-    console.log('updating layers')
     if (!metric || !activeQuintiles || !activeLayers) {
       return []
     }
@@ -153,46 +155,58 @@ const MapView = props => {
   }
 
   /** handler for map click */
-  const handleClick = feature => {
-    // console.log('handle click, ', feature)
-    // addLocation(feature)
+  const handleClick = (feature, coords, geoCoords) => {
+    console.log('handle click, ', feature)
+    // If the item is hovered, navigate to the school.
+    // If the item is not hovered, set it as hovered.
+    // setHovered(id, type, geoCoords, feature)
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
-      if (!!window) {
-        const href =
-          window.location.origin +
-          '/schools/' +
-          feature.properties.SLN +
-          '/'
-        window.open(href, '_blank')
+      if (!!isTouch && !!feature.state.hover) {
+        // If it's not yet hovered, set it as hovered.
+        console.log('this guys not hovered yet, setting it')
+        const type = `schools`
+        const id = getFeatureProperty(feature, 'TEA')
+        setHovered(id, type, geoCoords, feature)
+      } else {
+        // If it is hovered, then navigate to new window.
+        if (!!window) {
+          const href =
+            window.location.origin +
+            '/schools/' +
+            feature.properties.SLN +
+            '/'
+          window.open(href, '_blank')
+        }
       }
     }
+  }
+
+  // If touch events are happening, flag the device as touch.
+  const handleTouch = () => {
+    setIsTouch(true)
   }
 
   /** handler for map load */
   const handleLoad = () => {
     // inform global listener that map has loaded
     window.CPAL.trigger('map')
-    // zoom to US if needed once cover is shown
-    // setTimeout(() => {
-    //   flyToReset()
-    // }, 1000)
     isLoaded.current = true
   }
 
   /** zoom to filtered location when filter is selected */
-  useEffect(() => {
-    if (!prefix || prefix.length !== 2 || !isLoaded.current)
-      return
-    flyToState(prefix)
-  }, [prefix, flyToState])
+  // useEffect(() => {
+  //   if (!prefix || prefix.length !== 2 || !isLoaded.current)
+  //     return
+  //   flyToState(prefix)
+  // }, [prefix, flyToState])
 
   /** zoom to activated location */
-  useEffect(() => {
-    if (activeFeature && isLoaded.current) {
-      flyToFeature(activeFeature)
-    }
-  }, [activeFeature, flyToFeature])
+  // useEffect(() => {
+  //   if (activeFeature && isLoaded.current) {
+  //     flyToFeature(activeFeature)
+  //   }
+  // }, [activeFeature, flyToFeature])
 
   // const locationIds = getLocationIdsForRegion(
   //   region,
@@ -214,6 +228,7 @@ const MapView = props => {
       onHover={handleHover}
       onLoad={handleLoad}
       onClick={handleClick}
+      onTouch={handleTouch}
       defaultViewport={viewport}
       schoolZonesAffix={schoolZonesAffix}
     ></MapBase>
