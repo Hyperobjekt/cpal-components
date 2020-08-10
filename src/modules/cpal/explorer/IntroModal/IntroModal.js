@@ -33,6 +33,7 @@ const IntroModal = ({ children, ...props }) => {
   const toggleIntroModal = () =>
     setShowIntroModal(!showIntroModal)
 
+  const enableTour = useStore(state => state.enableTour)
   /**
    * Close the intro panel and start the tour
    */
@@ -66,19 +67,25 @@ const IntroModal = ({ children, ...props }) => {
           {i18n.translate('UI_MAP_INTRO_MODAL_HEADER')}
         </h2>
         <p>{i18n.translate('UI_MAP_INTRO_MODAL_INTRO')}</p>
-        <div className="intro-modal-option">
-          <p>{i18n.translate('UI_MAP_INTRO_MODAL_TOUR')}</p>
-          <CoreButton
-            color="light"
-            label={i18n.translate(
-              'UI_MAP_INTRO_MODAL_TOUR_BTN',
-            )}
-            onClick={handleStartTour}
-          >
-            <GiJourney />
-            {i18n.translate('UI_MAP_INTRO_MODAL_TOUR_BTN')}
-          </CoreButton>
-        </div>
+        {!!enableTour && (
+          <div className="intro-modal-option">
+            <p>
+              {i18n.translate('UI_MAP_INTRO_MODAL_TOUR')}
+            </p>
+            <CoreButton
+              color="light"
+              label={i18n.translate(
+                'UI_MAP_INTRO_MODAL_TOUR_BTN',
+              )}
+              onClick={handleStartTour}
+            >
+              <GiJourney />
+              {i18n.translate(
+                'UI_MAP_INTRO_MODAL_TOUR_BTN',
+              )}
+            </CoreButton>
+          </div>
+        )}
         <div className="intro-modal-option">
           <p>
             {i18n.translate('UI_MAP_INTRO_MODAL_SEARCH')}

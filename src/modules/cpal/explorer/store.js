@@ -138,6 +138,8 @@ const [useStore] = create((set, get) => ({
   showIntroModal: false,
   setShowIntroModal: newVal =>
     set({ showIntroModal: newVal }),
+  enableTour: false,
+  setEnableTour: newVal => set({ enableTour: newVal }),
 }))
 
 export default useStore
