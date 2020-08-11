@@ -97,9 +97,7 @@ const Layout = ({ children, ...props }) => {
   )
   const toggleIntroModal = () =>
     setShowIntroModal(!showIntroModal)
-  console.log('in layout, ', showIntroModal)
 
-  // console.log('handleToggleMenu, ', handleToggleMenu)
   // Handle clicks to any control panel button.
   const handleClick = e => {
     e.preventDefault()
