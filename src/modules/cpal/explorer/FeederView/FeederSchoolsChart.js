@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
@@ -281,6 +281,12 @@ const FeederSchoolsChart = ({ ...props }) => {
     }
     return options
   }
+
+  const chartOptions = useMemo(() => getSchoolsOptions(), [
+    highlightedSchool,
+    activeFeeder,
+  ])
+
   // Events
   const schoolChartReady = e => {
     // console.log('school chart ready')
@@ -300,26 +306,27 @@ const FeederSchoolsChart = ({ ...props }) => {
     mouseout: onSchoolMouseout,
     click: onSchoolClick,
   }
-  // let echarts_instance = this.echarts_react.getEchartsInstance()
-  let echarts_react
+
+  // height: '200px',
+  // width: '1200px',
+  // marginLeft: 'auto',
+  // marginRight: 'auto',
+  // display: 'block',
+
   return (
     <ReactEcharts
-      ref={e => {
-        echarts_react = e
-      }}
       onEvents={schoolsEvents}
       onChartReady={schoolChartReady}
       classNames={clsx('chart-schools')}
       style={{
         height: '200px',
         width: '1200px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        display: 'block',
+        left: '0',
       }}
-      option={getSchoolsOptions()}
+      option={chartOptions}
       notMerge={false}
       lazyUpdate={true}
+      silent={true}
       theme={'theme_schools'}
       {...props}
     />
