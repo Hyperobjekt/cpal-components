@@ -194,6 +194,10 @@ const [useStore] = create((set, get) => ({
   setRunTour: newVal => set({ runTour: newVal }),
   tourStepIndex: 0,
   setTourStepIndex: a => set({ tourStepIndex: a }),
+  // google analytics handler, passed in from parent.
+  trackCustomEvent: null,
+  setTrackCustomEvent: newVal =>
+    set({ trackCustomEvent: newVal }),
 }))
 
 export default useStore
