@@ -20,7 +20,7 @@ const App = props => {
       en_US: en_US,
     },
   })
-  // Handlers for menu toggle, passed in as a prop.
+  // Updates menu state and calls handler in parent component.
   const handleToggleMenu = useStore(
     state => state.handleToggleMenu,
   )
@@ -33,6 +33,17 @@ const App = props => {
     //   props.toggleMenu,
     // )
     setHandleToggleMenu(props.toggleMenu)
+  }
+
+  // Assign tracking method passed in from parent.
+  const trackCustomEvent = useStore(
+    state => state.trackCustomEvent,
+  )
+  const setTrackCustomEvent = useStore(
+    state => state.setTrackCustomEvent,
+  )
+  if (!!props.gaTrackingHandler) {
+    setTrackCustomEvent(props.gaTrackingHandler)
   }
 
   /**

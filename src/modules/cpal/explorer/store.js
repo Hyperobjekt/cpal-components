@@ -140,6 +140,10 @@ const [useStore] = create((set, get) => ({
     set({ showIntroModal: newVal }),
   enableTour: false,
   setEnableTour: newVal => set({ enableTour: newVal }),
+  // google analytics handler, passed in from parent.
+  trackCustomEvent: null,
+  setTrackCustomEvent: newVal =>
+    set({ trackCustomEvent: newVal }),
 }))
 
 export default useStore
