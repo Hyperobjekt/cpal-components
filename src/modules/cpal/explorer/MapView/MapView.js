@@ -190,7 +190,7 @@ const MapView = props => {
   /** handler for map load */
   const handleLoad = () => {
     // inform global listener that map has loaded
-    window.CPAL.trigger('map')
+    // window.CPAL.trigger('map')
     isLoaded.current = true
   }
 
