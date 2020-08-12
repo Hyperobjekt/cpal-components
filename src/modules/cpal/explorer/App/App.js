@@ -20,11 +20,7 @@ const App = props => {
       en_US: en_US,
     },
   })
-  const setHandleMenuClick = useStore(
-    state => state.setHandleMenuClick,
-  )
-  if (!!props.onMenuClick) {
-  }
+  // Handlers for menu toggle, passed in as a prop.
   const handleToggleMenu = useStore(
     state => state.handleToggleMenu,
   )

@@ -24,7 +24,6 @@
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "@pureartisan/simple-i18n": "^1.6.1",
-    "@redux-beacon/google-tag-manager": "^1.0.1",
     "@turf/bbox": "^6.0.1",
     "@turf/circle": "^6.0.1",
     "@turf/destination": "^6.0.1",

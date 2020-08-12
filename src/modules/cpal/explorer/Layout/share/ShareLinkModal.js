@@ -14,6 +14,7 @@ import i18n from '@pureartisan/simple-i18n'
 import { FaCopy } from 'react-icons/fa'
 import copy from 'copy-to-clipboard'
 
+import { CoreButton } from './../../../../core'
 import useStore from './../../store'
 
 const ShareLinkModal = props => {
@@ -40,16 +41,25 @@ const ShareLinkModal = props => {
         isOpen={!!shareLinkModal}
         toggle={toggle}
         className={className}
+        backdrop={false}
+        keyboard={true}
+        autoFocus={true}
+        centered={true}
       >
-        <ModalHeader toggle={toggle}>
-          {i18n.translate('MODAL_SHARE_LINK_HEAD')}
-        </ModalHeader>
+        <ModalHeader toggle={toggle}></ModalHeader>
         <ModalBody>
+          <h3>{i18n.translate('MODAL_SHARE_LINK_HEAD')}</h3>
           <p>{i18n.translate('MODAL_SHARE_LINK_INSTR')}</p>
           {i18n.translate('MODAL_SHARE_LINK_INPUT')}
           <InputGroup>
             <Input
-              value={shareHash ? shareHash : ''}
+              value={
+                shareHash
+                  ? window.location.origin +
+                    window.location.pathname +
+                    shareHash
+                  : ''
+              }
               readOnly={true}
             />
             <InputGroupAddon addonType="append">
@@ -60,9 +70,9 @@ const ShareLinkModal = props => {
           </InputGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>
+          <CoreButton color="secondary" onClick={toggle}>
             {i18n.translate('BTN_CLOSE')}
-          </Button>
+          </CoreButton>
         </ModalFooter>
       </Modal>
     </div>

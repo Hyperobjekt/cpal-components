@@ -199,9 +199,17 @@ const Layout = ({ children, ...props }) => {
   const constructShareLink = () => {
     // If hash === default hash, send back only the root url.
     if (!!shareHash) {
-      return shareHash
+      return (
+        window.location.origin +
+        window.location.pathname +
+        shareHash
+      )
     } else {
-      return window.location.origin + defaultRoute
+      return (
+        window.location.origin +
+        window.location.pathname +
+        defaultRoute
+      )
     }
   }
 
@@ -239,7 +247,7 @@ const Layout = ({ children, ...props }) => {
     }
     // Click to link
     if (e.currentTarget.id === 'button_share_link') {
-      console.log('click share link')
+      // console.log('click share link')
       setShareLinkModal(!shareLinkModal)
     }
   }
@@ -475,7 +483,7 @@ const Layout = ({ children, ...props }) => {
             <MapView />
             <FeederView />
           </div>
-          <ShareLinkModal />
+          <ShareLinkModal className="modal-share-link" />
           <IntroModal />
         </Canvas>
       </main>

@@ -1,0 +1,35 @@
+.modal-dialog.intro-modal,
+.modal-dialog.modal-share-link {
+  .modal-content {
+    font-family: Halyard;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    .modal-body {
+      padding: 0 24px 24px 24px;
+      p {
+        margin: 2rem 0;
+      }
+      .input-group {
+        margin: 0.5rem 0;
+        input {
+          min-height: 40px;
+          font-size: 1.4rem;
+        }
+      }
+    }
+    .modal-header {
+      border-bottom: none;
+    }
+    .btn.button-core {
+      border-radius: 0;
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      font-weight: 300;
+      padding: 1rem;
+      svg {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

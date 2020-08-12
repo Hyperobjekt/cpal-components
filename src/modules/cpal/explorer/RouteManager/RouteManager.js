@@ -280,22 +280,8 @@ const RouteManager = props => {
   )
 
   // Track share hash and update when it changes
+  const shareHash = useStore(state => state.shareHash)
   const setShareHash = useStore(state => state.setShareHash)
-  // Update location on load
-  useEffect(() => {
-    // console.log('setting share hash')
-    if (window && window.location) {
-      setShareHash(window.location.href)
-      window.addEventListener(
-        'hashchange',
-        () => {
-          console.log('hashChange triggered')
-          setShareHash(window.location.href)
-        },
-        false,
-      )
-    }
-  }, [])
 
   /**
    * Returns a hash based on state
@@ -388,12 +374,37 @@ const RouteManager = props => {
     }
   }
 
+  useEffect(() => {
+    if (isLoaded.current) {
+      // When hash changes, if route is valid, update route for sharing.
+      window.addEventListener('hashchange', () => {
+        // console.log('hashchange')
+        const path = window.location.hash
+        // Construct params object from hash.
+        const params = getParamsFromPathname(
+          path,
+          props.routeSet,
+        )
+        if (
+          !isEmptyRoute(path) &&
+          isRouteValid(params, props.routeSet) &&
+          path !== shareHash
+        ) {
+          // console.log('updating hash')
+          // Update state based on params
+          // setStateFromHash(params)
+          setShareHash(window.location.hash)
+        }
+      })
+    }
+  }, [isLoaded.current])
+
   // update the hash when debounced route changes
   useEffect(() => {
     // only change the hash if the initial route has loaded
     if (isLoaded.current) {
       // window.location.hash = '#/' + debouncedRoute
-      window.history.pushState(
+      window.history.replaceState(
         { hash: '#/' + debouncedRoute },
         'Explorer state update',
         window.location.origin +
@@ -405,6 +416,7 @@ const RouteManager = props => {
         'cpal_hash',
         '#/' + debouncedRoute,
       )
+      setShareHash('#/' + debouncedRoute)
     }
   }, [debouncedRoute])
 
@@ -420,17 +432,6 @@ const RouteManager = props => {
         path,
         props.routeSet,
       )
-      const localStorageHash = localStorage.getItem(
-        'cpal_hash',
-      )
-      // console.log(
-      //   'localStorageHash is , ',
-      //   localStorageHash,
-      // )
-      // console.log(
-      //   'isEmptyRoute(path), ',
-      //   isEmptyRoute(path),
-      // )
       if (
         !isEmptyRoute(path) &&
         isRouteValid(params, props.routeSet)
@@ -438,6 +439,9 @@ const RouteManager = props => {
         // Update state based on params
         setStateFromHash(params)
       }
+      const localStorageHash = localStorage.getItem(
+        'cpal_hash',
+      )
       if (!!localStorageHash) {
         if (localStorageHash.length > 0) {
           const lsparams = getParamsFromPathname(
@@ -450,7 +454,7 @@ const RouteManager = props => {
         }
       }
       if (isEmptyRoute(path) && !localStorageHash) {
-        console.log('showing intro modal')
+        // console.log('showing intro modal')
         setShowIntroModal(true)
       }
     }
