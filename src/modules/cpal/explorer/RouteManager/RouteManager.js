@@ -274,6 +274,7 @@ const RouteManager = props => {
     state => state.setShowIntroModal,
   )
 
+  const feederLocked = useStore(state => state.feederLocked)
   const setFeederLocked = useStore(
     state => state.setFeederLocked,
   )
@@ -288,6 +289,7 @@ const RouteManager = props => {
       window.addEventListener(
         'hashchange',
         () => {
+          console.log('hashChange triggered')
           setShareHash(window.location.href)
         },
         false,
@@ -307,9 +309,13 @@ const RouteManager = props => {
       '/' +
       activeQuintiles.toString() +
       '/' +
-      (!!activeFeeder ? activeFeeder : '') +
+      (!!activeFeeder && !!feederLocked
+        ? activeFeeder
+        : '') +
       '/' +
-      (!!highlightedSchool ? highlightedSchool : '') +
+      (!!highlightedSchool && !!feederLocked
+        ? highlightedSchool
+        : '') +
       '/' +
       getLayersString(activeLayers) +
       '/' +
@@ -386,7 +392,15 @@ const RouteManager = props => {
   useEffect(() => {
     // only change the hash if the initial route has loaded
     if (isLoaded.current) {
-      window.location.hash = '#/' + debouncedRoute
+      // window.location.hash = '#/' + debouncedRoute
+      window.history.pushState(
+        { hash: '#/' + debouncedRoute },
+        'Explorer state update',
+        window.location.origin +
+          window.location.pathname +
+          '#/' +
+          debouncedRoute,
+      )
       localStorage.setItem(
         'cpal_hash',
         '#/' + debouncedRoute,
@@ -409,14 +423,14 @@ const RouteManager = props => {
       const localStorageHash = localStorage.getItem(
         'cpal_hash',
       )
-      console.log(
-        'localStorageHash is , ',
-        localStorageHash,
-      )
-      console.log(
-        'isEmptyRoute(path), ',
-        isEmptyRoute(path),
-      )
+      // console.log(
+      //   'localStorageHash is , ',
+      //   localStorageHash,
+      // )
+      // console.log(
+      //   'isEmptyRoute(path), ',
+      //   isEmptyRoute(path),
+      // )
       if (
         !isEmptyRoute(path) &&
         isRouteValid(params, props.routeSet)
