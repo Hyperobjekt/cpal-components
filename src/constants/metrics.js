@@ -407,7 +407,7 @@ export const CPAL_METRICS = [
     title: 'UI_MAP_METRIC_ECON_PCTLWJOBS',
     abbrev: '',
     range: [0.101, 0.359],
-    high_is_good: 1,
+    high_is_good: 0,
     colors: ECON_COLORS,
     tab: 'econ',
     tab_level: 1,
