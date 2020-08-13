@@ -19,6 +19,7 @@ import {
 } from './../utils'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
+import { demotracts } from './../../../../data/demotracts.min.js'
 import useStore from './../store'
 
 const noDataFill = '#ccc'
@@ -286,6 +287,40 @@ export const getRedlineLines = (
   })
 }
 
+export const getDemographicLines = (
+  { layerId, region },
+  activeLayers,
+) => {
+  console.log('getDemographicLines()')
+  // const isActive = activeLayers.indexOf('redlining') > -1
+  const isActive =
+    activeLayers[2] === 1 ||
+    activeLayers[3] === 1 ||
+    activeLayers[4] === 1 ||
+    activeLayers[5] === 1
+  return fromJS({
+    id: 'demoLines',
+    source: 'demotracts',
+    type: 'line',
+    layout: {
+      visibility: !!isActive ? 'visible' : 'none',
+    },
+    interactive: false,
+    paint: {
+      'line-color': [
+        'string',
+        [
+          'get',
+          ['get', 'holc_grade'],
+          ['literal', REDLINE_STROKE_COLORS],
+        ],
+        'blue',
+      ],
+      'line-width': 1,
+    },
+  })
+}
+
 const isSchoolCircleId = id => {
   // console.log('isSchoolCircleId')
   if (!id) {
@@ -297,7 +332,7 @@ const isSchoolCircleId = id => {
 }
 
 const isSchoolZoneId = id => {
-  console.log('isSchoolZoneId')
+  // console.log('isSchoolZoneId')
   if (!id) {
     return false
   }
@@ -342,6 +377,29 @@ export const getRedlineLayers = (context, activeLayers) => {
   ]
 }
 
+export const getDemographicLayers = (
+  context,
+  activeLayers,
+) => {
+  // console.log('getRedlineLayers', context)
+  return [
+    {
+      z: 100,
+      style: getDemographicShapes(context, activeLayers),
+      idMap: true,
+      hasFeatureId: null, // isCircleId,
+      type: `demoShapes`,
+    },
+    {
+      z: 101,
+      style: getDemographicLines(context, activeLayers),
+      idMap: true,
+      hasFeatureId: null, // isCircleId,
+      type: `demoLines`,
+    },
+  ]
+}
+
 export const getAssetLayers = context => {
   // console.log('getAssetLayers', context)
 }
@@ -378,6 +436,7 @@ export const getLayers = (context, activeLayers) => {
     ...getSchoolZoneLayers(context),
     ...getDistrictLayers(context, activeLayers),
     ...getRedlineLayers(context, activeLayers),
+    ...getDemographicLayers(context, activeLayers),
     ...getCircleLayers(context),
   ]
 }
@@ -398,5 +457,9 @@ export const CPAL_SOURCES = fromJS({
   schools: {
     type: `geojson`,
     data: getSchoolGeojson(),
+  },
+  demotracts: {
+    type: `geojson`,
+    data: demotracts,
   },
 })
