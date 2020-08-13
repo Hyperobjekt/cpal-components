@@ -22,6 +22,7 @@ export const CPAL_LAYER_GROUPS = [
     tooltip: 'UI_MAP_LAYERS_REDLINING_TIP',
     only_one: true,
     only_one_name: `demo`,
+    metric: `dem_popbl`,
   },
   {
     id: `demohi`,
@@ -30,6 +31,7 @@ export const CPAL_LAYER_GROUPS = [
     tooltip: 'UI_MAP_LAYERS_REDLINING_TIP',
     only_one: true,
     only_one_name: `demo`,
+    metric: `dem_pophi`,
   },
   {
     id: `demoas`,
@@ -38,6 +40,7 @@ export const CPAL_LAYER_GROUPS = [
     tooltip: 'UI_MAP_LAYERS_REDLINING_TIP',
     only_one: true,
     only_one_name: `demo`,
+    metric: `dem_popas`,
   },
   {
     id: `demowh`,
@@ -46,6 +49,7 @@ export const CPAL_LAYER_GROUPS = [
     tooltip: 'UI_MAP_LAYERS_REDLINING_TIP',
     only_one: true,
     only_one_name: `demo`,
+    metric: `dem_popwh`,
   },
 ]
 

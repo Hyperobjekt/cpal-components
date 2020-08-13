@@ -287,6 +287,39 @@ export const getRedlineLines = (
   })
 }
 
+export const getDemographicShapes = (
+  { layerId, region },
+  activeLayers,
+) => {
+  const isActive =
+    activeLayers[2] === 1 ||
+    activeLayers[3] === 1 ||
+    activeLayers[4] === 1 ||
+    activeLayers[5] === 1
+  return fromJS({
+    id: 'demoShapes',
+    source: 'demotracts',
+    type: 'fill',
+    layout: {
+      visibility: !!isActive ? 'visible' : 'none',
+    },
+    interactive: false,
+    paint: {
+      'fill-color': 'rgba(0,0,0,0.5)',
+      // 'fill-color': [
+      //   'string',
+      //   [
+      //     'get',
+      //     ['get', 'holc_grade'],
+      //     ['literal', REDLINE_FILL_COLORS],
+      //   ],
+      //   'blue',
+      // ],
+      // 'fill-opacity': 0.2,
+    },
+  })
+}
+
 export const getDemographicLines = (
   { layerId, region },
   activeLayers,
@@ -307,15 +340,16 @@ export const getDemographicLines = (
     },
     interactive: false,
     paint: {
-      'line-color': [
-        'string',
-        [
-          'get',
-          ['get', 'holc_grade'],
-          ['literal', REDLINE_STROKE_COLORS],
-        ],
-        'blue',
-      ],
+      'line-color': '#000',
+      // 'line-color': [
+      //   'string',
+      //   [
+      //     'get',
+      //     ['get', 'holc_grade'],
+      //     ['literal', REDLINE_STROKE_COLORS],
+      //   ],
+      //   'blue',
+      // ],
       'line-width': 1,
     },
   })
@@ -384,14 +418,14 @@ export const getDemographicLayers = (
   // console.log('getRedlineLayers', context)
   return [
     {
-      z: 100,
+      z: 102,
       style: getDemographicShapes(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,
       type: `demoShapes`,
     },
     {
-      z: 101,
+      z: 103,
       style: getDemographicLines(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,

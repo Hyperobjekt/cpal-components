@@ -157,7 +157,7 @@ const isSchoolValid = school => {
 const isLayersValid = layers => {
   // console.log('isLayersValid()')
   if (!layers) return true
-  if (layers.length < 2) return false
+  if (layers.length !== 6) return false
   const arr = layers.split(',')
   let t = true
   arr.forEach(el => {
