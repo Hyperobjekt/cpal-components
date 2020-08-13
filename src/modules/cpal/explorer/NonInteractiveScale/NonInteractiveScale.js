@@ -87,34 +87,26 @@ const NonInteractiveScale = ({
           style={minMaxStyle}
         >
           <div className="n-i-scale-min">
-            {!!metricData.high_is_good
-              ? getRoundedValue(
-                  metricData.range[0],
-                  metricData.decimals,
-                  false,
-                  !!metricData.is_currency,
-                )
-              : getRoundedValue(
-                  metricData.range[1],
-                  metricData.decimals,
-                  false,
-                  !!metricData.is_currency,
-                )}
+            {getRoundedValue(
+              !!metricData.high_is_good
+                ? metricData.range[0]
+                : metricData.range[1],
+              metricData.decimals,
+              false,
+              !!metricData.is_currency,
+              !!metricData.as_percent,
+            )}
           </div>
           <div className="n-i-scale-max">
-            {!!metricData.high_is_good
-              ? getRoundedValue(
-                  metricData.range[1],
-                  metricData.decimals,
-                  false,
-                  !!metricData.is_currency,
-                )
-              : getRoundedValue(
-                  metricData.range[0],
-                  metricData.decimals,
-                  false,
-                  !!metricData.is_currency,
-                )}
+            {getRoundedValue(
+              !!metricData.high_is_good
+                ? metricData.range[1]
+                : metricData.range[0],
+              metricData.decimals,
+              false,
+              !!metricData.is_currency,
+              !!metricData.as_percent,
+            )}
           </div>
         </div>
       ) : (

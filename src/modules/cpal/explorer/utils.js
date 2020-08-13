@@ -129,9 +129,13 @@ export const getRoundedValue = (
   decimals,
   padZeroes = false,
   isCurrency = false,
+  isPercent = false,
 ) => {
   // console.log('getRoundedValue()')
   const type = typeof value
+  if (!!isPercent) {
+    value = value * 100
+  }
   let fixed = null
   if (type === 'string') {
     if (padZeroes) {
@@ -156,6 +160,9 @@ export const getRoundedValue = (
   }
   if (!!isCurrency) {
     fixed = '$' + fixed
+  }
+  if (!!isPercent) {
+    fixed = fixed + '%'
   }
   return fixed
 }
