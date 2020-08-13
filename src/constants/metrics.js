@@ -169,6 +169,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 12,
   },
   {
     id: 'comm_bvp',
@@ -182,6 +183,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 2,
   },
   {
     id: 'comm_cctrcap',
@@ -194,6 +196,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 9,
   },
   {
     id: 'comm_incarpct',
@@ -207,6 +210,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 7,
   },
   {
     id: 'comm_juvcrimecap',
@@ -219,6 +223,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 8,
   },
   {
     id: 'comm_libcap',
@@ -231,6 +236,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 3,
+    order: 10,
   },
   {
     id: 'comm_ltbvp',
@@ -244,6 +250,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 3,
   },
   {
     id: 'comm_ltrvp',
@@ -257,6 +264,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 4,
   },
   {
     id: 'comm_ocbp',
@@ -270,6 +278,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 5,
   },
   {
     id: 'comm_parkcap',
@@ -282,6 +291,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 3,
+    order: 11,
   },
   {
     id: 'comm_rcbp',
@@ -295,6 +305,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 6,
   },
   {
     id: 'comm_rvp',
@@ -308,6 +319,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 3,
   },
   {
     id: 'comm_u18bbp',
@@ -321,6 +333,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 13,
   },
   {
     id: 'comm_evrate',
@@ -333,6 +346,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 1,
   },
   {
     id: 'econ_cpr',
@@ -346,6 +360,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 3,
   },
   {
     id: 'econ_fincap',
@@ -358,6 +373,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 9,
   },
   {
     id: 'econ_medinc',
@@ -371,6 +387,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 0,
     is_currency: 1,
+    order: 1,
   },
   {
     id: 'econ_paydaycap',
@@ -383,6 +400,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 10,
   },
   {
     id: 'econ_pctlwjobs',
@@ -396,6 +414,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 5,
   },
   {
     id: 'econ_pctmwjobs',
@@ -409,6 +428,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 6,
   },
   {
     id: 'econ_pr',
@@ -422,6 +442,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 2,
   },
   {
     id: 'econ_pyr',
@@ -435,6 +456,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 8,
   },
   {
     id: 'econ_ur',
@@ -448,6 +470,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 7,
   },
   {
     id: 'edu_oostkids',
@@ -460,12 +483,13 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 4,
   },
   {
     id: 'edu_perbach',
     title: 'UI_MAP_METRIC_EDU_PERBACH',
     abbrev: '',
-    range: [0.061, 1.178],
+    range: [0.024812673, 0.424107957],
     high_is_good: 1,
     colors: EDU_COLORS,
     tab: 'edu',
@@ -473,6 +497,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 1,
   },
   {
     id: 'edu_perearlyed',
@@ -486,6 +511,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 2,
   },
   {
     id: 'edu_qeckids',
@@ -498,6 +524,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 3,
   },
   {
     id: 'econ_totjobs',
@@ -510,6 +537,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 4,
   },
   {
     id: 'fam_affcckids',
@@ -522,6 +550,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 3,
   },
   {
     id: 'fam_lcckids',
@@ -534,6 +563,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 2,
   },
   {
     id: 'fam_tphhpct',
@@ -547,6 +577,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 1,
   },
   {
     id: 'hel_bphigh',
@@ -559,6 +590,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 12,
   },
   {
     id: 'hel_castthma',
@@ -571,6 +603,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 13,
   },
   {
     id: 'hel_checkup',
@@ -583,6 +616,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 9,
   },
   {
     id: 'hel_fruitsveggies',
@@ -596,6 +630,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 0,
     is_currency: 1,
+    order: 8,
   },
   {
     id: 'hel_le',
@@ -608,6 +643,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 4,
   },
   {
     id: 'hel_mhlth',
@@ -620,6 +656,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 10,
   },
   {
     id: 'hel_obesity',
@@ -632,6 +669,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
+    order: 14,
   },
   {
     id: 'hel_perpri',
@@ -645,6 +683,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 2,
   },
   {
     id: 'hel_perpub',
@@ -658,6 +697,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
+    order: 3,
   },
   {
     id: 'hel_perins',
@@ -671,19 +711,7 @@ export const CPAL_METRICS = [
     tooltip: 0,
     decimals: 1,
     as_percent: 1,
-  },
-  {
-    id: 'hel_perunin',
-    title: 'UI_MAP_METRIC_HEL_PERUNIN',
-    abbrev: '',
-    range: [0.04391650809, 0.4109132903],
-    high_is_good: 0,
-    colors: HEL_COLORS,
-    tab: 'hel',
-    tab_level: 1,
-    tooltip: 0,
-    decimals: 1,
-    as_percent: 1,
+    order: 1,
   },
   {
     id: 'hel_pharmacap',
@@ -696,6 +724,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 6,
   },
   {
     id: 'hel_phlth',
@@ -708,30 +737,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 0,
-  },
-  {
-    id: 'hel_sleep',
-    title: 'UI_MAP_METRIC_HEL_SLEEP',
-    abbrev: '',
-    range: [1476.828, 4298.227],
-    high_is_good: 0,
-    colors: HEL_COLORS,
-    tab: 'hel',
-    tab_level: 1,
-    tooltip: 0,
-    decimals: 0,
-  },
-  {
-    id: 'hel_stroke',
-    title: 'UI_MAP_METRIC_HEL_STROKE',
-    abbrev: '',
-    range: [1476.828, 4298.227],
-    high_is_good: 0,
-    colors: HEL_COLORS,
-    tab: 'hel',
-    tab_level: 1,
-    tooltip: 0,
-    decimals: 0,
+    order: 11,
   },
   {
     id: 'hel_clincap',
@@ -744,6 +750,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 5,
   },
   {
     id: 'hel_groccap',
@@ -756,6 +763,7 @@ export const CPAL_METRICS = [
     tab_level: 1,
     tooltip: 0,
     decimals: 2,
+    order: 7,
   },
   {
     id: 'dem_totp',
