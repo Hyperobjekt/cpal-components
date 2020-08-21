@@ -17,18 +17,18 @@ import {
 } from './../selectors'
 // import { getLang } from './../selectors/lang'
 import {
-  useActiveOptionIds,
-  useFilters,
+  // useActiveOptionIds,
+  // useFilters,
   // useLocations,
   useHovered,
-  useHoveredZone,
-  useMarkersVisibility,
-  useAddLocation,
-  useActiveLocationFeature,
+  // useHoveredZone,
+  // useMarkersVisibility,
+  // useAddLocation,
+  // useActiveLocationFeature,
 } from './../hooks'
 // import { REGION_TO_ID_LENGTH } from './../../../../constants/regions'
 import { CPAL_METRICS } from './../../../../constants/metrics'
-import useData from './../hooks/useData'
+// import useData from './../hooks/useData'
 import { getMetric, getQuintilesPhrase } from './../utils'
 import useStore from './../store'
 
@@ -84,14 +84,14 @@ const MapView = props => {
     shallow,
   )
   // Touch device tracking
-  const isTouch = useStore(state => state.isTouch)
-  const setIsTouch = useStore(state => state.setIsTouch)
+  // const isTouch = useStore(state => state.isTouch)
+  // const setIsTouch = useStore(state => state.setIsTouch)
   // Active view
   const activeView = useStore(state => state.activeView)
   /** id of the active location */
-  const activeFeature = useActiveLocationFeature()
+  // const activeFeature = useActiveLocationFeature()
   /** boolean determining if the hovered location should show */
-  const [showHovered] = useMarkersVisibility()
+  // const [showHovered] = useMarkersVisibility()
   /** function to add a location to the selected locations */
   // const addLocation = useAddLocation()
   // const addFeatureData = useData(state => state.addData)
@@ -175,15 +175,13 @@ const MapView = props => {
       ) {
         // If it's not yet hovered, set it as hovered.
         console.log('Small screen, setting up modal.')
+        console.log('showMapModal, ', showMapModal)
         const type = `schools`
         const id = getFeatureProperty(feature, 'TEA')
         setHovered(id, type, geoCoords, feature)
         // Launch the map modal
         setShowMapModal(true)
         console.log('showMapModal, ', showMapModal)
-        setTimeout(function () {
-          console.log('showMapModal, ', showMapModal)
-        }, 2000)
       } else {
         // If it is hovered, then navigate to new window.
         if (!!window) {
@@ -200,7 +198,7 @@ const MapView = props => {
 
   // If touch events are happening, flag the device as touch.
   const handleTouch = () => {
-    setIsTouch(true)
+    // setIsTouch(true)
   }
 
   /** handler for map load */

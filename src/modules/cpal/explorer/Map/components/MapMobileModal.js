@@ -40,6 +40,10 @@ const MapMobileModal = ({ children, ...props }) => {
   // const breakpoint = useStore(state => state.breakpoint)
   // Tracks whether or not to display map mobile modal
   const showMapModal = useStore(state => state.showMapModal)
+  console.log(
+    'MapMobileModal, showMapModal: ',
+    showMapModal,
+  )
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
   )
