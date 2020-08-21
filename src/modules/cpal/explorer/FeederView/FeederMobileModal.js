@@ -38,11 +38,13 @@ import { schools } from './../../../../data/schools'
 const FeederMobileModal = ({ children, ...props }) => {
   const activeFeeder = useStore(state => state.activeFeeder)
   const feederLocked = useStore(state => state.feederLocked)
+  const activeView = useStore(state => state.activeView)
   const breakpoint = useStore(state => state.breakpoint)
   // Track and update intro modal display
   const [showFeederModal, setShowFeederModal] = useState(
     !!activeFeeder &&
       !!feederLocked &&
+      activeView === 'feeder' &&
       (breakpoint == 'xs' || breakpoint == 'sm'),
   )
   const toggleFeederModal = () =>
@@ -52,6 +54,7 @@ const FeederMobileModal = ({ children, ...props }) => {
     if (
       !!activeFeeder &&
       !!feederLocked &&
+      activeView === 'feeder' &&
       (breakpoint == 'xs' || breakpoint == 'sm')
     ) {
       setShowFeederModal(true)

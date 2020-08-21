@@ -27,6 +27,7 @@ import MapLayerToggle from './MapLayerToggle'
 import MapResetButton from './MapResetButton'
 import MapCaptureButton from './MapCaptureButton'
 import MapLegend from './MapLegend'
+import MapMobileModal from './MapMobileModal'
 import { BOUNDS } from './../../../../../constants/map'
 import useStore from './../../store'
 
@@ -107,7 +108,10 @@ const MapBase = ({
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
+  // Active layers in the map
   const activeLayers = useStore(state => state.activeLayers)
+  // Breakpoint of the explorer
+  const breakpoint = useStore(state => state.breakpoint)
 
   const setResetViewport = useMapStore(
     state => state.setResetViewport,
@@ -638,35 +642,38 @@ const MapBase = ({
         {...viewport}
         {...rest}
       >
-        {!!hoveredId && (
-          <Popup
-            className={clsx(
-              !!isTouch ? 'is-touch' : '',
-              'school-details-tip',
-            )}
-            latitude={
-              getTooltipOffset(hoveredFeature).coords[1]
-            }
-            longitude={
-              getTooltipOffset(hoveredFeature).coords[0]
-            }
-            onClick={handlePopupClick}
-            closeButton={!!isTouch}
-            closeOnClick={false}
-            onClose={() =>
-              this.setState({ showPopup: false })
-            }
-            anchor={getTooltipOffset(hoveredFeature).anchor}
-            tipSize={0}
-            dynamicPosition={false}
-            captureClick={true}
-            captureDrag={true}
-            captureDoubleClick={true}
-            captureScroll={true}
-          >
-            <PopupContent feature={hoveredFeature} />
-          </Popup>
-        )}
+        {!!hoveredId &&
+          !(breakpoint === 'xs' || breakpoint === 'sm') && (
+            <Popup
+              className={clsx(
+                !!isTouch ? 'is-touch' : '',
+                'school-details-tip',
+              )}
+              latitude={
+                getTooltipOffset(hoveredFeature).coords[1]
+              }
+              longitude={
+                getTooltipOffset(hoveredFeature).coords[0]
+              }
+              onClick={handlePopupClick}
+              closeButton={!!isTouch}
+              closeOnClick={false}
+              onClose={() =>
+                this.setState({ showPopup: false })
+              }
+              anchor={
+                getTooltipOffset(hoveredFeature).anchor
+              }
+              tipSize={0}
+              dynamicPosition={false}
+              captureClick={true}
+              captureDrag={true}
+              captureDoubleClick={true}
+              captureScroll={true}
+            >
+              <PopupContent feature={hoveredFeature} />
+            </Popup>
+          )}
         {!!schoolHint && (
           <Popup
             className={clsx(
@@ -708,6 +715,7 @@ const MapBase = ({
         </div>
         {children}
       </ReactMapGL>
+      <MapMobileModal />
     </div>
   )
 }

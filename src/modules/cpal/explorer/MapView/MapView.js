@@ -19,7 +19,7 @@ import {
 import {
   useActiveOptionIds,
   useFilters,
-  useLocations,
+  // useLocations,
   useHovered,
   useHoveredZone,
   useMarkersVisibility,
@@ -52,10 +52,17 @@ const MapView = props => {
     state => [...state.activeQuintiles],
     shallow,
   )
+  // Explorer breakpoint stored in state
+  const breakpoint = useStore(state => state.breakpoint)
+  // Manage display of map modal
+  const showMapModal = useStore(state => state.showMapModal)
+  const setShowMapModal = useStore(
+    state => state.setShowMapModal,
+  )
   /** currently active data filters */
-  const [{ prefix }] = useFilters()
+  // const [{ prefix }] = useFilters()
   /** currently selected location ids */
-  const [locations] = useLocations()
+  // const [locations] = useLocations()
   /** id of the currently hovered location */
   const [
     hoveredId,
@@ -162,12 +169,21 @@ const MapView = props => {
     // setHovered(id, type, geoCoords, feature)
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
-      if (!!isTouch && !!feature.state.hover) {
+      if (
+        (breakpoint === 'xs' || breakpoint === 'sm') &&
+        !!feature.state.hover
+      ) {
         // If it's not yet hovered, set it as hovered.
-        console.log('this guys not hovered yet, setting it')
+        console.log('Small screen, setting up modal.')
         const type = `schools`
         const id = getFeatureProperty(feature, 'TEA')
         setHovered(id, type, geoCoords, feature)
+        // Launch the map modal
+        setShowMapModal(true)
+        console.log('showMapModal, ', showMapModal)
+        setTimeout(function () {
+          console.log('showMapModal, ', showMapModal)
+        }, 2000)
       } else {
         // If it is hovered, then navigate to new window.
         if (!!window) {
