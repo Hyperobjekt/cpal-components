@@ -11,8 +11,8 @@
       font-weight: 200;
       font-size: 15px;
       line-height: 22px;
-      color: #606B44;
-      margin-bottom: .8rem;
+      color: #606b44;
+      margin-bottom: 0.8rem;
     }
     height: 100%;
     padding: 1.6rem;
@@ -32,12 +32,15 @@
           height: 40px;
           font-size: 15px;
           font-weight: 200;
-          color: #2C390B;
+          color: #2c390b;
           background-color: #fff;
-          border: 1px solid #CFD3C2;
+          border: 1px solid #cfd3c2;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          &.active {
+            background-color: rgba(204, 204, 204, 0.4);
+          }
         }
         .dropdown-menu {
           width: 100%;
@@ -62,7 +65,7 @@
             font-weight: 400;
             font-size: 18px;
             line-height: 28px;
-            color: #2C390B;
+            color: #2c390b;
           }
           h6 {
             font-family: Halyard Text;
@@ -71,7 +74,7 @@
             line-height: 20px;
             display: flex;
             align-items: center;
-            color: #2C390B;
+            color: #2c390b;
           }
         }
         &.active-tab-cri {
