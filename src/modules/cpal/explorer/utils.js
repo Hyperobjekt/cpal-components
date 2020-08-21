@@ -351,6 +351,30 @@ export const getFeederAverage = (metric, schoolSet) => {
 }
 
 /**
+ * Gets label for the feeder
+ * @param  String tea TEA id for school
+ * @return String     Label for the feeder
+ */
+export const getFeederLabel = tea => {
+  // console.log('getFeederLabel()', tea, feeders)
+  // Slice out feeders to avoid rewrites
+  const feeders = CPAL_FEEDERS.slice()
+  const feeder = feeders.find(el => {
+    return Number(el.id) === Number(tea)
+  })
+  return feeder && feeder.title ? feeder.title : ''
+}
+/**
+ * Gets the set of schools that are in a feeder
+ * @return Array Array of school data objects
+ */
+export const getSchoolSet = feeder => {
+  return schools.filter(el => {
+    return Number(el.HIGH_SLN) === Number(feeder)
+  })
+}
+
+/**
  * Generates geojson object with school zones (2 mile radius)
  * @return  Object   GeoJSON Object of all schools in client-supplied data
  */

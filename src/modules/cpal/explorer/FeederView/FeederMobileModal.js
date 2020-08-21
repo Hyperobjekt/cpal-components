@@ -17,6 +17,8 @@ import {
   getRoundedValue,
   toTitleCase,
   getFeederAverage,
+  getFeederLabel,
+  getSchoolSet,
 } from './../utils'
 
 import useStore from './../store'
@@ -57,31 +59,6 @@ const FeederMobileModal = ({ children, ...props }) => {
       setShowFeederModal(false)
     }
   }, [activeFeeder, feederLocked])
-
-  const feeders = CPAL_FEEDERS.slice()
-
-  /**
-   * Gets label for the feeder
-   * @param  String tea TEA id for school
-   * @return String     Label for the feeder
-   */
-  const getFeederLabel = tea => {
-    // console.log('getFeederLabel()', tea, feeders)
-    const feeder = feeders.find(el => {
-      return Number(el.id) === Number(tea)
-    })
-    return feeder && feeder.title ? feeder.title : ''
-  }
-
-  /**
-   * Gets the set of schools that are in a feeder
-   * @return Array Array of school data objects
-   */
-  const getSchoolSet = feeder => {
-    return schools.filter(el => {
-      return Number(el.HIGH_SLN) === Number(feeder)
-    })
-  }
 
   return (
     <Modal
