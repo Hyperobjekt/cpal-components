@@ -157,15 +157,39 @@ const isSchoolValid = school => {
 const isLayersValid = layers => {
   // console.log('isLayersValid()')
   if (!layers) return true
-  if (layers.length !== 6) return false
   const arr = layers.split(',')
+  // console.log('arr, ', arr)
+  if (arr.length !== 6) return false
   let t = true
-  arr.forEach(el => {
+  arr.forEach((el, i) => {
     const n = Number(el)
     if (n !== 1 && n !== 0) {
       t = false
     }
+    if (
+      CPAL_LAYER_GROUPS[i].only_one === true &&
+      Number(arr[i]) === 1
+    ) {
+      // Get the name
+      const name = CPAL_LAYER_GROUPS[i].only_one_name
+      // If others with same name are true in layers, return false.
+      // console.log('only one loop, others = ', others)
+      CPAL_LAYER_GROUPS.forEach((item, index) => {
+        if (
+          i !== index &&
+          item.only_one === true &&
+          item.only_one_name === name
+        ) {
+          // console.log('matching up the other only-ones')
+          if (Number(arr[index]) === 1) {
+            // console.log("there's another true")
+            t = false
+          }
+        }
+      })
+    }
   })
+  // console.log('isLayersValid(), ', t)
   return t
 }
 

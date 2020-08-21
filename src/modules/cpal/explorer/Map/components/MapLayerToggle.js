@@ -25,10 +25,6 @@ const MapLayerToggle = ({ ...props }) => {
     state => state.setActiveLayers,
   )
 
-  // to manage tooltip state
-  const [tooltipOpen, setTooltipOpen] = useState(false)
-  const toggle = () => setTooltipOpen(!tooltipOpen)
-
   const getLayerLabel = id => {
     const layer = CPAL_LAYER_GROUPS.find(gr => gr.id === id)
     return layer.label
@@ -41,6 +37,24 @@ const MapLayerToggle = ({ ...props }) => {
     const index = Number(
       String(e.currentTarget.id).replace('layer_', ''),
     )
+    // document.querySelector('[data-only_one="true"]')
+    // If the element is an only-one element, reset other only-ones of same name.
+    const el = document.getElementById(e.currentTarget.id)
+    const dataset = el.dataset
+    if (dataset.onlyOne === 'true') {
+      // console.log('it is an only-one')
+      const name = dataset.onlyOneName
+      // Remove all the matching only-ones from the activeLayers array.
+      CPAL_LAYER_GROUPS.forEach((el, i) => {
+        if (
+          el.only_one === true &&
+          el.only_one_name === name
+        ) {
+          activeLayers[i] = 0
+        }
+      })
+    }
+    // Reset activeLayers array.
     if (!!e.currentTarget.checked) {
       // Checked.
       activeLayers[index] = 1
@@ -50,6 +64,7 @@ const MapLayerToggle = ({ ...props }) => {
       activeLayers[index] = 0
       setActiveLayers(activeLayers)
     }
+    // console.log('activeLayers, ', activeLayers)
   }
 
   const [showPanel, setShowPanel] = useState(false)
@@ -63,12 +78,11 @@ const MapLayerToggle = ({ ...props }) => {
         )}
       >
         {CPAL_LAYER_GROUPS.map((el, i) => {
-          // console.log(
-          //   'CPAL_LAYER_GROUPS, ',
-          //   el,
-          //   activeLayers &&
-          //     activeLayers.indexOf(el.id) > -1,
-          // )
+          // to manage tooltip state
+          const [tooltipOpen, setTooltipOpen] = useState(
+            false,
+          )
+          const toggle = () => setTooltipOpen(!tooltipOpen)
           return (
             <div className="layer" key={`layer-${el.id}`}>
               <label
@@ -80,6 +94,8 @@ const MapLayerToggle = ({ ...props }) => {
                   id={'layer_' + i}
                   name="scales"
                   key={el.id}
+                  data-only-one={el.only_one}
+                  data-only-one-name={el.only_one_name}
                   checked={
                     activeLayers[i] === 1 ? true : false
                   }

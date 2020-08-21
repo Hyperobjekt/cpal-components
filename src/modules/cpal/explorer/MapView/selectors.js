@@ -296,6 +296,24 @@ export const getDemographicShapes = (
     activeLayers[3] === 1 ||
     activeLayers[4] === 1 ||
     activeLayers[5] === 1
+  let varName = false
+  switch (true) {
+    case activeLayers[2] === 1:
+      varName = 'dem_popbl'
+      break
+    case activeLayers[3] === 1:
+      varName = 'dem_pophi'
+      break
+    case activeLayers[4] === 1:
+      varName = 'dem_popas'
+      break
+    case activeLayers[5] === 1:
+      varName = 'dem_popwh'
+      break
+    default:
+      varName = 'dem_popbl'
+  }
+  // console.log('getDemographicShapes, varName = ', varName)
   return fromJS({
     id: 'demoShapes',
     source: 'demotracts',
@@ -306,6 +324,42 @@ export const getDemographicShapes = (
     interactive: false,
     paint: {
       'fill-color': 'rgba(0,0,0,0.5)',
+      'fill-opacity': [
+        'let',
+        'perc_floor',
+        [
+          'round',
+          [
+            '/',
+            [
+              '*',
+              [
+                '/',
+                ['number', ['get', varName]],
+                ['number', ['get', 'dem_totp']],
+              ],
+              100,
+            ],
+            20,
+          ],
+        ],
+        [
+          'case',
+          ['==', ['var', 'perc_floor'], 5],
+          0.8,
+          ['==', ['var', 'perc_floor'], 4],
+          0.6,
+          ['==', ['var', 'perc_floor'], 3],
+          0.4,
+          ['==', ['var', 'perc_floor'], 2],
+          0.2,
+          ['==', ['var', 'perc_floor'], 1],
+          0.1,
+          ['==', ['var', 'perc_floor'], 0],
+          0,
+          0,
+        ],
+      ],
       // 'fill-color': [
       //   'string',
       //   [
@@ -324,8 +378,7 @@ export const getDemographicLines = (
   { layerId, region },
   activeLayers,
 ) => {
-  console.log('getDemographicLines()')
-  // const isActive = activeLayers.indexOf('redlining') > -1
+  // console.log('getDemographicLines()')
   const isActive =
     activeLayers[2] === 1 ||
     activeLayers[3] === 1 ||
@@ -340,7 +393,7 @@ export const getDemographicLines = (
     },
     interactive: false,
     paint: {
-      'line-color': '#000',
+      'line-color': '#ccc',
       // 'line-color': [
       //   'string',
       //   [
