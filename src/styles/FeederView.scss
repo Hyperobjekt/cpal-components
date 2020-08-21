@@ -3,12 +3,13 @@
 $cri-color-1: #7b53ef;
 $cri-color-3: #cabbf5;
 //$bar-highlight: #d0421b;
-$bar-highlight: #E94F34;
+$bar-highlight: #e94f34;
 
 .layout-view-feeder {
   height: 100%;
   // overflow: hidden;
-  .feeder-chart-header { // Temporarily deactivated header, can be cleaned up if desired
+  .feeder-chart-header {
+    // Temporarily deactivated header, can be cleaned up if desired
     display: none;
   }
   .row-bar-chart {
@@ -71,7 +72,7 @@ $bar-highlight: #E94F34;
               display: block;
               height: 24px;
               background: $cri-color-3; // lighten($base-cri-color, 40%);
-              transition: background-color .1s ease;
+              transition: background-color 0.1s ease;
               .click-prompt {
                 display: none;
                 float: left;
@@ -124,8 +125,8 @@ $bar-highlight: #E94F34;
           font-weight: 200;
           font-size: 15px;
           line-height: 22px;
-          color: #606B44;
-          margin-bottom: .8rem;
+          color: #606b44;
+          margin-bottom: 0.8rem;
         }
         h2 {
           font-size: 1.8rem;
@@ -147,7 +148,7 @@ $bar-highlight: #E94F34;
           margin-bottom: 10px;
         }
         p {
-         // font-size: 10px;
+          // font-size: 10px;
         }
         h4 {
           width: 100%;
@@ -199,9 +200,63 @@ $bar-highlight: #E94F34;
   }
 }
 
+.feeder-modal {
+  .modal-header {
+    border-bottom: none;
+  }
+  .modal-body {
+    .feeder-legend-metrics {
+      .feeder-index {
+        display: block;
+        width: 100%;
+      }
+    }
+    .feeder-legend-schools {
+      .school {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .layout-view-feeder .row-bar-chart .feeders-bar-chart {
+    display: flex;
+    flex-direction: column;
+  }
+  .layout-view-feeder
+    .row-bar-chart
+    .feeders-bar-chart
+    .feeder-chart-legend {
+    order: 1;
+    position: relative;
+    height: 200px;
+    box-shadow: none;
+  }
+  .layout-view-feeder
+    .row-bar-chart
+    .feeders-bar-chart
+    .feeders-bar-chart-parent {
+    order: 2;
+    .feeder-chart-bar {
+      margin-top: 16px;
+      margin-bottom: 4rem;
+    }
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .layout-view-feeder .row-bar-chart .feeders-bar-chart {
     margin-top: calc(64px + 16px);
+  }
+  .layout-view-feeder
+    .row-bar-chart
+    .feeders-bar-chart
+    .feeders-bar-chart-parent {
+    .feeder-chart-bar {
+      margin-top: 16px;
+    }
   }
   .layout-view-feeder
     .row-bar-chart
@@ -238,11 +293,13 @@ $bar-highlight: #E94F34;
       margin-top: 16px;
     }
   }
-  .layout-view-feeder .row-bar-chart .feeders-bar-chart .feeder-chart-legend {
+  .layout-view-feeder
+    .row-bar-chart
+    .feeders-bar-chart
+    .feeder-chart-legend {
     right: 36px;
   }
-  
-  
+
   .layout-view-feeder .row-schools-chart {
     display: block;
     position: fixed;

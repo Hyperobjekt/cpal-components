@@ -29,3 +29,15 @@
     }
   }
 }
+
+.modal-dialog {
+  .modal-content {
+    font-family: Halyard;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    .modal-body {
+      padding: 0 24px 24px 24px;
+    }
+  }
+}

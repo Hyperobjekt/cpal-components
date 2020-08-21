@@ -33,6 +33,8 @@ const FeederLegend = ({ ...props }) => {
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
   const feederLocked = useStore(state => state.feederLocked)
+  const breakpoint = useStore(state => state.breakpoint)
+  // console.log('breakpoint, ', breakpoint)
   // Slice out feeders to avoid rewrites
   const feeders = CPAL_FEEDERS.slice()
 
@@ -67,7 +69,10 @@ const FeederLegend = ({ ...props }) => {
           : '',
       )}
     >
-      {!!activeFeeder && !!feederLocked ? (
+      {!!activeFeeder &&
+      !!feederLocked &&
+      breakpoint !== 'xs' &&
+      breakpoint !== 'sm' ? (
         <>
           <h2>
             {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}

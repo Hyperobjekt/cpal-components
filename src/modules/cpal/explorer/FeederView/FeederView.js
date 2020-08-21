@@ -8,13 +8,7 @@ import i18n from '@pureartisan/simple-i18n'
 import FeederChart from './FeederChart'
 import FeederLegend from './FeederLegend'
 import FeederSchoolsChart from './FeederSchoolsChart'
-
-// <Row className="row-feeder-top">
-//   <Col
-//     xs={{ size: 12, order: 1, offset: 0 }}
-//     md={{ size: 12, order: 1, offset: 0 }}
-//   ></Col>
-// </Row>
+import FeederMobileModal from './FeederMobileModal'
 
 /**
  * FeederView contains the feeder schools view.
@@ -26,8 +20,8 @@ const FeederView = () => {
     <div className="layout-view-feeder">
       <Row className="row-bar-chart">
         <Col
-          xs={{ size: 12, order: 2, offset: 0 }}
-          md={{ size: 12, order: 2, offset: 0 }}
+          xs={{ size: 12, order: 1, offset: 0 }}
+          md={{ size: 12, order: 1, offset: 0 }}
           className="feeders-bar-chart"
         >
           <div className="feeders-bar-chart-parent">
@@ -35,16 +29,11 @@ const FeederView = () => {
           </div>
           <FeederLegend />
         </Col>
-        <Col
-          xs={{ size: 12, order: 2, offset: 0 }}
-          md={{ size: 12, order: 2, offset: 0 }}
-          className="feeders-bar-legend"
-        ></Col>
       </Row>
       <Row className="row-schools-chart">
         <Col
-          xs={{ size: 12, order: 3, offset: 0 }}
-          md={{ size: 12, order: 3, offset: 0 }}
+          xs={{ size: 12, order: 2, offset: 0 }}
+          md={{ size: 12, order: 2, offset: 0 }}
           className="feeders-schools-scatter"
           aria-label={i18n.translate(
             'UI_FEEDER_TITLE_SCHOOLS_CHART',
@@ -53,6 +42,7 @@ const FeederView = () => {
           <FeederSchoolsChart />
         </Col>
       </Row>
+      <FeederMobileModal />
     </div>
   )
 }
