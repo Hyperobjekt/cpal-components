@@ -21,7 +21,7 @@ import {
   getSchoolSet,
 } from './../utils'
 
-import useStore from './../store'
+import useStore from './../../store'
 // import { CoreButton } from './../../../../core'
 // import SchoolSearch from './../SchoolSearch/SchoolSearch'
 // import {
@@ -37,13 +37,10 @@ import PopupContent from './PopupContent'
  * @param Object props    Props passed from parent
  */
 const MapMobileModal = ({ children, ...props }) => {
-  // const breakpoint = useStore(state => state.breakpoint)
+  const breakpoint = useStore(state => state.breakpoint)
   // Tracks whether or not to display map mobile modal
   const showMapModal = useStore(state => state.showMapModal)
-  console.log(
-    'MapMobileModal, showMapModal: ',
-    showMapModal,
-  )
+  console.log('MapMobileModal, showMapModal: ', breakpoint)
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
   )
@@ -63,7 +60,7 @@ const MapMobileModal = ({ children, ...props }) => {
     >
       <ModalHeader toggle={toggleMapModal}></ModalHeader>
       <ModalBody>
-        <PopupContent />
+        <PopupContent feature={props.hoveredFeature} />
       </ModalBody>
     </Modal>
   )

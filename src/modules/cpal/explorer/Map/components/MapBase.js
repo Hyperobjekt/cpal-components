@@ -715,7 +715,7 @@ const MapBase = ({
         </div>
         {children}
       </ReactMapGL>
-      <MapMobileModal />
+      <MapMobileModal hoveredFeature={hoveredFeature} />
     </div>
   )
 }
