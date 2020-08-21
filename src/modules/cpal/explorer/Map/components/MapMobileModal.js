@@ -37,10 +37,9 @@ import PopupContent from './PopupContent'
  * @param Object props    Props passed from parent
  */
 const MapMobileModal = ({ children, ...props }) => {
-  const breakpoint = useStore(state => state.breakpoint)
+  // const breakpoint = useStore(state => state.breakpoint)
   // Tracks whether or not to display map mobile modal
   const showMapModal = useStore(state => state.showMapModal)
-  console.log('MapMobileModal, showMapModal: ', breakpoint)
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
   )
@@ -61,6 +60,7 @@ const MapMobileModal = ({ children, ...props }) => {
       <ModalHeader toggle={toggleMapModal}></ModalHeader>
       <ModalBody>
         <PopupContent feature={props.hoveredFeature} />
+        <Button>View School Details</Button>
       </ModalBody>
     </Modal>
   )
