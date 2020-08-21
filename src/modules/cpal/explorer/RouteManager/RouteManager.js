@@ -239,6 +239,9 @@ const RouteManager = props => {
   const setActiveMetric = useStore(
     state => state.setActiveMetric,
   )
+  const setActiveFilterTab = useStore(
+    state => state.setActiveFilterTab,
+  )
 
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
@@ -333,6 +336,13 @@ const RouteManager = props => {
     }
     if (!!params.metric) {
       setActiveMetric(params.metric)
+      const tab = CPAL_METRICS.filter(
+        el => el.id === params.metric,
+      )[0].tab
+      if (!!tab) {
+        setActiveFilterTab(tab)
+      }
+      // console.log('setting metric, ', params.metric, tab)
     }
     if (params.quintiles && params.quintiles.length > 0) {
       const quintiles = params.quintiles.split(',')
