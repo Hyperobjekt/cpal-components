@@ -42,7 +42,7 @@ const MapMobileModal = ({ children, ...props }) => {
 
   return (
     <Modal
-      isOpen={showMapModal}
+      isOpen={props.hoveredFeature && showMapModal}
       toggle={toggleMapModal}
       className={'map-modal'}
       backdrop={true}
