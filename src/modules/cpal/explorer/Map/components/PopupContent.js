@@ -3,6 +3,7 @@ import i18n from '@pureartisan/simple-i18n'
 import { Button } from 'reactstrap'
 import { FaExternalLinkSquareAlt } from 'react-icons/fa'
 
+import { CoreButton } from './../../../../core'
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
 import {
@@ -22,7 +23,7 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature, ', props.feature)
   // }
 
-  const isTouch = useStore(state => state.isTouch)
+  const breakpoint = useStore(state => state.breakpoint)
 
   const metrics = []
   CPAL_METRICS.forEach(el => {
@@ -61,11 +62,6 @@ const PopupContent = ({ ...props }) => {
             name: props.feature.properties.Feeder,
           })}
         </h5>
-        {!isTouch && (
-          <div className="click-school-prompt">
-            {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
-          </div>
-        )}
       </div>
       {metrics.map(metric => {
         const metricData = getMetric(metric, CPAL_METRICS)
@@ -115,19 +111,19 @@ const PopupContent = ({ ...props }) => {
           return ''
         }
       })}
-      {!!isTouch && (
-        <Button
-          id="popup_access_school"
-          className="click-school-prompt is-touch"
+      {!!(breakpoint === 'xs' || breakpoint === 'sm') && (
+        <CoreButton
+          id="modal_access_school"
+          className="click-school-prompt"
           onClick={navigateToSchool}
           aira-label={i18n.translate(
             'UI_MAP_SCHOOL_ACCESS_LINK',
           )}
-          color="none"
+          color="light"
         >
           <FaExternalLinkSquareAlt />
           {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
-        </Button>
+        </CoreButton>
       )}
     </div>
   )

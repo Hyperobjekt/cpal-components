@@ -41,3 +41,17 @@
     }
   }
 }
+
+.modal-dialog.map-modal {
+  .modal-content {
+    .popup-content {
+      width: auto !important;
+      .click-school-prompt {
+        margin: 1.5rem 0 0;
+        svg {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

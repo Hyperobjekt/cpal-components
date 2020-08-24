@@ -12,6 +12,7 @@ import {
 import { FiMap } from 'react-icons/fi'
 import { FaQuestion } from 'react-icons/fa'
 import { GiJourney } from 'react-icons/gi'
+
 import {
   getMetric,
   getRoundedValue,
@@ -20,15 +21,7 @@ import {
   getFeederLabel,
   getSchoolSet,
 } from './../utils'
-
 import useStore from './../../store'
-// import { CoreButton } from './../../../../core'
-// import SchoolSearch from './../SchoolSearch/SchoolSearch'
-// import {
-//   CPAL_FEEDERS,
-//   CPAL_FEEDER_TIP_ITEMS,
-// } from './../../../../../constants/metrics'
-// import { schools } from './../../../../../data/schools'
 import PopupContent from './PopupContent'
 
 /**
@@ -60,7 +53,6 @@ const MapMobileModal = ({ children, ...props }) => {
       <ModalHeader toggle={toggleMapModal}></ModalHeader>
       <ModalBody>
         <PopupContent feature={props.hoveredFeature} />
-        <Button>View School Details</Button>
       </ModalBody>
     </Modal>
   )
