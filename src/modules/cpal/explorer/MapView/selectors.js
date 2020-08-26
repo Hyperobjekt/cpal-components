@@ -203,9 +203,9 @@ export const getSchoolZoneShapes = ({
     interactive: false,
     paint: {
       'fill-color': getMetric(metric, CPAL_METRICS)
-        .colors[4], // SCHOOL_ZONE_COLORS.fill, // 'orange',
+        .colors[2], // SCHOOL_ZONE_COLORS.fill, // 'orange',
       'fill-outline-color': getMetric(metric, CPAL_METRICS)
-        .colors[4], // SCHOOL_ZONE_COLORS.outline, // '#000',
+        .colors[2], // SCHOOL_ZONE_COLORS.outline, // '#000',
       'fill-opacity': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],

@@ -2,7 +2,7 @@ import {
   SELECTED_COLORS,
   // CHOROPLETH_COLORS,
   CRI_COLORS,
-  ECON_COLORS,
+  // ECON_COLORS,
   NO_DATA_COLOR,
   DISTRICT_COLORS,
 } from './../../../../constants/colors'
@@ -20,22 +20,22 @@ export const getSelectedColors = () => SELECTED_COLORS
  * Gets the configuration for CRI quintiles
  * @type {[type]}
  */
-export const getMetricColors = metric => {
-  switch (metric) {
-    case 'cri':
-      return CRI_COLORS
-    case 'econ':
-      return ECON_COLORS
-    case 'edu':
-      return EDU_COLORS
-    case 'fam':
-      return FAM_COLORS
-    case 'heal':
-      return HEAL_COLORS
-    case 'comm':
-      return COMM_COLORS
-  }
-}
+// export const getMetricColors = metric => {
+//   switch (metric) {
+//     case 'cri':
+//       return CRI_COLORS
+//     case 'econ':
+//       return ECON_COLORS
+//     case 'edu':
+//       return EDU_COLORS
+//     case 'fam':
+//       return FAM_COLORS
+//     case 'heal':
+//       return HEAL_COLORS
+//     case 'comm':
+//       return COMM_COLORS
+//   }
+// }
 
 export const getDistrictColor = id => {
   console.log('getDistrictColor, ', id)
