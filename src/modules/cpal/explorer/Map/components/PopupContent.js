@@ -93,8 +93,7 @@ const PopupContent = ({ ...props }) => {
                 <div className="popup-metric-scale">
                   <NonInteractiveScale
                     metric={metric}
-                    showHash={true}
-                    hashLeft={getHashLeft(value, min, max)}
+                    showHash={false}
                     quintiles={setActiveQuintile(
                       getQuintile(
                         value,

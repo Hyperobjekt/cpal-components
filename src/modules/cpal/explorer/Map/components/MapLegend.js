@@ -78,6 +78,23 @@ const MapLegend = ({ ...props }) => {
       <div className="map-legend-metric-title">
         {i18n.translate(metricData.title)}
       </div>
+      <div className="map-legend-zone-labels">
+        <div className="fewer">
+          <div className="vertically-center">
+            {i18n.translate(`UI_MAP_LEGEND_FEWER`)}
+          </div>
+        </div>
+        <div className="avg">
+          <div className="vertically-center">
+            {i18n.translate(`UI_MAP_LEGEND_AVG`)}
+          </div>
+        </div>
+        <div className="more">
+          <div className="vertically-center">
+            {i18n.translate(`UI_MAP_LEGEND_MORE`)}
+          </div>
+        </div>
+      </div>
       <NonInteractiveScale
         metric={activeMetric}
         quintiles={activeQuintiles}

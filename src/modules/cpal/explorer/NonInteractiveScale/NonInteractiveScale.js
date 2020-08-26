@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 
 import { getRoundedValue, getMetric } from './../utils'
 import { CPAL_METRICS } from './../../../../constants/metrics'
@@ -58,7 +59,12 @@ const NonInteractiveScale = ({
             style={hashStyles}
           ></div>
         ) : null}
-        <div className="n-i-scale-quintiles metric-{metric} quintile-{quintile}">
+        <div
+          className={clsx(
+            'n-i-scale-quintiles',
+            'metric-' + metric,
+          )}
+        >
           <div
             className="n-i-scale-quintile quintile-0"
             style={styles[0]}
