@@ -153,7 +153,7 @@ export const CPAL_METRICS = [
     tab_level: 0,
     tooltip: 1,
     decimals: 0,
-    range: 58.38624339,
+    mean: 58.38624339,
   },
   {
     id: 'comm_bbp',
