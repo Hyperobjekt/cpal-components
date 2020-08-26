@@ -1,14 +1,6 @@
 // import LANG from './en'
 
-import {
-  CRI_COLORS,
-  ECON_COLORS,
-  EDU_COLORS,
-  FAM_COLORS,
-  HEL_COLORS,
-  COMM_COLORS,
-  DEM_COLORS,
-} from './colors'
+import { CRI_COLORS } from './colors'
 
 export const ROUTE_SET = [
   'view', // View, 'map' or 'feeder'
