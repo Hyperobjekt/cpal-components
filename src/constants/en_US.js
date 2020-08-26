@@ -157,6 +157,16 @@ const en_US = {
   UI_MAP_METRIC_DEM_THH: `Total households`,
   UI_MAP_METRIC_DEM_POPSE: `Senior population (65 and Over)`,
   UI_MAP_METRIC_DEM_POPCH: `Child population (Under 18)`,
+  // Added 2020-08-26
+  UI_MAP_METRIC_DEM_PERWH: `Percent of White, Non-Hispanic Population in Buffer`,
+  UI_MAP_METRIC_DEM_PERAS: `Percent of Asian, Non-Hispanic Population in Buffer`,
+  UI_MAP_METRIC_DEM_PERBL: `Percent of Black, Non-Hispanic Population in Buffer`,
+  UI_MAP_METRIC_DEM_PERCH: `Percent of Child Population (Under 18) in Buffer`,
+  UI_MAP_METRIC_DEM_PERF: `Percent of Female Population, All Ages in Buffer`,
+  UI_MAP_METRIC_DEM_PERHI: `Percent of Hispanic Population, All Races in Buffer`,
+  UI_MAP_METRIC_DEM_PERM: `Percent of Male Population, All Ages in Buffer`,
+  UI_MAP_METRIC_DEM_PERSE: `Percent of Senior Population (65 and Over) in Buffer`,
+  // End added 2020-08-26
   UI_PANEL_INFO_MAP: `<h5>Exploring in the map view</h5>
 
   <p>The map displays 189 Dallas ISD schools, each color-coded to show their score within the metrics that make up the Community Resource Index. The color scale has 5 blocks, each representing a quintile within the scale. The lighter the color, the higher the score.</p>
