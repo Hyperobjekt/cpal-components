@@ -99,15 +99,15 @@ export const getSchoolCircleLayer = ({
     paint: {
       'circle-color': [
         'case',
-        ['==', ['get', metric + '_quintile'], 0],
+        ['==', ['get', metric + '_sd'], 0],
         getMetric(metric, CPAL_METRICS).colors[0],
-        ['==', ['get', metric + '_quintile'], 1],
+        ['==', ['get', metric + '_sd'], 1],
         getMetric(metric, CPAL_METRICS).colors[1],
-        ['==', ['get', metric + '_quintile'], 2],
+        ['==', ['get', metric + '_sd'], 2],
         getMetric(metric, CPAL_METRICS).colors[2],
-        ['==', ['get', metric + '_quintile'], 3],
+        ['==', ['get', metric + '_sd'], 3],
         getMetric(metric, CPAL_METRICS).colors[3],
-        ['==', ['get', metric + '_quintile'], 4],
+        ['==', ['get', metric + '_sd'], 4],
         getMetric(metric, CPAL_METRICS).colors[4],
         '#ccc',
       ],
@@ -140,7 +140,7 @@ export const getSchoolCircleLayer = ({
     filter: [
       'let',
       'quintile',
-      ['number', ['get', ['concat', metric, '_quintile']]],
+      ['number', ['get', ['concat', metric, '_sd']]],
       [
         '==',
         [
