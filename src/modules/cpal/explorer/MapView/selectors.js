@@ -191,7 +191,7 @@ export const getSchoolZoneShapes = ({
   activeQuintiles,
   colors,
 }) => {
-  // console.log('getSchoolZoneShapes(), ', region)
+  // console.log('getSchoolZoneShapes(), ', metric)
   return fromJS({
     id: region + '-zone-shapes', // layerId || region + '-district-outline',
     source: 'schoolzones',
@@ -202,10 +202,22 @@ export const getSchoolZoneShapes = ({
     },
     interactive: false,
     paint: {
-      'fill-color': getMetric(metric, CPAL_METRICS)
-        .colors[2], // SCHOOL_ZONE_COLORS.fill, // 'orange',
-      'fill-outline-color': getMetric(metric, CPAL_METRICS)
-        .colors[2], // SCHOOL_ZONE_COLORS.outline, // '#000',
+      // 'fill-color': getMetric(metric, CPAL_METRICS)
+      //   .colors[2], // SCHOOL_ZONE_COLORS.fill, // 'orange',
+      'fill-color': [
+        'case',
+        ['==', ['get', metric + '_sd'], 0],
+        getMetric(metric, CPAL_METRICS).colors[0],
+        ['==', ['get', metric + '_sd'], 1],
+        getMetric(metric, CPAL_METRICS).colors[1],
+        ['==', ['get', metric + '_sd'], 2],
+        getMetric(metric, CPAL_METRICS).colors[2],
+        ['==', ['get', metric + '_sd'], 3],
+        getMetric(metric, CPAL_METRICS).colors[3],
+        ['==', ['get', metric + '_sd'], 4],
+        getMetric(metric, CPAL_METRICS).colors[4],
+        getMetric(metric, CPAL_METRICS).colors[2],
+      ],
       'fill-opacity': [
         'case',
         ['boolean', ['feature-state', 'hover'], false],
