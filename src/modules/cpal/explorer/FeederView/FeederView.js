@@ -18,6 +18,7 @@ import useStore from './../store'
 const FeederView = () => {
   const isLoaded = useRef(false)
   const breakpoint = useStore(state => state.breakpoint)
+  const activeView = useStore(state => state.activeView)
 
   const [showScrollPrompt, setShowScrollPrompt] = useState(
     false,
@@ -39,7 +40,7 @@ const FeederView = () => {
     } else {
       setShowScrollPrompt(false)
     }
-  }, [isLoaded, breakpoint])
+  }, [isLoaded, breakpoint, activeView])
 
   return (
     <div className="layout-view-feeder">
