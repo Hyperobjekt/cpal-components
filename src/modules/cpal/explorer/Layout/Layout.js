@@ -258,7 +258,7 @@ const Layout = ({ children, ...props }) => {
    * @return {String}
    */
   const getPositionFromBreakpoint = breakpoint => {
-    console.log('getPositionFromBreakpoint')
+    // console.log('getPositionFromBreakpoint')
     if (breakpoint === 'sm' || breakpoint === 'xs') {
       return 'bottom'
     } else {

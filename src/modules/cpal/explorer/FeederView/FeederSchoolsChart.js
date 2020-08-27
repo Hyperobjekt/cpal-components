@@ -8,11 +8,8 @@ import echarts from 'echarts/lib/echarts'
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import {
   CRI_COLORS,
-  ECON_COLORS,
-  EDU_COLORS,
-  FAM_COLORS,
-  HEL_COLORS,
-  COMM_COLORS,
+  FEEDER_HIGHLIGHTED_SCHOOL,
+  FEEDER_SCHOOL_COLLECTION,
 } from './../../../../constants/colors'
 import { schools } from './../../../../data/schools'
 import useStore from './../store'
@@ -57,21 +54,6 @@ const FeederSchoolsChart = ({ ...props }) => {
    * @return Array Array of objects
    */
   const getSchoolsData = () => {
-    // Go through list of schools from feeder file
-    // const schoolsData = []
-    // feeders.forEach(el => {
-    //   const school = schools.find(item => {
-    //     return item.TEA === el.TEA
-    //   })
-    //   if (!school) return
-    //   const x = getRoundedValue(school.ci_weight, 0)
-    //   const y = getCountOfSameYValue(x, schoolsData)
-    //   schoolsData.push({
-    //     name: el.HIGH_SLN + ',' + el.TEA,
-    //     label: el.SCHOOLNAME,
-    //     value: [x, y],
-    //   })
-    // })
     const schoolsData = []
     schools.forEach(el => {
       // const school = schools.find(item => {
@@ -215,12 +197,12 @@ const FeederSchoolsChart = ({ ...props }) => {
                 Number(getSchoolSLN(params.data.name)) ===
                 Number(highlightedSchool)
               ) {
-                return '#d0421b'
+                return FEEDER_HIGHLIGHTED_SCHOOL
               } else if (
                 Number(getFeederSLN(params.data.name)) ===
                 Number(activeFeeder)
               ) {
-                return 'orange'
+                return FEEDER_SCHOOL_COLLECTION
               } else {
                 return getMetric(
                   defaultMetric,
@@ -235,13 +217,6 @@ const FeederSchoolsChart = ({ ...props }) => {
                 ? 1
                 : 1
             },
-            // borderColor: params => {
-            //   return Number(
-            //     getFeederSLN(params.data.name),
-            //   ) === Number(activeFeeder)
-            //     ? '#fff'
-            //     : 'transparent'
-            // },
           },
           clip: false,
           hoverAnimation: true,

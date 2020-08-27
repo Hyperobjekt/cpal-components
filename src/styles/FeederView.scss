@@ -27,6 +27,22 @@ $bar-highlight: #e94f34;
           width: 90%;
           margin-top: 350px;
           padding-top: 2rem;
+          position: relative;
+          .scroll-prompt {
+            position: absolute;
+            right: 35%;
+            top: 35%;
+            transform: rotate(90deg);
+            transform-origin: left top 0;
+            font-family: Halyard;
+            font-size: 1.5rem;
+            font-weight: 200;
+            // margin-right: 1rem;
+            svg {
+              margin-bottom: 2px;
+              margin-left: 0.6rem;
+            }
+          }
           .feeder-bar-button {
             position: relative;
             width: 100%;

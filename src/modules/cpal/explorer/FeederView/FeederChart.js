@@ -17,6 +17,7 @@ import {
   FAM_COLORS,
   HEL_COLORS,
   COMM_COLORS,
+  FEEDER_ACTIVE,
 } from './../../../../constants/colors'
 import useStore from './../store'
 import {
@@ -26,7 +27,7 @@ import {
 } from './../utils'
 import { schools } from './../../../../data/schools'
 
-const FeederChart = ({ ...props }) => {
+const FeederChart = ({ children, ...props }) => {
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
@@ -42,6 +43,17 @@ const FeederChart = ({ ...props }) => {
   const setHighlightedSchool = useStore(
     state => state.setHighlightedSchool,
   )
+
+  const getBarBgColor = el => {
+    // console.log('getBarBgColor', el)
+    // If active feeder, return that color
+    if (Number(activeFeeder) === Number(el.id)) {
+      return FEEDER_ACTIVE
+    } else {
+      // Else return the color for the standard deviation
+      return CRI_COLORS[el.sd]
+    }
+  }
 
   /**
    * Gets the set of schools that are in a feeder
@@ -65,6 +77,18 @@ const FeederChart = ({ ...props }) => {
     return total / values.length
   }
 
+  const getFeederSDAverage = (metric, schoolSet) => {
+    // Get all the schools that are in that
+    // console.log('getFeederAverage, ', schoolSet)
+    const values = []
+    schoolSet.forEach(el => {
+      values.push(el[metric + '_sd'])
+    })
+    let total = 0
+    values.forEach(v => (total = total + v))
+    return Math.round(total / values.length)
+  }
+
   /**
    * Builds feeder bar chart data set.
    * @return Array Array of objects
@@ -78,6 +102,10 @@ const FeederChart = ({ ...props }) => {
         id: el.id,
         label: el.title,
         value: getFeederAverage(
+          'cri_weight',
+          getSchoolSet(el.id),
+        ),
+        sd: getFeederSDAverage(
           'cri_weight',
           getSchoolSet(el.id),
         ),
@@ -142,8 +170,11 @@ const FeederChart = ({ ...props }) => {
       <div className="feeder-chart-header">
         <h2>Dallas ISD School Feeder Patterns</h2>
       </div>
-       
+
+      {children}
+
       {buildFeederData().map(el => {
+        // console.log('building feeder data, ', el)
         // to manage tooltip state
         const [tooltipOpen, setTooltipOpen] = useState(
           false,
@@ -169,6 +200,7 @@ const FeederChart = ({ ...props }) => {
               className="bar"
               style={{
                 width: el.value + '%',
+                backgroundColor: getBarBgColor(el), // conditional based on
               }}
               aria-hidden="true"
             >

@@ -74,9 +74,8 @@ export const getFeatureFromArray = (features, id) => {
 //     ? hovered.properties.id
 //     : ''
 
-export {
-  getSelectedColors, // getColorForVarNameValue, // isColorInvertedForVarName, // getChoroplethColorAtValue, // getChoroplethColors, // getMetricColors, // getSelectedColors, // getDistrictColor,
-} from './colors'
+export {} from // getSelectedColors, // getColorForVarNameValue, // isColorInvertedForVarName, // getChoroplethColorAtValue, // getChoroplethColors, // getMetricColors, // getSelectedColors, // getDistrictColor,
+'./colors'
 
 export {
   isGapDemographic, // getDemographicForVarNames, // getGapDemographics, // getDemographicFromVarName, // getDemographicIdFromVarName, // isVersusFromVarNames, // isGapVarName, // , // getGapById, // getDemographicById, // getGaps, // getDemographics,
@@ -94,9 +93,8 @@ export {} from // valueToLowMidHigh,
 './metrics'
 
 export {
-  getRegionFromLocationId, // getRegionFromFeature, // getRegionFromLocationId,
-} from // getSizesForRegion, //   , //   getRegionById, //   getRegionDomain, //   getSingularRegion, //   getSingularRegions, //   getRegions, //   getLocationIdsForRegion, //   getSizesForRegion,
-'./regions'
+  getRegionFromLocationId, // getRegionFromFeature, // getRegionFromLocationId, // getSizesForRegion, //   , //   getRegionById, //   getRegionDomain, //   getSingularRegion, //   getSingularRegions, //   getRegions, //   getLocationIdsForRegion, //   getSizesForRegion,
+} from './regions'
 
 export {} from // getPositionForVarNameValue,
 // getPredictedValue,

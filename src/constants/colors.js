@@ -1,21 +1,7 @@
-/**
- * Colors for selected locations
- */
-export const SELECTED_COLORS = [
-  '#F46800',
-  '#8C1AF4',
-  '#B2002A',
-  '#F84EBF',
-  '#3F00B3',
-  '#FF0C0C',
-]
-
-// Colors for school zone (2mi radius)
-export const SCHOOL_ZONE_COLORS = {
-  outline: 'rgba(0, 0, 0, 0.2)',
-  fill: 'rgba(255, 186, 37, 0.2)',
-  opacity: 0.2,
-}
+// Colors for various states in the feeder view
+export const FEEDER_ACTIVE = '#d0421b'
+export const FEEDER_HIGHLIGHTED_SCHOOL = '#d0421b'
+export const FEEDER_SCHOOL_COLLECTION = 'orange'
 
 /**
  * colors for disabled scale

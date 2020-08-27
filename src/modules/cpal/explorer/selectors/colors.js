@@ -1,5 +1,5 @@
 import {
-  SELECTED_COLORS,
+  // SELECTED_COLORS,
   // CHOROPLETH_COLORS,
   CRI_COLORS,
   // ECON_COLORS,
@@ -14,7 +14,7 @@ import { getValuePositionInRange } from './../../../../shared/utils'
 /**
  * Gets the configuration for selected colors
  */
-export const getSelectedColors = () => SELECTED_COLORS
+// export const getSelectedColors = () => SELECTED_COLORS
 
 /**
  * Gets the configuration for CRI quintiles
