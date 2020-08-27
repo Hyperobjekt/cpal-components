@@ -84,6 +84,7 @@ const FeederSchoolsChart = ({ ...props }) => {
         name: el.TEA + ',' + el.HIGH_SLN,
         label: el.SCHOOLNAME,
         value: [x, y],
+        sd: el.cri_weight_sd,
       })
     })
     return schoolsData
@@ -192,38 +193,39 @@ const FeederSchoolsChart = ({ ...props }) => {
               Number(getSchoolSLN(params.name)) ===
               Number(highlightedSchool)
             ) {
-              return 13
+              return [10, 8]
+            } else if (
+              Number(getFeederSLN(params.name)) ===
+              Number(activeFeeder)
+            ) {
+              return [10, 8]
             } else {
-              return Number(getFeederSLN(params.name)) ===
-                Number(activeFeeder)
-                ? 12
-                : 8
+              return [8, 6]
             }
           },
           data: getSchoolsData(),
           type: 'scatter',
           symbol: 'roundRect',
-          symbolSize: [8, 6],
+          // symbolSize: [8, 6],
           itemStyle: {
             color: params => {
+              // console.log('coloring, params are ', params)
               // If it's highlighted, return that, else check for feeder.
               if (
                 Number(getSchoolSLN(params.data.name)) ===
                 Number(highlightedSchool)
               ) {
                 return '#d0421b'
-                // getMetric(
-                //   defaultMetric,
-                //   CPAL_METRICS,
-                // ).colors[0]
+              } else if (
+                Number(getFeederSLN(params.data.name)) ===
+                Number(activeFeeder)
+              ) {
+                return 'orange'
               } else {
-                return Number(
-                  getFeederSLN(params.data.name),
-                ) === Number(activeFeeder)
-                  ? getMetric(defaultMetric, CPAL_METRICS)
-                      .colors[2]
-                  : getMetric(defaultMetric, CPAL_METRICS)
-                      .colors[4]
+                return getMetric(
+                  defaultMetric,
+                  CPAL_METRICS,
+                ).colors[params.data.sd]
               }
             },
             opacity: params => {
@@ -231,7 +233,7 @@ const FeederSchoolsChart = ({ ...props }) => {
                 getFeederSLN(params.data.name),
               ) === Number(activeFeeder)
                 ? 1
-                : 0.2
+                : 1
             },
             // borderColor: params => {
             //   return Number(
@@ -307,12 +309,6 @@ const FeederSchoolsChart = ({ ...props }) => {
     click: onSchoolClick,
   }
 
-  // height: '200px',
-  // width: '1200px',
-  // marginLeft: 'auto',
-  // marginRight: 'auto',
-  // display: 'block',
-
   return (
     <ReactEcharts
       onEvents={schoolsEvents}
@@ -325,8 +321,8 @@ const FeederSchoolsChart = ({ ...props }) => {
       }}
       option={chartOptions}
       notMerge={false}
-      lazyUpdate={true}
-      silent={true}
+      lazyUpdate={false}
+      silent={false}
       theme={'theme_schools'}
       {...props}
     />
