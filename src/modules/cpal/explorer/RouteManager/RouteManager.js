@@ -235,6 +235,12 @@ const RouteManager = props => {
     state => state.setActiveView,
   )
 
+  // Update view select control
+  const viewSelect = useStore(state => state.viewSelect)
+  const setViewSelect = useStore(
+    state => state.setViewSelect,
+  )
+
   const activeMetric = useStore(state => state.activeMetric)
   const setActiveMetric = useStore(
     state => state.setActiveMetric,
@@ -333,6 +339,15 @@ const RouteManager = props => {
 
     if (!!params.view) {
       setActiveView(params.view)
+      const newViewSelect = viewSelect.map(el => {
+        if (String(el.id).indexOf(params.view) >= 0) {
+          el.active = true
+        } else {
+          el.active = false
+        }
+        return el
+      })
+      setViewSelect(newViewSelect)
     }
     if (!!params.metric) {
       setActiveMetric(params.metric)

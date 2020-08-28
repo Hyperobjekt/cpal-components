@@ -41,6 +41,7 @@
       line-height: 1.5rem;
       font-weight: 300;
       padding: 0.8rem 1.2rem;
+      font-weight: 300 !important;
       &:after {
         margin-left: 1rem;
         margin-bottom: -2px;
@@ -55,8 +56,18 @@
       align-self: center;
       button {
         padding: 0.8rem 1.2rem;
-        &.active {
-          background-color: #e55934;
+        border-radius: 0;
+        font-weight: 300;
+        &.active,
+        &:focus {
+          color: #212529;
+          background-color: rgba(
+            204,
+            204,
+            204,
+            0.4
+          ); // #e55934;
+          border: 0;
         }
       }
     }
@@ -120,7 +131,7 @@
         font-size: 14px;
       }
     }
-    
+
     .select-view {
       display: none;
     }
@@ -132,17 +143,19 @@
     .control-label {
       text-align: center;
       display: block;
-      color: #606B44;
+      color: #606b44;
       font-weight: 300;
       font-size: 1.3rem;
       margin-bottom: 16px;
-      &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5)  {
+      &:nth-of-type(3),
+      &:nth-of-type(4),
+      &:nth-of-type(5) {
         margin-bottom: 8px;
       }
     }
     .button-view-map,
     .button-view-feeder,
-    .button-panel-filters, 
+    .button-panel-filters,
     .button-panel-info {
       display: block;
       font-size: 2.1rem;
@@ -159,26 +172,25 @@
         box-shadow: none;
       }
       &.btn-light:not(:disabled):not(.disabled).active {
-        background-color: #FFEEE5;
+        background-color: #ffeee5;
         border: none;
         &:focus {
           border: none;
           box-shadow: none;
         }
         svg {
-          stroke: #E55934;
+          stroke: #e55934;
         }
       }
     }
-    .button-panel-filters, 
+    .button-panel-filters,
     .button-panel-info {
       background-color: transparent;
     }
-    .button-share-facebook, 
+    .button-share-facebook,
     .button-share-twitter,
     .button-share-email,
-    .button-share-link
-     {
+    .button-share-link {
       font-size: 1.4rem;
       height: 40px;
       width: 40px;
@@ -199,7 +211,7 @@
           box-shadow: none;
         }
         svg {
-          stroke: #E55934;
+          stroke: #e55934;
         }
       }
     }
@@ -211,7 +223,7 @@
     hr {
       width: 100%;
       margin: 0.8rem 0 1.6rem;
-      border-top: 1px solid #E8EAE4;
+      border-top: 1px solid #e8eae4;
     }
     button,
     .btn.btn-core {
