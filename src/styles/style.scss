@@ -80,6 +80,7 @@ html {
 // Slideout panel & children
 @import 'SlideoutPanel';
 @import 'PanelFilterView';
+@import 'PanelLayerView';
 @import 'PanelInfoView';
 // Interactive scale appears in filter panel
 @import 'InteractiveScale';
@@ -87,7 +88,6 @@ html {
 @import 'NonInteractiveScale';
 // Search in header
 @import 'SchoolSearch';
-@import 'MapLayerToggle';
 @import 'tooltip';
 // Intro Modal
 @import 'Modal';

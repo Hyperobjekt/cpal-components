@@ -1,14 +1,17 @@
-.map-layer-toggle {
-  position: absolute;
-  right: 20px;
-  bottom: 30px;
+.map-panel-slideout-layers {
+  // position: absolute;
+  // right: 20px;
+  // bottom: 30px;
+  font-family: Halyard;
+  font-weight: 300;
+  font-size: 1.4rem;
   .map-layer-toggle-pane {
     // padding-top: 0.5rem;
     background-color: #fff;
     // border-top-right-radius: 5px;
     // border-top-left-radius: 5px;
     overflow: hidden;
-    box-shadow: 1px 1px 2px #ccc;
+    // box-shadow: 1px 1px 2px #ccc;
     font-size: 1.4rem;
     line-height: 1.6rem;
     font-weight: 300;
@@ -46,23 +49,23 @@
       transition: max-height 400ms ease-in-out;
     }
   }
-  .map-layer-toggle-btn {
-    width: 100%;
-    border-radius: 0;
-    background-color: #2c390b;
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    padding: 0.5rem;
-    .icon {
-      width: 13px;
-      height: 13px;
-      margin-top: -4px;
-      margin-right: 0.5rem;
-    }
-  }
+  // .map-layer-toggle-btn {
+  //   width: 100%;
+  //   border-radius: 0;
+  //   background-color: #2c390b;
+  //   font-size: 1.2rem;
+  //   line-height: 1.6rem;
+  //   padding: 0.5rem;
+  //   .icon {
+  //     width: 13px;
+  //     height: 13px;
+  //     margin-top: -4px;
+  //     margin-right: 0.5rem;
+  //   }
+  // }
 }
 
-.map-layer-toggle {
+.map-panel-slideout-layers {
   .map-layer-toggle-pane {
     .layer {
       display: block;

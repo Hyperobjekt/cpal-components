@@ -680,7 +680,6 @@ const MapBase = ({
           </Popup>
         )}
         <MapLegend />
-        <MapLayerToggle currentMap={currentMap} />
         <div className="map__zoom">
           <NavigationControl
             showCompass={false}
