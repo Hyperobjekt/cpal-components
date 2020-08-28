@@ -1,25 +1,25 @@
 import shallow from 'zustand/shallow'
-import useDataOptions from './useDataOptions'
+// import useDataOptions from './useDataOptions'
 import useUiStore from './useUiStore'
-import {
-  // getFeatureProperty,
-  // getSizesForRegion,
-  getRegionFromLocationId,
-  // isGapDemographic,
-} from '../selectors'
-import { getFiltersLang } from '../selectors/lang'
-import {
-  getStateName,
-  getStateAbbr,
-} from './../../../../shared/utils/states'
-import { useCallback } from 'react'
-import { formatNumber } from './../../../../shared/utils'
-import { useMapStore } from './../Map'
-import {
-  getVarNames,
-  getDataForId,
-} from '../selectors/data'
-import useData from './useData'
+// import {
+//   // getFeatureProperty,
+//   // getSizesForRegion,
+//   getRegionFromLocationId,
+//   // isGapDemographic,
+// } from '../selectors'
+// import { getFiltersLang } from '../selectors/lang'
+// import {
+//   getStateName,
+//   getStateAbbr,
+// } from './../../../../shared/utils/states'
+// import { useCallback } from 'react'
+// import { formatNumber } from './../../../../shared/utils'
+// import { useMapStore } from './../Map'
+// import {
+//   getVarNames,
+//   getDataForId,
+// } from '../selectors/data'
+// import useData from './useData'
 
 /**
  * Provides the current values for metric, demographic, and region

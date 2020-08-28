@@ -168,7 +168,7 @@ const MapBase = ({
         !currentMap.setFeatureState
       )
         return
-      console.log('setFeatureState', featureId, type, state)
+      // console.log('setFeatureState', featureId, type, state)
       // console.log('layers = ', layers)
       const layer = layers.find(l => l.type === type)
       // console.log('layer = ', layer)
@@ -434,7 +434,7 @@ const MapBase = ({
     state => state.setSchoolHint,
   )
   const handleFlyToSchool = () => {
-    console.log('handleFlyToSchool')
+    // console.log('handleFlyToSchool')
     if (!!flyToSchoolSLN) {
       const feature = currentMap.querySourceFeatures(
         'schools',
@@ -442,27 +442,14 @@ const MapBase = ({
           filter: ['in', 'SLN', flyToSchoolSLN],
         },
       )[0]
-      console.log(feature)
-      // feature[0].layer = {}
-      // feature[0].layer.id = 'schools-circle'
-      // setTimeout(() => {
-      //   console.log('calling onHover')
-      //   onHover(
-      //     feature[0],
-      //     // [],
-      //     [
-      //       feature[0].vectorTileFeature.x,
-      //       feature[0].vectorTileFeature.y,
-      //     ],
-      //     feature[0].geometry.coords,
-      //   )
-      // }, 5000)
+      // console.log(feature)
+
       if (!!feature) {
         const hint = {}
         hint.coords = feature.geometry.coordinates
-        console.log('hint = ', hint)
+        // console.log('hint = ', hint)
         setTimeout(() => {
-          console.log('calling onHover')
+          // console.log('calling onHover')
           setSchoolHint(hint)
           setTimeout(() => {
             setSchoolHint(null)
@@ -473,7 +460,7 @@ const MapBase = ({
   }
 
   useEffect(() => {
-    console.log('fly to school changed')
+    // console.log('fly to school changed')
     handleFlyToSchool()
   }, [flyToSchoolSLN])
 
