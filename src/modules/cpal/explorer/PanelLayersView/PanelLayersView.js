@@ -13,11 +13,13 @@ import {
 import { MdCallSplit } from 'react-icons/md'
 
 import useStore from './../store'
-import { CPAL_LAYERS } from './../../../../constants/layers'
+import {
+  CPAL_LAYERS,
+  CPAL_LAYER_GROUPS,
+} from './../../../../constants/layers'
 
 const PanelLayersView = ({ ...props }) => {
   const activeLayers = useStore(state => state.activeLayers)
-  // console.log('activeLayers, ', activeLayers)
   const setActiveLayers = useStore(
     state => state.setActiveLayers,
   )
@@ -47,7 +49,7 @@ const PanelLayersView = ({ ...props }) => {
           el.only_one === true &&
           el.only_one_name === name
         ) {
-          activeLayers[i] = 0
+          activeLayers[el.index] = 0
         }
       })
     }
@@ -64,63 +66,115 @@ const PanelLayersView = ({ ...props }) => {
     // console.log('activeLayers, ', activeLayers)
   }
 
-  const getContents = () => {
-    // Right now, just check for feeder OR map.
-    // if (activeView === 'feeder') {
-    //   return i18n.translate('UI_PANEL_INFO_FEEDER')
-    // } else {
-    //   return i18n.translate('UI_PANEL_INFO_MAP')
-    // }
-  }
+  // const getContents = () => {
+  //   // Right now, just check for feeder OR map.
+  //   // if (activeView === 'feeder') {
+  //   //   return i18n.translate('UI_PANEL_INFO_FEEDER')
+  //   // } else {
+  //   //   return i18n.translate('UI_PANEL_INFO_MAP')
+  //   // }
+  // }
   return (
     <div className="map-panel-slideout-layers">
       <div className={clsx(`map-layer-toggle-pane`)}>
-        {CPAL_LAYERS.map((el, i) => {
-          // to manage tooltip state
-          const [tooltipOpen, setTooltipOpen] = useState(
-            false,
-          )
-          const toggle = () => setTooltipOpen(!tooltipOpen)
+        {CPAL_LAYER_GROUPS.map((el, i) => {
           return (
-            <div className="layer" key={`layer-${el.id}`}>
-              <label
-                key={`label-${el.id}`}
-                id={`label-${el.id}`}
-              >
-                <input
-                  type="checkbox"
-                  id={'layer_' + i}
-                  name="scales"
-                  key={el.id}
-                  data-only-one={el.only_one}
-                  data-only-one-name={el.only_one_name}
-                  checked={
-                    activeLayers[i] === 1 ? true : false
-                  }
-                  readOnly={true}
-                  onClick={e => {
-                    updateLayers(e)
-                  }}
-                />
-                <div className="checkmark"></div>
-                {i18n.translate(getLayerLabel(el.id))}
-                {!!el.tooltip && el.tooltip.length > 0 && (
-                  <FiInfo id={'tip_prompt_' + el.id} />
-                )}
-              </label>
-              {!!el.tooltip && el.tooltip.length > 0 && (
-                <Tooltip
-                  placement="top"
-                  isOpen={tooltipOpen}
-                  target={'tip_prompt_' + el.id}
-                  toggle={toggle}
-                  autohide={false}
-                  className={'tip-prompt-layer'}
-                  dangerouslySetInnerHTML={{
-                    __html: i18n.translate(el.tooltip),
-                  }}
-                ></Tooltip>
+            <div
+              className={clsx(
+                'layer-group',
+                'layer-group-' + i,
               )}
+              key={'layer-group-' + i}
+            >
+              <h5 key={'layer-group-header-' + i}>
+                {i18n.translate(el.title)}
+              </h5>
+              <div
+                key={'layer-group-desc-' + i}
+                className="layer-group-desc"
+                dangerouslySetInnerHTML={{
+                  __html: i18n.translate(el.desc),
+                }}
+              ></div>
+              <div
+                className={clsx(
+                  'layer-group',
+                  'layer-group-layers-' + i,
+                )}
+                key={'layer-group-layers-' + i}
+              >
+                {CPAL_LAYERS.filter(item => {
+                  return item.group === el.id
+                }).map((layer, i) => {
+                  // to manage tooltip state
+                  const [
+                    tooltipOpen,
+                    setTooltipOpen,
+                  ] = useState(false)
+                  const toggle = () =>
+                    setTooltipOpen(!tooltipOpen)
+                  return (
+                    <div
+                      className="layer"
+                      key={`layer-${layer.id}`}
+                      id={`layer-${layer.id}`}
+                    >
+                      <label
+                        key={`label-${layer.id}`}
+                        id={`label-${layer.id}`}
+                      >
+                        <input
+                          type="checkbox"
+                          id={'layer_' + layer.index}
+                          name="scales"
+                          key={'layer-input-' + layer.id}
+                          data-only-one={layer.only_one}
+                          data-only-one-name={
+                            layer.only_one_name
+                          }
+                          checked={
+                            activeLayers[layer.index] === 1
+                              ? true
+                              : false
+                          }
+                          readOnly={true}
+                          onClick={e => {
+                            updateLayers(e)
+                          }}
+                        />
+                        <div className="checkmark"></div>
+                        {i18n.translate(
+                          getLayerLabel(layer.id),
+                        )}
+                        {!!el.tooltip &&
+                          el.tooltip.length > 0 && (
+                            <FiInfo
+                              id={'tip_prompt_' + layer.id}
+                            />
+                          )}
+                      </label>
+                      {!!el.tooltip &&
+                        el.tooltip.length > 0 && (
+                          <Tooltip
+                            placement="top"
+                            isOpen={tooltipOpen}
+                            target={
+                              'tip_prompt_' + layer.id
+                            }
+                            toggle={toggle}
+                            autohide={false}
+                            className={'tip-prompt-layer'}
+                            dangerouslySetInnerHTML={{
+                              __html: i18n.translate(
+                                layer.tooltip,
+                              ),
+                            }}
+                          ></Tooltip>
+                        )}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           )
         })}

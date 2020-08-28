@@ -49,6 +49,11 @@ const en_US = {
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,
   UI_MAP_LAYERS_REDLINING_TIP: `Neighborhood zones created for the purpose of discriminatory lending and resource distribution. <a href="/faq/" target="_blank">See FAQ page for more.</a>`,
   UI_MAP_LAYERS_DISTRICTS: `District boundaries`,
+  UI_MAP_LAYER_0_TITLE: `Lorem ipsum`,
+  UI_MAP_LAYER_0_DESC: `<p>Ea culpa ex cupidatat aliqua aute sint non in commodo voluptate. Anim do ex elit duis irure amet sunt officia ea quis nisi. Ut enim et fugiat dolor sint velit mollit sint eu dolor proident. Irure adipisicing officia adipisicing sit ad consectetur dolor dolor fugiat officia cupidatat adipisicing occaecat.</p>`,
+  UI_MAP_LAYER_1_TITLE: `Census Data`,
+  UI_MAP_LAYER_1_DESC: `<p>Ea culpa ex cupidatat aliqua aute sint non in commodo voluptate. Anim do ex elit duis irure amet sunt officia ea quis nisi. Ut enim et fugiat dolor sint velit mollit sint eu dolor proident. Irure adipisicing officia adipisicing sit ad consectetur dolor dolor fugiat officia cupidatat adipisicing occaecat.</p>`,
+
   // UI_MAP_METRIC_TITLE_CRI: `Weighted Community Resource Index`,
   UI_MAP_METRIC_ABBREV_CRI: `CRI`,
   UI_MAP_METRIC_TITLE_CRI: `Community Resource Index`,

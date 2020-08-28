@@ -1,16 +1,20 @@
+// Array of layers groups.
 export const CPAL_LAYER_GROUPS = [
   {
     id: 0,
-    title: `layer title`,
-    desc: `layer description`,
+    title: `UI_MAP_LAYER_0_TITLE`,
+    desc: `UI_MAP_LAYER_0_DESC`,
+    census_legend: 0,
   },
   {
     id: 1,
-    title: `layer title`,
-    desc: `layer description`,
+    title: `UI_MAP_LAYER_1_TITLE`,
+    desc: `UI_MAP_LAYER_1_DESC`,
+    census_legend: 1,
   },
 ]
 
+// Array of layers.
 export const CPAL_LAYERS = [
   {
     id: `districts`,
@@ -20,6 +24,7 @@ export const CPAL_LAYERS = [
     only_one: false,
     only_one_name: null,
     group: 0,
+    index: 0,
   },
   {
     id: `redlining`,
@@ -29,6 +34,7 @@ export const CPAL_LAYERS = [
     only_one: false,
     only_one_name: null,
     group: 0,
+    index: 1,
   },
   {
     id: `demobl`,
@@ -39,6 +45,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_popbl`,
     group: 1,
+    index: 2,
   },
   {
     id: `demohi`,
@@ -49,6 +56,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_pophi`,
     group: 1,
+    index: 3,
   },
   {
     id: `demoas`,
@@ -59,6 +67,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_popas`,
     group: 1,
+    index: 4,
   },
   {
     id: `demowh`,
@@ -69,6 +78,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_popwh`,
     group: 1,
+    index: 5,
   },
 ]
 

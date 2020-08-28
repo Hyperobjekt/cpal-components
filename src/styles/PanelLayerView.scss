@@ -3,8 +3,25 @@
   // right: 20px;
   // bottom: 30px;
   font-family: Halyard;
+  padding: 2rem;
+  font-size: 1.6rem;
   font-weight: 300;
-  font-size: 1.4rem;
+  p {
+    margin: 1rem 0;
+    font-family: Halyard;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 22px;
+    color: #606b44;
+    margin-bottom: 0.8rem;
+  }
+  h5 {
+    margin-bottom: 1.6rem;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #2c390b;
+  }
   .map-layer-toggle-pane {
     // padding-top: 0.5rem;
     background-color: #fff;
