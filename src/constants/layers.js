@@ -16,10 +16,20 @@ export const CPAL_LAYER_GROUPS = [
 
 // Array of layers.
 export const CPAL_LAYERS = [
+  // {
+  //   id: `districts`,
+  //   label: `UI_MAP_LAYERS_DISTRICTS`,
+  //   types: [`districts`],
+  //   tooltip: null,
+  //   only_one: false,
+  //   only_one_name: null,
+  //   group: 0,
+  //   index: 0,
+  // },
   {
-    id: `districts`,
-    label: `UI_MAP_LAYERS_DISTRICTS`,
-    types: [`districts`],
+    id: `feeders`,
+    label: `UI_MAP_LAYERS_FEEDERS`,
+    types: [`feeders`],
     tooltip: null,
     only_one: false,
     only_one_name: null,

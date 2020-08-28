@@ -47,6 +47,7 @@ const en_US = {
   UI_MAP_LEGEND_MORE: `Above Average`,
   UI_MAP_LEGEND_FEWER: `Below Average`,
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,
+  UI_MAP_LAYERS_FEEDERS: `School feeder patterns`,
   UI_MAP_LAYERS_REDLINING_TIP: `Neighborhood zones created for the purpose of discriminatory lending and resource distribution. <a href="/faq/" target="_blank">See FAQ page for more.</a>`,
   UI_MAP_LAYERS_DISTRICTS: `District boundaries`,
   UI_MAP_LAYER_0_TITLE: `Lorem ipsum`,

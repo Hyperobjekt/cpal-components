@@ -19,6 +19,7 @@ import {
 } from './../utils'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
+import { feeders } from './../../../../data/districts.js'
 import { demotracts } from './../../../../data/demotracts.min.js'
 import useStore from './../store'
 
@@ -161,7 +162,7 @@ export const getDistrictOutline = (
 ) => {
   // console.log('getDistrictOutline(), ', region)
   // const isActive = activeLayers.indexOf('districts') > -1
-  const isActive = activeLayers[0] === 1
+  const isActive = true // Changed to always active by client. // activeLayers[0] === 1
   return fromJS({
     id: 'districts',
     source: 'districts',
