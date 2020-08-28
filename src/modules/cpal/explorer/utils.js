@@ -445,3 +445,19 @@ export const getSchoolZones = () => {
   // console.log('newJson', newJson)
   return newJson
 }
+
+/**
+ * Gets a property from a feature, returns null if not found
+ * @param {Feature} feature GeoJSON feature
+ * @param {string} propName property name to grab
+ */
+export const getFeatureProperty = (feature, propName) => {
+  if (
+    feature &&
+    feature.properties &&
+    feature.properties[propName] !== -999
+  ) {
+    return feature.properties[propName]
+  }
+  return null
+}

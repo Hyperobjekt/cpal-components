@@ -117,9 +117,6 @@ const MapBase = ({
     state => state.setResetViewport,
   )
 
-  // Touch device tracking
-  const isTouch = useStore(state => state.isTouch)
-
   const flyToSchoolSLN = useStore(
     state => state.flyToSchoolSLN,
   )
@@ -632,10 +629,7 @@ const MapBase = ({
         {!!hoveredId &&
           !(breakpoint === 'xs' || breakpoint === 'sm') && (
             <Popup
-              className={clsx(
-                !!isTouch ? 'is-touch' : '',
-                'school-details-tip',
-              )}
+              className={clsx('school-details-tip')}
               latitude={
                 getTooltipOffset(hoveredFeature).coords[1]
               }
@@ -643,7 +637,7 @@ const MapBase = ({
                 getTooltipOffset(hoveredFeature).coords[0]
               }
               onClick={handlePopupClick}
-              closeButton={!!isTouch}
+              closeButton={false}
               closeOnClick={false}
               onClose={() =>
                 this.setState({ showPopup: false })
@@ -663,10 +657,7 @@ const MapBase = ({
           )}
         {!!schoolHint && (
           <Popup
-            className={clsx(
-              !!isTouch ? 'is-touch' : '',
-              'school-interact-hint',
-            )}
+            className={clsx('school-interact-hint')}
             latitude={schoolHint.coords[1]}
             longitude={schoolHint.coords[0]}
             closeButton={false}

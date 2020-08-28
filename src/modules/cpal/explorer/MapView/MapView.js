@@ -2,49 +2,24 @@ import React, { useMemo, useEffect, useRef } from 'react'
 import i18n from '@pureartisan/simple-i18n'
 import shallow from 'zustand/shallow'
 import { getLayers, CPAL_SOURCES } from './selectors'
-// import {} from './selectors'
 import MapBase, {
-  useFlyToState,
-  useFlyToFeature,
-  useFlyToReset,
+  // useFlyToState,
+  // useFlyToFeature,
+  // useFlyToReset,
   useIdMap,
 } from './../Map'
 import MapLegend from './../Map'
-import {
-  // getSelectedColors,
-  getFeatureProperty,
-  // getLocationIdsForRegion,
-} from './../selectors'
-// import { getLang } from './../selectors/lang'
-import {
-  // useActiveOptionIds,
-  // useFilters,
-  // useLocations,
-  useHovered,
-  // useHoveredZone,
-  // useMarkersVisibility,
-  // useAddLocation,
-  // useActiveLocationFeature,
-} from './../hooks'
-// import { REGION_TO_ID_LENGTH } from './../../../../constants/regions'
+// import { getFeatureProperty } from './../selectors'
+
 import { CPAL_METRICS } from './../../../../constants/metrics'
-// import useData from './../hooks/useData'
-import { getMetric, getQuintilesPhrase } from './../utils'
+import {
+  getMetric,
+  getQuintilesPhrase,
+  getFeatureProperty,
+} from './../utils'
 import useStore from './../store'
 
-// const selectedColors = getSelectedColors()
-
-// const useStyles = makeStyles(theme => ({
-//   legend: {
-//     position: 'absolute',
-//     bottom: 24,
-//     right: 16,
-//   },
-// }))
-
 const MapView = props => {
-  /** current options for the map */
-  // const [demographic, region] = useActiveOptionIds()
   // Currently active metric
   const metric = useStore(state => state.activeMetric)
   // Active quintiles
@@ -59,18 +34,13 @@ const MapView = props => {
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
   )
-  /** currently active data filters */
-  // const [{ prefix }] = useFilters()
-  /** currently selected location ids */
-  // const [locations] = useLocations()
-  /** id of the currently hovered location */
-  const [
-    hoveredId,
-    hoveredType,
-    coords,
-    feature,
-    setHovered,
-  ] = useHovered()
+
+  // All items to be passed into map from state.
+  const hoveredId = useStore(state => state.hovered)
+  const hoveredType = useStore(state => state.type)
+  const feature = useStore(state => state.feature)
+  const coords = useStore(state => state.coords)
+  const setHovered = useStore(state => state.setHovered)
 
   // Default affix for features in school zones layer
   const schoolZonesAffix = useStore(
@@ -83,22 +53,10 @@ const MapView = props => {
     state => [...state.activeLayers],
     shallow,
   )
-  // Touch device tracking
-  // const isTouch = useStore(state => state.isTouch)
-  // const setIsTouch = useStore(state => state.setIsTouch)
   // Active view
   const activeView = useStore(state => state.activeView)
-  /** id of the active location */
-  // const activeFeature = useActiveLocationFeature()
-  /** boolean determining if the hovered location should show */
-  // const [showHovered] = useMarkersVisibility()
-  /** function to add a location to the selected locations */
-  // const addLocation = useAddLocation()
-  // const addFeatureData = useData(state => state.addData)
+
   const [idMap, addToIdMap] = useIdMap()
-  // const flyToState = useFlyToState()
-  // const flyToFeature = useFlyToFeature()
-  // const flyToReset = useFlyToReset()
   const isLoaded = useRef(false)
 
   /** memoized array of shape and point layers */
@@ -117,8 +75,6 @@ const MapView = props => {
     ),
     quintiles: getQuintilesPhrase(activeQuintiles),
   })
-  /** object with class names for styling the component */
-  // const classes = useStyles()
 
   /** handler for map hover */
   const handleHover = (feature, coords, geoCoords) => {
@@ -163,7 +119,7 @@ const MapView = props => {
 
   /** handler for map click */
   const handleClick = (feature, coords, geoCoords) => {
-    console.log('handle click, ', feature)
+    // console.log('handle click, ', feature)
     // If the item is hovered, navigate to the school.
     // If the item is not hovered, set it as hovered.
     // setHovered(id, type, geoCoords, feature)
@@ -174,14 +130,14 @@ const MapView = props => {
         !!feature.state.hover
       ) {
         // If it's not yet hovered, set it as hovered.
-        console.log('Small screen, setting up modal.')
-        console.log('showMapModal, ', showMapModal)
+        // console.log('Small screen, setting up modal.')
+        // console.log('showMapModal, ', showMapModal)
         const type = `schools`
         const id = getFeatureProperty(feature, 'TEA')
         setHovered(id, type, geoCoords, feature)
         // Launch the map modal
         setShowMapModal(true)
-        console.log('showMapModal, ', showMapModal)
+        // console.log('showMapModal, ', showMapModal)
       } else {
         // If it is hovered, then navigate to new window.
         if (!!window) {
@@ -197,9 +153,7 @@ const MapView = props => {
   }
 
   // If touch events are happening, flag the device as touch.
-  const handleTouch = () => {
-    // setIsTouch(true)
-  }
+  const handleTouch = () => {}
 
   /** handler for map load */
   const handleLoad = () => {
@@ -207,27 +161,6 @@ const MapView = props => {
     window.CPAL.trigger('map')
     isLoaded.current = true
   }
-
-  /** zoom to filtered location when filter is selected */
-  // useEffect(() => {
-  //   if (!prefix || prefix.length !== 2 || !isLoaded.current)
-  //     return
-  //   flyToState(prefix)
-  // }, [prefix, flyToState])
-
-  /** zoom to activated location */
-  // useEffect(() => {
-  //   if (activeFeature && isLoaded.current) {
-  //     flyToFeature(activeFeature)
-  //   }
-  // }, [activeFeature, flyToFeature])
-
-  // const locationIds = getLocationIdsForRegion(
-  //   region,
-  //   locations,
-  // )
-  // selectedIds={locationIds}
-  // selectedColors={selectedColors}
 
   return (
     <MapBase
