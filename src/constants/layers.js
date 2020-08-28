@@ -1,3 +1,12 @@
+// Maximum percents for all demographics
+export const DEMO_MAX_PERCENTS = {
+  dem_perwh: 1,
+  dem_perbl: 0.902,
+  dem_peras: 0.709,
+  dem_perhi: 1,
+  dem_perpoc: 1,
+}
+
 // Array of layers groups.
 export const CPAL_LAYER_GROUPS = [
   {
