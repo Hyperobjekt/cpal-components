@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import PropTypes from 'prop-types'
 import { Card, Button } from 'reactstrap'
@@ -10,6 +11,7 @@ import { CoreButton } from './../../../../core/'
 import { CPAL_METRICS } from './../../../../../constants/metrics'
 import { SCHOOL_ZONE_COLORS } from './../../../../../constants/colors'
 import NonInteractiveScale from './../../NonInteractiveScale/NonInteractiveScale'
+import { CensusScale } from './../../CensusScale'
 import {
   getRoundedValue,
   getMetric,
@@ -26,6 +28,27 @@ const MapLegend = ({ ...props }) => {
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
+  // Active layers
+  const activeLayers = useStore(
+    state => [...state.activeLayers],
+    shallow,
+  )
+  const [showCensusScale, setShowCensusScale] = useState(
+    false,
+  )
+  useEffect(() => {
+    // console.log(
+    //   'activelayers changed, updating census data scale in legend',
+    // )
+    const showScale =
+      !!activeLayers[2] |
+      !!activeLayers[3] |
+      !!activeLayers[4] |
+      !!activeLayers[5]
+        ? true
+        : false
+    setShowCensusScale(showScale)
+  }, [activeLayers])
 
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
@@ -34,7 +57,7 @@ const MapLegend = ({ ...props }) => {
     state => state.setSlideoutPanel,
   )
   const toggleFilterPanel = () => {
-    console.log('toggleFilterPanel()')
+    // console.log('toggleFilterPanel()')
     setSlideoutPanel({
       active: true,
       panel: 'filters', // filters or weights, presumably, possibly info
@@ -129,6 +152,7 @@ const MapLegend = ({ ...props }) => {
           {i18n.translate(`UI_MAP_LEGEND_SCHOOL_ZONE`)}
         </div>
       </div>
+      {!!showCensusScale && <CensusScale />}
     </div>
   )
 }

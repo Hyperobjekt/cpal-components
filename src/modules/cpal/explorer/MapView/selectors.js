@@ -6,12 +6,12 @@ import {
 } from './../utils'
 import {
   DISTRICT_COLORS,
-  // REDLINE_COLORS,
   SCHOOL_ZONE_COLORS,
   REDLINE_FILL_COLORS,
   REDLINE_STROKE_COLORS,
   FEEDER_LAYER_COLOR,
 } from './../../../../constants/colors'
+import { DEMO_MAX_PERCENTS } from './../../../../constants/layers'
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import {
   getMetric,
@@ -172,15 +172,6 @@ export const getFeedersOutlines = (
     interactive: false,
     paint: {
       'line-color': FEEDER_LAYER_COLOR,
-      // [
-      //   'string',
-      //   [
-      //     'get',
-      //     ['get', 'tea_id'],
-      //     ['literal', DISTRICT_COLORS],
-      //   ],
-      //   'blue',
-      // ],
       'line-width': 2,
     },
   })
@@ -328,21 +319,27 @@ export const getDemographicShapes = (
     activeLayers[4] === 1 ||
     activeLayers[5] === 1
   let varName = false
+  let maxVal = false
   switch (true) {
     case activeLayers[2] === 1:
-      varName = 'dem_popbl'
+      varName = 'dem_perbl'
+      maxVal = DEMO_MAX_PERCENTS.dem_perbl
       break
     case activeLayers[3] === 1:
-      varName = 'dem_pophi'
+      varName = 'dem_perhi'
+      maxVal = DEMO_MAX_PERCENTS.dem_perhi
       break
     case activeLayers[4] === 1:
-      varName = 'dem_popas'
+      varName = 'dem_peras'
+      maxVal = DEMO_MAX_PERCENTS.dem_peras
       break
     case activeLayers[5] === 1:
-      varName = 'dem_popwh'
+      varName = 'dem_perwh'
+      maxVal = DEMO_MAX_PERCENTS.dem_perwh
       break
     default:
-      varName = 'dem_popbl'
+      varName = 'dem_perbl'
+      maxVal = DEMO_MAX_PERCENTS.dem_perbl
   }
   // console.log('getDemographicShapes, varName = ', varName)
   return fromJS({
@@ -354,7 +351,7 @@ export const getDemographicShapes = (
     },
     interactive: false,
     paint: {
-      'fill-color': 'rgba(0,0,0,0.5)',
+      'fill-color': 'rgba(0,0,0,1)',
       'fill-opacity': [
         'let',
         'perc_floor',
@@ -364,11 +361,7 @@ export const getDemographicShapes = (
             '/',
             [
               '*',
-              [
-                '/',
-                ['number', ['get', varName]],
-                ['number', ['get', 'dem_totp']],
-              ],
+              ['/', ['number', ['get', varName]], maxVal],
               100,
             ],
             20,
@@ -377,11 +370,11 @@ export const getDemographicShapes = (
         [
           'case',
           ['==', ['var', 'perc_floor'], 5],
-          0.8,
+          0.5, // 0.8,
           ['==', ['var', 'perc_floor'], 4],
-          0.6,
+          0.4, // 0.6,
           ['==', ['var', 'perc_floor'], 3],
-          0.4,
+          0.3, // 0.4,
           ['==', ['var', 'perc_floor'], 2],
           0.2,
           ['==', ['var', 'perc_floor'], 1],
@@ -391,16 +384,6 @@ export const getDemographicShapes = (
           0,
         ],
       ],
-      // 'fill-color': [
-      //   'string',
-      //   [
-      //     'get',
-      //     ['get', 'holc_grade'],
-      //     ['literal', REDLINE_FILL_COLORS],
-      //   ],
-      //   'blue',
-      // ],
-      // 'fill-opacity': 0.2,
     },
   })
 }

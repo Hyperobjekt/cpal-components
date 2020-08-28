@@ -118,6 +118,49 @@
       }
     }
   }
+  .census-scale {
+    margin-top: 1.6rem;
+    .scale-parent {
+      display: flex;
+      width: 80%;
+      height: 16px;
+      border: 1px solid #959b84;
+      // background-color: blue;
+      .scale-block {
+        flex: 0 0 16.67%;
+        border-right: 1px solid #959b84;
+        background-color: rgba(0, 0, 0, 0);
+        &.scale-block-4 {
+          border-right: 0;
+        }
+        &.scale-block-1 {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+        &.scale-block-2 {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+        &.scale-block-3 {
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+        &.scale-block-4 {
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+        &.scale-block-5 {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+    .scale-range {
+      display: flex;
+      width: 80%;
+      .scale-range-minmax {
+        flex: 0 0 50%;
+        &.max {
+          text-align: right;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) {
