@@ -10,6 +10,7 @@ import {
   SCHOOL_ZONE_COLORS,
   REDLINE_FILL_COLORS,
   REDLINE_STROKE_COLORS,
+  FEEDER_LAYER_COLOR,
 } from './../../../../constants/colors'
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import {
@@ -30,53 +31,53 @@ const noDataFill = '#ccc'
  * @param {string} id
  * @returns {array}
  */
-export const getStopsForVarName = (metric, colors) => {
-  const metricData = getMetric(metric, CPAL_METRICS)
-  const [min, max] = metricData.range
-  const range = Math.abs(max - min)
-  // Grab colors from metric colors array, and detach
-  const assignColors = metricData.colors.slice()
-  // If high is not not good, reverse colors array.
-  if (!metricData.high_is_good) {
-    assignColors.reverse()
-  }
-  const stepSize = range / (assignColors.length - 1)
-  return assignColors.map((c, i) => [min + i * stepSize, c])
-}
+// export const getStopsForVarName = (metric, colors) => {
+//   const metricData = getMetric(metric, CPAL_METRICS)
+//   const [min, max] = metricData.range
+//   const range = Math.abs(max - min)
+//   // Grab colors from metric colors array, and detach
+//   const assignColors = metricData.colors.slice()
+//   // If high is not not good, reverse colors array.
+//   if (!metricData.high_is_good) {
+//     assignColors.reverse()
+//   }
+//   const stepSize = range / (assignColors.length - 1)
+//   return assignColors.map((c, i) => [min + i * stepSize, c])
+// }
 
-const getSchoolFillStyle = (metric, colors) => {
-  // console.log(
-  //   'getSchoolFillStyle, ',
-  //   varName,
-  //   region,
-  //   colors,
-  // )
-  const stops = getStopsForVarName(metric, colors).reduce(
-    (acc, curr) => [...acc, ...curr],
-    [],
-  )
-  // return [
-  //   'case',
-  //   ['==', ['get', 'metric_' + metric], -999],
-  //   noDataFill,
-  //   ['has', 'metric_' + metric],
-  //   [
-  //     'interpolate',
-  //     ['linear'],
-  //     ['get', 'metric_' + metric],
-  //     ...stops,
-  //   ],
-  //   noDataFill,
-  // ]
-  return [
-    'case',
-    ['==', ['get', metric], -999],
-    noDataFill,
-    ['has', metric],
-    ['interpolate', ['linear'], ['get', metric], ...stops],
-    noDataFill,
-  ]
-}
+// const getSchoolFillStyle = (metric, colors) => {
+//   // console.log(
+//   //   'getSchoolFillStyle, ',
+//   //   varName,
+//   //   region,
+//   //   colors,
+//   // )
+//   const stops = getStopsForVarName(metric, colors).reduce(
+//     (acc, curr) => [...acc, ...curr],
+//     [],
+//   )
+//   // return [
+//   //   'case',
+//   //   ['==', ['get', 'metric_' + metric], -999],
+//   //   noDataFill,
+//   //   ['has', 'metric_' + metric],
+//   //   [
+//   //     'interpolate',
+//   //     ['linear'],
+//   //     ['get', 'metric_' + metric],
+//   //     ...stops,
+//   //   ],
+//   //   noDataFill,
+//   // ]
+//   return [
+//     'case',
+//     ['==', ['get', metric], -999],
+//     noDataFill,
+//     ['has', metric],
+//     ['interpolate', ['linear'], ['get', metric], ...stops],
+//     noDataFill,
+//   ]
+// }
 
 const getCircleMinZoom = region =>
   region === 'schools' ? 2 : 8
@@ -170,15 +171,16 @@ export const getFeedersOutlines = (
     },
     interactive: false,
     paint: {
-      'line-color': [
-        'string',
-        [
-          'get',
-          ['get', 'tea_id'],
-          ['literal', DISTRICT_COLORS],
-        ],
-        'blue',
-      ],
+      'line-color': FEEDER_LAYER_COLOR,
+      // [
+      //   'string',
+      //   [
+      //     'get',
+      //     ['get', 'tea_id'],
+      //     ['literal', DISTRICT_COLORS],
+      //   ],
+      //   'blue',
+      // ],
       'line-width': 2,
     },
   })
