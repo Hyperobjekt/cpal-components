@@ -19,7 +19,7 @@ import {
 } from './../utils'
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
-import { feeders } from './../../../../data/districts.js'
+import { feeders } from './../../../../data/feeders.js'
 import { demotracts } from './../../../../data/demotracts.min.js'
 import useStore from './../store'
 
@@ -153,6 +153,34 @@ export const getSchoolCircleLayer = ({
         1,
       ],
     ],
+  })
+}
+
+export const getFeedersOutlines = (
+  { layerId, region },
+  activeLayers,
+) => {
+  const isActive = activeLayers[0] === 1
+  return fromJS({
+    id: 'feeders',
+    source: 'feeders',
+    type: 'line',
+    layout: {
+      visibility: !!isActive ? 'visible' : 'none',
+    },
+    interactive: false,
+    paint: {
+      'line-color': [
+        'string',
+        [
+          'get',
+          ['get', 'tea_id'],
+          ['literal', DISTRICT_COLORS],
+        ],
+        'blue',
+      ],
+      'line-width': 2,
+    },
   })
 }
 
@@ -429,6 +457,19 @@ const isSchoolZoneId = id => {
   return 'schoolzones'
 }
 
+export const getFeedersLayers = (context, activeLayers) => {
+  // console.log('getDistrictLayers', context)
+  return [
+    {
+      z: 150,
+      style: getFeedersOutlines(context, activeLayers),
+      idMap: true,
+      hasFeatureId: null, // isCircleId,
+      type: `feeders`,
+    },
+  ]
+}
+
 export const getDistrictLayers = (
   context,
   activeLayers,
@@ -523,6 +564,7 @@ export const getLayers = (context, activeLayers) => {
   return [
     ...getSchoolZoneLayers(context),
     ...getDistrictLayers(context, activeLayers),
+    ...getFeedersLayers(context, activeLayers),
     ...getRedlineLayers(context, activeLayers),
     ...getDemographicLayers(context, activeLayers),
     ...getCircleLayers(context),
@@ -549,5 +591,9 @@ export const CPAL_SOURCES = fromJS({
   demotracts: {
     type: `geojson`,
     data: demotracts,
+  },
+  feeders: {
+    type: `geojson`,
+    data: feeders,
   },
 })
