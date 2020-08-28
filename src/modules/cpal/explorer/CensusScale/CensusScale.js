@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import shallow from 'zustand/shallow'
+import i18n from '@pureartisan/simple-i18n'
 
 import useStore from './../store'
 import {
@@ -67,6 +68,7 @@ const CensusScale = ({ ...props }) => {
 
   return (
     <div className="census-scale">
+      <h5>{i18n.translate('UI_MAP_LAYER_1_TITLE')}</h5>
       <div className="scale-parent">
         <div className="scale-block scale-block-0"></div>
         <div className="scale-block scale-block-1"></div>
