@@ -1,11 +1,25 @@
 export const CPAL_LAYER_GROUPS = [
   {
+    id: 0,
+    title: `layer title`,
+    desc: `layer description`,
+  },
+  {
+    id: 1,
+    title: `layer title`,
+    desc: `layer description`,
+  },
+]
+
+export const CPAL_LAYERS = [
+  {
     id: `districts`,
     label: `UI_MAP_LAYERS_DISTRICTS`,
     types: [`districts`],
     tooltip: null,
     only_one: false,
     only_one_name: null,
+    group: 0,
   },
   {
     id: `redlining`,
@@ -14,6 +28,7 @@ export const CPAL_LAYER_GROUPS = [
     tooltip: 'UI_MAP_LAYERS_REDLINING_TIP',
     only_one: false,
     only_one_name: null,
+    group: 0,
   },
   {
     id: `demobl`,
@@ -23,6 +38,7 @@ export const CPAL_LAYER_GROUPS = [
     only_one: true,
     only_one_name: `demo`,
     metric: `dem_popbl`,
+    group: 1,
   },
   {
     id: `demohi`,
@@ -32,6 +48,7 @@ export const CPAL_LAYER_GROUPS = [
     only_one: true,
     only_one_name: `demo`,
     metric: `dem_pophi`,
+    group: 1,
   },
   {
     id: `demoas`,
@@ -41,6 +58,7 @@ export const CPAL_LAYER_GROUPS = [
     only_one: true,
     only_one_name: `demo`,
     metric: `dem_popas`,
+    group: 1,
   },
   {
     id: `demowh`,
@@ -50,6 +68,7 @@ export const CPAL_LAYER_GROUPS = [
     only_one: true,
     only_one_name: `demo`,
     metric: `dem_popwh`,
+    group: 1,
   },
 ]
 

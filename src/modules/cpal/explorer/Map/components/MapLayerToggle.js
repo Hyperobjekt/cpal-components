@@ -7,7 +7,7 @@ import { FiInfo } from 'react-icons/fi'
 
 import { CoreButton } from './../../../../core'
 import useStore from './../../store'
-import { CPAL_LAYER_GROUPS } from './../../../../../constants/layers'
+import { CPAL_LAYERS } from './../../../../../constants/layers'
 
 /**
  * Provides toggle functionality for provided array of layer objects
@@ -26,7 +26,7 @@ const MapLayerToggle = ({ ...props }) => {
   )
 
   const getLayerLabel = id => {
-    const layer = CPAL_LAYER_GROUPS.find(gr => gr.id === id)
+    const layer = CPAL_LAYERS.find(gr => gr.id === id)
     return layer.label
   }
 
@@ -45,7 +45,7 @@ const MapLayerToggle = ({ ...props }) => {
       // console.log('it is an only-one')
       const name = dataset.onlyOneName
       // Remove all the matching only-ones from the activeLayers array.
-      CPAL_LAYER_GROUPS.forEach((el, i) => {
+      CPAL_LAYERS.forEach((el, i) => {
         if (
           el.only_one === true &&
           el.only_one_name === name
@@ -77,7 +77,7 @@ const MapLayerToggle = ({ ...props }) => {
           showPanel ? 'panel-show' : 'panel-hide',
         )}
       >
-        {CPAL_LAYER_GROUPS.map((el, i) => {
+        {CPAL_LAYERS.map((el, i) => {
           // to manage tooltip state
           const [tooltipOpen, setTooltipOpen] = useState(
             false,

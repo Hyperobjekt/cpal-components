@@ -13,7 +13,7 @@ import {
 import { MdCallSplit } from 'react-icons/md'
 
 import useStore from './../store'
-import { CPAL_LAYER_GROUPS } from './../../../../constants/layers'
+import { CPAL_LAYERS } from './../../../../constants/layers'
 
 const PanelLayersView = ({ ...props }) => {
   const activeLayers = useStore(state => state.activeLayers)
@@ -23,7 +23,7 @@ const PanelLayersView = ({ ...props }) => {
   )
 
   const getLayerLabel = id => {
-    const layer = CPAL_LAYER_GROUPS.find(gr => gr.id === id)
+    const layer = CPAL_LAYERS.find(gr => gr.id === id)
     return layer.label
   }
 
@@ -42,7 +42,7 @@ const PanelLayersView = ({ ...props }) => {
       // console.log('it is an only-one')
       const name = dataset.onlyOneName
       // Remove all the matching only-ones from the activeLayers array.
-      CPAL_LAYER_GROUPS.forEach((el, i) => {
+      CPAL_LAYERS.forEach((el, i) => {
         if (
           el.only_one === true &&
           el.only_one_name === name
@@ -75,7 +75,7 @@ const PanelLayersView = ({ ...props }) => {
   return (
     <div className="map-panel-slideout-layers">
       <div className={clsx(`map-layer-toggle-pane`)}>
-        {CPAL_LAYER_GROUPS.map((el, i) => {
+        {CPAL_LAYERS.map((el, i) => {
           // to manage tooltip state
           const [tooltipOpen, setTooltipOpen] = useState(
             false,

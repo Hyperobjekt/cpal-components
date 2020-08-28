@@ -13,7 +13,7 @@ import {
   BOUNDS,
   DEFAULT_ROUTE,
 } from './../../../../constants/map'
-import { CPAL_LAYER_GROUPS } from './../../../../constants/layers'
+import { CPAL_LAYERS } from './../../../../constants/layers'
 
 /**
  * Get a route parameters object based on the string
@@ -167,14 +167,14 @@ const isLayersValid = layers => {
       t = false
     }
     if (
-      CPAL_LAYER_GROUPS[i].only_one === true &&
+      CPAL_LAYERS[i].only_one === true &&
       Number(arr[i]) === 1
     ) {
       // Get the name
-      const name = CPAL_LAYER_GROUPS[i].only_one_name
+      const name = CPAL_LAYERS[i].only_one_name
       // If others with same name are true in layers, return false.
       // console.log('only one loop, others = ', others)
-      CPAL_LAYER_GROUPS.forEach((item, index) => {
+      CPAL_LAYERS.forEach((item, index) => {
         if (
           i !== index &&
           item.only_one === true &&
