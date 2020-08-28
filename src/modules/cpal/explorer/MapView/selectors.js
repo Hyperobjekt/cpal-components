@@ -313,33 +313,39 @@ export const getDemographicShapes = (
   { layerId, region },
   activeLayers,
 ) => {
+  console.log('getDemographicShapes, ', activeLayers)
   const isActive =
     activeLayers[2] === 1 ||
     activeLayers[3] === 1 ||
     activeLayers[4] === 1 ||
-    activeLayers[5] === 1
+    activeLayers[5] === 1 ||
+    activeLayers[6] === 1
   let varName = false
   let maxVal = false
   switch (true) {
     case activeLayers[2] === 1:
+      varName = 'dem_perpoc'
+      maxVal = DEMO_MAX_PERCENTS.dem_perpoc
+      break
+    case activeLayers[3] === 1:
       varName = 'dem_perbl'
       maxVal = DEMO_MAX_PERCENTS.dem_perbl
       break
-    case activeLayers[3] === 1:
+    case activeLayers[4] === 1:
       varName = 'dem_perhi'
       maxVal = DEMO_MAX_PERCENTS.dem_perhi
       break
-    case activeLayers[4] === 1:
+    case activeLayers[5] === 1:
       varName = 'dem_peras'
       maxVal = DEMO_MAX_PERCENTS.dem_peras
       break
-    case activeLayers[5] === 1:
+    case activeLayers[6] === 1:
       varName = 'dem_perwh'
       maxVal = DEMO_MAX_PERCENTS.dem_perwh
       break
     default:
-      varName = 'dem_perbl'
-      maxVal = DEMO_MAX_PERCENTS.dem_perbl
+      varName = 'dem_perpoc'
+      maxVal = DEMO_MAX_PERCENTS.dem_perpoc
   }
   // console.log('getDemographicShapes, varName = ', varName)
   return fromJS({

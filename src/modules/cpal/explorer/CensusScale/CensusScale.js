@@ -61,8 +61,23 @@ const CensusScale = ({ ...props }) => {
           ),
         )
         break
+      case !!activeLayers[6]:
+        setScaleMax(
+          getRoundedValue(
+            DEMO_MAX_PERCENTS[CPAL_LAYERS[6].metric] * 100,
+            2,
+            false,
+          ),
+        )
+        break
       default:
-      // code block
+        setScaleMax(
+          getRoundedValue(
+            DEMO_MAX_PERCENTS[CPAL_LAYERS[2].metric] * 100,
+            2,
+            false,
+          ),
+        )
     }
   }, [activeLayers])
 

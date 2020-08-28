@@ -56,6 +56,17 @@ export const CPAL_LAYERS = [
     index: 1,
   },
   {
+    id: `demopoc`,
+    label: `UI_MAP_METRIC_DEM_PERPOC`,
+    types: [`demoShapes`, `demoLines`],
+    tooltip: 'UI_MAP_METRIC_DEM_PERPOC',
+    only_one: true,
+    only_one_name: `demo`,
+    metric: `dem_perpoc`,
+    group: 1,
+    index: 2,
+  },
+  {
     id: `demobl`,
     label: `UI_MAP_METRIC_DEM_POPBL`,
     types: [`demoShapes`, `demoLines`],
@@ -64,7 +75,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_perbl`,
     group: 1,
-    index: 2,
+    index: 3,
   },
   {
     id: `demohi`,
@@ -75,7 +86,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_perhi`,
     group: 1,
-    index: 3,
+    index: 4,
   },
   {
     id: `demoas`,
@@ -86,7 +97,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_peras`,
     group: 1,
-    index: 4,
+    index: 5,
   },
   {
     id: `demowh`,
@@ -97,7 +108,7 @@ export const CPAL_LAYERS = [
     only_one_name: `demo`,
     metric: `dem_perwh`,
     group: 1,
-    index: 5,
+    index: 6,
   },
 ]
 

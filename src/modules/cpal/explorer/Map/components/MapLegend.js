@@ -44,7 +44,8 @@ const MapLegend = ({ ...props }) => {
       !!activeLayers[2] |
       !!activeLayers[3] |
       !!activeLayers[4] |
-      !!activeLayers[5]
+      !!activeLayers[5] |
+      !!activeLayers[6]
         ? true
         : false
     setShowCensusScale(showScale)
