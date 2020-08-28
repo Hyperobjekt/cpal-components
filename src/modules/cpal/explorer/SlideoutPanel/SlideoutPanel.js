@@ -5,6 +5,7 @@ import clsx from 'clsx'
 
 import useStore from './../store.js'
 import PanelFilterView from './../PanelFilterView/PanelFilterView'
+import PanelLayersView from './../PanelLayersView/PanelLayersView'
 import PanelInfoView from './../PanelInfoView/PanelInfoView'
 
 const SlideoutPanel = ({ ...props }) => {
@@ -23,6 +24,7 @@ const SlideoutPanel = ({ ...props }) => {
       )}
     >
       <PanelFilterView />
+      <PanelLayersView />
       <PanelInfoView />
     </div>
   )

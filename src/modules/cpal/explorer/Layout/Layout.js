@@ -324,7 +324,9 @@ const Layout = ({ children, ...props }) => {
               title={i18n.translate(`SELECT_VIEW`)}
               active={'select_view_' + activeView}
             />
-            <div className="control-label">VIEW</div>
+            <div className="control-label">
+              {i18n.translate('CONTROL_PANEL_VIEW')}
+            </div>
             <CoreButton
               id="button_view_map"
               label={i18n.translate(`BUTTON_VIEW_MAP`)}
@@ -449,7 +451,9 @@ const Layout = ({ children, ...props }) => {
               </span>
             </CoreButton>
             <Divider />
-            <div className="control-label">SHARE</div>
+            <div className="control-label">
+              {i18n.translate('CONTROL_PANEL_SHARE')}
+            </div>
             <CoreButton
               id="button_share_twitter"
               label={i18n.translate(`BUTTON_SHARE_TWITTER`)}

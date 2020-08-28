@@ -16,6 +16,8 @@ const en_US = {
   CONTROL_PANEL_INFO: `INFO`,
   CONTROL_PANEL_METRICS: `METRICS`,
   CONTROL_PANEL_LAYERS: `LAYERS`,
+  CONTROL_PANEL_SHARE: `SHARE`,
+  CONTROL_PANEL_VIEW: `VIEW`,
   BUTTON_SHARE_TWITTER: `Share on Twitter`,
   DIALOG_SHARE_TWITTER: `All Dallas neighborhoods should have what they need to thrive.`,
   BUTTON_SHARE_FACEBOOK: `Share on Facebook`,

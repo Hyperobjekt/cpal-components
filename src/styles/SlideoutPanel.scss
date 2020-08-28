@@ -16,11 +16,17 @@
     transition: left 500ms ease-in-out;
   }
   .map-panel-slideout-filters,
+  .map-panel-slideout-layers,
   .map-panel-slideout-info {
     display: none;
   }
   &.panel-view-filters {
     .map-panel-slideout-filters {
+      display: block;
+    }
+  }
+  &.panel-view-layers {
+    .map-panel-slideout-layers {
       display: block;
     }
   }
