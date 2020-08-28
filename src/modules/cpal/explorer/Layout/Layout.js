@@ -15,6 +15,7 @@ import {
   FiList,
   FiMenu,
   FiInfo,
+  FiLayers,
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 import { FaTwitter, FaFacebookF } from 'react-icons/fa'
@@ -138,6 +139,7 @@ const Layout = ({ children, ...props }) => {
     if (
       e.currentTarget.id !==
         'button_toggle_panel_filters' &&
+      e.currentTarget.id !== 'button_toggle_panel_layers' &&
       e.currentTarget.id !== 'button_toggle_panel_info'
     )
       return
@@ -363,7 +365,9 @@ const Layout = ({ children, ...props }) => {
             <Divider />
             {activeView === 'map' ? (
               <>
-                <div className="control-label">METRICS</div>
+                <div className="control-label">
+                  {i18n.translate('CONTROL_PANEL_METRICS')}
+                </div>
                 <CoreButton
                   id="button_toggle_panel_filters"
                   label={i18n.translate(
@@ -388,11 +392,40 @@ const Layout = ({ children, ...props }) => {
                   </span>
                 </CoreButton>
                 <Divider />
+                <div className="control-label">
+                  {i18n.translate('CONTROL_PANEL_LAYERS')}
+                </div>
+                <CoreButton
+                  id="button_toggle_panel_layers"
+                  label={i18n.translate(
+                    `BUTTON_TOGGLE_PANEL_LAYERS`,
+                  )}
+                  onClick={handlePanel}
+                  color="none"
+                  tooltip={buttonPosition}
+                  className={clsx(
+                    'button-panel-layers',
+                    slideoutPanel.active &&
+                      slideoutPanel.panel === 'layers'
+                      ? 'active'
+                      : '',
+                  )}
+                >
+                  <FiLayers />
+                  <span className="sr-only">
+                    {i18n.translate(
+                      `BUTTON_TOGGLE_PANEL_LAYERS`,
+                    )}
+                  </span>
+                </CoreButton>
+                <Divider />
               </>
             ) : (
               ''
             )}
-            <div className="control-label">INFO</div>
+            <div className="control-label">
+              {i18n.translate('CONTROL_PANEL_INFO')}
+            </div>
             <CoreButton
               id="button_toggle_panel_info"
               label={i18n.translate(

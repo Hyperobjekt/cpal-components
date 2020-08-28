@@ -10,10 +10,6 @@ import {
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
 
-// UI_PANEL_INFO_FEEDER
-// UI_PANEL_INFO_MAP
-//
-
 const PanelInfoView = ({ ...props }) => {
   const activeView = useStore(state => state.activeView)
 

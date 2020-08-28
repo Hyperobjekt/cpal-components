@@ -95,7 +95,7 @@ const [useStore] = create((set, get) => ({
     set({ activeQuintiles: newArr }),
   slideoutPanel: {
     active: false,
-    panel: '', // filters or weights, presumably, possibly info
+    panel: '', // 'filters', 'layers', or 'info'
   },
   setSlideoutPanel: newObj =>
     set({ slideoutPanel: newObj }),
