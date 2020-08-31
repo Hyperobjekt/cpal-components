@@ -2,7 +2,7 @@
   // height: 100%;
   overflow: hidden;
   .map-panel-slideout-filters {
-    overflow: scroll;
+    overflow-y: hidden;
     h3 {
       display: none;
     }
@@ -15,7 +15,7 @@
       margin-bottom: 0.8rem;
     }
     height: 100%;
-    padding: 1.6rem;
+    padding: 2.8rem 2rem; //1.6rem;
     .map-panel-controls {
       display: flex;
       margin-bottom: 1.6rem;

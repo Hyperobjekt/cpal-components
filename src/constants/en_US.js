@@ -4,6 +4,7 @@ const en_US = {
   TERM_SCHOOL: `school`,
   BUTTON_VIEW_FEEDER: `Toggle feeder view`,
   BUTTON_VIEW_MAP: `Toggle map view`,
+  BUTTON_CLOSE_PANEL: `Close slideout panel`,
   BUTTON_MENU: `Menu`,
   BUTTON_SEARCH: `Select to search`,
   INPUT_SEARCH: `Search for a Dallas ISD school`,
