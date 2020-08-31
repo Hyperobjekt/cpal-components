@@ -313,7 +313,7 @@ export const getDemographicShapes = (
   { layerId, region },
   activeLayers,
 ) => {
-  console.log('getDemographicShapes, ', activeLayers)
+  // console.log('getDemographicShapes, ', activeLayers)
   const isActive =
     activeLayers[2] === 1 ||
     activeLayers[3] === 1 ||
@@ -391,6 +391,19 @@ export const getDemographicShapes = (
         ],
       ],
     },
+    filter: [
+      'all',
+      [
+        '!=',
+        ['number', ['get', 'GEOID']],
+        ['number', 48113980100],
+      ],
+      [
+        '!=',
+        ['number', ['get', 'GEOID']],
+        ['number', 48113980000],
+      ],
+    ],
   })
 }
 
@@ -414,17 +427,21 @@ export const getDemographicLines = (
     interactive: false,
     paint: {
       'line-color': '#ccc',
-      // 'line-color': [
-      //   'string',
-      //   [
-      //     'get',
-      //     ['get', 'holc_grade'],
-      //     ['literal', REDLINE_STROKE_COLORS],
-      //   ],
-      //   'blue',
-      // ],
       'line-width': 1,
     },
+    filter: [
+      'all',
+      [
+        '!=',
+        ['number', ['get', 'GEOID']],
+        ['number', 48113980100],
+      ],
+      [
+        '!=',
+        ['number', ['get', 'GEOID']],
+        ['number', 48113980000],
+      ],
+    ],
   })
 }
 
