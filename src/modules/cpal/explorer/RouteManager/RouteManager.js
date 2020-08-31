@@ -159,7 +159,7 @@ const isLayersValid = layers => {
   if (!layers) return true
   const arr = layers.split(',')
   // console.log('arr, ', arr)
-  if (arr.length !== 6) return false
+  if (arr.length !== 7) return false
   let t = true
   arr.forEach((el, i) => {
     const n = Number(el)
