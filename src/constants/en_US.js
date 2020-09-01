@@ -213,7 +213,7 @@ const en_US = {
   UI_MAP_INTRO_MODAL_MAP: `Go straight to the map and start exploring!`,
   UI_MAP_INTRO_MODAL_MAP_BTN: `Go straight to the map!`,
   UI_MAP_SCHOOL_MODAL_DETAILS_BTN: `View School Details`,
-  UI_FEEDER_SCROLL_PROMPT: `SCROLL`,
+  UI_FEEDER_SCROLL_PROMPT: `SCROLL FOR MORE`,
 }
 
 export default en_US
