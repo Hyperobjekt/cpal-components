@@ -34,6 +34,9 @@ const Select = ({ ...props }) => {
         aria-label={
           props.ariaLabel ? props.ariaLabel : null
         }
+        aria-labelledby={
+          props.ariaLabelledby ? props.ariaLabelledby : null
+        }
       >
         {props.label}
       </DropdownToggle>

@@ -118,7 +118,7 @@ const PanelFilterView = ({ ...props }) => {
           label={getSelectLabel()}
           items={selectItems}
           handleSelect={e => handleSelect(e)}
-          aria-labelledby="label_filter_select"
+          ariaLabelledby="label_filter_select"
           ariaLabel={i18n.translate('UI_MAP_PANEL_SELECT')}
         ></Select>
         <CoreButton
