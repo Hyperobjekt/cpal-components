@@ -18,26 +18,32 @@ export const CPAL_FILTER_TABS = [
   {
     id: 'cri',
     title: 'UI_MAP_METRIC_TITLE_CRI',
+    default_metric: 'cri_weight',
   },
   {
     id: 'econ',
     title: 'UI_MAP_METRIC_TITLE_ECON',
+    default_metric: 'eci_weight',
   },
   {
     id: 'edu',
     title: 'UI_MAP_METRIC_TITLE_EDU',
+    default_metric: 'edi_weight',
   },
   {
     id: 'fam',
     title: 'UI_MAP_METRIC_TITLE_FAM',
+    default_metric: 'fi_weight',
   },
   {
     id: 'comm',
     title: 'UI_MAP_METRIC_TITLE_COMM',
+    default_metric: 'ci_weight',
   },
   {
     id: 'hel',
     title: 'UI_MAP_METRIC_TITLE_HEAL',
+    default_metric: 'hi_weight',
   },
 ]
 

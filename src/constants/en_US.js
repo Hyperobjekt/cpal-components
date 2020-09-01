@@ -139,7 +139,7 @@ const en_US = {
   TERM_INDEX_AVERAGE: `Index Average`,
   TERM_PLURAL: `{term}s`,
   UI_MAP_PANEL_HEADING: `Index selection & filtering`,
-  UI_MAP_PANEL_SELECT: `Select index category`,
+  UI_MAP_PANEL_SELECT: `Select index category:`,
   UI_MAP_PANEL_SELECT_QUINTILE: `Select quintile`,
   UI_MAP_PANEL_QUINTILE_0: `First quintile`,
   UI_MAP_PANEL_QUINTILE_1: `Second quintile`,

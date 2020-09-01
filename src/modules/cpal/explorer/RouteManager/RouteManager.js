@@ -212,6 +212,7 @@ const isLatLngValid = (lat, lng) => {
 }
 
 const isZoomValid = zoom => {
+  // console.log('isZoomValid, ', zoom)
   if (!zoom) return true
   // Make sure it's within the zoom min and max.
   return zoom > BOUNDS.zoom.min && zoom < BOUNDS.zoom.max
