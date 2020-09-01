@@ -33,6 +33,8 @@ const PanelFilterView = ({ ...props }) => {
   const defaultMetric = useStore(
     state => state.defaultMetric,
   )
+  // Active metric
+  const activeMetric = useStore(state => state.activeMetric)
   const setActiveMetric = useStore(
     state => state.setActiveMetric,
   )
@@ -68,7 +70,7 @@ const PanelFilterView = ({ ...props }) => {
   })
 
   const handleSelect = e => {
-    // console.log('category selected, ', e.currentTarget.id)
+    console.log('category selected, ', e.currentTarget.id)
     const tabId = CPAL_METRICS.find(i => {
       return i.id === e.currentTarget.id
     }).tab
@@ -76,7 +78,7 @@ const PanelFilterView = ({ ...props }) => {
   }
 
   const handleResetClick = () => {
-    console.log('handleResetClick()')
+    // console.log('handleResetClick()')
     setActiveFilterTab(defaultFilterTab)
     setActiveMetric(defaultMetric)
     setActiveQuintiles([1, 1, 1, 1, 1])
