@@ -116,10 +116,23 @@ export const getSchoolCircleLayer = ({
       ],
       'circle-opacity': 1,
       'circle-radius': [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        7, // Hover size
-        5, // Normal size
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        11.99999, // At or below zoom level of 11.999, smaller school dots.
+        [
+          'case',
+          ['==', ['feature-state', 'hover'], true],
+          7,
+          5,
+        ],
+        12, // At or above zoom level of 12, larger school dots.
+        [
+          'case',
+          ['==', ['feature-state', 'hover'], true],
+          16,
+          12,
+        ],
       ],
       'circle-stroke-opacity': 1,
       'circle-stroke-color': [
