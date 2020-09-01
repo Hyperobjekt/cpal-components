@@ -29,7 +29,14 @@ const Select = ({ ...props }) => {
       isOpen={dropdownOpen}
       toggle={toggle}
     >
-      <DropdownToggle caret>{props.label}</DropdownToggle>
+      <DropdownToggle
+        caret
+        aria-label={
+          props.ariaLabel ? props.ariaLabel : null
+        }
+      >
+        {props.label}
+      </DropdownToggle>
       <DropdownMenu>
         {props.items.map(el => {
           return (

@@ -26,6 +26,7 @@ const PanelFilterView = ({ ...props }) => {
   const activeFilterTab = useStore(
     state => state.activeFilterTab,
   )
+  // console.log('activeFilterTab, ', activeFilterTab)
   const setActiveFilterTab = useStore(
     state => state.setActiveFilterTab,
   )
@@ -70,11 +71,17 @@ const PanelFilterView = ({ ...props }) => {
   })
 
   const handleSelect = e => {
-    console.log('category selected, ', e.currentTarget.id)
+    // console.log('category selected, ', e.currentTarget.id)
     const tabId = CPAL_METRICS.find(i => {
       return i.id === e.currentTarget.id
     }).tab
     setActiveFilterTab(tabId)
+    const default_metric = CPAL_FILTER_TABS.find(
+      el => el.id === tabId,
+    ).default_metric
+    // console.log('default_metric, ', default_metric)
+    setActiveMetric(default_metric)
+    setActiveQuintiles([1, 1, 1, 1, 1])
   }
 
   const handleResetClick = () => {
@@ -82,6 +89,15 @@ const PanelFilterView = ({ ...props }) => {
     setActiveFilterTab(defaultFilterTab)
     setActiveMetric(defaultMetric)
     setActiveQuintiles([1, 1, 1, 1, 1])
+  }
+
+  const getSelectLabel = () => {
+    // console.log('getSelectLabel')
+    const tab = CPAL_FILTER_TABS.find(
+      el => el.id === activeFilterTab,
+    )
+    // console.log('tab, ', tab)
+    return tab ? i18n.translate(tab.title) : null
   }
 
   return (
@@ -94,11 +110,16 @@ const PanelFilterView = ({ ...props }) => {
       )}
     >
       <h3>{i18n.translate('UI_MAP_PANEL_HEADING')}</h3>
+      <p id="label_filter_select">
+        {i18n.translate('UI_MAP_PANEL_SELECT')}
+      </p>
       <div className="map-panel-controls">
         <Select
-          label={i18n.translate('UI_MAP_PANEL_SELECT')}
+          label={getSelectLabel()}
           items={selectItems}
           handleSelect={e => handleSelect(e)}
+          aria-labelledby="label_filter_select"
+          ariaLabel={i18n.translate('UI_MAP_PANEL_SELECT')}
         ></Select>
         <CoreButton
           id="button_reset_filter"

@@ -119,7 +119,7 @@ const InteractiveScale = ({ ...props }) => {
 
   const handleQuintileClick = e => {
     e.preventDefault()
-    console.log('handleQuintileClick(), ', e.currentTarget)
+    // console.log('handleQuintileClick(), ', e.currentTarget)
     // If parent not active, just return
     if (
       !e.currentTarget.parentNode.classList.contains(
