@@ -29,7 +29,7 @@ export const DEM_COLORS = [
 export const CRI_COLORS = [
   '#465EB3',
   '#80A2D3',
-  '#C1EFF6',
+  '#9CDCE6', // '#C1EFF6',
   '#85D4B6',
   '#51BC7E',
 ]
