@@ -18,6 +18,12 @@
   .button-close-panel {
     position: absolute;
     right: 0;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #606b44 !important;
+      margin-top: 4px;
+    }
   }
   .map-panel-slideout-filters,
   .map-panel-slideout-layers,

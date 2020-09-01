@@ -12,7 +12,7 @@
       font-size: 15px;
       line-height: 22px;
       color: #606b44;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.6rem;
     }
     height: 100%;
     padding: 2.8rem 2rem; //1.6rem;
@@ -75,6 +75,20 @@
             display: flex;
             align-items: center;
             color: #2c390b;
+          }
+          .tab-desc {
+            p {
+              margin-bottom: 2.4rem;
+              span {
+                font-weight: 400;
+              }
+              
+            }
+          }
+          .filter-panel-filter-series {
+            .filter:last-child {
+              padding-bottom: 8rem;
+            }
           }
         }
         &.active-tab-cri {

@@ -1,11 +1,18 @@
 .tooltip {
   z-index: 5000;
   border-radius: 0;
+  margin-left: 16px;
+  
   .arrow {
-    display: none;
+    // display: none;
+    fill: #818967;
+    stroke: #818967;
   }
   .tooltip-inner {
     background-color: rgba(0, 0, 0, 0.85);
     border-radius: 0;
+    font-size: 12px;
+    padding: .8rem;
+   // background-color: #818967;
   }
 }

@@ -25,6 +25,9 @@ $bar-highlight: #e94f34;
         // }
         .feeder-chart-bar {
           width: 90%;
+          @media (min-width: 992px) {
+            width: 76%;
+          }
           margin-top: 350px;
           padding-top: 2rem;
           position: relative;
@@ -32,6 +35,9 @@ $bar-highlight: #e94f34;
             position: absolute;
             right: 35%;
             top: 35%;
+            @media (min-width: 992px) {
+              right: -112px;
+            }
             transform: rotate(90deg);
             transform-origin: left top 0;
             font-family: Halyard;
@@ -316,7 +322,10 @@ $bar-highlight: #e94f34;
     .row-bar-chart
     .feeders-bar-chart
     .feeder-chart-legend {
-    right: 36px;
+    right: 0px;
+    top: 0px;
+    height: calc(100vh - 64px - 200px);
+    max-height: unset;
   }
 
   .layout-view-feeder .row-schools-chart {
@@ -329,7 +338,8 @@ $bar-highlight: #e94f34;
     .feeders-schools-scatter {
       background: #fff;
       padding-top: 2rem;
-      box-shadow: 0 -2px 2px #ccc;
+      //box-shadow: 0 -2px 2px #ccc;
+      border-top: 0.5px solid #e8e8e8;
       .echarts-for-react {
         margin-bottom: -20px;
         margin-left: auto;

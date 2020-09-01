@@ -94,7 +94,7 @@ export const CPAL_METRICS = [
   {
     id: 'eci_weight',
     title: 'UI_MAP_METRIC_TITLE_ECON_INDEX',
-    // desc: 'UI_MAP_METRIC_DESC_ECON',
+    desc: 'UI_MAP_METRIC_DESC_ECON',
     abbrev: 'ECON',
     range: [0, 100],
     high_is_good: 1,
@@ -108,7 +108,7 @@ export const CPAL_METRICS = [
   {
     id: 'edi_weight',
     title: 'UI_MAP_METRIC_TITLE_EDU_INDEX',
-    // desc: 'UI_MAP_METRIC_DESC_EDU',
+    desc: 'UI_MAP_METRIC_DESC_EDU',
     abbrev: 'EDU',
     range: [0, 100],
     high_is_good: 1,
@@ -122,7 +122,7 @@ export const CPAL_METRICS = [
   {
     id: 'fi_weight',
     title: 'UI_MAP_METRIC_TITLE_FAM_INDEX',
-    // desc: 'UI_MAP_METRIC_DESC_FAM',
+    desc: 'UI_MAP_METRIC_DESC_FAM',
     abbrev: 'FAM',
     range: [0, 100],
     high_is_good: 1,
@@ -136,7 +136,7 @@ export const CPAL_METRICS = [
   {
     id: 'hi_weight',
     title: 'UI_MAP_METRIC_TITLE_HEAL_INDEX',
-    // desc: 'UI_MAP_METRIC_DESC_HEAL',
+    desc: 'UI_MAP_METRIC_DESC_HEAL',
     abbrev: 'HEAL',
     range: [0, 100],
     high_is_good: 1,
@@ -150,7 +150,7 @@ export const CPAL_METRICS = [
   {
     id: 'ci_weight',
     title: 'UI_MAP_METRIC_TITLE_COMM_INDEX',
-    // desc: 'UI_MAP_METRIC_DESC_COMM',
+    desc: 'UI_MAP_METRIC_DESC_COMM',
     abbrev: 'COMM',
     range: [0, 100],
     high_is_good: 1,
