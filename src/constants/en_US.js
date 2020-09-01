@@ -24,6 +24,7 @@ const en_US = {
   BUTTON_SHARE_FACEBOOK: `Share on Facebook`,
   BUTTON_SHARE_EMAIL: `Share via email`,
   BUTTON_SHARE_LINK: `Get a custom link`,
+  BUTTON_SHARE_UNIFIED: `Share`,
   DIALOG_SHARE_EMAIL_SUBJECT: `CPAL Resource Explorer`,
   DIALOG_SHARE_EMAIL_BODY: `All Dallas neighborhoods should have what they need to thrive. Use the CPAL Resource Explorer to see how schools benefit from local resources: `,
   MODAL_SHARE_LINK_HEAD: `Share a Link`,
