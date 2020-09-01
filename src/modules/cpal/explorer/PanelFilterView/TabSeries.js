@@ -66,7 +66,6 @@ const TabSeries = ({ ...props }) => {
             >
               <InteractiveScale metric={metric} />
             </div>
-            <h5>Indicators</h5>
             <FilterSeries
               tab={tabId}
               metrics={props.metrics}

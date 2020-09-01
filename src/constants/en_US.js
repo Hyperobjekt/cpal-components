@@ -30,6 +30,7 @@ const en_US = {
   MODAL_SHARE_LINK_INSTR: `Copy the link below to share the current view of the Explorer.`,
   MODAL_SHARE_LINK_INPUT: `Current View URL`,
   BTN_CLOSE: `Close`,
+  UI_MAP_FILTERS_INDICATORS: `Indicators`,
   UI_MAP_BUTTON_RESET_FILTER: `Reset active filter`,
   UI_MAP_FILTER_INSTRUCTIONS: `<p>Click the buttons below to select metrics and filter by quintile(s). Clear filters by pressing the "reset" {icon} button above.</p>`,
   SELECT_VIEW: `Select a view`,

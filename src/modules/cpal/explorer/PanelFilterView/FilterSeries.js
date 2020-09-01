@@ -25,19 +25,27 @@ const FilterSeries = ({ ...props }) => {
     // }
     // return comparison
   })
-
-  return (
-    <div className="filter-panel-filter-series">
-      {filters.map(f => {
-        return (
-          <div className="filter" key={f.id}>
-            <h6>{i18n.translate(f.title)}</h6>
-            <InteractiveScale metric={f} />
-          </div>
-        )
-      })}
-    </div>
-  )
+  if (filters && filters.length > 0) {
+    return (
+      <>
+        <h5>
+          {i18n.translate('UI_MAP_FILTERS_INDICATORS')}
+        </h5>
+        <div className="filter-panel-filter-series">
+          {filters.map(f => {
+            return (
+              <div className="filter" key={f.id}>
+                <h6>{i18n.translate(f.title)}</h6>
+                <InteractiveScale metric={f} />
+              </div>
+            )
+          })}
+        </div>
+      </>
+    )
+  } else {
+    return ''
+  }
 }
 
 FilterSeries.propTypes = {
