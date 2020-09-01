@@ -3,26 +3,6 @@ import PropTypes from 'prop-types'
 import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
-import {
-  Button,
-  Tooltip,
-  Modal,
-  ModalBody,
-} from 'reactstrap'
-import {
-  FiFilter,
-  FiMap,
-  FiList,
-  FiMenu,
-  FiInfo,
-  FiLayers,
-} from 'react-icons/fi'
-import { MdCallSplit } from 'react-icons/md'
-import { FaTwitter, FaFacebookF } from 'react-icons/fa'
-import { GrMail } from 'react-icons/gr'
-import { BsLink45Deg } from 'react-icons/bs'
-import { AiOutlineControl } from 'react-icons/ai'
-import { IoMdShare } from 'react-icons/io'
 
 import useStore from './../store'
 import {
@@ -30,9 +10,7 @@ import {
   Logo,
   Canvas,
   View,
-  Divider,
   CoreButton,
-  Select,
 } from './../../../core'
 import SchoolSearch from './../SchoolSearch/SchoolSearch'
 import ControlPanel from './../ControlPanel/ControlPanel'
@@ -41,14 +19,8 @@ import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
 import IntroModal from './../IntroModal/IntroModal'
-import {
-  onTwitterShare,
-  onFacebookShare,
-  onMailShare,
-} from './share'
 import ShareLinkModal from './share/ShareLinkModal'
 import { ROUTE_SET } from './../../../../constants/metrics'
-import { DEFAULT_ROUTE } from './../../../../constants/map'
 
 /**
  * Layout sets up the basic layout for the explorer.
@@ -197,97 +169,6 @@ const Layout = ({ children, ...props }) => {
     ])
   }
 
-  const shareHash = useStore(state => state.shareHash)
-  const constructShareLink = () => {
-    // If hash === default hash, send back only the root url.
-    if (!!shareHash) {
-      return (
-        window.location.origin +
-        window.location.pathname +
-        shareHash
-      )
-    } else {
-      return (
-        window.location.origin +
-        window.location.pathname +
-        defaultRoute
-      )
-    }
-  }
-
-  const shareLinkModal = useStore(
-    state => state.shareLinkModal,
-  )
-  const setShareLinkModal = useStore(
-    state => state.setShareLinkModal,
-  )
-
-  const handleShare = e => {
-    e.preventDefault()
-    // console.log('handleShare(), ', e)
-    // Click to Twitter
-    if (e.currentTarget.id === 'button_share_twitter') {
-      onTwitterShare(
-        encodeURIComponent(constructShareLink()),
-        i18n.translate('DIALOG_SHARE_TWITTER'),
-      )
-    }
-    // Click to Facebook
-    if (e.currentTarget.id === 'button_share_facebook') {
-      onFacebookShare(
-        encodeURIComponent(constructShareLink()),
-        i18n.translate('DIALOG_SHARE_TWITTER'),
-      )
-    }
-    // Click to mail
-    if (e.currentTarget.id === 'button_share_email') {
-      onMailShare(
-        encodeURIComponent(constructShareLink()),
-        i18n.translate('DIALOG_SHARE_EMAIL_SUBJECT'),
-        i18n.translate('DIALOG_SHARE_EMAIL_BODY'),
-      )
-    }
-    // Click to link
-    if (e.currentTarget.id === 'button_share_link') {
-      // console.log('click share link')
-      setShareLinkModal(!shareLinkModal)
-    }
-  }
-
-  /**
-   * Determines control panel button position based on breakpoint
-   * @param  {String} breakpoint
-   * @return {String}
-   */
-  const getPositionFromBreakpoint = breakpoint => {
-    // console.log('getPositionFromBreakpoint')
-    if (breakpoint === 'sm' || breakpoint === 'xs') {
-      return 'bottom'
-    } else {
-      return 'right'
-    }
-  }
-  /**
-   * Updates positioning for tooltips on buttons in control panel.
-   */
-  const [buttonPosition, setButtonPosition] = useState(
-    'auto',
-  )
-  useEffect(() => {
-    // console.log(
-    //   'browserWidth changed',
-    //   getPositionFromBreakpoint(breakpoint),
-    // )
-    setButtonPosition(getPositionFromBreakpoint(breakpoint))
-  }, [browserWidth])
-  useEffect(() => {
-    // console.log(
-    //   'component loaded',
-    //   getPositionFromBreakpoint(breakpoint),
-    // )
-    setButtonPosition(getPositionFromBreakpoint(breakpoint))
-  }, [])
-
   return (
     <div
       className={clsx('layout', 'breakpoint-' + breakpoint)}
@@ -313,202 +194,7 @@ const Layout = ({ children, ...props }) => {
       <main>
         <Canvas>
           <SlideoutPanel />
-          <ControlPanel>
-            <Select
-              id="select_view"
-              color="primary"
-              className={`select-view`}
-              label={i18n.translate(`SELECT_VIEW`)}
-              items={viewSelectItems}
-              handleSelect={handleSelect}
-              title={i18n.translate(`SELECT_VIEW`)}
-              active={'select_view_' + activeView}
-            />
-            <div className="control-label">
-              {i18n.translate('CONTROL_PANEL_VIEW')}
-            </div>
-            <CoreButton
-              id="button_view_map"
-              label={i18n.translate(`BUTTON_VIEW_MAP`)}
-              onClick={handleClick}
-              color="none"
-              className={clsx(
-                'button-core',
-                'button-view-map',
-                activeView && activeView === 'map'
-                  ? 'active'
-                  : '',
-              )}
-              tooltip={buttonPosition}
-            >
-              <FiMap />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_VIEW_MAP`)}
-              </span>
-            </CoreButton>
-            <CoreButton
-              id="button_view_feeder"
-              label={i18n.translate(`BUTTON_VIEW_FEEDER`)}
-              onClick={handleClick}
-              color="none"
-              className={clsx(
-                'button-view-feeder',
-                activeView && activeView === 'feeder'
-                  ? 'active'
-                  : '',
-              )}
-              tooltip={buttonPosition}
-            >
-              <FiList />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_VIEW_FEEDER`)}
-              </span>
-            </CoreButton>
-            <Divider />
-            {activeView === 'map' ? (
-              <>
-                <div className="control-label">
-                  {i18n.translate('CONTROL_PANEL_METRICS')}
-                </div>
-                <CoreButton
-                  id="button_toggle_panel_filters"
-                  label={i18n.translate(
-                    `BUTTON_TOGGLE_PANEL_FILTERS`,
-                  )}
-                  onClick={handlePanel}
-                  color="none"
-                  tooltip={buttonPosition}
-                  className={clsx(
-                    'button-panel-filters',
-                    slideoutPanel.active &&
-                      slideoutPanel.panel === 'filters'
-                      ? 'active'
-                      : '',
-                  )}
-                >
-                  <AiOutlineControl />
-                  <span className="sr-only">
-                    {i18n.translate(
-                      `BUTTON_TOGGLE_FILTERS`,
-                    )}
-                  </span>
-                </CoreButton>
-                <Divider />
-                <div className="control-label">
-                  {i18n.translate('CONTROL_PANEL_LAYERS')}
-                </div>
-                <CoreButton
-                  id="button_toggle_panel_layers"
-                  label={i18n.translate(
-                    `BUTTON_TOGGLE_PANEL_LAYERS`,
-                  )}
-                  onClick={handlePanel}
-                  color="none"
-                  tooltip={buttonPosition}
-                  className={clsx(
-                    'button-panel-layers',
-                    slideoutPanel.active &&
-                      slideoutPanel.panel === 'layers'
-                      ? 'active'
-                      : '',
-                  )}
-                >
-                  <FiLayers />
-                  <span className="sr-only">
-                    {i18n.translate(
-                      `BUTTON_TOGGLE_PANEL_LAYERS`,
-                    )}
-                  </span>
-                </CoreButton>
-                <Divider />
-              </>
-            ) : (
-              ''
-            )}
-            <div className="control-label">
-              {i18n.translate('CONTROL_PANEL_INFO')}
-            </div>
-            <CoreButton
-              id="button_toggle_panel_info"
-              label={i18n.translate(
-                `BUTTON_TOGGLE_PANEL_INFO`,
-              )}
-              tooltip={buttonPosition}
-              onClick={handlePanel}
-              color="none"
-              styles={{ display: 'none' }}
-              className={clsx(
-                'button-panel-info',
-                slideoutPanel.active &&
-                  slideoutPanel.panel === 'info'
-                  ? 'active'
-                  : '',
-              )}
-            >
-              <FiInfo />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_TOGGLE_INFO`)}
-              </span>
-            </CoreButton>
-            <Divider />
-            <div className="control-label">
-              {i18n.translate('CONTROL_PANEL_SHARE')}
-            </div>
-            <CoreButton
-              id="button_share_twitter"
-              label={i18n.translate(`BUTTON_SHARE_TWITTER`)}
-              tooltip={buttonPosition}
-              onClick={handleShare}
-              color="none"
-              className="button-share-twitter button-share"
-            >
-              <FaTwitter />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_SHARE_TWITTER`)}
-              </span>
-            </CoreButton>
-            <CoreButton
-              id="button_share_facebook"
-              label={i18n.translate(
-                `BUTTON_SHARE_FACEBOOK`,
-              )}
-              tooltip={buttonPosition}
-              onClick={handleShare}
-              color="none"
-              className="button-share-facebook button-share"
-            >
-              <FaFacebookF />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_SHARE_FACEBOOK`)}
-              </span>
-            </CoreButton>
-            <CoreButton
-              id="button_share_email"
-              label={i18n.translate(`BUTTON_SHARE_EMAIL`)}
-              tooltip={buttonPosition}
-              onClick={handleShare}
-              color="none"
-              className="button-share-email button-share"
-            >
-              <GrMail />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_SHARE_EMAIL`)}
-              </span>
-            </CoreButton>
-            <CoreButton
-              id="button_share_link"
-              label={i18n.translate(`BUTTON_SHARE_LINK`)}
-              tooltip={buttonPosition}
-              onClick={handleShare}
-              color="none"
-              className="button-share-link button-share"
-            >
-              <IoMdShare />
-              <span className="sr-only">
-                {i18n.translate(`BUTTON_SHARE_LINK`)}
-              </span>
-            </CoreButton>
-          </ControlPanel>
+          <ControlPanel></ControlPanel>
           <div
             className={clsx(
               'view-parent',

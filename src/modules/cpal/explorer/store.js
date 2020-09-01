@@ -172,6 +172,10 @@ const [useStore] = create((set, get) => ({
       feature: feature,
     }))
   },
+  // Position of tooltips in control panel, changes with breakpoint
+  buttonTooltipPosition: 'auto',
+  setButtonTooltipPosition: newVal =>
+    set({ buttonTooltipPosition: newVal }),
 }))
 
 export default useStore
