@@ -432,17 +432,18 @@ export const getSchoolZones = () => {
     var options = {
       steps: 64,
       units: 'miles',
-      properties: {
-        tea_id: el.TEA,
-        metric_cri: el.cri_weight,
-      },
+      properties: el,
+      // {
+      //   tea_id: el.TEA,
+      //   metric_cri: el.cri_weight,
+      // },
     }
     const cir = circle(center, radius, options)
     cir.id = '200' + el.TEA
     // Insert into new json object.
     newJson.features.push(cir)
   })
-  // console.log('newJson', newJson)
+  console.log('newJson', newJson)
   return newJson
 }
 

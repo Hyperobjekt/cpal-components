@@ -26,59 +26,6 @@ import useStore from './../store'
 
 const noDataFill = '#ccc'
 
-/**
- * Gets the color stops for the provided metric ID
- * @param {string} id
- * @returns {array}
- */
-// export const getStopsForVarName = (metric, colors) => {
-//   const metricData = getMetric(metric, CPAL_METRICS)
-//   const [min, max] = metricData.range
-//   const range = Math.abs(max - min)
-//   // Grab colors from metric colors array, and detach
-//   const assignColors = metricData.colors.slice()
-//   // If high is not not good, reverse colors array.
-//   if (!metricData.high_is_good) {
-//     assignColors.reverse()
-//   }
-//   const stepSize = range / (assignColors.length - 1)
-//   return assignColors.map((c, i) => [min + i * stepSize, c])
-// }
-
-// const getSchoolFillStyle = (metric, colors) => {
-//   // console.log(
-//   //   'getSchoolFillStyle, ',
-//   //   varName,
-//   //   region,
-//   //   colors,
-//   // )
-//   const stops = getStopsForVarName(metric, colors).reduce(
-//     (acc, curr) => [...acc, ...curr],
-//     [],
-//   )
-//   // return [
-//   //   'case',
-//   //   ['==', ['get', 'metric_' + metric], -999],
-//   //   noDataFill,
-//   //   ['has', 'metric_' + metric],
-//   //   [
-//   //     'interpolate',
-//   //     ['linear'],
-//   //     ['get', 'metric_' + metric],
-//   //     ...stops,
-//   //   ],
-//   //   noDataFill,
-//   // ]
-//   return [
-//     'case',
-//     ['==', ['get', metric], -999],
-//     noDataFill,
-//     ['has', metric],
-//     ['interpolate', ['linear'], ['get', metric], ...stops],
-//     noDataFill,
-//   ]
-// }
-
 const getCircleMinZoom = region =>
   region === 'schools' ? 2 : 8
 
@@ -227,7 +174,12 @@ export const getSchoolZoneShapes = ({
   activeQuintiles,
   colors,
 }) => {
-  // console.log('getSchoolZoneShapes(), ', metric)
+  console.log(
+    'getSchoolZoneShapes(), ',
+    metric,
+    getMetric(metric, CPAL_METRICS).colors[0],
+  )
+  const metricSd = metric + '_sd'
   return fromJS({
     id: region + '-zone-shapes', // layerId || region + '-district-outline',
     source: 'schoolzones',
@@ -238,19 +190,17 @@ export const getSchoolZoneShapes = ({
     },
     interactive: false,
     paint: {
-      // 'fill-color': getMetric(metric, CPAL_METRICS)
-      //   .colors[2], // SCHOOL_ZONE_COLORS.fill, // 'orange',
       'fill-color': [
         'case',
-        ['==', ['get', metric + '_sd'], 0],
+        ['==', ['get', metricSd], 0],
         getMetric(metric, CPAL_METRICS).colors[0],
-        ['==', ['get', metric + '_sd'], 1],
+        ['==', ['get', metricSd], 1],
         getMetric(metric, CPAL_METRICS).colors[1],
-        ['==', ['get', metric + '_sd'], 2],
+        ['==', ['get', metricSd], 2],
         getMetric(metric, CPAL_METRICS).colors[2],
-        ['==', ['get', metric + '_sd'], 3],
+        ['==', ['get', metricSd], 3],
         getMetric(metric, CPAL_METRICS).colors[3],
-        ['==', ['get', metric + '_sd'], 4],
+        ['==', ['get', metricSd], 4],
         getMetric(metric, CPAL_METRICS).colors[4],
         getMetric(metric, CPAL_METRICS).colors[2],
       ],
