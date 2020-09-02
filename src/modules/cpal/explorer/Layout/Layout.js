@@ -19,7 +19,10 @@ import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
 import IntroModal from './../IntroModal/IntroModal'
-import ShareLinkModal from './share/ShareLinkModal'
+import {
+  ShareLinkModal,
+  UnifiedShareModal,
+} from './../Share'
 import { ROUTE_SET } from './../../../../constants/metrics'
 
 /**
@@ -207,6 +210,7 @@ const Layout = ({ children, ...props }) => {
             <FeederView />
           </div>
           <ShareLinkModal className="modal-share-link" />
+          <UnifiedShareModal className="modal-u-share" />
           <IntroModal />
         </Canvas>
       </main>

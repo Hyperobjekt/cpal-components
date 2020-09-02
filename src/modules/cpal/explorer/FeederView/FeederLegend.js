@@ -50,7 +50,8 @@ const FeederLegend = ({ ...props }) => {
       {!!activeFeeder &&
       !!feederLocked &&
       breakpoint !== 'xs' &&
-      breakpoint !== 'sm' ? (
+      breakpoint !== 'sm' &&
+      breakpoint !== 'md' ? (
         <>
           <h2>
             {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}

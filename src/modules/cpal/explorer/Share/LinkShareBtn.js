@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
 import { IoMdShare } from 'react-icons/io'
+import clsx from 'clsx'
 
 import useStore from './../store'
 import { CoreButton } from './../../../core'
@@ -28,7 +29,10 @@ const LinkShareBtn = ({ ...props }) => {
       tooltip={buttonTooltipPosition}
       onClick={handleShare}
       color="none"
-      className="button-share-link button-share"
+      className={clsx(
+        props.className,
+        'button-share-link button-share',
+      )}
     >
       <IoMdShare />
       <span className="sr-only">

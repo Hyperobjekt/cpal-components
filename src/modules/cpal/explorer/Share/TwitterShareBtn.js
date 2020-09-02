@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
 import { FaTwitter } from 'react-icons/fa'
+import clsx from 'clsx'
 
 import useStore from './../store'
 import { CoreButton } from './../../../core'
@@ -27,7 +28,10 @@ const TwitterShareBtn = ({ ...props }) => {
       tooltip={buttonTooltipPosition}
       onClick={handleShare}
       color="none"
-      className="button-share-twitter button-share"
+      className={clsx(
+        props.className,
+        'button-share-twitter button-share',
+      )}
     >
       <FaTwitter />
       <span className="sr-only">

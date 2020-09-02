@@ -126,7 +126,9 @@ const MapView = props => {
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
       if (
-        (breakpoint === 'xs' || breakpoint === 'sm') &&
+        (breakpoint === 'xs' ||
+          breakpoint === 'sm' ||
+          breakpoint === 'md') &&
         !!feature.state.hover
       ) {
         // If it's not yet hovered, set it as hovered.

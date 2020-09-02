@@ -23,13 +23,13 @@ import FeederView from './../FeederView/FeederView'
 import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
-import IntroModal from './../IntroModal/IntroModal'
 import {
   TwitterShareBtn,
   FacebookShareBtn,
   MailShareBtn,
   LinkShareBtn,
   ShareLinkModal,
+  UnifiedShareBtn,
 } from './../Share'
 
 /**
@@ -373,10 +373,11 @@ const ControlPanel = ({ children }) => {
       <div className="control-label">
         {i18n.translate('CONTROL_PANEL_SHARE')}
       </div>
-      <TwitterShareBtn />
-      <FacebookShareBtn />
-      <MailShareBtn />
-      <LinkShareBtn />
+      <TwitterShareBtn className="d-none d-lg-block" />
+      <FacebookShareBtn className="d-none d-lg-block" />
+      <MailShareBtn className="d-none d-lg-block" />
+      <LinkShareBtn className="d-none d-lg-block" />
+      <UnifiedShareBtn className="d-block d-lg-none" />
     </div>
   )
 }

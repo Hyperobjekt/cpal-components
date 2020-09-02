@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
 import { FaFacebookF } from 'react-icons/fa'
+import clsx from 'clsx'
 
 import useStore from './../store'
 import { CoreButton } from './../../../core'
@@ -30,7 +31,10 @@ const FacebookShareBtn = ({ ...props }) => {
       tooltip={buttonTooltipPosition}
       onClick={handleShare}
       color="none"
-      className="button-share-facebook button-share"
+      className={clsx(
+        props.className,
+        'button-share-facebook button-share',
+      )}
     >
       <FaFacebookF />
       <span className="sr-only">

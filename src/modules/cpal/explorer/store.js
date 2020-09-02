@@ -119,9 +119,9 @@ const [useStore] = create((set, get) => ({
   shareLinkModal: false,
   setShareLinkModal: newBool =>
     set({ shareLinkModal: newBool }),
-  unifiedShareLinkModal: false,
-  setUnifiedShareLinkModal: newBool =>
-    set({ shareLinkModal: newBool }),
+  unifiedShareModal: false,
+  setUnifiedShareModal: newBool =>
+    set({ unifiedShareModal: newBool }),
   handleToggleMenu: null,
   setHandleToggleMenu: newFunc =>
     set({ handleToggleMenu: newFunc }),

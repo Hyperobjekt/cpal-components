@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
 import { IoMdShare } from 'react-icons/io'
+import clsx from 'clsx'
 
 import useStore from './../store'
 import { CoreButton } from './../../../core'
@@ -11,14 +12,18 @@ const UnifiedShareBtn = ({ ...props }) => {
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
-  const unifiedShareLinkModal = useStore(
-    state => state.unifiedShareLinkModal,
+  const unifiedShareModal = useStore(
+    state => state.unifiedShareModal,
   )
-  const setUnifiedShareLinkModal = useStore(
-    state => state.setUnifiedShareLinkModal,
+  const setUnifiedShareModal = useStore(
+    state => state.setUnifiedShareModal,
   )
   const handleShare = () => {
-    setUnifiedShareLinkModal(!unifiedShareLinkModal)
+    setUnifiedShareModal(!unifiedShareModal)
+    console.log(
+      'UnifiedShareBtn handleShare()',
+      unifiedShareModal,
+    )
   }
 
   return (
@@ -28,7 +33,10 @@ const UnifiedShareBtn = ({ ...props }) => {
       tooltip={buttonTooltipPosition}
       onClick={handleShare}
       color="none"
-      className="button-u-share-link button-share"
+      className={clsx(
+        props.className,
+        'button-u-share-link button-share',
+      )}
     >
       <IoMdShare />
       <span className="sr-only">

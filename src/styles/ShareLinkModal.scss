@@ -1,5 +1,6 @@
 .modal-dialog.intro-modal,
-.modal-dialog.modal-share-link {
+.modal-dialog.modal-share-link,
+.modal-dialog.modal-u-share {
   .modal-content {
     font-family: Halyard;
     font-weight: 300;
@@ -29,6 +30,16 @@
       padding: 1rem;
       svg {
         margin-right: 1rem;
+      }
+    }
+    button {
+      &.button-share-twitter,
+      &.button-share-facebook,
+      &.button-share-email {
+        svg {
+          margin: 2rem 0;
+          font-size: 3rem;
+        }
       }
     }
   }
