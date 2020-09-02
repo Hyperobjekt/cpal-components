@@ -26,7 +26,6 @@ const PanelLayersView = ({ ...props }) => {
     state => [...state.activeLayers],
     shallow,
   )
-  console.log('PanelLayersView, ', activeLayers)
   const setActiveLayers = useStore(
     state => state.setActiveLayers,
   )
@@ -37,26 +36,25 @@ const PanelLayersView = ({ ...props }) => {
   }
 
   const updateLayers = e => {
-    console.log(
-      'updateLayers, ',
-      e.currentTarget,
-      e.currentTarget.checked,
-    )
+    // console.log(
+    //   'updateLayers, ',
+    //   e.currentTarget,
+    //   e.currentTarget.checked,
+    // )
     // If item is checked, if it's not in array, push it into array
     // If item is not checked, if it's in array, remove
     const index = Number(
       String(e.currentTarget.id).replace('layer_', ''),
     )
-    console.log('index = ', index)
+    // console.log('index = ', index)
     // document.querySelector('[data-only_one="true"]')
     // If the element is an only-one element, reset other only-ones of same name.
     const el = document.getElementById(e.currentTarget.id)
     const dataset = el.dataset
     let newLayers = activeLayers.slice()
     if (dataset.onlyOne === 'true') {
-      console.log('it is an only-one')
+      // console.log('it is an only-one')
       const name = dataset.onlyOneName
-      console.log('oneOnly name = ', name)
       // Remove all the matching only-ones from the activeLayers array.
       CPAL_LAYERS.forEach((el, i) => {
         if (
@@ -73,27 +71,14 @@ const PanelLayersView = ({ ...props }) => {
         }
       })
     }
-    // console.log('activeLayers, ', activeLayers)
-    // Reset activeLayers array.
-    // if (!!e.currentTarget.checked) {
-    //   console.log('is checked')
-    //   // Checked.
-    //   activeLayers[index] = 1
-    //   setActiveLayers(activeLayers)
-    // } else {
-    //   console.log('not checked')
-    //   // Not checked.
-    //   activeLayers[index] = 0
-    //   setActiveLayers(activeLayers)
-    // }
     newLayers[index] = newLayers[index] === 1 ? 0 : 1
     setActiveLayers(newLayers)
-    console.log('activeLayers, ', activeLayers)
+    // console.log('activeLayers, ', activeLayers)
   }
 
   const [layersKey, setLayersKey] = useState(0)
   useEffect(() => {
-    console.log('activeLayers changed')
+    // console.log('activeLayers changed')
     setLayersKey(layersKey + 1)
   }, [activeLayers])
 
@@ -139,10 +124,10 @@ const PanelLayersView = ({ ...props }) => {
                   ] = useState(false)
                   const toggle = () =>
                     setTooltipOpen(!tooltipOpen)
-                  console.log(
-                    'rendering layer checkbox, ',
-                    activeLayers,
-                  )
+                  // console.log(
+                  //   'rendering layer checkbox, ',
+                  //   activeLayers,
+                  // )
                   const isChecked = !!activeLayers[
                     Number(layer.index)
                   ]

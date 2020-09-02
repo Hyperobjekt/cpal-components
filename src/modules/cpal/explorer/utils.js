@@ -443,7 +443,7 @@ export const getSchoolZones = () => {
     // Insert into new json object.
     newJson.features.push(cir)
   })
-  console.log('newJson', newJson)
+  // console.log('newJson', newJson)
   return newJson
 }
 
