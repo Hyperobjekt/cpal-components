@@ -4,6 +4,15 @@
 
 /* Extra small devices (phones, 767px and down) */
 .layout-control-panel {
+  &.display-map {
+    justify-content: space-around;
+  }
+  &.display-feeder {
+    justify-content: flex-start;
+    .btn.button-core {
+      margin-right: 1rem;
+    }
+  }
   height: 64px;
   display: flex;
   align-items: flex-start;
@@ -78,7 +87,7 @@
     border-radius: 20px;
     font-size: 14px;
     line-height: 14px;
-    margin-right: 1rem;
+    // margin-right: 1rem;
     flex: 0 0 40px;
     align-self: center;
     &:hover {
@@ -95,7 +104,12 @@
 @media only screen and (min-width: 768px) {
   .layout-control-panel {
     // height: 100%;
-    justify-content: space-between;
+    // &.display-map {
+    //   justify-content: space-between;
+    // }
+    // &.display-feeder {
+    //   justify-content: flex-start;
+    // }
     display: flex;
     flex-direction: row;
     width: 500px;
@@ -122,7 +136,10 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    justify-content: flex-start;
+    &.display-map,
+    &.display-feeder {
+      justify-content: flex-start;
+    }
     left: 0;
     top: 0;
     .btn.button-core {

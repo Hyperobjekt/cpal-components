@@ -238,7 +238,14 @@ const ControlPanel = ({ children }) => {
   }, [])
 
   return (
-    <div className="layout-control-panel">
+    <div
+      className={clsx(
+        'layout-control-panel',
+        activeView
+          ? 'display-' + activeView
+          : 'display-map',
+      )}
+    >
       <Select
         id="select_view"
         color="primary"
