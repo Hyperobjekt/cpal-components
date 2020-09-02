@@ -627,7 +627,11 @@ const MapBase = ({
         {...rest}
       >
         {!!hoveredId &&
-          !(breakpoint === 'xs' || breakpoint === 'sm') && (
+          !(
+            breakpoint === 'xs' ||
+            breakpoint === 'sm' ||
+            breakpoint === 'md'
+          ) && (
             <Popup
               className={clsx('school-details-tip')}
               latitude={
