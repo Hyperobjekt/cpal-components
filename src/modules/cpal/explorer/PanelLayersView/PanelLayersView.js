@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, setState } from 'react'
 import PropTypes from 'prop-types'
+import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import { Button, Label, Input, Tooltip } from 'reactstrap'
 import clsx from 'clsx'
@@ -19,7 +20,13 @@ import {
 } from './../../../../constants/layers'
 
 const PanelLayersView = ({ ...props }) => {
-  const activeLayers = useStore(state => state.activeLayers)
+  // const activeLayers = useStore(state => state.activeLayers)
+  // Active layers
+  const activeLayers = useStore(
+    state => [...state.activeLayers],
+    shallow,
+  )
+  console.log('PanelLayersView, ', activeLayers)
   const setActiveLayers = useStore(
     state => state.setActiveLayers,
   )
@@ -40,23 +47,33 @@ const PanelLayersView = ({ ...props }) => {
     const index = Number(
       String(e.currentTarget.id).replace('layer_', ''),
     )
+    console.log('index = ', index)
     // document.querySelector('[data-only_one="true"]')
     // If the element is an only-one element, reset other only-ones of same name.
     const el = document.getElementById(e.currentTarget.id)
     const dataset = el.dataset
+    let newLayers = activeLayers.slice()
     if (dataset.onlyOne === 'true') {
-      // console.log('it is an only-one')
+      console.log('it is an only-one')
       const name = dataset.onlyOneName
+      console.log('oneOnly name = ', name)
       // Remove all the matching only-ones from the activeLayers array.
       CPAL_LAYERS.forEach((el, i) => {
         if (
           el.only_one === true &&
-          el.only_one_name === name
+          el.only_one_name === name &&
+          Number(el.index) !== index
         ) {
-          activeLayers[el.index] = 0
+          // console.log(
+          //   'resetting oneonly, ',
+          //   el.id,
+          //   el.index,
+          // )
+          newLayers[Number(el.index)] = 0
         }
       })
     }
+    // console.log('activeLayers, ', activeLayers)
     // Reset activeLayers array.
     // if (!!e.currentTarget.checked) {
     //   console.log('is checked')
@@ -69,21 +86,22 @@ const PanelLayersView = ({ ...props }) => {
     //   activeLayers[index] = 0
     //   setActiveLayers(activeLayers)
     // }
-    activeLayers[index] = activeLayers[index] === 1 ? 0 : 1
-    setActiveLayers(activeLayers)
+    newLayers[index] = newLayers[index] === 1 ? 0 : 1
+    setActiveLayers(newLayers)
     console.log('activeLayers, ', activeLayers)
   }
 
-  // const getContents = () => {
-  //   // Right now, just check for feeder OR map.
-  //   // if (activeView === 'feeder') {
-  //   //   return i18n.translate('UI_PANEL_INFO_FEEDER')
-  //   // } else {
-  //   //   return i18n.translate('UI_PANEL_INFO_MAP')
-  //   // }
-  // }
+  const [layersKey, setLayersKey] = useState(0)
+  useEffect(() => {
+    console.log('activeLayers changed')
+    setLayersKey(layersKey + 1)
+  }, [activeLayers])
+
   return (
-    <div className="map-panel-slideout-layers">
+    <div
+      className="map-panel-slideout-layers"
+      key={layersKey}
+    >
       <div className={clsx(`map-layer-toggle-pane`)}>
         {CPAL_LAYER_GROUPS.map((el, i) => {
           return (
@@ -92,7 +110,7 @@ const PanelLayersView = ({ ...props }) => {
                 'layer-group',
                 'layer-group-' + i,
               )}
-              key={'layer-group-' + i}
+              key={'layer-group-' + i + '-' + layersKey}
             >
               <h5 key={'layer-group-header-' + i}>
                 {i18n.translate(el.title)}
@@ -121,6 +139,13 @@ const PanelLayersView = ({ ...props }) => {
                   ] = useState(false)
                   const toggle = () =>
                     setTooltipOpen(!tooltipOpen)
+                  console.log(
+                    'rendering layer checkbox, ',
+                    activeLayers,
+                  )
+                  const isChecked = !!activeLayers[
+                    Number(layer.index)
+                  ]
                   return (
                     <div
                       className="layer"
@@ -140,13 +165,7 @@ const PanelLayersView = ({ ...props }) => {
                           data-only-one-name={
                             layer.only_one_name
                           }
-                          checked={
-                            activeLayers[
-                              Number(layer.index)
-                            ] === 1
-                              ? true
-                              : false
-                          }
+                          checked={isChecked}
                           readOnly={true}
                           onClick={e => {
                             updateLayers(e)
