@@ -20,10 +20,6 @@ const UnifiedShareBtn = ({ ...props }) => {
   )
   const handleShare = () => {
     setUnifiedShareModal(!unifiedShareModal)
-    console.log(
-      'UnifiedShareBtn handleShare()',
-      unifiedShareModal,
-    )
   }
 
   return (

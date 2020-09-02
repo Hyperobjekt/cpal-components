@@ -114,7 +114,11 @@ const PopupContent = ({ ...props }) => {
             return ''
           }
         })}
-        {!!(breakpoint === 'xs' || breakpoint === 'sm') && (
+        {!!(
+          breakpoint === 'xs' ||
+          breakpoint === 'sm' ||
+          breakpoint === 'md'
+        ) && (
           <CoreButton
             id="modal_access_school"
             className="click-school-prompt"
