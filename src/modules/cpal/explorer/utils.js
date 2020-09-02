@@ -432,11 +432,11 @@ export const getSchoolZones = () => {
     var options = {
       steps: 64,
       units: 'miles',
-      properties: el,
-      // {
-      //   tea_id: el.TEA,
-      //   metric_cri: el.cri_weight,
-      // },
+      // el,
+      properties: {
+        tea_id: el.TEA,
+        metric_cri: el.cri_weight,
+      },
     }
     const cir = circle(center, radius, options)
     cir.id = '200' + el.TEA

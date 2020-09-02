@@ -174,11 +174,11 @@ export const getSchoolZoneShapes = ({
   activeQuintiles,
   colors,
 }) => {
-  console.log(
-    'getSchoolZoneShapes(), ',
-    metric,
-    getMetric(metric, CPAL_METRICS).colors[0],
-  )
+  // console.log(
+  //   'getSchoolZoneShapes(), ',
+  //   metric,
+  //   getMetric(metric, CPAL_METRICS).colors[0],
+  // )
   const metricSd = metric + '_sd'
   return fromJS({
     id: region + '-zone-shapes', // layerId || region + '-district-outline',
@@ -320,8 +320,7 @@ export const getDemographicShapes = (
     },
     interactive: false,
     paint: {
-      'fill-color': 'rgba(0,0,0,1)',
-      'fill-opacity': [
+      'fill-color': [
         'let',
         'perc_floor',
         [
@@ -337,20 +336,19 @@ export const getDemographicShapes = (
           ],
         ],
         [
-          'case',
-          ['==', ['var', 'perc_floor'], 5],
-          0.5, // 0.8,
-          ['==', ['var', 'perc_floor'], 4],
-          0.4, // 0.6,
-          ['==', ['var', 'perc_floor'], 3],
-          0.3, // 0.4,
-          ['==', ['var', 'perc_floor'], 2],
-          0.2,
-          ['==', ['var', 'perc_floor'], 1],
-          0.1,
-          ['==', ['var', 'perc_floor'], 0],
+          'interpolate',
+          ['linear'],
+          ['var', 'perc_floor'],
           0,
-          0,
+          'rgba(231, 237, 216, 0.8)', // 'rgba(113, 121, 92, 0.8)',
+          1,
+          'rgba(206, 213, 189, 0.8)', // 'rgba(140, 148, 119, 0.8)',
+          2,
+          'rgba(173, 181, 152, 0.8)',
+          3,
+          'rgba(140, 148, 119, 0.8)', // 'rgba(206, 213, 189, 0.8)',
+          4,
+          'rgba(113, 121, 92, 0.8)', // 'rgba(231, 237, 216, 0.8)',
         ],
       ],
     },
@@ -508,7 +506,7 @@ export const getSchoolZoneLayers = context => {
   // console.log('getSchoolZoneLayers', context)
   return [
     {
-      z: 160,
+      z: 260,
       style: getSchoolZoneShapes(context),
       idMap: true,
       hasFeatureId: isSchoolZoneId,
@@ -521,7 +519,7 @@ export const getCircleLayers = context => {
   // console.log('getCircleLayers', context)
   return [
     {
-      z: 150,
+      z: 250,
       style: getSchoolCircleLayer(context),
       idMap: true,
       hasFeatureId: isSchoolCircleId,

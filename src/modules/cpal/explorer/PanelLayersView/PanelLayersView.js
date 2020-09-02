@@ -30,7 +30,11 @@ const PanelLayersView = ({ ...props }) => {
   }
 
   const updateLayers = e => {
-    // console.log('updateLayers, ', e.currentTarget)
+    console.log(
+      'updateLayers, ',
+      e.currentTarget,
+      e.currentTarget.checked,
+    )
     // If item is checked, if it's not in array, push it into array
     // If item is not checked, if it's in array, remove
     const index = Number(
@@ -54,16 +58,20 @@ const PanelLayersView = ({ ...props }) => {
       })
     }
     // Reset activeLayers array.
-    if (!!e.currentTarget.checked) {
-      // Checked.
-      activeLayers[index] = 1
-      setActiveLayers(activeLayers)
-    } else {
-      // Not checked.
-      activeLayers[index] = 0
-      setActiveLayers(activeLayers)
-    }
-    // console.log('activeLayers, ', activeLayers)
+    // if (!!e.currentTarget.checked) {
+    //   console.log('is checked')
+    //   // Checked.
+    //   activeLayers[index] = 1
+    //   setActiveLayers(activeLayers)
+    // } else {
+    //   console.log('not checked')
+    //   // Not checked.
+    //   activeLayers[index] = 0
+    //   setActiveLayers(activeLayers)
+    // }
+    activeLayers[index] = activeLayers[index] === 1 ? 0 : 1
+    setActiveLayers(activeLayers)
+    console.log('activeLayers, ', activeLayers)
   }
 
   // const getContents = () => {
@@ -133,7 +141,9 @@ const PanelLayersView = ({ ...props }) => {
                             layer.only_one_name
                           }
                           checked={
-                            activeLayers[layer.index] === 1
+                            activeLayers[
+                              Number(layer.index)
+                            ] === 1
                               ? true
                               : false
                           }
