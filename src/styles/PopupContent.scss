@@ -21,18 +21,34 @@
     margin-bottom: 8px;
     padding-right: 1px;
     padding-left: 1px;
+    &:after,
+    &:before {
+      display: none;
+    }
     .n-i-scale-quintiles {
       width: 100%;
       top: -5px !important;
       // The line through the quintiles.
-      &:after {
-        width: 100%;
-        height: 0.5px;
-        background-color: $turtle-green;
-        display: block;
-        content: '';
-        position: absolute;
-        top: 5.25px;
+      border: 1px solid #ccc;
+      height: 10px;
+      box-sizing: content-box;
+      margin-top: 0.6rem;
+      &:after,
+      &:before {
+        display: none !important;
+      }
+      .n-i-scale-quintile {
+        height: 12px;
+        border-right: 1px solid #ccc;
+        top: -1px;
+        width: 16.665%;
+        &.quintile-4 {
+          border-right: 0;
+        }
+        &:before,
+        &:after {
+          display: none !important;
+        }
       }
     }
   }
