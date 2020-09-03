@@ -19,11 +19,22 @@ const CensusScale = ({ ...props }) => {
     state => [...state.activeLayers],
     shallow,
   )
+
+  const [scaleLabel, setScaleLabel] = useState(
+    i18n.translate('UI_MAP_LAYER_1_TITLE'),
+  )
   // Update scale max when the active layer changes.
   useEffect(() => {
     // console.log(
     //   'activelayers changed, updating max scale value in legend',
     // )
+    let min = 2
+    let max = 6
+    for (var i = min; i < max + 1; i++) {
+      if (activeLayers[i] === 1) {
+        setScaleLabel(i18n.translate(CPAL_LAYERS[i].label))
+      }
+    }
     let newMax = null
     switch (true) {
       case !!activeLayers[2]:
@@ -84,27 +95,27 @@ const CensusScale = ({ ...props }) => {
 
   return (
     <div className="census-scale">
-      <h5>{i18n.translate('UI_MAP_LAYER_1_TITLE')}</h5>
+      <h5>{scaleLabel}</h5>
       <div className="scale-parent">
         <div
           className="scale-block scale-block-0"
-          style={{ 'background-color': DEMO_COLORS[0] }}
+          style={{ backgroundColor: DEMO_COLORS[0] }}
         ></div>
         <div
           className="scale-block scale-block-1"
-          style={{ 'background-color': DEMO_COLORS[1] }}
+          style={{ backgroundColor: DEMO_COLORS[1] }}
         ></div>
         <div
           className="scale-block scale-block-2"
-          style={{ 'background-color': DEMO_COLORS[2] }}
+          style={{ backgroundColor: DEMO_COLORS[2] }}
         ></div>
         <div
           className="scale-block scale-block-3"
-          style={{ 'background-color': DEMO_COLORS[3] }}
+          style={{ backgroundColor: DEMO_COLORS[3] }}
         ></div>
         <div
           className="scale-block scale-block-4"
-          style={{ 'background-color': DEMO_COLORS[4] }}
+          style={{ backgroundColor: DEMO_COLORS[4] }}
         ></div>
       </div>
       <div className="scale-range">

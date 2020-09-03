@@ -25,7 +25,7 @@ const UnifiedShareModal = props => {
   const unifiedShareModal = useStore(
     state => state.unifiedShareModal,
   )
-  console.log('UnifiedShareModal, ', unifiedShareModal)
+  // console.log('UnifiedShareModal, ', unifiedShareModal)
   const setUnifiedShareModal = useStore(
     state => state.setUnifiedShareModal,
   )
