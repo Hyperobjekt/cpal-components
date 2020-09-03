@@ -57,7 +57,9 @@ const FeederMobileModal = ({ children, ...props }) => {
       !!activeFeeder &&
       !!feederLocked &&
       activeView === 'feeder' &&
-      (breakpoint == 'xs' || breakpoint == 'sm')
+      (breakpoint == 'xs' ||
+        breakpoint == 'sm' ||
+        breakpoint == 'md')
     ) {
       setShowFeederModal(true)
     } else {
