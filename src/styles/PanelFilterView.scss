@@ -1,4 +1,5 @@
-.map-panel-slideout {
+.map-panel-slideout,
+.panel-modal {
   // height: 100%;
   overflow: hidden;
   .map-panel-slideout-filters {
@@ -82,7 +83,6 @@
               span {
                 font-weight: 400;
               }
-              
             }
           }
           .filter-panel-filter-series {

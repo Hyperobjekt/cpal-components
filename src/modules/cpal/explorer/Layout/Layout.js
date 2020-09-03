@@ -19,6 +19,7 @@ import MapView from './../MapView/MapView'
 import RouteManager from './../RouteManager/RouteManager'
 import SlideoutPanel from './../SlideoutPanel/SlideoutPanel'
 import IntroModal from './../IntroModal/IntroModal'
+import PanelModal from './../PanelModal/PanelModal'
 import {
   ShareLinkModal,
   UnifiedShareModal,
@@ -212,6 +213,7 @@ const Layout = ({ children, ...props }) => {
           <ShareLinkModal className="modal-share-link" />
           <UnifiedShareModal className="modal-u-share" />
           <IntroModal />
+          <PanelModal />
         </Canvas>
       </main>
     </div>

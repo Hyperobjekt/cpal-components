@@ -73,6 +73,14 @@ const ControlPanel = ({ children }) => {
   const toggleIntroModal = () =>
     setShowIntroModal(!showIntroModal)
 
+  // Modal for small devices
+  const showPanelModal = useStore(
+    state => state.showPanelModal,
+  )
+  const setShowPanelModal = useStore(
+    state => state.setShowPanelModal,
+  )
+
   // Handle clicks to any control panel button.
   const handleClick = e => {
     e.preventDefault()
@@ -125,28 +133,43 @@ const ControlPanel = ({ children }) => {
     // Conditionally adjust panel settings
     let newActiveState = false
     if (
-      !slideoutPanel.active &&
-      slideoutPanel.panel.length < 1
+      breakpoint === 'xs' ||
+      breakpoint === 'sm' ||
+      breakpoint === 'md'
     ) {
-      // If never opened
-      newActiveState = true
-    } else if (
-      !!slideoutPanel.active &&
-      slideoutPanel.panel.length > 0 &&
-      slideoutPanel.panel === clicked
-    ) {
-      // Selected existing open panel
-      newActiveState = false
-      clicked = ''
+      console.log('show the modal')
+      // Modal size, handle as a modal.
+      setShowPanelModal(true)
+      setSlideoutPanel({
+        active: false,
+        panel: clicked,
+      })
     } else {
-      // Selected different panel
-      newActiveState = true
+      // Slideout panel size, handle as slideout.
+      if (
+        !slideoutPanel.active &&
+        slideoutPanel.panel.length < 1
+      ) {
+        // If never opened
+        newActiveState = true
+      } else if (
+        !!slideoutPanel.active &&
+        slideoutPanel.panel.length > 0 &&
+        slideoutPanel.panel === clicked
+      ) {
+        // Selected existing open panel
+        newActiveState = false
+        clicked = ''
+      } else {
+        // Selected different panel
+        newActiveState = true
+      }
+      // Reset panel state
+      setSlideoutPanel({
+        active: newActiveState,
+        panel: clicked,
+      })
     }
-    // Reset panel state
-    setSlideoutPanel({
-      active: newActiveState,
-      panel: clicked,
-    })
   }
   // Handle select in dropdown
   const handleSelect = e => {

@@ -139,6 +139,9 @@ const [useStore] = create((set, get) => ({
   showIntroModal: false,
   setShowIntroModal: newVal =>
     set({ showIntroModal: newVal }),
+  showPanelModal: false,
+  setShowPanelModal: newVal =>
+    set({ showPanelModal: newVal }),
   enableTour: false, // Set this true to show the launch tour button in intro modal.
   setEnableTour: newVal => set({ enableTour: newVal }),
   showMapModal: false,
