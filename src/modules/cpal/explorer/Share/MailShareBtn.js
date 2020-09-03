@@ -18,6 +18,7 @@ const MailShareBtn = ({ ...props }) => {
     onMailShare(
       encodeURIComponent(constructShareLink(shareHash)),
       i18n.translate('DIALOG_SHARE_TWITTER'),
+      i18n.translate('DIALOG_SHARE_EMAIL_BODY'),
     )
   }
 

@@ -78,6 +78,7 @@ export const onMailShare = (shareUrl, subject, body) => {
     subject +
     '&body=' +
     body +
+    '%0D%0A%0D%0A' +
     shareUrl
   mail.target = '_blank'
   mail.click()
