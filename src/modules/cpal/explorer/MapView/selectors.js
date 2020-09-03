@@ -22,7 +22,7 @@ import {
 import { redlines } from './../../../../data/TXDallas1937Redline.js'
 import { districts } from './../../../../data/districts.js'
 import { feeders } from './../../../../data/feeders.js'
-import { demotracts } from './../../../../data/demotracts.min.js'
+import { demotracts } from './../../../../data/demotracts.js'
 import useStore from './../store'
 
 const noDataFill = '#ccc'
