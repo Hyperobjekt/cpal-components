@@ -8,6 +8,7 @@ import {
   DEMO_MAX_PERCENTS,
   CPAL_LAYERS,
 } from './../../../../constants/layers'
+import { DEMO_COLORS } from './../../../../constants/colors'
 import { getRoundedValue } from './../utils'
 
 const CensusScale = ({ ...props }) => {
@@ -85,12 +86,26 @@ const CensusScale = ({ ...props }) => {
     <div className="census-scale">
       <h5>{i18n.translate('UI_MAP_LAYER_1_TITLE')}</h5>
       <div className="scale-parent">
-        <div className="scale-block scale-block-0"></div>
-        <div className="scale-block scale-block-1"></div>
-        <div className="scale-block scale-block-2"></div>
-        <div className="scale-block scale-block-3"></div>
-        <div className="scale-block scale-block-4"></div>
-        <div className="scale-block scale-block-5"></div>
+        <div
+          className="scale-block scale-block-0"
+          style={{ 'background-color': DEMO_COLORS[0] }}
+        ></div>
+        <div
+          className="scale-block scale-block-1"
+          style={{ 'background-color': DEMO_COLORS[1] }}
+        ></div>
+        <div
+          className="scale-block scale-block-2"
+          style={{ 'background-color': DEMO_COLORS[2] }}
+        ></div>
+        <div
+          className="scale-block scale-block-3"
+          style={{ 'background-color': DEMO_COLORS[3] }}
+        ></div>
+        <div
+          className="scale-block scale-block-4"
+          style={{ 'background-color': DEMO_COLORS[4] }}
+        ></div>
       </div>
       <div className="scale-range">
         <div className="scale-range-minmax min">0%</div>

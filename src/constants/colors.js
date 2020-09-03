@@ -23,6 +23,15 @@ export const DEM_COLORS = [
   '#D2D2D2',
 ]
 
+// Colors for demographic census tract concentrations
+export const DEMO_COLORS = [
+  'rgba(231, 237, 216, 0.8)', // Lightest
+  'rgba(206, 213, 189, 0.8)',
+  'rgba(173, 181, 152, 0.8)',
+  'rgba(140, 148, 119, 0.8)',
+  'rgba(113, 121, 92, 0.8)', // Darkest
+]
+
 /**
  * colors for CRI scale
  */

@@ -133,26 +133,10 @@
       border: 1px solid #959b84;
       // background-color: blue;
       .scale-block {
-        flex: 0 0 16.67%;
+        flex: 0 0 20%;
         border-right: 1px solid #959b84;
-        background-color: rgba(0, 0, 0, 0);
         &.scale-block-4 {
           border-right: 0;
-        }
-        &.scale-block-1 {
-          background-color: rgba(0, 0, 0, 0.1);
-        }
-        &.scale-block-2 {
-          background-color: rgba(0, 0, 0, 0.2);
-        }
-        &.scale-block-3 {
-          background-color: rgba(0, 0, 0, 0.3);
-        }
-        &.scale-block-4 {
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-        &.scale-block-5 {
-          background-color: rgba(0, 0, 0, 0.5);
         }
       }
     }

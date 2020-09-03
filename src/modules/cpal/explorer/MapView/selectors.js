@@ -10,6 +10,7 @@ import {
   REDLINE_FILL_COLORS,
   REDLINE_STROKE_COLORS,
   FEEDER_LAYER_COLOR,
+  DEMO_COLORS,
 } from './../../../../constants/colors'
 import { DEMO_MAX_PERCENTS } from './../../../../constants/layers'
 import { CPAL_METRICS } from './../../../../constants/metrics'
@@ -340,15 +341,15 @@ export const getDemographicShapes = (
           ['linear'],
           ['var', 'perc_floor'],
           0,
-          'rgba(231, 237, 216, 0.8)', // 'rgba(113, 121, 92, 0.8)',
+          DEMO_COLORS[0],
           1,
-          'rgba(206, 213, 189, 0.8)', // 'rgba(140, 148, 119, 0.8)',
+          DEMO_COLORS[1],
           2,
-          'rgba(173, 181, 152, 0.8)',
+          DEMO_COLORS[2],
           3,
-          'rgba(140, 148, 119, 0.8)', // 'rgba(206, 213, 189, 0.8)',
+          DEMO_COLORS[3],
           4,
-          'rgba(113, 121, 92, 0.8)', // 'rgba(231, 237, 216, 0.8)',
+          DEMO_COLORS[4],
         ],
       ],
     },
@@ -482,14 +483,14 @@ export const getDemographicLayers = (
   // console.log('getRedlineLayers', context)
   return [
     {
-      z: 102,
+      z: 42,
       style: getDemographicShapes(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,
       type: `demoShapes`,
     },
     {
-      z: 103,
+      z: 43,
       style: getDemographicLines(context, activeLayers),
       idMap: true,
       hasFeatureId: null, // isCircleId,
