@@ -46,7 +46,7 @@ const en_US = {
   UI_MAP_TOGGLE_LAYERS: `TOGGLE LAYERS`,
   UI_MAP_LEGEND_SCHOOL_DOT: `School`,
   UI_MAP_LEGEND_SCHOOL_ZONE: `School zone (2 mile radius)`,
-  UI_MAP_LEGEND_AVG: `About Average`,
+  UI_MAP_LEGEND_AVG: `About average`,
   UI_MAP_LEGEND_MORE: `Well above average`,
   UI_MAP_LEGEND_FEWER: `Well below average`,
   UI_MAP_LAYERS_REDLINING: `Historical redlining`,
