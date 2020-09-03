@@ -1103,7 +1103,7 @@ export const CPAL_FEEDERS = [
   },
   {
     id: 16,
-    title: 'SOC',
+    title: 'South Oak Cliff',
   },
   {
     id: 17,
