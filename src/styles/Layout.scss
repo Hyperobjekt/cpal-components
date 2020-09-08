@@ -29,8 +29,15 @@ $spacer: 0.8rem;
   .header {
     h1 {
       margin-left: 16px;
+      width: 0;
+      @include media-breakpoint-up(md) {
+        width: auto;
+      }
       a {
-        display: flex;
+        display: none;
+        @include media-breakpoint-up(md) {
+          display: flex;
+        }
         text-decoration: none !important;
         .logo {
           width: 17px;

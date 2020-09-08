@@ -1,21 +1,23 @@
+// .search-autosuggest {
+//   display: none !important;
+//   .icon-search {
+//     display: none !important;
+//   }
+// }
+
+// @include media-breakpoint-up(md) {
 .search-autosuggest {
-  display: none !important;
+  display: flex; // block !important;
   .icon-search {
-    display: none !important;
+    display: inline-block !important;
   }
 }
-
-@include media-breakpoint-up(md) {
-  .search-autosuggest {
-    display: block !important;
-    .icon-search {
-      display: inline-block !important;
-    }
-  }
-}
+// }
 
 .search-autosuggest {
-  max-width: 300px;
+  @include media-breakpoint-up(md) {
+    max-width: 300px;
+  }
   margin-right: 5px;
   margin-left: auto;
   border: 0.5px solid #ccc;
