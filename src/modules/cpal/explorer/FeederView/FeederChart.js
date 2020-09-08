@@ -199,7 +199,8 @@ const FeederChart = ({ children, ...props }) => {
               id={'bar_' + el.id}
               className="bar"
               style={{
-                width: el.value + '%',
+                width:
+                  getRoundedValue(el.value, 0, 1) + '%',
                 backgroundColor: getBarBgColor(el), // conditional based on
               }}
               aria-hidden="true"
@@ -215,7 +216,7 @@ const FeederChart = ({ children, ...props }) => {
               </Tooltip>
             </div>
             <span className="data">
-              {getRoundedValue(el.value, 1, 1)}
+              {getRoundedValue(el.value, 0, 1)}
             </span>
           </button>
         )
