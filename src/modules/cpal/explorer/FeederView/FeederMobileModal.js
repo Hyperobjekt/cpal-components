@@ -10,7 +10,10 @@ import {
   ModalHeader,
 } from 'reactstrap'
 import { FiMap } from 'react-icons/fi'
-import { FaQuestion } from 'react-icons/fa'
+import {
+  FaQuestion,
+  FaExternalLinkSquareAlt,
+} from 'react-icons/fa'
 import { GiJourney } from 'react-icons/gi'
 import {
   getMetric,
@@ -144,6 +147,13 @@ const FeederMobileModal = ({ children, ...props }) => {
                 key={'school_' + el.TEA}
               >
                 {el.SCHOOLNAME}
+                <a
+                  href={'/schools/' + el.TEA + '/'}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FaExternalLinkSquareAlt />
+                </a>
               </span>
             )
           })}
