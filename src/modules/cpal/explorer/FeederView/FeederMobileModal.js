@@ -3,35 +3,10 @@ import PropTypes from 'prop-types'
 import shallow from 'zustand/shallow'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalHeader,
-} from 'reactstrap'
-import { FiMap } from 'react-icons/fi'
-import {
-  FaQuestion,
-  FaExternalLinkSquareAlt,
-} from 'react-icons/fa'
-import { GiJourney } from 'react-icons/gi'
-import {
-  getMetric,
-  getRoundedValue,
-  toTitleCase,
-  getFeederAverage,
-  getFeederLabel,
-  getSchoolSet,
-} from './../utils'
+import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 
 import useStore from './../store'
-import { CoreButton } from './../../../core'
-import SchoolSearch from './../SchoolSearch/SchoolSearch'
-import {
-  CPAL_FEEDERS,
-  CPAL_FEEDER_TIP_ITEMS,
-} from './../../../../constants/metrics'
-import { schools } from './../../../../data/schools'
+import FeederLegendContent from './FeederLegendContent'
 
 /**
  * Layout sets up the basic layout for the explorer.
@@ -82,82 +57,7 @@ const FeederMobileModal = ({ children, ...props }) => {
     >
       <ModalHeader toggle={toggleFeederModal}></ModalHeader>
       <ModalBody>
-        <h2>
-          {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
-        </h2>
-        <h3>
-          {getFeederLabel(activeFeeder) +
-            ' ' +
-            toTitleCase(
-              i18n.translate('TERM_PLURAL', {
-                term: i18n.translate('TERM_SCHOOL'),
-              }),
-            )}
-        </h3>
-
-        <div
-          className="feeder-legend-metrics"
-          aria-live="assertive"
-        >
-          <h4>
-            {toTitleCase(
-              i18n.translate('TERM_PLURAL', {
-                term: i18n.translate(`TERM_INDEX_AVERAGE`),
-              }),
-            )}
-          </h4>
-          {CPAL_FEEDER_TIP_ITEMS.map(el => {
-            return (
-              <span
-                id={'index_avg_' + el.id}
-                key={'index_avg_' + el.id}
-                className="feeder-index"
-              >
-                {i18n.translate(el.title)}:
-                <span className="index-value">
-                  {'   '}
-                  {getRoundedValue(
-                    getFeederAverage(
-                      el.id,
-                      getSchoolSet(activeFeeder),
-                    ),
-                    0,
-                  )}
-                </span>
-              </span>
-            )
-          })}
-          <i>
-            {i18n.translate('UI_FEEDER_TOOLTIP_INDEX_DESC')}
-          </i>
-        </div>
-        <div className="feeder-legend-schools">
-          <h4>
-            {toTitleCase(
-              i18n.translate('TERM_PLURAL', {
-                term: i18n.translate('TERM_SCHOOL'),
-              }),
-            )}
-          </h4>
-          {getSchoolSet(activeFeeder).map(el => {
-            return (
-              <span
-                className="school"
-                id={'school_' + el.TEA}
-                key={'school_' + el.TEA}
-              >
-                {el.SCHOOLNAME}
-                <a
-                  href={'/schools/' + el.TEA + '/'}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaExternalLinkSquareAlt />
-                </a>
-              </span>
-            )
-          })}
-        </div>
+        <FeederLegendContent />
       </ModalBody>
     </Modal>
   )
