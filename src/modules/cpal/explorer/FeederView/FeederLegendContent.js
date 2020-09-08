@@ -4,32 +4,17 @@ import ReactEcharts from 'echarts-for-react'
 import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 import echarts from 'echarts/lib/echarts'
-// import { Col } from 'reactstrap'
 import { FaExternalLinkSquareAlt } from 'react-icons/fa'
 
-import {
-  // CPAL_METRICS,
-  // CPAL_FEEDERS,
-  CPAL_FEEDER_TIP_ITEMS,
-} from './../../../../constants/metrics'
-// import {
-//   CRI_COLORS,
-//   ECON_COLORS,
-//   EDU_COLORS,
-//   FAM_COLORS,
-//   HEL_COLORS,
-//   COMM_COLORS,
-// } from './../../../../constants/colors'
+import { CPAL_FEEDER_TIP_ITEMS } from './../../../../constants/metrics'
 import useStore from './../store'
 import {
-  // getMetric,
   getRoundedValue,
   toTitleCase,
   getFeederAverage,
   getFeederLabel,
   getSchoolSet,
 } from './../utils'
-// import { schools } from './../../../../data/schools'
 
 const FeederLegendContent = ({ ...props }) => {
   // Currently active (hovered) feeder
