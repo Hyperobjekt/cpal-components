@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import i18n from '@pureartisan/simple-i18n'
 import echarts from 'echarts/lib/echarts'
 import { Col } from 'reactstrap'
+import { FaExternalLinkSquareAlt } from 'react-icons/fa'
 
 import {
   CPAL_METRICS,
@@ -122,6 +123,13 @@ const FeederLegend = ({ ...props }) => {
                   key={'school_' + el.TEA}
                 >
                   {el.SCHOOLNAME}
+                  <a
+                    href={'/schools/' + el.TEA + '/'}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaExternalLinkSquareAlt />
+                  </a>
                 </span>
               )
             })}

@@ -185,6 +185,7 @@ $bar-highlight: #e94f34;
           width: 45%;
           flex: 0 0 45%;
           margin: 0.6rem auto 0.6rem;
+          color: #2c390b;
           .index-value {
             font-size: 1.5rem;
             line-height: 1.6rem;
@@ -192,7 +193,13 @@ $bar-highlight: #e94f34;
             font-weight: 400;
           }
           span {
-            padding: 0.5rem 0;
+            padding: 0.25rem 0;
+            a {
+              // color: gray;
+              color: #2c390b;
+              margin-left: 0.6rem;
+              vertical-align: bottom;
+            }
           }
           span,
           i {
@@ -200,7 +207,7 @@ $bar-highlight: #e94f34;
             display: block;
             font-weight: 300;
             font-size: 1.4rem;
-            line-height: 1.5rem;
+            line-height: 2rem;
           }
           i {
             margin-top: 0.5rem;
