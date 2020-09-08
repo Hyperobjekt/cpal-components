@@ -364,14 +364,43 @@ export const getFeederLabel = tea => {
   })
   return feeder && feeder.title ? feeder.title : ''
 }
+
+/**
+ * Sort schools asc alpha by name
+ */
+const sortSchoolsAlpha = (a, b) => {
+  // console.log('sortSchoolsAlpha')
+  if (a.SCHOOLNAME < b.SCHOOLNAME) return -1
+  if (a.SCHOOLNAME > b.SCHOOLNAME) return 1
+  return 0
+}
+
 /**
  * Gets the set of schools that are in a feeder
  * @return Array Array of school data objects
  */
 export const getSchoolSet = feeder => {
-  return schools.filter(el => {
+  // console.log('getSchoolSet')
+  const set = schools.filter(el => {
     return Number(el.HIGH_SLN) === Number(feeder)
   })
+  const high = set
+    .filter(el => {
+      return String(el.LEVEL).toLowerCase() === 'high'
+    })
+    .sort(sortSchoolsAlpha)
+  const middle = set
+    .filter(el => {
+      return String(el.LEVEL).toLowerCase() === 'middle'
+    })
+    .sort(sortSchoolsAlpha)
+  const elementary = set
+    .filter(el => {
+      return String(el.LEVEL).toLowerCase() === 'elementary'
+    })
+    .sort(sortSchoolsAlpha)
+  const fullSet = [...high, ...middle, ...elementary]
+  return fullSet
 }
 
 /**
