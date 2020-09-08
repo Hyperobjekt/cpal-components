@@ -29,6 +29,7 @@ const FeederLegendContent = ({ ...props }) => {
       <h2>
         {i18n.translate('UI_FEEDER_TITLE_FEEDER_CHART')}
       </h2>
+      <hr />
       <h3>
         {getFeederLabel(activeFeeder) +
           ' ' +
@@ -57,7 +58,7 @@ const FeederLegendContent = ({ ...props }) => {
               key={'index_avg_' + el.id}
               className="feeder-index"
             >
-              {i18n.translate(el.title)}:
+              {i18n.translate(el.title)}
               <span className="index-value">
                 {'   '}
                 {getRoundedValue(

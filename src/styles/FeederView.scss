@@ -132,86 +132,88 @@ $bar-highlight: #e94f34;
           justify-content: flex-start;
           align-items: flex-start;
         }
-        font-size: 12px;
-        font-family: Halyard;
-        font-size: 1.4rem;
-        line-height: 1.5rem;
-        padding-right: 0.5rem;
+        overflow-y: scroll;
         padding: 24px;
         height: 350px;
-        overflow-y: scroll;
         background-color: #fff;
         box-shadow: 0 1px 3px #ccc;
-        p {
-          margin: 1rem 0;
-          font-family: Halyard;
-          font-weight: 200;
-          font-size: 15px;
-          line-height: 22px;
-          color: #606b44;
-          margin-bottom: 0.8rem;
-        }
-        h2 {
-          font-size: 1.8rem;
-          line-height: 100%;
-          width: 100%;
-        }
-        h3 {
-          font-size: 1.4rem;
-          line-height: 1.4rem;
-          font-weight: 300;
-          margin-bottom: 20px;
-          width: 100%;
-        }
-        h4 {
-          font-family: Halyard;
-          font-weight: 400;
-          font-size: 1.6rem;
-          line-height: 2rem;
-          margin-bottom: 10px;
-        }
-        p {
-          // font-size: 10px;
-        }
-        h4 {
-          width: 100%;
-          flex: 0 0 100%;
-        }
-        .feeder-legend-schools {
-          margin-top: 12px !important;
-        }
+
+        // font-size: 12px;
+        // font-family: Halyard;
+        // font-size: 1.4rem;
+        // line-height: 1.5rem;
+        // padding-right: 0.5rem;
+
+        // p {
+        //   margin: 1rem 0;
+        //   font-family: Halyard;
+        //   font-weight: 200;
+        //   font-size: 15px;
+        //   line-height: 22px;
+        //   color: #606b44;
+        //   margin-bottom: 0.8rem;
+        // }
+        // h2 {
+        //   font-size: 1.8rem;
+        //   line-height: 100%;
+        //   width: 100%;
+        // }
+        // h3 {
+        //   font-size: 1.4rem;
+        //   line-height: 1.4rem;
+        //   font-weight: 300;
+        //   margin-bottom: 20px;
+        //   width: 100%;
+        // }
+        // h4 {
+        //   font-family: Halyard;
+        //   font-weight: 400;
+        //   font-size: 1.6rem;
+        //   line-height: 2rem;
+        //   margin-bottom: 10px;
+        // }
+        // p {
+        //   // font-size: 10px;
+        // }
+        // h4 {
+        //   width: 100%;
+        //   flex: 0 0 100%;
+        // }
+        // .feeder-legend-schools {
+        //   margin-top: 12px !important;
+        // }
         .feeder-legend-metrics,
         .feeder-legend-schools {
           width: 45%;
           flex: 0 0 45%;
           margin: 0.6rem auto 0.6rem;
-          color: #2c390b;
-          .index-value {
-            font-size: 1.5rem;
-            line-height: 1.6rem;
-            display: inline;
-            font-weight: 400;
-          }
-          span {
-            padding: 0.25rem 0;
-            a {
-              // color: gray;
-              color: #2c390b;
-              margin-left: 0.6rem;
-              vertical-align: bottom;
-            }
-          }
-          span,
-          i {
-            width: 100%;
-            display: block;
-            font-weight: 300;
-            font-size: 1.4rem;
-            line-height: 2rem;
-          }
-          i {
-            margin-top: 0.5rem;
-          }
+          // color: #2c390b;
+          // .index-value {
+          //   font-size: 1.5rem;
+          //   line-height: 1.6rem;
+          //   display: inline;
+          //   font-weight: 400;
+          // }
+          // span {
+          //   padding: 0.25rem 0;
+          //   a {
+          //     // color: gray;
+          //     color: #2c390b;
+          //     margin-left: 0.6rem;
+          //     vertical-align: bottom;
+          //   }
+          // }
+          // span,
+          // i {
+          //   width: 100%;
+          //   display: block;
+          //   font-weight: 300;
+          //   font-size: 1.4rem;
+          //   line-height: 2rem;
+          // }
+          // i {
+          //   margin-top: 0.5rem;
+          // }
         }
 
         .feeder-legend-metrics,
@@ -226,6 +228,97 @@ $bar-highlight: #e94f34;
     // display: none;
     .echarts-for-react {
       width: 100% !important;
+    }
+  }
+}
+
+.feeder-chart-legend,
+.feeder-modal .modal-body {
+  font-size: 12px;
+  font-family: Halyard;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+  padding-right: 0.5rem;
+  color: #606b44;
+  p {
+    margin: 1rem 0;
+    font-family: Halyard;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 22px;
+    // color: #606b44;
+    margin-bottom: 0.8rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    width: 100%;
+    font-weight: 400;
+  }
+  hr {
+    width: 100%;
+    &:after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background-color: #e55934;
+    }
+  }
+  h3 {
+    font-size: 1.7rem;
+    line-height: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  h4 {
+    font-family: Halyard;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    // margin-bottom: 10px;
+  }
+  p {
+    // font-size: 10px;
+  }
+  h4 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+  .feeder-legend-schools {
+    margin-top: 12px !important;
+  }
+  .feeder-legend-metrics,
+  .feeder-legend-schools {
+    margin: 0.6rem auto 0.6rem;
+    color: #2c390b;
+    .index-value {
+      font-size: 1.5rem;
+      line-height: 1.6rem;
+      display: inline;
+      font-weight: 500;
+    }
+    span {
+      padding: 0.25rem 0;
+      a {
+        // color: gray;
+        color: #2c390b;
+        margin-left: 0.6rem;
+        vertical-align: bottom;
+      }
+    }
+    span,
+    i {
+      width: 100%;
+      display: block;
+      font-weight: 300;
+      font-size: 1.4rem;
+      line-height: 2rem;
+    }
+    i {
+      margin-top: 0.5rem;
     }
   }
 }
@@ -245,37 +338,6 @@ $bar-highlight: #e94f34;
       .school {
         display: block;
         width: 100%;
-      }
-    }
-    .feeder-legend-metrics,
-    .feeder-legend-schools {
-      margin: 0.6rem auto 0.6rem;
-      color: #2c390b;
-      .index-value {
-        font-size: 1.5rem;
-        line-height: 1.6rem;
-        display: inline;
-        font-weight: 400;
-      }
-      span {
-        padding: 0.25rem 0;
-        a {
-          // color: gray;
-          color: #2c390b;
-          margin-left: 0.6rem;
-          vertical-align: bottom;
-        }
-      }
-      span,
-      i {
-        width: 100%;
-        display: block;
-        font-weight: 300;
-        font-size: 1.4rem;
-        line-height: 2rem;
-      }
-      i {
-        margin-top: 0.5rem;
       }
     }
   }
