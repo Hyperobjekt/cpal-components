@@ -2,17 +2,17 @@
   z-index: 5000;
   border-radius: 0;
   margin-left: 16px;
-  
+
   .arrow {
-    // display: none;
-    fill: #818967;
-    stroke: #818967;
+    display: none;
+    // fill: #818967;
+    // stroke: #818967;
   }
   .tooltip-inner {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: #2c390b; // rgba(0, 0, 0, 0.85);
     border-radius: 0;
-    font-size: 12px;
-    padding: .8rem;
-   // background-color: #818967;
+    font-size: 1.4rem; // 12px;
+    font-family: Halyard;
+    padding: 0.8rem;
   }
 }

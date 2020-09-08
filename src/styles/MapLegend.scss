@@ -128,7 +128,7 @@
     }
     .scale-parent {
       display: flex;
-      width: 80%;
+      width: 100%;
       height: 16px;
       border: 1px solid #959b84;
       // background-color: blue;
@@ -142,7 +142,7 @@
     }
     .scale-range {
       display: flex;
-      width: 80%;
+      width: 100%;
       font-family: Halyard;
       .scale-range-minmax {
         flex: 0 0 50%;
