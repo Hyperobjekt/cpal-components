@@ -45,9 +45,10 @@ const App = props => {
     state => state.setBrowserWidth,
   )
   const setBrowserWidthAndBreakpoint = () => {
+    // console.log('setBrowserWidthAndBreakpoint')
     const breakpoint = BREAKPOINTS.filter((el, i) => {
       return (
-        window.innerWidth > BREAKPOINTS[i].max &&
+        window.innerWidth >= BREAKPOINTS[i].max &&
         (!BREAKPOINTS[i + 1] ||
           window.innerWidth < BREAKPOINTS[i + 1].max)
       )
