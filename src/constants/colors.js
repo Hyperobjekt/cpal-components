@@ -3,6 +3,7 @@ export const FEEDER_ACTIVE = '#d0421b'
 export const FEEDER_HIGHLIGHTED_SCHOOL = '#d0421b'
 export const FEEDER_SCHOOL_COLLECTION = 'orange'
 export const FEEDER_LAYER_COLOR = '#b2b29e' // '#939382'
+export const TURTLE_GREEN = '#2c390b'
 
 /**
  * colors for disabled scale

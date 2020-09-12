@@ -10,6 +10,7 @@ import {
   CRI_COLORS,
   FEEDER_HIGHLIGHTED_SCHOOL,
   FEEDER_SCHOOL_COLLECTION,
+  TURTLE_GREEN,
 } from './../../../../constants/colors'
 import { schools } from './../../../../data/schools'
 import useStore from './../store'
@@ -35,7 +36,8 @@ const FeederSchoolsChart = ({ ...props }) => {
   const highlightedSchool = useStore(
     state => state.highlightedSchool,
   )
-
+  // Current breakpoint.
+  const breakpoint = useStore(state => state.breakpoint)
   /**
    * Gets the count of items with a shared y-value (in node with an array containing [x,y])
    * @param  Number val         Y value
@@ -119,6 +121,16 @@ const FeederSchoolsChart = ({ ...props }) => {
         top: 20,
         left: 80,
       },
+      // legend: {
+      //   show: true,
+      //   top: 50,
+      //   left: 55,
+      //   selectedMode: false,
+      //   icon: 'none',
+      //   formatter: () => {
+      //     return '<div class="legend"><div class="block-og"></div><span>Orange</span><div class="block-red"></div><span>Red</span></div>'
+      //   },
+      // },
       grid: {
         show: false,
       },
@@ -142,9 +154,6 @@ const FeederSchoolsChart = ({ ...props }) => {
       xAxis: {
         show: true,
         position: 'right',
-        // name: i18n.translate(
-        //   'UI_FEEDER_TITLE_SCHOOLS_CHART',
-        // ),
         nameLocation: 'middle',
         min: 0,
         max: 100,
@@ -158,37 +167,39 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       emphasis: {
         itemStyle: {
-          color: '#d0421b', // getMetric(defaultMetric, CPAL_METRICS)
-          // .colors[0],
+          color: '#d0421b',
           opacity: 1,
           borderColor: '#fff',
         },
       },
       series: [
         {
+          type: 'scatter',
+          symbol: 'roundRect',
+          data: getSchoolsData(),
           name: i18n.translate(
             'UI_FEEDER_SCHOOL_CHART_DESC',
           ),
           symbolSize: (val, params) => {
-            // If it's highlighted, return that, else check for feeder.
-            if (
-              Number(getSchoolSLN(params.name)) ===
-              Number(highlightedSchool)
-            ) {
-              return [10, 8]
-            } else if (
-              Number(getFeederSLN(params.name)) ===
-              Number(activeFeeder)
-            ) {
-              return [10, 8]
-            } else {
-              return [8, 6]
+            // Set symbol size differently based on breakpoint.
+            let arr
+            if (breakpoint === 'xl') {
+              arr = [11, 11]
             }
+            if (breakpoint === 'lg') {
+              arr = [8, 8]
+            }
+            if (breakpoint === 'md') {
+              arr = [6, 6]
+            }
+            if (breakpoint === 'sm') {
+              arr = [4, 4]
+            }
+            if (breakpoint === 'xs') {
+              arr = [1, 1]
+            }
+            return arr
           },
-          data: getSchoolsData(),
-          type: 'scatter',
-          symbol: 'roundRect',
-          // symbolSize: [8, 6],
           itemStyle: {
             color: params => {
               // console.log('coloring, params are ', params)
@@ -253,6 +264,48 @@ const FeederSchoolsChart = ({ ...props }) => {
             extraCssText:
               'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);border-radius:0;',
           },
+          markPoint: {
+            symbol: 'roundRect',
+            symbolSize: [10, 10],
+            data: [
+              {
+                name: 'schools_in_feeder',
+                value: 'Schools in the selected feeder',
+                label: {
+                  show: true,
+                  offset: [105, 1],
+                  fontFamily: 'Halyard',
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  fontSize: 14,
+                  color: TURTLE_GREEN,
+                },
+                itemStyle: {
+                  color: FEEDER_SCHOOL_COLLECTION,
+                },
+                x: 92,
+                y: 60,
+              },
+              {
+                name: 'school_highlighted',
+                value: 'Highlighted school',
+                label: {
+                  show: true,
+                  offset: [70, 1],
+                  fontFamily: 'Halyard',
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  fontSize: 14,
+                  color: TURTLE_GREEN,
+                },
+                itemStyle: {
+                  color: FEEDER_HIGHLIGHTED_SCHOOL,
+                },
+                x: 92,
+                y: 80,
+              },
+            ],
+          },
         },
       ],
     }
@@ -262,6 +315,7 @@ const FeederSchoolsChart = ({ ...props }) => {
   const chartOptions = useMemo(() => getSchoolsOptions(), [
     highlightedSchool,
     activeFeeder,
+    breakpoint,
   ])
 
   // Events
@@ -284,15 +338,31 @@ const FeederSchoolsChart = ({ ...props }) => {
     click: onSchoolClick,
   }
 
+  const getHeight = () => {
+    // Set height differently depending upon the
+    let height = '260px'
+    if (breakpoint === 'md') {
+      height = '200px'
+    }
+    if (breakpoint === 'sm') {
+      height = '180px'
+    }
+    if (breakpoint === 'xs') {
+      height = '200px'
+    }
+    return height
+  }
+
   return (
     <ReactEcharts
       onEvents={schoolsEvents}
       onChartReady={schoolChartReady}
       classNames={clsx('chart-schools')}
       style={{
-        height: '200px',
-        width: '1200px',
+        height: getHeight(),
+        width: '100%',
         left: '0',
+        bottom: '0',
       }}
       option={chartOptions}
       notMerge={false}

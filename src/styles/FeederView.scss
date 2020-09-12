@@ -1,6 +1,7 @@
 $cri-color-1: #7b53ef;
 $cri-color-3: #cabbf5;
 $bar-highlight: #e94f34;
+$distrib-chart-height: 260px; // Update distrib chart height here. Also used for legend height.
 
 .layout-view-feeder {
   height: 100%;
@@ -15,6 +16,8 @@ $bar-highlight: #e94f34;
     display: none;
   }
   .row-bar-chart {
+    margin-left: 0;
+    margin-right: 0;
     .feeders-bar-chart {
       height: 100%;
       margin-top: 64px;
@@ -192,7 +195,9 @@ $bar-highlight: #e94f34;
           position: absolute;
           right: 0px;
           top: 0px;
-          height: calc(100vh - 64px - 200px);
+          height: calc(
+            100vh - 64px - #{$distrib-chart-height}
+          );
         }
         @include media-breakpoint-up(xl) {
           position: absolute;
@@ -252,6 +257,25 @@ $bar-highlight: #e94f34;
     // display: none;
     .echarts-for-react {
       width: 100% !important;
+    }
+    @include media-breakpoint-up(lg) {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      background: #fff;
+      width: 100%;
+      height: $distrib-chart-height;
+      .feeders-schools-scatter {
+        background: #fff;
+        padding-top: 2rem;
+        border-top: 0.5px solid #e8e8e8;
+        .echarts-for-react {
+          margin-bottom: -20px;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+        }
+      }
     }
   }
 }
@@ -378,64 +402,6 @@ $bar-highlight: #e94f34;
       .school {
         display: block;
         width: 100%;
-      }
-    }
-  }
-}
-
-// @media only screen and (max-width: 767px) {
-//   .layout-view-feeder
-//     .row-bar-chart
-//     .feeders-bar-chart
-//     .feeders-bar-chart-parent {
-//     order: 2;
-//     .feeder-chart-bar {
-//       margin-top: 16px;
-//       margin-bottom: 4rem;
-//     }
-//   }
-// }
-
-// @media only screen and (min-width: 768px) {
-//   .layout-view-feeder
-//     .row-bar-chart
-//     .feeders-bar-chart
-//     .feeders-bar-chart-parent {
-//     .feeder-chart-bar {
-//       margin-top: 16px;
-//     }
-//   }
-// }
-
-@media only screen and (min-width: 992px) {
-  .layout-view-feeder
-    .row-bar-chart
-    .feeders-bar-chart
-    .feeders-bar-chart-parent {
-    height: calc(100vh - 64px - 200px); // 125%;
-    overflow-y: scroll;
-    .feeder-chart-bar {
-      margin-top: 16px;
-    }
-  }
-
-  .layout-view-feeder .row-schools-chart {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    background: #fff;
-    width: 100%;
-    height: 200px;
-    .feeders-schools-scatter {
-      background: #fff;
-      padding-top: 2rem;
-      //box-shadow: 0 -2px 2px #ccc;
-      border-top: 0.5px solid #e8e8e8;
-      .echarts-for-react {
-        margin-bottom: -20px;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
       }
     }
   }
