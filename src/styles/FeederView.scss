@@ -159,13 +159,15 @@ $bar-highlight: #e94f34;
           overflow-y: scroll;
           z-index: 500;
           width: 320px;
+          &.feeder-locked {
+            display: block;
+          }
         }
         @include media-breakpoint-up(lg) {
           position: absolute;
           right: 0px;
           top: 0px;
           height: calc(100vh - 64px - 200px);
-          // max-height: unset;
         }
         @include media-breakpoint-up(xl) {
           position: absolute;
@@ -174,9 +176,21 @@ $bar-highlight: #e94f34;
 
         .feeder-legend-metrics,
         .feeder-legend-schools {
-          width: 45%;
-          flex: 0 0 45%;
+          // width: 45%;
+          // flex: 0 0 45%;
           margin: 0.6rem auto 0.6rem;
+          @include media-breakpoint-up(xl) {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
+            .feeder-index,
+            .school {
+              flex: 1 0 45%;
+              margin-right: 0.5rem;
+            }
+          }
         }
 
         .feeder-legend-metrics,
