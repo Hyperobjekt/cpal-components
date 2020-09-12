@@ -109,28 +109,17 @@ const FeederSchoolsChart = ({ ...props }) => {
   const getSchoolsOptions = () => {
     const options = {
       title: {
-        show: true,
+        show: false,
         text: i18n.translate(
           'UI_FEEDER_TITLE_SCHOOLS_CHART',
         ),
         textStyle: {
           fontFamily: 'Halyard',
           fontSize: 18,
-          lineHeight: 18,
         },
         top: 20,
-        left: 80,
+        left: '5%',
       },
-      // legend: {
-      //   show: true,
-      //   top: 50,
-      //   left: 55,
-      //   selectedMode: false,
-      //   icon: 'none',
-      //   formatter: () => {
-      //     return '<div class="legend"><div class="block-og"></div><span>Orange</span><div class="block-red"></div><span>Red</span></div>'
-      //   },
-      // },
       grid: {
         show: false,
       },
@@ -196,7 +185,7 @@ const FeederSchoolsChart = ({ ...props }) => {
               arr = [4, 4]
             }
             if (breakpoint === 'xs') {
-              arr = [1, 1]
+              arr = [2, 2]
             }
             return arr
           },
@@ -263,48 +252,6 @@ const FeederSchoolsChart = ({ ...props }) => {
             },
             extraCssText:
               'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);border-radius:0;',
-          },
-          markPoint: {
-            symbol: 'roundRect',
-            symbolSize: [10, 10],
-            data: [
-              {
-                name: 'schools_in_feeder',
-                value: 'Schools in the selected feeder',
-                label: {
-                  show: true,
-                  offset: [105, 1],
-                  fontFamily: 'Halyard',
-                  fontWeight: 300,
-                  fontStyle: 'italic',
-                  fontSize: 14,
-                  color: TURTLE_GREEN,
-                },
-                itemStyle: {
-                  color: FEEDER_SCHOOL_COLLECTION,
-                },
-                x: 92,
-                y: 60,
-              },
-              {
-                name: 'school_highlighted',
-                value: 'Highlighted school',
-                label: {
-                  show: true,
-                  offset: [70, 1],
-                  fontFamily: 'Halyard',
-                  fontWeight: 300,
-                  fontStyle: 'italic',
-                  fontSize: 14,
-                  color: TURTLE_GREEN,
-                },
-                itemStyle: {
-                  color: FEEDER_HIGHLIGHTED_SCHOOL,
-                },
-                x: 92,
-                y: 80,
-              },
-            ],
           },
         },
       ],

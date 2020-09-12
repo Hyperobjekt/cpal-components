@@ -81,6 +81,29 @@ const FeederView = () => {
             'UI_FEEDER_TITLE_SCHOOLS_CHART',
           )}
         >
+          <div className="distrib-chart-legend">
+            <h3>
+              {i18n.translate(
+                'UI_FEEDER_TITLE_SCHOOLS_CHART',
+              )}
+            </h3>
+            <div className="distrib-chart-item feeder-school">
+              <div className="icon"></div>
+              <span>
+                {i18n.translate(
+                  `UI_FEEDER_DIST_LEGEND_FEEDER`,
+                )}
+              </span>
+            </div>
+            <div className="distrib-chart-item highlight-school">
+              <div className="icon"></div>
+              <span>
+                {i18n.translate(
+                  `UI_FEEDER_DIST_LEGEND_HIGHLIGHT`,
+                )}
+              </span>
+            </div>
+          </div>
           <FeederSchoolsChart />
         </Col>
       </Row>

@@ -1,11 +1,6 @@
-$cri-color-1: #7b53ef;
-$cri-color-3: #cabbf5;
-$bar-highlight: #e94f34;
-$distrib-chart-height: 260px; // Update distrib chart height here. Also used for legend height.
-
 .layout-view-feeder {
   height: 100%;
-  background-color: #fcfcf8;
+  background-color: $feeder-background-color;
 
   @include media-breakpoint-up(lg) {
     overflow-x: hidden;
@@ -23,6 +18,7 @@ $distrib-chart-height: 260px; // Update distrib chart height here. Also used for
       margin-top: 64px;
       display: flex;
       flex-direction: column;
+      background-color: $feeder-background-color;
       @include media-breakpoint-up(md) {
         margin-top: calc(64px + 16px);
       }
@@ -37,7 +33,9 @@ $distrib-chart-height: 260px; // Update distrib chart height here. Also used for
           order: 1;
         }
         @include media-breakpoint-up(lg) {
-          height: calc(100vh - 64px - 200px);
+          height: calc(
+            100vh - 64px - #{$distrib-chart-height}
+          );
           overflow-y: scroll;
         }
         .feeder-chart-bar {
@@ -45,6 +43,7 @@ $distrib-chart-height: 260px; // Update distrib chart height here. Also used for
           // margin-top: 350px;
           padding-top: 2rem;
           position: relative;
+          margin-bottom: 2rem;
           @include media-breakpoint-up(md) {
             width: 76%;
             margin-top: 16px;
@@ -52,6 +51,7 @@ $distrib-chart-height: 260px; // Update distrib chart height here. Also used for
           }
           @include media-breakpoint-up(lg) {
             margin-top: 16px;
+            // margin-bottom: 4rem;
           }
           .scroll-prompt {
             position: absolute;
@@ -254,7 +254,102 @@ $distrib-chart-height: 260px; // Update distrib chart height here. Also used for
   }
   // Scatterplot (school) chart row
   .row-schools-chart {
-    // display: none;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: $feeder-background-color;
+    @include media-breakpoint-up(lg) {
+      background-color: $white;
+    }
+    .distrib-chart-legend {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      h3 {
+        font-size: 1.4rem;
+        line-height: 1.5rem;
+      }
+      .distrib-chart-item {
+        display: flex;
+        align-items: center;
+        .icon {
+          width: 6px;
+          height: 6px;
+          border-radius: 2px;
+          margin-right: 0.5rem;
+        }
+        span {
+          font-style: italic;
+          font-weight: 300;
+          font-size: 1rem;
+        }
+        &.feeder-school {
+          .icon {
+            background-color: orange;
+          }
+        }
+        &.highlight-school {
+          .icon {
+            background-color: $bar-highlight;
+          }
+        }
+      }
+      @include media-breakpoint-up(md) {
+        left: 40px;
+        top: 20px;
+      }
+      @include media-breakpoint-up(lg) {
+        left: 100px;
+        top: 40px;
+        h3 {
+          font-size: 1.5rem;
+        }
+        .distrib-chart-item {
+          .icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+          }
+          span {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1.2rem;
+          }
+        }
+      }
+      @include media-breakpoint-up(xl) {
+        left: 120px;
+        top: 40px;
+        h3 {
+          font-size: 1.8rem;
+          line-height: 2.1rem;
+        }
+        .distrib-chart-item {
+          display: flex;
+          align-items: center;
+          .icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 0.5rem;
+          }
+          span {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1.4rem;
+          }
+          &.feeder-school {
+            .icon {
+              background-color: orange;
+            }
+          }
+          &.highlight-school {
+            .icon {
+              background-color: $bar-highlight;
+            }
+          }
+        }
+      }
+    }
     .echarts-for-react {
       width: 100% !important;
     }
