@@ -64,8 +64,8 @@ const FeederView = () => {
                   {i18n.translate(
                     'UI_FEEDER_SCROLL_PROMPT',
                   )}
+                  <BsArrowRight />
                 </span>
-                <BsArrowRight />
               </div>
             </FeederChart>
           </div>

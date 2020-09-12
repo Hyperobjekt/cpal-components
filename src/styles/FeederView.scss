@@ -1,3 +1,6 @@
+$lg-legend-width: 320px;
+$xl-legend-width: 435px;
+
 .layout-view-feeder {
   height: 100%;
   background-color: $feeder-background-color;
@@ -54,14 +57,16 @@
             // margin-bottom: 4rem;
           }
           .scroll-prompt {
-            position: absolute;
-            right: 35%;
-            top: 35%;
-            @include media-breakpoint-up(md) {
-              right: -112px;
+            position: fixed;
+            left: 72px;
+            bottom: $distrib-chart-height;
+            display: block;
+            width: calc(100% - #{$lg-legend-width});
+            @include media-breakpoint-up(xl) {
+              width: calc(100% - #{$xl-legend-width});
             }
-            transform: rotate(90deg);
-            transform-origin: left top 0;
+            height: 50px;
+            background-color: red;
             font-family: Halyard;
             font-size: 1.5rem;
             font-weight: 200;
@@ -185,7 +190,7 @@
           box-shadow: 0px 0px 3px #ccc;
           overflow-y: scroll;
           z-index: 500;
-          width: 320px;
+          width: $lg-legend-width;
           height: 350px;
           &.feeder-locked {
             display: block;
@@ -201,7 +206,7 @@
         }
         @include media-breakpoint-up(xl) {
           position: absolute;
-          width: 435px;
+          width: $xl-legend-width;
         }
 
         .feeder-legend-metrics,
