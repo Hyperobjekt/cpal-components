@@ -94,8 +94,9 @@ const FeederLegendContent = ({ ...props }) => {
               id={'school_' + el.TEA}
               key={'school_' + el.TEA}
             >
-              <span>{el.SCHOOLNAME}</span>
-              <FaExternalLinkSquareAlt />
+              <span>
+                <FaExternalLinkSquareAlt /> {el.SCHOOLNAME}
+              </span>
             </a>
           )
         })}
