@@ -86,20 +86,17 @@ const FeederLegendContent = ({ ...props }) => {
         </h4>
         {getSchoolSet(activeFeeder).map(el => {
           return (
-            <span
+            <a
+              href={'/schools/' + el.TEA + '/'}
+              target="_blank"
+              rel="noreferrer"
               className="school"
               id={'school_' + el.TEA}
               key={'school_' + el.TEA}
             >
-              {el.SCHOOLNAME}
-              <a
-                href={'/schools/' + el.TEA + '/'}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaExternalLinkSquareAlt />
-              </a>
-            </span>
+              <span>{el.SCHOOLNAME}</span>
+              <FaExternalLinkSquareAlt />
+            </a>
           )
         })}
       </div>

@@ -140,6 +140,25 @@ $bar-highlight: #e94f34;
         height: 350px;
         background-color: #fff;
         box-shadow: 0 1px 3px #ccc;
+        a {
+          color: $turtle-green;
+          &:hover {
+            text-decoration: none;
+          }
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          span {
+            flex: 0 1 auto;
+            width: auto;
+            display: inline-block;
+            margin-right: 0.75rem;
+          }
+          svg {
+            flex: 0 1 14px;
+          }
+        }
         &.feeder-locked {
           display: flex;
           flex-wrap: wrap;
@@ -176,8 +195,6 @@ $bar-highlight: #e94f34;
 
         .feeder-legend-metrics,
         .feeder-legend-schools {
-          // width: 45%;
-          // flex: 0 0 45%;
           margin: 0.6rem auto 0.6rem;
           @include media-breakpoint-up(xl) {
             display: flex;
@@ -187,8 +204,32 @@ $bar-highlight: #e94f34;
             flex-wrap: wrap;
             .feeder-index,
             .school {
-              flex: 1 0 45%;
-              margin-right: 0.5rem;
+              flex: 1 0 42%;
+              margin-right: 1.2rem;
+            }
+            .school {
+              display: flex;
+              flex-wrap: nowrap;
+              align-items: center;
+              justify-content: flex-start;
+              max-width: 48%;
+              // color: $turtle-green;
+              &:hover {
+                text-decoration: none;
+              }
+              span {
+                flex: 0 0 90%;
+                margin-right: -0.25rem;
+              }
+              svg {
+                flex: 0 0 24px;
+                width: 14px;
+                height: 14px;
+              }
+            }
+            .feeder-index {
+              white-space: nowrap;
+              // margin-right: 1.25rem;
             }
           }
         }
