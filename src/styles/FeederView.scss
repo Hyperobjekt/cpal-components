@@ -5,6 +5,10 @@ $bar-highlight: #e94f34;
 .layout-view-feeder {
   height: 100%;
   background-color: #fcfcf8;
+
+  @include media-breakpoint-up(lg) {
+    overflow-x: hidden;
+  }
   // overflow: hidden;
   .feeder-chart-header {
     // Temporarily deactivated header, can be cleaned up if desired
@@ -15,7 +19,7 @@ $bar-highlight: #e94f34;
     .feeders-bar-chart {
       height: 100%;
       margin-top: 64px; // calc(64px + 16px);
-      // display: flex;
+      display: flex;
       flex-direction: column;
       @include media-breakpoint-up(md) {
         margin-top: calc(64px + 16px);
@@ -132,14 +136,14 @@ $bar-highlight: #e94f34;
       .feeder-chart-legend {
         order: 1;
         position: relative;
-        height: 200px;
-        box-shadow: none;
+        height: auto;
+        // box-shadow: none;
         width: 100%;
         overflow-y: scroll;
         padding: 24px;
-        height: 350px;
-        background-color: #fff;
-        box-shadow: 0 1px 3px #ccc;
+        // background-color: #fff;
+        // box-shadow: 0 1px 3px #ccc;
+        display: block;
         a {
           color: $turtle-green;
           &:hover {
@@ -171,13 +175,13 @@ $bar-highlight: #e94f34;
           top: 16px;
           right: 32px;
           display: block;
-          // left: auto;
           background: #fff;
           padding: 1.6rem;
           box-shadow: 0px 0px 3px #ccc;
           overflow-y: scroll;
           z-index: 500;
           width: 320px;
+          height: 350px;
           &.feeder-locked {
             display: block;
           }
@@ -378,19 +382,6 @@ $bar-highlight: #e94f34;
 }
 
 @media only screen and (max-width: 767px) {
-  // .layout-view-feeder .row-bar-chart .feeders-bar-chart {
-  //   display: flex;
-  //   flex-direction: column;
-  // }
-  // .layout-view-feeder
-  //   .row-bar-chart
-  //   .feeders-bar-chart
-  //   .feeder-chart-legend {
-  //   order: 1;
-  //   position: relative;
-  //   height: 200px;
-  //   box-shadow: none;
-  // }
   .layout-view-feeder
     .row-bar-chart
     .feeders-bar-chart
@@ -404,9 +395,6 @@ $bar-highlight: #e94f34;
 }
 
 @media only screen and (min-width: 768px) {
-  // .layout-view-feeder .row-bar-chart .feeders-bar-chart {
-  //   margin-top: calc(64px + 16px);
-  // }
   .layout-view-feeder
     .row-bar-chart
     .feeders-bar-chart
@@ -415,34 +403,9 @@ $bar-highlight: #e94f34;
       margin-top: 16px;
     }
   }
-  // .layout-view-feeder
-  //   .row-bar-chart
-  //   .feeders-bar-chart
-  //   .feeder-chart-legend {
-  //   display: block !important;
-  //   position: absolute;
-  //   top: 16px;
-  //   right: 10%;
-  //   left: auto;
-  //   // width: 25% !important;
-  //   background: #fff;
-  //   padding: 1.6rem;
-  //   // border-radius: 3px;
-  //   box-shadow: 0px 0px 3px #ccc;
-  //   min-height: 40vh;
-  //   max-height: 400px;
-  //   overflow-y: scroll;
-  //   z-index: 500;
-  // }
 }
 
 @media only screen and (min-width: 992px) {
-  .layout-view-feeder {
-    overflow-x: hidden;
-  }
-  // .layout-view-feeder .row-bar-chart .feeders-bar-chart {
-  //   margin-top: 0;
-  // }
   .layout-view-feeder
     .row-bar-chart
     .feeders-bar-chart
@@ -453,15 +416,6 @@ $bar-highlight: #e94f34;
       margin-top: 16px;
     }
   }
-  // .layout-view-feeder
-  //   .row-bar-chart
-  //   .feeders-bar-chart
-  //   .feeder-chart-legend {
-  //   right: 0px;
-  //   top: 0px;
-  //   height: calc(100vh - 64px - 200px);
-  //   max-height: unset;
-  // }
 
   .layout-view-feeder .row-schools-chart {
     display: block;
@@ -484,23 +438,3 @@ $bar-highlight: #e94f34;
     }
   }
 }
-
-// @include media-breakpoint-up(lg) {
-//   .feeder-chart-legend {
-//     width: 435px;
-//     .feeder-legend-metrics,
-//     .feeder-legend-schools {
-//       // display: flex;
-//     }
-//   }
-// }
-
-// @media only screen and (min-width: 1280px) {
-//   .feeder-chart-legend {
-//     width: 435px;
-//     .feeder-legend-metrics,
-//     .feeder-legend-schools {
-//       display: flex;
-//     }
-//   }
-// }
