@@ -298,9 +298,6 @@ $bar-highlight: #e94f34;
     line-height: 2rem;
     // margin-bottom: 10px;
   }
-  p {
-    // font-size: 10px;
-  }
   h4 {
     width: 100%;
     flex: 0 0 100%;
@@ -317,6 +314,25 @@ $bar-highlight: #e94f34;
       line-height: 1.6rem;
       display: inline;
       font-weight: 500;
+    }
+    a {
+      color: $turtle-green;
+      &:hover {
+        text-decoration: none;
+      }
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      span {
+        flex: 0 1 auto;
+        width: auto;
+        display: inline-block;
+        margin-right: 0.75rem;
+      }
+      svg {
+        flex: 0 1 14px;
+      }
     }
     span {
       padding: 0.25rem 0;

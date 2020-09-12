@@ -211,6 +211,7 @@ const FeederChart = ({ children, ...props }) => {
                 isOpen={tooltipOpen}
                 target={'bar_' + el.id}
                 toggle={toggle}
+                trigger="hover"
               >
                 Click for additional information
               </Tooltip>

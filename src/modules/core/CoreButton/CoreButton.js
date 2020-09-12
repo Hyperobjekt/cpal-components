@@ -52,6 +52,7 @@ const CoreButton = ({ children, ...props }) => {
           target={props.id}
           toggle={toggle}
           autohide={props.tooltipAutoHide}
+          trigger="hover"
         >
           {props.label}
         </Tooltip>
