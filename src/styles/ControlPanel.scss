@@ -99,23 +99,16 @@
       color: #e55934;
     }
   }
-}
-// /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .layout-control-panel {
-    // height: 100%;
-    // &.display-map {
-    //   justify-content: space-between;
-    // }
-    // &.display-feeder {
-    //   justify-content: flex-start;
-    // }
+
+  @include media-breakpoint-up(md) {
     display: flex;
     flex-direction: row;
     width: 500px;
+
     position: absolute;
     left: 16px;
     top: 16px;
+
     .btn.btn-core {
       margin-right: 0;
     }
@@ -125,13 +118,16 @@
       display: none;
     }
   }
-}
 
-// /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  // @include media-breakpoint-up(lg) {
-  .layout-control-panel {
+  @include media-breakpoint-only(md) {
+    &.display-feeder {
+      width: 272px;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
     width: 72px;
+
     height: calc(100vh - 64px);
     flex-direction: column;
     align-items: center;
@@ -184,7 +180,6 @@
       justify-content: center;
       align-items: center;
       border: none;
-      //background-color: #F6F6EB;
       &:focus {
         box-shadow: none;
       }
@@ -232,11 +227,6 @@
         }
       }
     }
-    // hr,
-    // .button-view-map,
-    // .button-view-feeder {
-    //   display: block;
-    // }
     hr {
       width: 100%;
       margin: 0.8rem 0 1.6rem;
@@ -253,8 +243,4 @@
       margin-right: 0;
     }
   }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1280px) {
 }

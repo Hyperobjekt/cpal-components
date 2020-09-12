@@ -1,8 +1,5 @@
-// $base-cri-color: #3800d9;
-// @import '~bootstrap/scss/bootstrap.scss';
 $cri-color-1: #7b53ef;
 $cri-color-3: #cabbf5;
-//$bar-highlight: #d0421b;
 $bar-highlight: #e94f34;
 
 .layout-view-feeder {
@@ -18,6 +15,15 @@ $bar-highlight: #e94f34;
     .feeders-bar-chart {
       height: 100%;
       margin-top: 64px; // calc(64px + 16px);
+      // display: flex;
+      flex-direction: column;
+      @include media-breakpoint-up(md) {
+        margin-top: calc(64px + 16px);
+      }
+      @include media-breakpoint-up(lg) {
+        margin-top: 0px;
+      }
+
       .feeders-bar-chart-parent {
         height: 100%;
         // @include media-breakpoint-up(lg) {
@@ -26,7 +32,7 @@ $bar-highlight: #e94f34;
         // }
         .feeder-chart-bar {
           width: 90%;
-          @media (min-width: 992px) {
+          @include media-breakpoint-up(md) {
             width: 76%;
           }
           margin-top: 350px;
@@ -36,9 +42,11 @@ $bar-highlight: #e94f34;
             position: absolute;
             right: 35%;
             top: 35%;
-            @media (min-width: 992px) {
+            // @media (min-width: 992px) {
+            @include media-breakpoint-up(md) {
               right: -112px;
             }
+            // }
             transform: rotate(90deg);
             transform-origin: left top 0;
             font-family: Halyard;
@@ -73,7 +81,8 @@ $bar-highlight: #e94f34;
               align-self: center;
               // vertical-align: top;
               // line-height: 1.3rem;
-              @media (min-width: 992px) {
+              // @media (min-width: 992px) {
+              @include media-breakpoint-up(md) {
                 flex: 0 0 68px;
                 font-size: 1.3rem;
               }
@@ -121,99 +130,53 @@ $bar-highlight: #e94f34;
       }
 
       .feeder-chart-legend {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
+        order: 1;
+        position: relative;
+        height: 200px;
+        box-shadow: none;
         width: 100%;
+        overflow-y: scroll;
+        padding: 24px;
+        height: 350px;
+        background-color: #fff;
+        box-shadow: 0 1px 3px #ccc;
         &.feeder-locked {
           display: flex;
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: flex-start;
         }
-        overflow-y: scroll;
-        padding: 24px;
-        height: 350px;
-        background-color: #fff;
-        box-shadow: 0 1px 3px #ccc;
+        @include media-breakpoint-up(md) {
+          background-color: red;
+          position: absolute;
+          top: 16px;
+          right: 32px;
+          display: block;
+          // left: auto;
+          background: #fff;
+          padding: 1.6rem;
+          box-shadow: 0px 0px 3px #ccc;
+          overflow-y: scroll;
+          z-index: 500;
+          width: 320px;
+        }
+        @include media-breakpoint-up(lg) {
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          height: calc(100vh - 64px - 200px);
+          // max-height: unset;
+        }
+        @include media-breakpoint-up(xl) {
+          position: absolute;
+          width: 435px;
+        }
 
-        // font-size: 12px;
-        // font-family: Halyard;
-        // font-size: 1.4rem;
-        // line-height: 1.5rem;
-        // padding-right: 0.5rem;
-
-        // p {
-        //   margin: 1rem 0;
-        //   font-family: Halyard;
-        //   font-weight: 200;
-        //   font-size: 15px;
-        //   line-height: 22px;
-        //   color: #606b44;
-        //   margin-bottom: 0.8rem;
-        // }
-        // h2 {
-        //   font-size: 1.8rem;
-        //   line-height: 100%;
-        //   width: 100%;
-        // }
-        // h3 {
-        //   font-size: 1.4rem;
-        //   line-height: 1.4rem;
-        //   font-weight: 300;
-        //   margin-bottom: 20px;
-        //   width: 100%;
-        // }
-        // h4 {
-        //   font-family: Halyard;
-        //   font-weight: 400;
-        //   font-size: 1.6rem;
-        //   line-height: 2rem;
-        //   margin-bottom: 10px;
-        // }
-        // p {
-        //   // font-size: 10px;
-        // }
-        // h4 {
-        //   width: 100%;
-        //   flex: 0 0 100%;
-        // }
-        // .feeder-legend-schools {
-        //   margin-top: 12px !important;
-        // }
         .feeder-legend-metrics,
         .feeder-legend-schools {
           width: 45%;
           flex: 0 0 45%;
           margin: 0.6rem auto 0.6rem;
-          // color: #2c390b;
-          // .index-value {
-          //   font-size: 1.5rem;
-          //   line-height: 1.6rem;
-          //   display: inline;
-          //   font-weight: 400;
-          // }
-          // span {
-          //   padding: 0.25rem 0;
-          //   a {
-          //     // color: gray;
-          //     color: #2c390b;
-          //     margin-left: 0.6rem;
-          //     vertical-align: bottom;
-          //   }
-          // }
-          // span,
-          // i {
-          //   width: 100%;
-          //   display: block;
-          //   font-weight: 300;
-          //   font-size: 1.4rem;
-          //   line-height: 2rem;
-          // }
-          // i {
-          //   margin-top: 0.5rem;
-          // }
         }
 
         .feeder-legend-metrics,
@@ -344,19 +307,19 @@ $bar-highlight: #e94f34;
 }
 
 @media only screen and (max-width: 767px) {
-  .layout-view-feeder .row-bar-chart .feeders-bar-chart {
-    display: flex;
-    flex-direction: column;
-  }
-  .layout-view-feeder
-    .row-bar-chart
-    .feeders-bar-chart
-    .feeder-chart-legend {
-    order: 1;
-    position: relative;
-    height: 200px;
-    box-shadow: none;
-  }
+  // .layout-view-feeder .row-bar-chart .feeders-bar-chart {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+  // .layout-view-feeder
+  //   .row-bar-chart
+  //   .feeders-bar-chart
+  //   .feeder-chart-legend {
+  //   order: 1;
+  //   position: relative;
+  //   height: 200px;
+  //   box-shadow: none;
+  // }
   .layout-view-feeder
     .row-bar-chart
     .feeders-bar-chart
@@ -370,9 +333,9 @@ $bar-highlight: #e94f34;
 }
 
 @media only screen and (min-width: 768px) {
-  .layout-view-feeder .row-bar-chart .feeders-bar-chart {
-    margin-top: calc(64px + 16px);
-  }
+  // .layout-view-feeder .row-bar-chart .feeders-bar-chart {
+  //   margin-top: calc(64px + 16px);
+  // }
   .layout-view-feeder
     .row-bar-chart
     .feeders-bar-chart
@@ -381,34 +344,34 @@ $bar-highlight: #e94f34;
       margin-top: 16px;
     }
   }
-  .layout-view-feeder
-    .row-bar-chart
-    .feeders-bar-chart
-    .feeder-chart-legend {
-    display: block !important;
-    position: absolute;
-    top: 16px;
-    right: 10%;
-    left: auto;
-    width: 25% !important;
-    background: #fff;
-    padding: 1.6rem;
-    // border-radius: 3px;
-    box-shadow: 0px 0px 3px #ccc;
-    min-height: 40vh;
-    max-height: 400px;
-    overflow-y: scroll;
-    z-index: 500;
-  }
+  // .layout-view-feeder
+  //   .row-bar-chart
+  //   .feeders-bar-chart
+  //   .feeder-chart-legend {
+  //   display: block !important;
+  //   position: absolute;
+  //   top: 16px;
+  //   right: 10%;
+  //   left: auto;
+  //   // width: 25% !important;
+  //   background: #fff;
+  //   padding: 1.6rem;
+  //   // border-radius: 3px;
+  //   box-shadow: 0px 0px 3px #ccc;
+  //   min-height: 40vh;
+  //   max-height: 400px;
+  //   overflow-y: scroll;
+  //   z-index: 500;
+  // }
 }
 
 @media only screen and (min-width: 992px) {
   .layout-view-feeder {
     overflow-x: hidden;
   }
-  .layout-view-feeder .row-bar-chart .feeders-bar-chart {
-    margin-top: 0;
-  }
+  // .layout-view-feeder .row-bar-chart .feeders-bar-chart {
+  //   margin-top: 0;
+  // }
   .layout-view-feeder
     .row-bar-chart
     .feeders-bar-chart
@@ -419,15 +382,15 @@ $bar-highlight: #e94f34;
       margin-top: 16px;
     }
   }
-  .layout-view-feeder
-    .row-bar-chart
-    .feeders-bar-chart
-    .feeder-chart-legend {
-    right: 0px;
-    top: 0px;
-    height: calc(100vh - 64px - 200px);
-    max-height: unset;
-  }
+  // .layout-view-feeder
+  //   .row-bar-chart
+  //   .feeders-bar-chart
+  //   .feeder-chart-legend {
+  //   right: 0px;
+  //   top: 0px;
+  //   height: calc(100vh - 64px - 200px);
+  //   max-height: unset;
+  // }
 
   .layout-view-feeder .row-schools-chart {
     display: block;
@@ -450,6 +413,16 @@ $bar-highlight: #e94f34;
     }
   }
 }
+
+// @include media-breakpoint-up(lg) {
+//   .feeder-chart-legend {
+//     width: 435px;
+//     .feeder-legend-metrics,
+//     .feeder-legend-schools {
+//       // display: flex;
+//     }
+//   }
+// }
 
 // @media only screen and (min-width: 1280px) {
 //   .feeder-chart-legend {

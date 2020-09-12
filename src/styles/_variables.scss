@@ -46,13 +46,11 @@ $lg-start: 992px;
 $xl-start: 1280px; //\\
 
 $grid-breakpoints: (
-  // WARNING: if we add another break beyond xs/md/xl, check any usages of media-breakpoint-only
-    // e.g. adding lg would "cap" any instance of media-breakpoint-only(md) at lg rather than xl
-    xs: 0,
-  // sm: $sm-start,
-    md: $md-start,
-  // lg: $lg-start,
-    xl: $xl-start
+  xs: 0,
+  sm: $sm-start,
+  md: $md-start,
+  lg: $lg-start,
+  xl: $xl-start,
 );
 
 $font-weight-bolder: 500;
