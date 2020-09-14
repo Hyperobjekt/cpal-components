@@ -66,13 +66,36 @@ $xl-legend-width: 435px;
               width: calc(100% - #{$xl-legend-width});
             }
             height: 50px;
-            background-color: red;
+            background: linear-gradient(
+              180deg,
+              rgba(252, 252, 248, 0) 0%,
+              #fcfcf8 100%
+            );
+            z-index: 500;
             font-family: Halyard;
             font-size: 1.5rem;
             font-weight: 200;
-            svg {
-              margin-bottom: 2px;
-              margin-left: 0.6rem;
+            .scroll-prompt-text {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              padding: 1rem;
+              border-top-right-radius: 6px;
+              border-top-left-radius: 6px;
+              border: 1px solid $feeder-panes-border;
+              border-bottom: 0;
+              background: $white;
+              width: 220px;
+              text-align: center;
+              margin-top: 20px;
+              height: 30px;
+              font-size: 1.3rem;
+              padding: 5px;
+              svg {
+                margin-bottom: 2px;
+                margin-left: 0.6rem;
+                // transform: rotate(90deg);
+              }
             }
           }
           .feeder-bar-button {

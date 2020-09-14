@@ -64,7 +64,32 @@ const FeederView = () => {
                   {i18n.translate(
                     'UI_FEEDER_SCROLL_PROMPT',
                   )}
-                  <BsArrowRight />
+                  <svg
+                    width="7"
+                    height="10"
+                    viewBox="0 0 7 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <line
+                      x1="3.4917"
+                      y1="1.17685e-08"
+                      x2="3.4917"
+                      y2="9.41919"
+                      stroke="#606B44"
+                      stroke-width="0.538463"
+                    />
+                    <path
+                      d="M7 5.90234V5.90234C5.067 5.90234 3.49999 7.46935 3.49999 9.40236V9.40236"
+                      stroke="#606B44"
+                      stroke-width="0.538463"
+                    />
+                    <path
+                      d="M0 5.90234V5.90234C1.933 5.90234 3.50001 7.46935 3.50001 9.40236V9.40236"
+                      stroke="#606B44"
+                      stroke-width="0.538463"
+                    />
+                  </svg>
                 </span>
               </div>
             </FeederChart>
