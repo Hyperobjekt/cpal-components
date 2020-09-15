@@ -11,7 +11,7 @@ import {
   constructShareLink,
 } from './Share'
 
-const FacebookShareBtn = ({ ...props }) => {
+const FacebookShareBtn = ({ children, ...props }) => {
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -28,7 +28,9 @@ const FacebookShareBtn = ({ ...props }) => {
     <CoreButton
       id="button_share_facebook"
       label={i18n.translate(`BUTTON_SHARE_FACEBOOK`)}
-      tooltip={buttonTooltipPosition}
+      tooltip={
+        props.tooltip ? buttonTooltipPosition : false
+      }
       onClick={handleShare}
       color="none"
       className={clsx(
@@ -40,6 +42,7 @@ const FacebookShareBtn = ({ ...props }) => {
       <span className="sr-only">
         {i18n.translate(`BUTTON_SHARE_FACEBOOK`)}
       </span>
+      {children}
     </CoreButton>
   )
 }

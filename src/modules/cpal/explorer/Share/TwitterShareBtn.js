@@ -8,7 +8,7 @@ import useStore from './../store'
 import { CoreButton } from './../../../core'
 import { onTwitterShare, constructShareLink } from './Share'
 
-const TwitterShareBtn = ({ ...props }) => {
+const TwitterShareBtn = ({ children, ...props }) => {
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -25,7 +25,9 @@ const TwitterShareBtn = ({ ...props }) => {
     <CoreButton
       id="button_share_twitter"
       label={i18n.translate(`BUTTON_SHARE_TWITTER`)}
-      tooltip={buttonTooltipPosition}
+      tooltip={
+        props.tooltip ? buttonTooltipPosition : false
+      }
       onClick={handleShare}
       color="none"
       className={clsx(
@@ -37,6 +39,7 @@ const TwitterShareBtn = ({ ...props }) => {
       <span className="sr-only">
         {i18n.translate(`BUTTON_SHARE_TWITTER`)}
       </span>
+      {children}
     </CoreButton>
   )
 }

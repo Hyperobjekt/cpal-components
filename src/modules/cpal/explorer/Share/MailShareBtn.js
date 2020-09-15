@@ -8,7 +8,7 @@ import useStore from './../store'
 import { CoreButton } from './../../../core'
 import { onMailShare, constructShareLink } from './Share'
 
-const MailShareBtn = ({ ...props }) => {
+const MailShareBtn = ({ children, ...props }) => {
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -26,7 +26,9 @@ const MailShareBtn = ({ ...props }) => {
     <CoreButton
       id="button_share_email"
       label={i18n.translate(`BUTTON_SHARE_EMAIL`)}
-      tooltip={buttonTooltipPosition}
+      tooltip={
+        props.tooltip ? buttonTooltipPosition : false
+      }
       onClick={handleShare}
       color="none"
       className={clsx(
@@ -38,6 +40,7 @@ const MailShareBtn = ({ ...props }) => {
       <span className="sr-only">
         {i18n.translate(`BUTTON_SHARE_EMAIL`)}
       </span>
+      {children}
     </CoreButton>
   )
 }

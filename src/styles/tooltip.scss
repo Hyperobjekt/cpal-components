@@ -16,3 +16,32 @@
     padding: 0.8rem;
   }
 }
+.tooltip-custom-share {
+  .tooltip {
+    .tooltip-inner {
+      border-radius: 2px;
+      background-color: $white;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+      text-align: left;
+      opacity: 1;
+      padding: 1rem;
+      .item {
+        margin-bottom: 0.4rem;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+        span {
+          font-family: Halyard;
+          font-weight: 300;
+          font-size: 1.3rem;
+          line-height: 1.5rem;
+        }
+        svg {
+          width: 14px;
+          height: 14px;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

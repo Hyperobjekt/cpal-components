@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import useStore from './../store'
 import { CoreButton } from './../../../core'
 
-const LinkShareBtn = ({ ...props }) => {
+const LinkShareBtn = ({ children, ...props }) => {
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -26,7 +26,9 @@ const LinkShareBtn = ({ ...props }) => {
     <CoreButton
       id="button_share_link"
       label={i18n.translate(`BUTTON_SHARE_LINK`)}
-      tooltip={buttonTooltipPosition}
+      tooltip={
+        props.tooltip ? buttonTooltipPosition : false
+      }
       onClick={handleShare}
       color="none"
       className={clsx(
@@ -38,6 +40,7 @@ const LinkShareBtn = ({ ...props }) => {
       <span className="sr-only">
         {i18n.translate(`BUTTON_SHARE_LINK`)}
       </span>
+      {children}
     </CoreButton>
   )
 }
