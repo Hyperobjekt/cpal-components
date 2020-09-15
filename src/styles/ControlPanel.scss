@@ -164,6 +164,17 @@
       &.button-share {
         font-size: 14px;
       }
+      &.button-d-u-share-link {
+        width: 52px;
+        height: 31px;
+        min-height: 31px;
+        max-height: 31px;
+        font-size: 1.3rem;
+        line-height: 1.5rem;
+        border: 1px solid #cfd3c2;
+        border-radius: 4px;
+        color: $cp-label-color;
+      }
     }
 
     .select-view {
@@ -177,7 +188,7 @@
     .control-label {
       text-align: center;
       display: block;
-      color: #606b44;
+      color: $cp-label-color; // #606b44;
       font-weight: 300;
       font-size: 1.3rem;
       margin-bottom: 16px;

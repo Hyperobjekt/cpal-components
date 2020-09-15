@@ -35,7 +35,7 @@ const DesktopUnifiedShareBtn = ({ ...props }) => {
         'button-d-u-share-link',
       )}
     >
-      {i18n.translate('CONTROL_PANEL_SHARE')}
+      {i18n.translate('CONTROL_PANEL_SHARE_TC')}
       <Tooltip
         placement={buttonTooltipPosition}
         isOpen={tooltipOpen}
