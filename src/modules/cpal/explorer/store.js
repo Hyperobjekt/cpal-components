@@ -182,6 +182,9 @@ const [useStore] = create((set, get) => ({
   buttonTooltipPosition: 'auto',
   setButtonTooltipPosition: newVal =>
     set({ buttonTooltipPosition: newVal }),
+  showMobileLegend: false,
+  setShowMobileLegend: newVal =>
+    set({ showMobileLegend: newVal }),
 }))
 
 export default useStore

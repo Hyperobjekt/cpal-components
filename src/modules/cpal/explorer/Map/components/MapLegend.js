@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { Card, Button } from 'reactstrap'
 import clsx from 'clsx'
 import { AiOutlineControl } from 'react-icons/ai'
+import { MdClose } from 'react-icons/md'
 
 import useStore from './../../store'
 import { CoreButton } from './../../../../core/'
@@ -28,6 +29,19 @@ const MapLegend = ({ ...props }) => {
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
+  // Current breakpoint.
+  const breakpoint = useStore(state => state.breakpoint)
+  // Track and update legend display.
+  const showMobileLegend = useStore(
+    state => state.showMobileLegend,
+  )
+  const setShowMobileLegend = useStore(
+    state => state.setShowMobileLegend,
+  )
+  const handleClose = () => {
+    // console.log('handle close')
+    setShowMobileLegend(false)
+  }
   // Active layers
   const activeLayers = useStore(
     state => [...state.activeLayers],
@@ -82,23 +96,47 @@ const MapLegend = ({ ...props }) => {
   }
 
   return (
-    <div className="map-legend">
-      <div className="map-legend-label">
-        {i18n.translate(`UI_MAP_LEGEND_TITLE`)}
-        <span
-          id="map_legend_open_filter"
+    <div
+      className={clsx(
+        'map-legend',
+        !!showMobileLegend ? 'show-mobile' : 'hide-mobile',
+      )}
+    >
+      {(breakpoint === 'xs' || breakpoint === 'sm') && (
+        <CoreButton
+          id="button_close_legend"
+          label={i18n.translate(`BUTTON_CLOSE_PANEL`)}
+          onClick={handleClose}
+          color="none"
           className={clsx(
-            'map-legend-open-filter-panel',
-            !!slideoutPanel.active &&
-              slideoutPanel.panel === 'filters'
-              ? 'disabled'
-              : '',
+            'button-core',
+            'button-close-legend',
           )}
-          onClick={toggleFilterPanel}
         >
-          {i18n.translate('LINK_OPEN_FILTER_PANEL')}
-        </span>
-      </div>
+          <MdClose />
+          <span className="sr-only">
+            {i18n.translate(`BUTTON_CLOSE_PANEL`)}
+          </span>
+        </CoreButton>
+      )}
+      {!(breakpoint === 'xs' || breakpoint === 'sm') && (
+        <div className="map-legend-label">
+          {i18n.translate(`UI_MAP_LEGEND_TITLE`)}
+          <span
+            id="map_legend_open_filter"
+            className={clsx(
+              'map-legend-open-filter-panel',
+              !!slideoutPanel.active &&
+                slideoutPanel.panel === 'filters'
+                ? 'disabled'
+                : '',
+            )}
+            onClick={toggleFilterPanel}
+          >
+            {i18n.translate('LINK_OPEN_FILTER_PANEL')}
+          </span>
+        </div>
+      )}
       <div className="map-legend-metric-title">
         {i18n.translate(metricData.title)}
       </div>

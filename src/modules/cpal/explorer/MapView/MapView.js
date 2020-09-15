@@ -2,14 +2,7 @@ import React, { useMemo, useEffect, useRef } from 'react'
 import i18n from '@pureartisan/simple-i18n'
 import shallow from 'zustand/shallow'
 import { getLayers, CPAL_SOURCES } from './selectors'
-import MapBase, {
-  // useFlyToState,
-  // useFlyToFeature,
-  // useFlyToReset,
-  useIdMap,
-} from './../Map'
-import MapLegend from './../Map'
-// import { getFeatureProperty } from './../selectors'
+import MapBase, { useIdMap } from './../Map'
 
 import { CPAL_METRICS } from './../../../../constants/metrics'
 import {

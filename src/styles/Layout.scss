@@ -107,4 +107,15 @@ main {
       display: none;
     }
   }
+  .layout-view-map {
+    .map-legend-btn {
+      position: absolute;
+      top: calc(#{$navbar-height} + 20px);
+      left: 50%;
+      width: 164px;
+      height: 44px;
+      border-radius: 22px;
+      margin-left: -82px;
+    }
+  }
 }

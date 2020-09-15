@@ -27,6 +27,7 @@ import MapLayerToggle from './MapLayerToggle'
 import MapResetButton from './MapResetButton'
 import MapCaptureButton from './MapCaptureButton'
 import MapLegend from './MapLegend'
+import LegendToggleBtn from './LegendToggleBtn'
 import MapMobileModal from './MapMobileModal'
 import { BOUNDS } from './../../../../../constants/map'
 import useStore from './../../store'
@@ -351,6 +352,8 @@ const MapBase = ({
       getClosest(srcEvent.target, '#map_capture_button') ||
       getClosest(srcEvent.target, '.mapboxgl-popup') ||
       getClosest(srcEvent.target, '.mapboxgl-popup-content')
+    // console.log('click, isControl is', isControl)
+    // if (!!isControl) return
     // activate feature if one was clicked and this isn't a control click
     if (features && features.length > 0 && !isControl) {
       const coords =
@@ -368,11 +371,6 @@ const MapBase = ({
       // console.log('click, ', features[0].properties)
     }
   }
-
-  // set the default / reset viewport when it changes
-  // useEffect(() => {
-  //   setResetViewport(defaultViewport)
-  // }, [defaultViewport, setResetViewport])
 
   // set the default viewport on mount
   useEffect(() => {
@@ -696,6 +694,7 @@ const MapBase = ({
         </div>
         {children}
       </ReactMapGL>
+      <LegendToggleBtn />
       <MapMobileModal hoveredFeature={hoveredFeature} />
     </div>
   )

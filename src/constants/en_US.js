@@ -219,6 +219,7 @@ const en_US = {
   UI_FEEDER_SCROLL_PROMPT: `Scroll for more`,
   UI_FEEDER_DIST_LEGEND_HIGHLIGHT: `Highlighted school`,
   UI_FEEDER_DIST_LEGEND_FEEDER: `Schools in the selected feeder pattern`,
+  UI_MAP_SEE_LEGEND: `See the legend`,
 }
 
 export default en_US
