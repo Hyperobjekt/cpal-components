@@ -1,6 +1,9 @@
 .map-legend {
   position: absolute;
   top: calc(16px + 64px); // Changes on smallest device.
+  @include media-breakpoint-up(md) {
+    top: 16px;
+  }
   right: 16px;
   width: 280px;
   background: #fff;
@@ -154,13 +157,15 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .map-legend {
-    top: 16px;
-  }
-}
+// @media only screen and (min-width: 768px) {
+// @include media-breakpoint-up(md) {
+//   .map-legend {
+//     top: 16px;
+//   }
+// }
 
-@media only screen and (max-width: 767px) {
+// @media only screen and (max-width: 767px) {
+@include media-breakpoint-down(sm) {
   .map-legend {
     padding: 16px;
     .map-legend-title {

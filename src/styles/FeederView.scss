@@ -114,14 +114,9 @@ $xl-legend-width: 435px;
               font-family: Halyard;
               font-size: 0.8rem;
               line-height: 1.5rem;
-              // font-size: 1.4rem; // md
-              // line-height: 1.5rem;
               padding-right: 0.5rem;
               font-weight: 300;
               align-self: center;
-              // vertical-align: top;
-              // line-height: 1.3rem;
-              // @media (min-width: 992px) {
               @include media-breakpoint-up(md) {
                 flex: 0 0 68px;
                 font-size: 1.3rem;

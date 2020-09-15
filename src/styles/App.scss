@@ -83,7 +83,8 @@ hr {
   margin-bottom: 8px;
 }
 
-@media (min-width: 1023px) {
+// @media (min-width: 1023px) {
+@include media-breakpoint-up(lg) {
   .map__zoom {
     left: auto;
     right: 16px;
@@ -259,7 +260,8 @@ hr {
   max-height: calc(100vh - 240px);
   overflow: auto;
 }
-@media (min-width: 650px) {
+// @media (min-width: 650px) {
+@include media-breakpoint-up(md) {
   .react-autosuggest__suggestions-container--open {
     width: 100%;
     min-width: 320px;
