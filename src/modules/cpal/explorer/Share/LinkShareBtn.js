@@ -26,9 +26,7 @@ const LinkShareBtn = ({ children, ...props }) => {
     <CoreButton
       id="button_share_link"
       label={i18n.translate(`BUTTON_SHARE_LINK`)}
-      tooltip={
-        props.tooltip ? buttonTooltipPosition : false
-      }
+      tooltip={props.tooltip ? buttonTooltipPosition : ''}
       onClick={handleShare}
       color="none"
       className={clsx(

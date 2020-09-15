@@ -25,9 +25,7 @@ const TwitterShareBtn = ({ children, ...props }) => {
     <CoreButton
       id="button_share_twitter"
       label={i18n.translate(`BUTTON_SHARE_TWITTER`)}
-      tooltip={
-        props.tooltip ? buttonTooltipPosition : false
-      }
+      tooltip={props.tooltip ? buttonTooltipPosition : ''}
       onClick={handleShare}
       color="none"
       className={clsx(
