@@ -32,7 +32,7 @@ const DesktopUnifiedShareBtn = ({ ...props }) => {
       color="none"
       className={clsx(
         props.className,
-        'button-d-u-share-link button-share',
+        'button-d-u-share-link',
       )}
     >
       {i18n.translate('CONTROL_PANEL_SHARE')}

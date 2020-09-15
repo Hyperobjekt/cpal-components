@@ -127,8 +127,7 @@
 
   @include media-breakpoint-up(lg) {
     width: 72px;
-
-    height: calc(100vh - 64px);
+    height: calc(100vh - #{$navbar-height});
     flex-direction: column;
     align-items: center;
     position: absolute;
@@ -140,6 +139,28 @@
     top: 0;
     .btn.button-core {
       font-size: 20px;
+      // border-radius: 50%;
+      // height: 40px;
+      // width: 40px;
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      &:focus {
+        box-shadow: none;
+      }
+      &.btn-light:not(:disabled):not(.disabled).active {
+        background-color: transparent;
+        border: none;
+        &:focus {
+          border: none;
+          box-shadow: none;
+        }
+        svg {
+          stroke: #e55934;
+        }
+      }
       &.button-share {
         font-size: 14px;
       }
@@ -172,28 +193,6 @@
     .button-panel-info {
       display: block;
       font-size: 2.1rem;
-      border-radius: 50%;
-      height: 40px;
-      width: 40px;
-      min-height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      &:focus {
-        box-shadow: none;
-      }
-      &.btn-light:not(:disabled):not(.disabled).active {
-        background-color: #ffeee5;
-        border: none;
-        &:focus {
-          border: none;
-          box-shadow: none;
-        }
-        svg {
-          stroke: #e55934;
-        }
-      }
     }
     .button-panel-filters,
     .button-panel-info {
@@ -204,28 +203,6 @@
     .button-share-email,
     .button-share-link {
       font-size: 1.4rem;
-      height: 40px;
-      width: 40px;
-      min-height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      background-color: transparent;
-      &:focus {
-        box-shadow: none;
-      }
-      &.btn-light:not(:disabled):not(.disabled).active {
-        background-color: transparent;
-        border: none;
-        &:focus {
-          border: none;
-          box-shadow: none;
-        }
-        svg {
-          stroke: #e55934;
-        }
-      }
     }
     hr {
       width: 100%;

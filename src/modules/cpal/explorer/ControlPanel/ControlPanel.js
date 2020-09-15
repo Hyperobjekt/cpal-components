@@ -401,25 +401,6 @@ const ControlPanel = ({ children }) => {
         </span>
       </CoreButton>
       <Divider />
-      <div className="control-label">
-        {i18n.translate('CONTROL_PANEL_SHARE')}
-      </div>
-      <TwitterShareBtn
-        className="d-none d-lg-block"
-        tooltip={true}
-      />
-      <FacebookShareBtn
-        className="d-none d-lg-block"
-        tooltip={true}
-      />
-      <MailShareBtn
-        className="d-none d-lg-block"
-        tooltip={true}
-      />
-      <LinkShareBtn
-        className="d-none d-lg-block"
-        tooltip={true}
-      />
       <UnifiedShareBtn className="d-block d-lg-none" />
       <DesktopUnifiedShareBtn className="d-none d-lg-block" />
     </div>
