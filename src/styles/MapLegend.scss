@@ -55,11 +55,17 @@
       align-items: center;
       justify-content: center;
     }
+    .fewer {
+      text-align: left;
+      justify-content: flex-start;
+    }
     .avg {
       text-align: center;
+      justify-content: center;
     }
     .more {
       text-align: right;
+      justify-content: flex-end;
     }
   }
   .map-legend-metric-title {

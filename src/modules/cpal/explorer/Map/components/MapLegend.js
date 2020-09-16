@@ -71,12 +71,24 @@ const MapLegend = ({ ...props }) => {
   const setSlideoutPanel = useStore(
     state => state.setSlideoutPanel,
   )
+  // Update intro modal display
+  const setShowPanelModal = useStore(
+    state => state.setShowPanelModal,
+  )
   const toggleFilterPanel = () => {
-    // console.log('toggleFilterPanel()')
-    setSlideoutPanel({
-      active: true,
-      panel: 'filters', // filters or weights, presumably, possibly info
-    })
+    // console.log('toggleFilterPanel(), ', breakpoint)
+    if (breakpoint === 'md') {
+      setSlideoutPanel({
+        active: false,
+        panel: 'filters', // filters or weights, presumably, possibly info
+      })
+      setShowPanelModal(true)
+    } else {
+      setSlideoutPanel({
+        active: true,
+        panel: 'filters', // filters or weights, presumably, possibly info
+      })
+    }
   }
 
   const intl = useStore(state => state.intl)
