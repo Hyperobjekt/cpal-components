@@ -30,7 +30,7 @@ const LegendToggleBtn = ({ ...props }) => {
   ) {
     return (
       <CoreButton
-        color="light"
+        color=""
         active={true}
         id="map_legend_toggle"
         className={clsx(`map-legend-btn`)}
