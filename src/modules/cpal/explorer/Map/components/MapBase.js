@@ -684,16 +684,11 @@ const MapBase = ({
         <MapLegend />
         <div className="custom-attribution">
           <span className="divider">|</span>
-          <span>
-            Powered by&nbsp;
-            <a
-              href="https://childpovertyactionlab.org/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Child Poverty Action Lab (CPAL)
-            </a>
-          </span>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: i18n.translate(`MAP_UI_POWERED_BY`),
+            }}
+          ></span>
         </div>
         <div className="map__zoom">
           <NavigationControl
