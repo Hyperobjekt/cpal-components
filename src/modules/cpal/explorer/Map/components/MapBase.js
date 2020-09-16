@@ -682,6 +682,19 @@ const MapBase = ({
           </Popup>
         )}
         <MapLegend />
+        <div className="custom-attribution">
+          <span className="divider">|</span>
+          <span>
+            Powered by&nbsp;
+            <a
+              href="https://childpovertyactionlab.org/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Child Poverty Action Lab (CPAL)
+            </a>
+          </span>
+        </div>
         <div className="map__zoom">
           <NavigationControl
             showCompass={false}
