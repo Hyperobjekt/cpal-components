@@ -185,6 +185,11 @@ const [useStore] = create((set, get) => ({
   showMobileLegend: false,
   setShowMobileLegend: newVal =>
     set({ showMobileLegend: newVal }),
+  isMobile: false,
+  setIsMobile: newVal => set({ isMobile: newVal }),
+  interactionsMobile: false,
+  setInteractionsMobile: newVal =>
+    set({ interactionsMobile: newVal }),
 }))
 
 export default useStore

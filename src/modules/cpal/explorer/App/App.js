@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
+import { isMobile } from 'react-device-detect'
 
 import useStore from './../store.js'
 import Layout from '../Layout/Layout'
@@ -34,7 +35,13 @@ const App = props => {
     // )
     setHandleToggleMenu(props.toggleMenu)
   }
-
+  // Track and update renderForMobile
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
+  const setInteractionsMobile = useStore(
+    state => state.setInteractionsMobile,
+  )
   /**
    * Manage browser width and breakpoint for use in the app.
    */
@@ -56,9 +63,18 @@ const App = props => {
     // console.log('breakpoint is, ', breakpoint)
     setBreakpoint(breakpoint)
     setBrowserWidth(window.innerWidth)
+    setRenderForMobile(
+      !!(
+        isMobile ||
+        breakpoint === 'xs' ||
+        breakpoint === 'sm' ||
+        breakpoint === 'md'
+      ),
+    )
   }
   useEffect(() => {
     // console.log('useEffect')
+    setIsMobile()
     setBrowserWidthAndBreakpoint()
     window.addEventListener('resize', () => {
       // console.log('resize, ', window.innerWidth)
