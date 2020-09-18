@@ -125,6 +125,10 @@ const MapBase = ({
     state => state.setFlyToSchoolSLN,
   )
 
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
+
   // const flyToReset = useFlyToReset()
 
   // reference to map container DOM element
@@ -677,7 +681,11 @@ const MapBase = ({
             captureScroll={false}
           >
             <div className="inner">
-              {i18n.translate('UI_MAP_FLY_TO_PROMPT')}
+              {!interactionsMobile
+                ? i18n.translate('UI_MAP_FLY_TO_PROMPT')
+                : i18n.translate(
+                    'UI_MAP_FLY_TO_PROMPT_MOBILE',
+                  )}
             </div>
           </Popup>
         )}

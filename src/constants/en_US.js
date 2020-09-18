@@ -205,6 +205,7 @@ const en_US = {
   UI_MAP_SCHOOL_ACCESS_LINK: `Access full report.`,
   UI_MAP_FLY_TO_PROMPT: `Hover school for more information, or click
   school to see a detailed report.`,
+  UI_MAP_FLY_TO_PROMPT_MOBILE: `Touch school for more information.`,
   UI_MAP_INTRO_MODAL_HEADER: `Welcome to the Community Resource Explorer`,
   UI_MAP_INTRO_MODAL_INTRO: `The map and charts in this tool allow users to learn about resource distribution in the Dallas Independent School District. You can take several paths to learn about this tool.`,
   UI_MAP_INTRO_MODAL_TOUR: `Take a tour of the map to learn how to use it.`,
