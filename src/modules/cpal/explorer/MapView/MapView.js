@@ -27,6 +27,10 @@ const MapView = props => {
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
   )
+  // Tracks whether to handle interactions as mobile
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
 
   // All items to be passed into map from state.
   const hoveredId = useStore(state => state.hovered)
@@ -118,12 +122,7 @@ const MapView = props => {
     // setHovered(id, type, geoCoords, feature)
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
-      if (
-        (breakpoint === 'xs' ||
-          breakpoint === 'sm' ||
-          breakpoint === 'md') &&
-        !!feature.state.hover
-      ) {
+      if (!!interactionsMobile && !!feature.state.hover) {
         // If it's not yet hovered, set it as hovered.
         // console.log('Small screen, setting up modal.')
         // console.log('showMapModal, ', showMapModal)
