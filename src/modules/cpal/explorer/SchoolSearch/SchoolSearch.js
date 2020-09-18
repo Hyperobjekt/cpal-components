@@ -168,6 +168,7 @@ const SchoolSearch = ({ ...props }) => {
     onBlur: handleBlur, // called when the input loses focus, e.g. when user presses Tab
     type: 'search',
     placeholder: i18n.translate(`INPUT_SEARCH`),
+    'aria-label': i18n.translate(`INPUT_SEARCH`),
   }
 
   return (
