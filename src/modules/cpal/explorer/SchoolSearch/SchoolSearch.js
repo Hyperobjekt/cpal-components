@@ -53,7 +53,7 @@ const SchoolSearch = ({ ...props }) => {
   const updateUIWithResult = suggestion => {
     // console.log('updateUIWithResult')
     if (activeView === 'map') {
-      console.log('in map view, ', suggestion.suggestion)
+      // console.log('in map view, ', suggestion.suggestion)
       flyToSchool(
         suggestion.suggestion.POINT_Y,
         suggestion.suggestion.POINT_X,
@@ -63,6 +63,7 @@ const SchoolSearch = ({ ...props }) => {
       if (!!showIntroModal) {
         setShowIntroModal(false)
       }
+      handleClear()
     }
     if (activeView === 'feeder') {
       // console.log('in feeder view, ', suggestion)
