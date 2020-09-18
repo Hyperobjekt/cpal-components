@@ -5,10 +5,16 @@ import { MdPhotoCamera } from 'react-icons/md'
 import { CoreButton } from './../../../../core'
 import { Tooltip } from 'reactstrap'
 
+import useStore from './../../store'
+
 /**
  * Button that captures map canvas and triggers download
  */
 const MapCaptureButton = ({ currentMap, ...props }) => {
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
+
   const captureMap = () => {
     // console.log('captureMap')
     const dataURL = currentMap
@@ -32,7 +38,7 @@ const MapCaptureButton = ({ currentMap, ...props }) => {
       )}
       onClick={captureMap}
       label={i18n.translate(`UI_MAP_CAPTURE`)}
-      tooltip="left"
+      tooltip={!interactionsMobile ? 'left' : ''}
     >
       <MdPhotoCamera className="icon" />
       <span className="sr-only">

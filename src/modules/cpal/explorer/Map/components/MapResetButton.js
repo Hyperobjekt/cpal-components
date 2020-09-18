@@ -4,12 +4,16 @@ import clsx from 'clsx'
 import { MdRefresh } from 'react-icons/md'
 
 import { CoreButton } from './../../../../core'
+import useStore from './../../store'
 
 /**
  * Button to reset zoom and pan to default viewport settings
  */
 const MapResetButton = ({ ...props }) => {
   const resetViewport = props.resetViewport
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
 
   return (
     <CoreButton
@@ -24,7 +28,7 @@ const MapResetButton = ({ ...props }) => {
         resetViewport(e)
       }}
       label={i18n.translate(`UI_MAP_RESET`)}
-      tooltip="left"
+      tooltip={!!interactionsMobile ? '' : 'left'}
     >
       <MdRefresh className="icon" />
       <span className="sr-only">
