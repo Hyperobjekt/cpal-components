@@ -17,6 +17,15 @@ const SchoolSearch = ({ ...props }) => {
   const isLoaded = useRef(false)
   // Active view, different actions depending on this
   const activeView = useStore(state => state.activeView)
+  // Use active metric to find the SD value for a school.
+  const activeMetric = useStore(state => state.activeMetric)
+  // Track and update active quintiles (if selected school is filtered out)
+  const activeQuintiles = useStore(
+    state => state.activeQuintiles,
+  )
+  const setActiveQuintiles = useStore(
+    state => state.setActiveQuintiles,
+  )
   // Active view, different actions depending on this
   // const feederSchools = useStore(
   //   state => state.feederSchools,
@@ -51,9 +60,18 @@ const SchoolSearch = ({ ...props }) => {
     state => state.setFlyToSchoolSLN,
   )
   const updateUIWithResult = suggestion => {
-    // console.log('updateUIWithResult')
+    // console.log('updateUIWithResult, ', suggestion)
     if (activeView === 'map') {
-      // console.log('in map view, ', suggestion.suggestion)
+      console.log('in map view, ', suggestion.suggestion)
+      const metric = activeMetric
+      const schoolSD = suggestion.suggestion[metric + '_sd']
+      if (!activeQuintiles[schoolSD]) {
+        // School's quintile is disabled, re-enable that quintile.
+        const quintiles = activeQuintiles.slice()
+        quintiles[schoolSD] = 1
+        setActiveQuintiles(quintiles)
+      }
+      // Run fly-to animation.
       flyToSchool(
         suggestion.suggestion.POINT_Y,
         suggestion.suggestion.POINT_X,
@@ -133,7 +151,7 @@ const SchoolSearch = ({ ...props }) => {
 
   // Use your imagination to render suggestions.
   const renderSuggestion = suggestion => {
-    // console.log('renderSuggestion')
+    // console.log('renderSuggestion, ', suggestion)
     return (
       <div
         id={suggestion.TEA}
