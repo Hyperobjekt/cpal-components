@@ -190,6 +190,8 @@ const [useStore] = create((set, get) => ({
   interactionsMobile: false,
   setInteractionsMobile: newVal =>
     set({ interactionsMobile: newVal }),
+  runTour: false,
+  setRunTour: newVal => set({ runTour: newVal }),
 }))
 
 export default useStore

@@ -22,7 +22,9 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature exists')
   //   console.log('props.feature, ', props.feature)
   // }
-
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
   const breakpoint = useStore(state => state.breakpoint)
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
@@ -117,7 +119,8 @@ const PopupContent = ({ ...props }) => {
         {!!(
           breakpoint === 'xs' ||
           breakpoint === 'sm' ||
-          breakpoint === 'md'
+          breakpoint === 'md' ||
+          interactionsMobile
         ) && (
           <CoreButton
             id="modal_access_school"

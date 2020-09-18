@@ -632,7 +632,8 @@ const MapBase = ({
           !(
             breakpoint === 'xs' ||
             breakpoint === 'sm' ||
-            breakpoint === 'md'
+            breakpoint === 'md' ||
+            interactionsMobile
           ) && (
             <Popup
               className={clsx('school-details-tip')}

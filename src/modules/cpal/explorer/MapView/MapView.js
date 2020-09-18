@@ -81,6 +81,7 @@ const MapView = props => {
     //   coords,
     //   geoCoords,
     // )
+    if (!!interactionsMobile) return
     let type = null
     let id = null
     if (
@@ -122,7 +123,7 @@ const MapView = props => {
     // setHovered(id, type, geoCoords, feature)
     if (feature.source === 'schools') {
       // console.log('school clicked, ', feature)
-      if (!!interactionsMobile && !!feature.state.hover) {
+      if (!!interactionsMobile) {
         // If it's not yet hovered, set it as hovered.
         // console.log('Small screen, setting up modal.')
         // console.log('showMapModal, ', showMapModal)
