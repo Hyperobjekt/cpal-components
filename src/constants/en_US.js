@@ -221,6 +221,7 @@ const en_US = {
   UI_FEEDER_DIST_LEGEND_FEEDER: `Schools in the selected feeder pattern`,
   UI_MAP_SEE_LEGEND: `See the legend`,
   MAP_UI_POWERED_BY: `Powered by the&nbsp;<a href="https://childpovertyactionlab.org/" target="_blank" rel="noreferrer">Child Poverty Action Lab (CPAL)</a>`,
+  FEEDER_UI_CLICK_FOR_ADDL: `Click for additional information`,
 }
 
 export default en_US

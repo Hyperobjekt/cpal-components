@@ -43,6 +43,10 @@ const FeederChart = ({ children, ...props }) => {
   const setHighlightedSchool = useStore(
     state => state.setHighlightedSchool,
   )
+  // Track whether mobile.
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
 
   const getBarBgColor = el => {
     // console.log('getBarBgColor', el)
@@ -205,16 +209,20 @@ const FeederChart = ({ children, ...props }) => {
               }}
               aria-hidden="true"
             >
-              <Tooltip
-                key={'feeder_bar_tip_' + el.id}
-                placement="auto"
-                isOpen={tooltipOpen}
-                target={'bar_' + el.id}
-                toggle={toggle}
-                trigger="hover"
-              >
-                Click for additional information
-              </Tooltip>
+              {!interactionsMobile && (
+                <Tooltip
+                  key={'feeder_bar_tip_' + el.id}
+                  placement="auto"
+                  isOpen={tooltipOpen}
+                  target={'bar_' + el.id}
+                  toggle={toggle}
+                  trigger="hover"
+                >
+                  {i18n.translate(
+                    'FEEDER_UI_CLICK_FOR_ADDL',
+                  )}
+                </Tooltip>
+              )}
             </div>
             <span className="data">
               {getRoundedValue(el.value, 0, 1)}
