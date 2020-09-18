@@ -46,7 +46,7 @@ const UnifiedShareModal = props => {
         isOpen={!!unifiedShareModal}
         toggle={toggle}
         className={className}
-        backdrop={false}
+        backdrop={true}
         keyboard={true}
         autoFocus={true}
         centered={true}
@@ -62,11 +62,13 @@ const UnifiedShareModal = props => {
           <InputGroup>
             <Input
               value={
-                shareHash
+                !!shareHash
                   ? window.location.origin +
                     window.location.pathname +
                     shareHash
-                  : ''
+                  : window.location.origin +
+                    window.location.pathname +
+                    defaultRoute
               }
               readOnly={true}
             />

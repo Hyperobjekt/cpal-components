@@ -54,11 +54,13 @@ const ShareLinkModal = props => {
           <InputGroup>
             <Input
               value={
-                shareHash
+                !!shareHash
                   ? window.location.origin +
                     window.location.pathname +
                     shareHash
-                  : ''
+                  : window.location.origin +
+                    window.location.pathname +
+                    defaultRoute
               }
               readOnly={true}
             />

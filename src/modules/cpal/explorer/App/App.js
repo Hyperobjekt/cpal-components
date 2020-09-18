@@ -63,7 +63,7 @@ const App = props => {
     // console.log('breakpoint is, ', breakpoint)
     setBreakpoint(breakpoint)
     setBrowserWidth(window.innerWidth)
-    setRenderForMobile(
+    setInteractionsMobile(
       !!(
         isMobile ||
         breakpoint === 'xs' ||
@@ -74,7 +74,6 @@ const App = props => {
   }
   useEffect(() => {
     // console.log('useEffect')
-    setIsMobile()
     setBrowserWidthAndBreakpoint()
     window.addEventListener('resize', () => {
       // console.log('resize, ', window.innerWidth)

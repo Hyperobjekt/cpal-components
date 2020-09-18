@@ -12,23 +12,14 @@ import { MailShareBtn } from '.'
 import { LinkShareBtn } from '.'
 
 const DesktopUnifiedShareBtn = ({ ...props }) => {
-  const buttonTooltipPosition = useStore(
-    state => state.buttonTooltipPosition,
-  )
-
   // to manage tooltip state
   const [tooltipOpen, setTooltipOpen] = useState(false)
   const toggle = () => setTooltipOpen(!tooltipOpen)
-
-  const handleShare = () => {
-    // console.log('handleShare()')
-  }
 
   return (
     <CoreButton
       id="button_d_u_share_link"
       label={i18n.translate(`BUTTON_SHARE_UNIFIED`)}
-      onClick={handleShare}
       color="none"
       className={clsx(
         props.className,
@@ -37,7 +28,7 @@ const DesktopUnifiedShareBtn = ({ ...props }) => {
     >
       {i18n.translate('CONTROL_PANEL_SHARE_TC')}
       <Tooltip
-        placement={buttonTooltipPosition}
+        placement="right"
         isOpen={tooltipOpen}
         target="button_d_u_share_link"
         toggle={toggle}
