@@ -38,7 +38,8 @@ export const DESKTOP_STEPS = [
     disableBeacon: true,
   },
   {
-    target: '.quintile-button.quintile-0',
+    target:
+      '.interactive-scale.button-metric.active.button-cri_weight',
     text: 'TOUR_DESK_STEP_6',
     placement: 'right',
     disableBeacon: true,
