@@ -142,7 +142,7 @@ const [useStore] = create((set, get) => ({
   showPanelModal: false,
   setShowPanelModal: newVal =>
     set({ showPanelModal: newVal }),
-  enableTour: false, // Set this true to show the launch tour button in intro modal.
+  enableTour: true, // Set this true to show the launch tour button in intro modal.
   setEnableTour: newVal => set({ enableTour: newVal }),
   showMapModal: false,
   setShowMapModal: newVal => set({ showMapModal: newVal }),
@@ -192,6 +192,8 @@ const [useStore] = create((set, get) => ({
     set({ interactionsMobile: newVal }),
   runTour: false,
   setRunTour: newVal => set({ runTour: newVal }),
+  tourStepIndex: 0,
+  setTourStepIndex: a => set({ tourStepIndex: a }),
 }))
 
 export default useStore

@@ -34,11 +34,14 @@ const IntroModal = ({ children, ...props }) => {
     setShowIntroModal(!showIntroModal)
 
   const enableTour = useStore(state => state.enableTour)
+  const setRunTour = useStore(state => state.setRunTour)
   /**
    * Close the intro panel and start the tour
    */
   const handleStartTour = () => {
     console.log('handleStartTour()')
+    toggleIntroModal()
+    setRunTour(true)
   }
 
   /**

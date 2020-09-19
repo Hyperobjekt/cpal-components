@@ -24,6 +24,7 @@ import {
   ShareLinkModal,
   UnifiedShareModal,
 } from './../Share'
+import Tour from './../Tour/Tour'
 import { ROUTE_SET } from './../../../../constants/metrics'
 
 /**
@@ -213,6 +214,7 @@ const Layout = ({ children, ...props }) => {
           <ShareLinkModal className="modal-share-link" />
           <UnifiedShareModal className="modal-u-share" />
           <IntroModal />
+          <Tour />
           <PanelModal />
         </Canvas>
       </main>

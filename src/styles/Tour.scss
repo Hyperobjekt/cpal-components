@@ -1,0 +1,9 @@
+#react-joyride-portal {
+  .react-joyride__overlay {
+    z-index: 4000 !important;
+  }
+}
+
+.__floater.__floater__open {
+  z-index: 4001 !important;
+}

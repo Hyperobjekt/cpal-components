@@ -223,6 +223,20 @@ const en_US = {
   UI_MAP_SEE_LEGEND: `See the legend`,
   MAP_UI_POWERED_BY: `Powered by the&nbsp;<a href="https://childpovertyactionlab.org/" target="_blank" rel="noreferrer">Child Poverty Action Lab (CPAL)</a>`,
   FEEDER_UI_CLICK_FOR_ADDL: `Click for additional information`,
+  TOUR_UI_ACTIONS_BACK: `Back`,
+  TOUR_UI_ACTIONS_CLOSE: `Close`,
+  TOUR_UI_ACTIONS_LAST: `Last`,
+  TOUR_UI_ACTIONS_NEXT: `Next`,
+  TOUR_UI_ACTIONS_SKIP: `Skip`,
+  TOUR_DESK_STEP_0: `Use these buttons to select the view. There are two view options: a map view...`,
+  TOUR_DESK_STEP_1: `...and a school feeder pattern view.`,
+  TOUR_DESK_STEP_2: `In the map view, schools are shown as colored dots. Hovering over each one shows the community (within a 2 mile radius) surrounding the school.\n\nThe color of each dot represents how resource-rich the school community is relative to other Dallas ISD school communities. TODO: SHOW COLOR SCALE`,
+  TOUR_DESK_STEP_3: `Use the metrics/filters panel to browse and select different indices and indicators for display on the map.`,
+  TOUR_DESK_STEP_4: `The menu at the top of the filters panel allows you to select different categories of indices and indicators.`,
+  TOUR_DESK_STEP_5: `Display an index or indicator on the map by clicking on its interactive scale.`,
+  TOUR_DESK_STEP_6: `To show or hide school communities in the map based on their resource levels, click within the scale. For example, to show only the “well below average” and “well above average” communities for any given metric, click the darkest blue and darkest green colors at the ends of the scale.`,
+  TOUR_DESK_STEP_7: `The map legend shows which subsets of schools are displayed.`,
+  TOUR_DESK_STEP_8: `Search for a Dallas ISD neighborhood school using this search bar.`,
 }
 
 export default en_US
