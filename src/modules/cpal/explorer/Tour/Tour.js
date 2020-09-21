@@ -49,8 +49,37 @@ const Tour = ({ ...props }) => {
     return steps
   }
 
+  const clickElements = (
+    querySelectors,
+    index,
+    stepIndex,
+  ) => {
+    // Fetch targets and click them.
+    const targets = document.querySelectorAll(
+      querySelectors[index],
+    )
+    targets.forEach(item => {
+      console.log(item)
+      item.click()
+    })
+    // Timeout, and process next after.
+    setTimeout(() => {
+      console.log('Timeout triggered, ', Date.now())
+      // If last one, start the tour again.
+      if (index === querySelectors.length - 1) {
+        // Last one.
+        console.log('Last one.')
+        setTourStepIndex(stepIndex + 1)
+        setRunTour(true)
+      } else {
+        console.log('Not last one.')
+        clickElements(querySelectors, index + 1, stepIndex)
+      }
+    }, 600)
+  }
+
   const handleTourUpdate = data => {
-    console.log('handleTourUpdate, ', data)
+    // console.log('handleTourUpdate, ', data)
     const steps = getSteps()
     const { action, index, status, type } = data
     if ([ACTIONS.CLOSE, ACTIONS.STOP].includes(action)) {
@@ -58,23 +87,38 @@ const Tour = ({ ...props }) => {
     }
     if ([EVENTS.STEP_AFTER].includes(type)) {
       const increment = action === ACTIONS.PREV ? -1 : 1
-      if (
-        steps[data.index + increment] &&
-        steps[data.index + increment].clickOn
-      ) {
-        if (
-          steps[data.index + increment].clickOn.length !== 0
-        ) {
+      const next = steps[data.index + increment]
+      if (next && next.clickOn) {
+        if (next.clickOn.length !== 0) {
+          // Stop the tour.
           setRunTour(false)
-          console.log('has a clickOn')
-          const target = document.querySelector(
-            steps[data.index + increment].clickOn,
-          )
-          setTourStepIndex(data.index + increment)
-          target.click()
-          setTimeout(() => {
-            setRunTour(true)
-          }, 2000)
+          // Call recursive timed function to handle all clicks.
+          clickElements(next.clickOn, 0, data.index)
+          //
+          //
+          // next.clickOn.forEach((el, i) => {
+          //   // console.log('handling clickOn for ', el)
+          //   // console.log(
+          //   //   'i = ',
+          //   //   i,
+          //   //   'next.clickOn.length = ',
+          //   //   next.clickOn.length,
+          //   // )
+          //   const targets = document.querySelectorAll(el)
+          //   targets.forEach(item => {
+          //     console.log(item)
+          //     item.click()
+          //   }) // .click()
+          //   setTimeout(() => {
+          //     console.log('timeout triggered, ', Date.now())
+          //     if (i === next.clickOn.length - 1) {
+          //       // console.log('last one')
+          //       // Last one.
+          //       setTourStepIndex(data.index + increment)
+          //       setRunTour(true)
+          //     }
+          //   }, 600)
+          // })
         }
       } else {
         setTourStepIndex(data.index + increment)
@@ -103,7 +147,7 @@ const Tour = ({ ...props }) => {
     backgroundColor: '#fff',
     beaconSize: 36,
     overlayColor: 'rgba(0, 0, 0, 0.75)',
-    primaryColor: '#f04',
+    primaryColor: '#e94f34', // '#f04', // Button color.
     spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
     textColor: '#333',
     width: undefined,
@@ -123,6 +167,7 @@ const Tour = ({ ...props }) => {
       showProgress={true}
       styles={{ ...defaultOptions }}
       disableOverlay={false}
+      disableScrolling={true}
       hideBackButton={true}
     />
   )

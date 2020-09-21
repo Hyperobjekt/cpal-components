@@ -9,9 +9,60 @@ import {
   FiMenu,
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
+import { GiJourney } from 'react-icons/gi'
+
+import { CoreButton } from './../../../core'
 
 const PanelInfoView = ({ ...props }) => {
   const activeView = useStore(state => state.activeView)
+  const enableTour = useStore(state => state.enableTour)
+  const setRunTour = useStore(state => state.setRunTour)
+  const setActiveView = useStore(
+    state => state.setActiveView,
+  )
+  const setActiveQuintiles = useStore(
+    state => state.setActiveQuintiles,
+  )
+  const setSlideoutPanel = useStore(
+    state => state.setSlideoutPanel,
+  )
+
+  const getTourButton = () => {
+    if (!!enableTour) {
+      return (
+        <CoreButton
+          color="light"
+          label={i18n.translate(
+            'UI_MAP_INTRO_MODAL_TOUR_BTN',
+          )}
+          onClick={handleStartTour}
+        >
+          <GiJourney />
+          {i18n.translate('UI_MAP_INTRO_MODAL_TOUR_BTN')}
+        </CoreButton>
+      )
+    } else {
+      return ''
+    }
+  }
+
+  /**
+   * Close the intro panel and start the tour
+   */
+  const handleStartTour = () => {
+    // console.log('handleStartTour()')
+    // Return view to map.
+    setActiveView('map')
+    // Reset quintiles.
+    setActiveQuintiles([1, 1, 1, 1, 1])
+    // Close the panel.
+    setSlideoutPanel({
+      active: false,
+      panel: '',
+    })
+    // Run the tour.
+    setRunTour(true)
+  }
 
   const getContents = () => {
     // Right now, just check for feeder OR map.
@@ -22,10 +73,12 @@ const PanelInfoView = ({ ...props }) => {
     }
   }
   return (
-    <div
-      className="map-panel-slideout-info"
-      dangerouslySetInnerHTML={{ __html: getContents() }}
-    ></div>
+    <div className="map-panel-slideout-info">
+      <div
+        dangerouslySetInnerHTML={{ __html: getContents() }}
+      ></div>
+      {getTourButton()}
+    </div>
   )
 }
 

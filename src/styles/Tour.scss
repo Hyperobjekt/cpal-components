@@ -4,6 +4,19 @@
   }
 }
 
+.react-joyride__tooltip {
+  font-family: Halyard;
+  font-weight: 300;
+  button:focus {
+    outline: 0;
+  }
+  button {
+    svg {
+      margin-top: -3px;
+    }
+  }
+}
+
 .__floater.__floater__open {
   z-index: 4001 !important;
 }

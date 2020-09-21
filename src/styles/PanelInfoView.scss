@@ -18,4 +18,18 @@
     color: #606b44;
     margin-bottom: 0.8rem;
   }
+  .btn.button-core {
+    border-radius: 0;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 300;
+    padding: 1rem;
+    svg {
+      margin-right: 1rem;
+      margin-top: -3px;
+    }
+  }
+  button {
+    margin: 1.5rem 0;
+  }
 }
