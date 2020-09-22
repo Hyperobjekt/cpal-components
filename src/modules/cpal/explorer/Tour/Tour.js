@@ -23,7 +23,7 @@ const Tour = ({ ...props }) => {
     el.content = i18n.translate(el.text)
     return el
   })
-  // console.log('desktopSteps, ', desktopSteps)
+  const defaultTimeout = 600
 
   const runTour = useStore(state => state.runTour)
   const setRunTour = useStore(state => state.setRunTour)
@@ -35,13 +35,17 @@ const Tour = ({ ...props }) => {
     state => state.setTourStepIndex,
   )
 
-  const getSteps = () => {
-    let steps
-    if (
+  const isMobile = () => {
+    return (
       breakpoint === 'xs' ||
       breakpoint === 'sm' ||
       breakpoint === 'md'
-    ) {
+    )
+  }
+
+  const getSteps = () => {
+    let steps
+    if (!!isMobile) {
       steps = mobileSteps
     } else {
       steps = desktopSteps
@@ -53,6 +57,7 @@ const Tour = ({ ...props }) => {
     querySelectors,
     index,
     stepIndex,
+    incrementStep,
   ) => {
     // Fetch targets and click them.
     const targets = document.querySelectorAll(
@@ -69,18 +74,26 @@ const Tour = ({ ...props }) => {
       if (index === querySelectors.length - 1) {
         // Last one.
         console.log('Last one.')
-        setTourStepIndex(stepIndex + 1)
+        setTourStepIndex(
+          stepIndex + (incrementStep ? 1 : 0),
+        )
         setRunTour(true)
       } else {
         console.log('Not last one.')
-        clickElements(querySelectors, index + 1, stepIndex)
+        clickElements(
+          querySelectors,
+          index + 1,
+          stepIndex,
+          incrementStep,
+        )
       }
-    }, 600)
+    }, defaultTimeout)
   }
 
   const handleTourUpdate = data => {
-    // console.log('handleTourUpdate, ', data)
+    console.log('handleTourUpdate, ', data)
     const steps = getSteps()
+    console.log('steps = ', steps)
     const { action, index, status, type } = data
     if ([ACTIONS.CLOSE, ACTIONS.STOP].includes(action)) {
       setRunTour(false)
@@ -93,32 +106,7 @@ const Tour = ({ ...props }) => {
           // Stop the tour.
           setRunTour(false)
           // Call recursive timed function to handle all clicks.
-          clickElements(next.clickOn, 0, data.index)
-          //
-          //
-          // next.clickOn.forEach((el, i) => {
-          //   // console.log('handling clickOn for ', el)
-          //   // console.log(
-          //   //   'i = ',
-          //   //   i,
-          //   //   'next.clickOn.length = ',
-          //   //   next.clickOn.length,
-          //   // )
-          //   const targets = document.querySelectorAll(el)
-          //   targets.forEach(item => {
-          //     console.log(item)
-          //     item.click()
-          //   }) // .click()
-          //   setTimeout(() => {
-          //     console.log('timeout triggered, ', Date.now())
-          //     if (i === next.clickOn.length - 1) {
-          //       // console.log('last one')
-          //       // Last one.
-          //       setTourStepIndex(data.index + increment)
-          //       setRunTour(true)
-          //     }
-          //   }, 600)
-          // })
+          clickElements(next.clickOn, 0, data.index, true)
         }
       } else {
         setTourStepIndex(data.index + increment)
@@ -145,7 +133,7 @@ const Tour = ({ ...props }) => {
   const defaultOptions = {
     arrowColor: '#fff',
     backgroundColor: '#fff',
-    beaconSize: 36,
+    beaconSize: 42,
     overlayColor: 'rgba(0, 0, 0, 0.75)',
     primaryColor: '#e94f34', // '#f04', // Button color.
     spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
@@ -166,6 +154,13 @@ const Tour = ({ ...props }) => {
       locale={localeStrings}
       showProgress={true}
       styles={{ ...defaultOptions }}
+      floaterProps={{
+        styles: {
+          wrapper: {
+            zIndex: 4000,
+          },
+        },
+      }}
       disableOverlay={false}
       disableScrolling={true}
       hideBackButton={true}
