@@ -24,7 +24,10 @@ const Tour = ({ ...props }) => {
     return el
   })
   const defaultTimeout = 600
-
+  const setHovered = useStore(state => state.setHovered)
+  const setShowMapModal = useStore(
+    state => state.setShowMapModal,
+  )
   const runTour = useStore(state => state.runTour)
   const setRunTour = useStore(state => state.setRunTour)
   const breakpoint = useStore(state => state.breakpoint)
@@ -45,7 +48,7 @@ const Tour = ({ ...props }) => {
 
   const getSteps = () => {
     let steps
-    if (!!isMobile) {
+    if (!!isMobile()) {
       steps = mobileSteps
     } else {
       steps = desktopSteps
@@ -109,6 +112,7 @@ const Tour = ({ ...props }) => {
           clickElements(next.clickOn, 0, data.index, true)
         }
       } else {
+        // console.log('Nothin doin, moving on.')
         setTourStepIndex(data.index + increment)
       }
     } else if (
@@ -162,7 +166,7 @@ const Tour = ({ ...props }) => {
         },
       }}
       disableOverlay={false}
-      disableScrolling={true}
+      disableScrolling={!!isMobile() ? false : true}
       hideBackButton={true}
     />
   )

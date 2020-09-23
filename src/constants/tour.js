@@ -196,7 +196,7 @@ export const MOBILE_STEPS = [
   },
   {
     target: '.mapboxgl-map',
-    text: 'TOUR_DESK_STEP_9', // Hover a school..., click a school...
+    text: 'TOUR_MOBILE_STEP_9', // click a school...
     placement: 'auto',
   },
   {
@@ -205,16 +205,18 @@ export const MOBILE_STEPS = [
     placement: 'left',
   },
   {
-    target: '.map-layer-toggle-pane',
+    target: '#button_toggle_panel_layers',
     text: 'TOUR_DESK_STEP_11', // The map has additional layers...
     placement: 'right',
-    clickOn: ['#button_toggle_panel_layers'],
   },
   {
     target: '.layout-view-feeder',
     text: 'TOUR_DESK_STEP_12', // The feeder view displays all of the....
     placement: 'auto',
-    clickOn: ['#button_view_feeder'],
+    clickOn: [
+      '.modal-dialog .modal-header button.close',
+      '#button_view_feeder',
+    ],
   },
   {
     target: '.row-schools-chart',
@@ -223,29 +225,24 @@ export const MOBILE_STEPS = [
   },
   {
     target: '#bar_380',
-    text: 'TOUR_DESK_STEP_14', // Click individual feeders to see more information about them.
+    text: 'TOUR_MOBILE_STEP_14', // Click individual feeders to see more information about them.
     placement: 'auto',
-    clickOn: ['#feeder_bar_380'],
-  },
-  {
-    target: '.feeder-chart-legend',
-    text: 'TOUR_DESK_STEP_15', // This panel displays additional information about the schools...
-    placement: 'left',
   },
   {
     target: '.row-schools-chart',
     text: 'TOUR_DESK_STEP_16', // The distribution chart also highlights all of a feeder's schools when a feeder is selected.
-    placement: 'top',
+    placement: 'auto',
+    clickOn: ['.modal-dialog .modal-header button.close'],
   },
   {
     target: '.search-autosuggest input',
     text: 'TOUR_DESK_STEP_17', // Search for a school community using this search bar. This will highlight...
-    placement: 'bottom',
+    placement: 'auto',
+    disableBeacon: true,
   },
   {
-    target: '.map-panel-slideout-info',
+    target: '#button_toggle_panel_info',
     text: 'TOUR_DESK_STEP_18', // The info panel contains insights about each view ...
-    placement: 'right',
-    clickOn: ['#button_toggle_panel_info'],
+    placement: 'auto',
   },
 ]
