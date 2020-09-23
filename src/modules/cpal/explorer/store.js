@@ -222,6 +222,8 @@ const [useStore] = create((set, get) => ({
   setEventSchoolPage: a => set({ eventSchoolPage: a }),
   accessedSchool: null,
   setAccessedSchool: a => set({ accessedSchool: a }),
+  eventError: 0,
+  setEventError: a => set({ eventError: a }),
 }))
 
 export default useStore

@@ -93,6 +93,20 @@ const App = props => {
     })
   }, [])
 
+  const eventError = useStore(state => state.eventError)
+  const setEventError = useStore(
+    state => state.setEventError,
+  )
+  useEffect(() => {
+    window.addEventListener('error', e => {
+      setEventError(e)
+    })
+    // Test error logging by throwing an error after map loads.
+    // setTimeout(() => {
+    //   console.log('trial var, ', mooMooMoo)
+    // }, 3000)
+  }, [])
+
   useEffect(() => {
     window.CPAL = (function () {
       // stores the browser name and version for reporting

@@ -17,6 +17,9 @@ const Tracking = ({ ...props }) => {
   const shareHash = useStore(state => state.shareHash)
   const activeView = useStore(state => state.activeView)
   const activeMetric = useStore(state => state.activeMetric)
+  const activeQuintiles = useStore(
+    state => state.activeQuintiles,
+  )
   const activeLayers = useStore(state => state.activeLayers)
   const hovered = useStore(state => state.hovered)
   const activeFeeder = useStore(state => state.activeFeeder)
@@ -55,6 +58,7 @@ const Tracking = ({ ...props }) => {
   const accessedSchool = useStore(
     state => state.accessedSchool,
   )
+  const eventError = useStore(state => state.eventError)
   // Overall boolean preventing event tracking before
   // the map is loaded.
   const doTrackEvents = useStore(
@@ -119,6 +123,11 @@ const Tracking = ({ ...props }) => {
         eventCategory = 'Configure map view'
         eventAction = 'Select active metric'
         eventLabel = activeMetric
+        break
+      case params.type === 'update_active_quintiles':
+        eventCategory = 'Configure map view'
+        eventAction = 'Update active standard deviations'
+        eventLabel = activeQuintiles.toString()
         break
       case params.type === 'update_layers':
         eventCategory = 'Configure map view'
@@ -194,8 +203,13 @@ const Tracking = ({ ...props }) => {
       case params.type === 'map_screencap':
         eventCategory = 'Use map controls'
         eventAction = 'Map screencap'
-        eventLabel = constructShareLink()
-        // code block
+        eventLabel = shareHash ? shareHash : null
+        break
+      case params.type === 'error':
+        eventCategory = 'Error'
+        eventAction = 'Window error'
+        eventLabel = eventError.message
+        eventValue = navigator.userAgent
         break
       default:
     }
@@ -250,6 +264,13 @@ const Tracking = ({ ...props }) => {
   useEffect(() => {
     trackEvent({ type: 'select_active_metric' })
   }, [activeMetric])
+  const debouncedQuintiles = useDebounce(
+    activeQuintiles,
+    2000,
+  )
+  useEffect(() => {
+    trackEvent({ type: 'update_active_quintiles' })
+  }, [debouncedQuintiles])
   // When school hovered, record the changes.
   // TODO: Address edge cases where hovered is changed for another reason (search).
   useEffect(() => {
@@ -270,7 +291,7 @@ const Tracking = ({ ...props }) => {
   // When zoom changes, record the change.
   // Debounce the value to avoid recording every
   // minor transition during a zoom action.
-  const debouncedZoom = useDebounce(viewport.zoom, 5000)
+  const debouncedZoom = useDebounce(viewport.zoom, 3000)
   useEffect(() => {
     if (viewport.zoom !== DEFAULT_VIEWPORT.zoom) {
       trackEvent({ type: 'map_zoom' })
@@ -318,6 +339,10 @@ const Tracking = ({ ...props }) => {
       trackEvent({ type: 'access_school_page' })
     }
   }, [eventSchoolPage])
+  // Detect and submit errors.
+  useEffect(() => {
+    trackEvent({ type: 'error' })
+  }, [eventError])
 
   // Don't return anything. We just watch state for changes and
   // fire off events.
