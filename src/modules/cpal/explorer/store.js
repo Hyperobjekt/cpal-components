@@ -220,6 +220,8 @@ const [useStore] = create((set, get) => ({
   setEventSchoolSearch: a => set({ eventSchoolSearch: a }),
   eventSchoolPage: 0,
   setEventSchoolPage: a => set({ eventSchoolPage: a }),
+  accessedSchool: null,
+  setAccessedSchool: a => set({ accessedSchool: a }),
 }))
 
 export default useStore

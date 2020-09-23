@@ -13,6 +13,12 @@ const MailShareBtn = ({ children, ...props }) => {
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
+  const eventShareEmail = useStore(
+    state => state.eventShareEmail,
+  )
+  const setEventShareEmail = useStore(
+    state => state.setEventShareEmail,
+  )
 
   const handleShare = () => {
     onMailShare(
@@ -20,6 +26,7 @@ const MailShareBtn = ({ children, ...props }) => {
       i18n.translate('DIALOG_SHARE_TWITTER'),
       i18n.translate('DIALOG_SHARE_EMAIL_BODY'),
     )
+    setEventShareEmail(eventShareEmail + 1)
   }
 
   return (

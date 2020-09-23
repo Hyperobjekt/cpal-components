@@ -52,6 +52,9 @@ const Tracking = ({ ...props }) => {
   const flyToSchoolSLN = useStore(
     state => state.flyToSchoolSLN,
   )
+  const accessedSchool = useStore(
+    state => state.accessedSchool,
+  )
   // Overall boolean preventing event tracking before
   // the map is loaded.
   const doTrackEvents = useStore(
@@ -86,54 +89,46 @@ const Tracking = ({ ...props }) => {
         eventCategory = 'share'
         eventAction = 'Share on Twitter'
         eventLabel = shareHash
-        // code block
         break
       case params.type === 'share_facebook':
         eventCategory = 'share'
         eventAction = 'Share on Facebook'
         eventLabel = shareHash
-        // code block
         break
       case params.type === 'share_email':
         eventCategory = 'share'
         eventAction = 'Share via email'
         eventLabel = shareHash
-        // code block
         break
       case params.type === 'share_link':
         eventCategory = 'share'
         eventAction = 'Copy share link'
         eventLabel = shareHash
-        // code block
         break
       case params.type === 'select_view_map':
         eventCategory = 'Select view'
         eventAction = 'Select map view'
         eventLabel = 'map'
-        // code block
         break
       case params.type === 'select_view_feeder':
         eventCategory = 'Select view'
         eventAction = 'Select feeder view'
         eventLabel = 'feeder'
-        // code block
         break
       case params.type === 'select_active_metric':
         eventCategory = 'Configure map view'
         eventAction = 'Select active metric'
         eventLabel = activeMetric
-        // code block
         break
       case params.type === 'update_layers':
         eventCategory = 'Configure map view'
         eventAction = 'Update layers'
         eventLabel = activeLayers.toString()
-        // code block
         break
       case params.type === 'search_school':
         eventCategory = 'Interact with school'
         eventAction = 'Search for school'
-        const id =
+        var id =
           activeView === 'map'
             ? flyToSchoolSLN
             : highlightedSchool
@@ -143,7 +138,6 @@ const Tracking = ({ ...props }) => {
             : null
           eventValue = id
         }
-        // code block
         break
       case params.type === 'select_feeder':
         eventCategory = 'Update feeder view'
@@ -158,20 +152,25 @@ const Tracking = ({ ...props }) => {
       case params.type === 'view_school_details':
         eventCategory = 'Interact with school'
         eventAction = 'View school details (hover or touch)'
-        eventLabel = getSchool(hovered).SCHOOLNAME
-          ? getSchool(hovered).SCHOOLNAME
-          : null
-        eventValue = hovered
-        // code block
+        var id = hovered ? hovered : false
+        if (!!id) {
+          eventLabel = getSchool(id).SCHOOLNAME
+            ? getSchool(id).SCHOOLNAME
+            : null
+          eventValue = id
+        }
         break
       case params.type === 'access_school_page':
         eventCategory = 'Interact with school'
         eventAction = 'Navigate to school page (click)'
-        eventLabel = getSchool(hovered).SCHOOLNAME
-          ? getSchool(hovered).SCHOOLNAME
-          : null
-        eventValue = hovered
-        // code block
+        var id =
+          activeView === 'map' ? hovered : accessedSchool
+        if (!!id) {
+          eventLabel = getSchool(id).SCHOOLNAME
+            ? getSchool(id).SCHOOLNAME
+            : null
+          eventValue = id
+        }
         break
       case params.type === 'map_zoom':
         eventCategory = 'Use map controls'
@@ -264,9 +263,7 @@ const Tracking = ({ ...props }) => {
   }, [activeLayers])
   // When feeder locked in, record the changes.
   useEffect(() => {
-    console.log('feederLocked')
     if (!!feederLocked && highlightedSchool.length === 0) {
-      console.log('feederLocked')
       trackEvent({ type: 'select_feeder' })
     }
   }, [activeFeeder])
@@ -317,7 +314,7 @@ const Tracking = ({ ...props }) => {
   }, [eventSchoolSearch])
   // When school page accessed, record.
   useEffect(() => {
-    if (!!hovered) {
+    if (!!hovered || !!accessedSchool) {
       trackEvent({ type: 'access_school_page' })
     }
   }, [eventSchoolPage])

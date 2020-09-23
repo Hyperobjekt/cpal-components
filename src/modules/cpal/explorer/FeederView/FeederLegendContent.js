@@ -22,7 +22,25 @@ const FeederLegendContent = ({ ...props }) => {
   const activeFeeder = useStore(state => state.activeFeeder)
   const feederLocked = useStore(state => state.feederLocked)
   const breakpoint = useStore(state => state.breakpoint)
-  // console.log('breakpoint, ', breakpoint)
+  // Track events for access of school page.
+  const eventSchoolPage = useStore(
+    state => state.eventSchoolPage,
+  )
+  // For tracking access school page events.
+  const setEventSchoolPage = useStore(
+    state => state.setEventSchoolPage,
+  )
+  const setAccessedSchool = useStore(
+    state => state.setAccessedSchool,
+  )
+  const handleSchoolAccess = e => {
+    const id = String(e.currentTarget.id).replace(
+      'school_',
+      '',
+    )
+    setAccessedSchool(id)
+    setEventSchoolPage(eventSchoolPage + 1)
+  }
 
   return (
     <>
@@ -93,6 +111,7 @@ const FeederLegendContent = ({ ...props }) => {
               className="school"
               id={'school_' + el.TEA}
               key={'school_' + el.TEA}
+              onClick={e => handleSchoolAccess(e)}
             >
               <span>
                 <FaExternalLinkSquareAlt /> {el.SCHOOLNAME}

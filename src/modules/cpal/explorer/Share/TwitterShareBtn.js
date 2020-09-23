@@ -13,12 +13,19 @@ const TwitterShareBtn = ({ children, ...props }) => {
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
+  const eventShareTwitter = useStore(
+    state => state.eventShareTwitter,
+  )
+  const setEventShareTwitter = useStore(
+    state => state.setEventShareTwitter,
+  )
 
   const handleShare = () => {
     onTwitterShare(
       encodeURIComponent(constructShareLink(shareHash)),
       i18n.translate('DIALOG_SHARE_TWITTER'),
     )
+    setEventShareTwitter(eventShareTwitter + 1)
   }
 
   return (

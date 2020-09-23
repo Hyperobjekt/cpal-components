@@ -16,12 +16,19 @@ const FacebookShareBtn = ({ children, ...props }) => {
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
+  const eventShareFacebook = useStore(
+    state => state.eventShareFacebook,
+  )
+  const setEventShareFacebook = useStore(
+    state => state.setEventShareFacebook,
+  )
 
   const handleShare = () => {
     onFacebookShare(
       encodeURIComponent(constructShareLink(shareHash)),
       i18n.translate('DIALOG_SHARE_FACEBOOK'),
     )
+    setEventShareFacebook(eventShareFacebook + 1)
   }
 
   return (

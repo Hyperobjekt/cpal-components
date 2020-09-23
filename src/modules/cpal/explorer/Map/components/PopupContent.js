@@ -29,6 +29,16 @@ const PopupContent = ({ ...props }) => {
   const setShowMapModal = useStore(
     state => state.setShowMapModal,
   )
+  // For tracking access school page events.
+  const eventSchoolPage = useStore(
+    state => state.eventSchoolPage,
+  )
+  const setEventSchoolPage = useStore(
+    state => state.setEventSchoolPage,
+  )
+  const setAccessedSchool = useStore(
+    state => state.setAccessedSchool,
+  )
 
   const metrics = []
   CPAL_METRICS.forEach(el => {
@@ -55,6 +65,8 @@ const PopupContent = ({ ...props }) => {
         '/'
       // console.log('navigateToSchool() href is ', href)
       window.open(href, '_blank')
+      setEventSchoolPage(eventSchoolPage + 1)
+      setAccessedSchool(props.feature.properties.SLN)
     }
   }
 

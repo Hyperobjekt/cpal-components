@@ -29,10 +29,17 @@ const ShareLinkModal = props => {
 
   const defaultRoute = useStore(state => state.defaultRoute)
   const shareHash = useStore(state => state.shareHash)
+  const eventShareLink = useStore(
+    state => state.eventShareLink,
+  )
+  const setEventShareLink = useStore(
+    state => state.setEventShareLink,
+  )
 
   const onCopy = () => {
     // console.log('oncopy')
     copy(location)
+    setEventShareLink(eventShareLink + 1)
   }
 
   return (

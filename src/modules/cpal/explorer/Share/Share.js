@@ -1,5 +1,7 @@
 import React from 'react'
 
+import useStore from './../store'
+
 const defaultOptions = {
   width: 626,
   height: 436,
