@@ -169,8 +169,6 @@ const [useStore] = create((set, get) => ({
     //   hoveredType,
     //   coords,
     // )
-    // hoveredId
-    //   ?
     set(state => ({
       hovered: hoveredId,
       type: hoveredType,
@@ -195,9 +193,27 @@ const [useStore] = create((set, get) => ({
   tourStepIndex: 0,
   setTourStepIndex: a => set({ tourStepIndex: a }),
   // google analytics handler, passed in from parent.
-  trackCustomEvent: null,
+  trackCustomEvent: () => {},
   setTrackCustomEvent: newVal =>
     set({ trackCustomEvent: newVal }),
+  // Counters for events that don't have clear state indicators.
+  eventShareTwitter: 0,
+  setEventShareTwitter: a => set({ eventShareTwitter: a }),
+  eventShareFacebook: 0,
+  setEventShareFacebook: a =>
+    set({ eventShareFacebook: a }),
+  eventShareEmail: 0,
+  setEventShareEmail: a => set({ eventShareEmail: a }),
+  eventShareLink: 0,
+  setEventShareLink: a => set({ eventShareLink: a }),
+  eventMapReset: 0,
+  setEventMapReset: a => set({ eventMapReset: a }),
+  eventMapCapture: 0,
+  setEventMapCapture: a => set({ eventMapCapture: a }),
+  eventSchoolSearch: 0,
+  setEventSchoolSearch: a => set({ eventSchoolSearch: a }),
+  eventSchoolPage: 0,
+  setEventSchoolPage: a => set({ eventSchoolPage: a }),
 }))
 
 export default useStore

@@ -154,7 +154,7 @@ const Tour = ({ ...props }) => {
       stepIndex={tourStepIndex}
       callback={handleTourUpdate}
       continuous={true}
-      debug={true}
+      debug={false}
       locale={localeStrings}
       showProgress={true}
       styles={{ ...defaultOptions }}

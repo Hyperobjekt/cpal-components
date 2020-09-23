@@ -73,37 +73,6 @@ const getSchoolFeatureFromCollection = (id, collection) => {
   return feature
 }
 
-//
-// /**
-//  * Loads a feature from a location object containing a feature ID,
-//  * latitude, and longitude
-//  * @param {object} location
-//  * @returns {Promise<Feature>}
-//  */
-// export const loadFeatureFromCoords = ({ id, lat, lon }) => {
-//   const region =
-//     id.length === 5
-//       ? 'counties'
-//       : id.length === 12
-//       ? 'schools'
-//       : 'districts'
-//   return axios
-//     .get(getTilequeryUrl(region, lat, lon))
-//     .then(res => {
-//       return getFeatureFromCollection(id, res.data.features)
-//     })
-// }
-//
-// /**
-//  * Loads map features based on a string of locations
-//  * @param {string} locations locations formed as `{id},{lat},{lon}` separated by a `+`
-//  * @returns {Promise<Array<Feature>>}
-//  */
-// export const loadFeaturesFromCoords = locationsArray =>
-//   Promise.all(
-//     locationsArray.map(l => loadFeatureFromCoords(l)),
-//   )
-
 /**
  * Converts string to title case
  * @param  String str String input

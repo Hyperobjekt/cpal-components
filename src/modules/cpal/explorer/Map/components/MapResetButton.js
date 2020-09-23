@@ -3,6 +3,7 @@ import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
 import { MdRefresh } from 'react-icons/md'
 
+import { DEFAULT_VIEWPORT } from './../../../../../constants/map'
 import { CoreButton } from './../../../../core'
 import useStore from './../../store'
 
@@ -11,9 +12,27 @@ import useStore from './../../store'
  */
 const MapResetButton = ({ ...props }) => {
   const resetViewport = props.resetViewport
+  const viewport = useStore(state => state.viewport)
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
   )
+  const eventMapReset = useStore(
+    state => state.eventMapReset,
+  )
+  const setEventMapReset = useStore(
+    state => state.setEventMapReset,
+  )
+
+  const handleReset = e => {
+    if (
+      viewport.zoom !== DEFAULT_VIEWPORT.zoom ||
+      viewport.latitude !== DEFAULT_VIEWPORT.latitude ||
+      viewport.longitude !== DEFAULT_VIEWPORT.longitude
+    ) {
+      resetViewport(e)
+      setEventMapReset(eventMapReset + 1)
+    }
+  }
 
   return (
     <CoreButton
@@ -25,7 +44,7 @@ const MapResetButton = ({ ...props }) => {
         `mapboxgl-ctrl-icon`,
       )}
       onClick={e => {
-        resetViewport(e)
+        handleReset(e)
       }}
       label={i18n.translate(`UI_MAP_RESET`)}
       tooltip={!!interactionsMobile ? '' : 'left'}

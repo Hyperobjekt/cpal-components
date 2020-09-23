@@ -25,6 +25,7 @@ import {
   UnifiedShareModal,
 } from './../Share'
 import Tour from './../Tour/Tour'
+import { Tracking } from './../Tracking'
 import { ROUTE_SET } from './../../../../constants/metrics'
 
 /**
@@ -180,6 +181,7 @@ const Layout = ({ children, ...props }) => {
       {...props}
     >
       <RouteManager routeSet={ROUTE_SET} />
+      <Tracking />
       <Header>
         <Logo {...logoProps} />
         <SchoolSearch />
