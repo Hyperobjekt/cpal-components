@@ -1,12 +1,14 @@
 import React from 'react'
 import i18n from '@pureartisan/simple-i18n'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import useStore from './../store.js'
+import useStore from './../store'
 import { schools } from './../../../../data/schools'
 import { CPAL_FEEDERS } from './../../../../constants/metrics'
 import { CPAL_LAYERS } from './../../../../constants/layers'
 import { DEFAULT_VIEWPORT } from './../../../../constants/map'
+import { useDebounce } from './../utils'
+import { constructShareLink } from './../Share/Share'
 
 const Tracking = ({ ...props }) => {
   const trackCustomEvent = useStore(
@@ -47,16 +49,25 @@ const Tracking = ({ ...props }) => {
   const eventSchoolPage = useStore(
     state => state.eventSchoolPage,
   )
+  const flyToSchoolSLN = useStore(
+    state => state.flyToSchoolSLN,
+  )
+  // Overall boolean preventing event tracking before
+  // the map is loaded.
+  const doTrackEvents = useStore(
+    state => state.doTrackEvents,
+  )
 
   // Get school from schools collection.
   const getSchool = id => {
     return schools.filter(el => {
       return Number(el.TEA) === Number(id)
-    })
+    })[0]
   }
 
   // Construct tracking object and fire off.
   const trackEvent = params => {
+    if (!doTrackEvents) return
     // Categories:
     // - Share
     // - Select view
@@ -122,8 +133,16 @@ const Tracking = ({ ...props }) => {
       case params.type === 'search_school':
         eventCategory = 'Interact with school'
         eventAction = 'Search for school'
-        eventLabel = getSchool(hovered).SCHOOLNAME
-        eventValue = hovered
+        const id =
+          activeView === 'map'
+            ? flyToSchoolSLN
+            : highlightedSchool
+        if (!!id) {
+          eventLabel = getSchool(id).SCHOOLNAME
+            ? getSchool(id).SCHOOLNAME
+            : null
+          eventValue = id
+        }
         // code block
         break
       case params.type === 'select_feeder':
@@ -140,6 +159,8 @@ const Tracking = ({ ...props }) => {
         eventCategory = 'Interact with school'
         eventAction = 'View school details (hover or touch)'
         eventLabel = getSchool(hovered).SCHOOLNAME
+          ? getSchool(hovered).SCHOOLNAME
+          : null
         eventValue = hovered
         // code block
         break
@@ -147,6 +168,8 @@ const Tracking = ({ ...props }) => {
         eventCategory = 'Interact with school'
         eventAction = 'Navigate to school page (click)'
         eventLabel = getSchool(hovered).SCHOOLNAME
+          ? getSchool(hovered).SCHOOLNAME
+          : null
         eventValue = hovered
         // code block
         break
@@ -159,11 +182,10 @@ const Tracking = ({ ...props }) => {
       case params.type === 'map_pan':
         eventCategory = 'Use map controls'
         eventAction = 'Map pan ([lng,lat])'
-        eventLabel = toString([
+        eventLabel = [
           viewport.longitude,
           viewport.latitude,
-        ])
-        // code block
+        ].toString()
         break
       case params.type === 'map_reset':
         eventCategory = 'Use map controls'
@@ -173,11 +195,10 @@ const Tracking = ({ ...props }) => {
       case params.type === 'map_screencap':
         eventCategory = 'Use map controls'
         eventAction = 'Map screencap'
-        eventLabel = shareHash
+        eventLabel = constructShareLink()
         // code block
         break
       default:
-      // code block
     }
 
     const eventObj = {
@@ -208,78 +229,97 @@ const Tracking = ({ ...props }) => {
   }
   // When twitter share counter changes, record the change.
   useEffect(() => {
-    trackEvent('share_twitter')
+    trackEvent({ type: 'share_twitter' })
   }, [eventShareTwitter])
   // When fb share counter changes, record the change.
   useEffect(() => {
-    trackEvent('share_facebook')
+    trackEvent({ type: 'share_facebook' })
   }, [eventShareFacebook])
   // When email share counter changes, record the change.
   useEffect(() => {
-    trackEvent('share_email')
+    trackEvent({ type: 'share_email' })
   }, [eventShareEmail])
   // When link share counter changes, record the change.
   useEffect(() => {
-    trackEvent('share_link')
+    trackEvent({ type: 'share_link' })
   }, [eventShareLink])
   // When activeView changes, record the change.
   useEffect(() => {
-    trackEvent('select_view_' + activeView)
+    trackEvent({ type: 'select_view_' + activeView })
   }, [activeView])
   // When activeMetric changes, record the change.
   useEffect(() => {
-    trackEvent('select_active_metric')
+    trackEvent({ type: 'select_active_metric' })
   }, [activeMetric])
   // When school hovered, record the changes.
   // TODO: Address edge cases where hovered is changed for another reason (search).
   useEffect(() => {
-    trackEvent('view_school_details')
+    if (!!hovered) {
+      trackEvent({ type: 'view_school_details' })
+    }
   }, [hovered])
   // When layers change, record the changes.
   useEffect(() => {
-    trackEvent('update_layers')
+    trackEvent({ type: 'update_layers' })
   }, [activeLayers])
   // When feeder locked in, record the changes.
   useEffect(() => {
+    console.log('feederLocked')
     if (!!feederLocked && highlightedSchool.length === 0) {
-      trackEvent('select_feeder')
+      console.log('feederLocked')
+      trackEvent({ type: 'select_feeder' })
     }
-  }, [feederLocked])
-
+  }, [activeFeeder])
   // When zoom changes, record the change.
+  // Debounce the value to avoid recording every
+  // minor transition during a zoom action.
+  const debouncedZoom = useDebounce(viewport.zoom, 5000)
   useEffect(() => {
     if (viewport.zoom !== DEFAULT_VIEWPORT.zoom) {
-      trackEvent('map_zoom')
+      trackEvent({ type: 'map_zoom' })
     }
-  }, [viewport.zoom])
-  // When lat or lng changes, record the changes.
+  }, [debouncedZoom])
+  // When lat and lng changes, record the changes.
+  // Only record every other one, since the event fires for both.
+  // Debounce the values to avoid capturing resets and
+  // every minor change during a pan action.
+  const debouncedLat = useDebounce(viewport.latitude, 3000)
+  const debouncedLng = useDebounce(viewport.longitude, 3000)
+  // Counter for the event.
+  const [latLngCounter, setLatLngCounter] = useState(0)
   useEffect(() => {
     // If not equal to default...
-    if (
-      viewport.latitude !== DEFAULT_VIEWPORT.latitude ||
-      viewport.longitude !== DEFAULT_VIEWPORT.longitude
-    ) {
-      trackEvent('map_pan')
+    setLatLngCounter(latLngCounter + 1)
+    // Only execute if even (not twice per pan, once for lat & once for lng.)
+    if (latLngCounter % 2 === 0) {
+      // If not default...
+      if (
+        viewport.latitude !== DEFAULT_VIEWPORT.latitude ||
+        viewport.longitude !== DEFAULT_VIEWPORT.longitude
+      ) {
+        trackEvent({ type: 'map_pan' })
+      }
     }
-  }, [viewport.latitude, viewport.longitude])
+  }, [debouncedLat, debouncedLng])
   // When map reset, record.
   useEffect(() => {
     if (eventMapReset > 0) {
-      console.log('map reset detected')
-      trackEvent('map_reset')
+      trackEvent({ type: 'map_reset' })
     }
   }, [eventMapReset])
   // When map captured, record.
   useEffect(() => {
-    trackEvent('map_screencap')
+    trackEvent({ type: 'map_screencap' })
   }, [eventMapCapture])
   // When school searched, record.
   useEffect(() => {
-    trackEvent('search_school')
+    trackEvent({ type: 'search_school' })
   }, [eventSchoolSearch])
   // When school page accessed, record.
   useEffect(() => {
-    trackEvent('access_school_page')
+    if (!!hovered) {
+      trackEvent({ type: 'access_school_page' })
+    }
   }, [eventSchoolPage])
 
   // Don't return anything. We just watch state for changes and

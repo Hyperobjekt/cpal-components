@@ -113,7 +113,7 @@ const [useStore] = create((set, get) => ({
   feederLocked: false,
   setFeederLocked: newBool =>
     set({ feederLocked: newBool }),
-  highlightedSchool: null,
+  highlightedSchool: '',
   setHighlightedSchool: newStr =>
     set({ highlightedSchool: newStr }),
   shareLinkModal: false,
@@ -193,9 +193,15 @@ const [useStore] = create((set, get) => ({
   tourStepIndex: 0,
   setTourStepIndex: a => set({ tourStepIndex: a }),
   // google analytics handler, passed in from parent.
-  trackCustomEvent: () => {},
+  trackCustomEvent: obj => {
+    console.log('trackCustomEvent, ', obj)
+  },
   setTrackCustomEvent: newVal =>
     set({ trackCustomEvent: newVal }),
+  // Do not track events before map is loaded, as these
+  // are state settings based on hash and not user interactions.
+  doTrackEvents: false,
+  setDoTrackEvents: a => set({ doTrackEvents: a }),
   // Counters for events that don't have clear state indicators.
   eventShareTwitter: 0,
   setEventShareTwitter: a => set({ eventShareTwitter: a }),

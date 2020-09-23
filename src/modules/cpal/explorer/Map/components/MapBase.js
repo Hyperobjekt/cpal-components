@@ -241,7 +241,13 @@ const MapBase = ({
   }, [ariaLabel, canvas])
 
   // handler for map load
+  const setDoTrackEvents = useStore(
+    state => state.setDoTrackEvents,
+  )
   const handleLoad = e => {
+    // console.log('map loaded')
+    // Enable event tracking once map is loaded.
+    setDoTrackEvents(true)
     if (!loaded) {
       setLoaded(true)
       // HACK: remove tabindex from map div
@@ -703,6 +709,7 @@ const MapBase = ({
           <NavigationControl
             showCompass={false}
             onViewportChange={setViewport}
+            captureClick={true}
           ></NavigationControl>
           <MapResetButton
             resetViewport={handleResetViewport}

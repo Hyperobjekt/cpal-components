@@ -11,8 +11,15 @@ import useStore from './../../store'
  * Button that captures map canvas and triggers download
  */
 const MapCaptureButton = ({ currentMap, ...props }) => {
+  // Whether to handle interactions like mobile device?
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
+  )
+  const eventMapCapture = useStore(
+    state => state.eventMapCapture,
+  )
+  const setEventMapCapture = useStore(
+    state => state.setEventMapCapture,
   )
 
   const captureMap = () => {
@@ -25,6 +32,7 @@ const MapCaptureButton = ({ currentMap, ...props }) => {
     a.setAttribute('download', 'cri-explorer-capture.png')
     a.click()
     a.remove()
+    setEventMapCapture(eventMapCapture + 1)
   }
 
   return (

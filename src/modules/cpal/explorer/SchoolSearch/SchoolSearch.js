@@ -59,10 +59,21 @@ const SchoolSearch = ({ ...props }) => {
   const setFlyToSchoolSLN = useStore(
     state => state.setFlyToSchoolSLN,
   )
+  // Tracks school search events.
+  const eventSchoolSearch = useStore(
+    state => state.eventSchoolSearch,
+  )
+  const setEventSchoolSearch = useStore(
+    state => state.setEventSchoolSearch,
+  )
+  const setSearchedSchool = useStore(
+    state => state.setSearchedSchool,
+  )
+  // Update the UI according to the context.
   const updateUIWithResult = suggestion => {
     // console.log('updateUIWithResult, ', suggestion)
     if (activeView === 'map') {
-      console.log('in map view, ', suggestion.suggestion)
+      // console.log('in map view, ', suggestion.suggestion)
       const metric = activeMetric
       const schoolSD = suggestion.suggestion[metric + '_sd']
       if (!activeQuintiles[schoolSD]) {
@@ -90,6 +101,7 @@ const SchoolSearch = ({ ...props }) => {
       setHighlightedSchool(suggestion.suggestion.TEA)
       handleClear()
     }
+    setEventSchoolSearch(eventSchoolSearch + 1)
   }
 
   const getSuggestions = value => {
