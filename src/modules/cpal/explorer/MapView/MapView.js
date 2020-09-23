@@ -116,6 +116,12 @@ const MapView = props => {
   }
 
   /** handler for map click */
+  const eventSchoolPage = useStore(
+    state => state.eventSchoolPage,
+  )
+  const setEventSchoolPage = useStore(
+    state => state.setEventSchoolPage,
+  )
   const handleClick = (feature, coords, geoCoords) => {
     // console.log('handle click, ', feature)
     // If the item is hovered, navigate to the school.
@@ -143,6 +149,7 @@ const MapView = props => {
             '/'
           window.open(href, '_blank')
         }
+        setEventSchoolPage(eventSchoolPage + 1)
       }
     }
   }
