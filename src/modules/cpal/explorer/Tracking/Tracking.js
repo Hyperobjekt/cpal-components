@@ -70,13 +70,9 @@ const Tracking = ({ ...props }) => {
   }
 
   const trackCustomEvent = data => {
-    console.log('trackCustomEvent, ', data)
+    // console.log('trackCustomEvent, ', data)
     if (typeof window !== 'undefined') {
-      console.log('window is defined.')
       if (window.gtag) {
-        console.log(
-          'window.gtag is available, sending data.',
-        )
         window.gtag('event', 'explorer', { ...data })
       }
     }
