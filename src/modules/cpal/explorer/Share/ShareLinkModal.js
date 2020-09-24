@@ -42,19 +42,19 @@ const ShareLinkModal = props => {
     setEventShareLink(eventShareLink + 1)
   }
 
-  const getShareLink = () => {
-    if (window) {
-      return !!shareHash
+  // Update value for share link only when window object exists.
+  const [shareLinkValue, setShareLinkValue] = useState('')
+  useEffect(() => {
+    setShareLinkValue(
+      !!shareHash
         ? window.location.origin +
             window.location.pathname +
             shareHash
         : window.location.origin +
             window.location.pathname +
-            defaultRoute
-    } else {
-      return ''
-    }
-  }
+            defaultRoute,
+    )
+  }, [])
 
   return (
     <div>
@@ -73,7 +73,7 @@ const ShareLinkModal = props => {
           <p>{i18n.translate('MODAL_SHARE_LINK_INSTR')}</p>
           {i18n.translate('MODAL_SHARE_LINK_INPUT')}
           <InputGroup>
-            <Input value={getShareLink()} readOnly={true} />
+            <Input value={shareLinkValue} readOnly={true} />
             <InputGroupAddon addonType="append">
               <Button color="secondary" onClick={onCopy}>
                 <FaCopy />
