@@ -11,9 +11,6 @@ import { useDebounce } from './../utils'
 import { constructShareLink } from './../Share/Share'
 
 const Tracking = ({ ...props }) => {
-  const trackCustomEvent = useStore(
-    state => state.trackCustomEvent,
-  )
   const shareHash = useStore(state => state.shareHash)
   const activeView = useStore(state => state.activeView)
   const activeMetric = useStore(state => state.activeMetric)
@@ -70,6 +67,19 @@ const Tracking = ({ ...props }) => {
     return schools.filter(el => {
       return Number(el.TEA) === Number(id)
     })[0]
+  }
+
+  const trackCustomEvent = data => {
+    console.log('trackCustomEvent, ', data)
+    if (typeof window !== 'undefined') {
+      console.log('window is defined.')
+      if (window.gtag) {
+        console.log(
+          'window.gtag is available, sending data.',
+        )
+        window.gtag('event', { ...data })
+      }
+    }
   }
 
   // Construct tracking object and fire off.
@@ -216,29 +226,24 @@ const Tracking = ({ ...props }) => {
 
     const eventObj = {
       // string - required - The object that was interacted with (e.g.video)
-      category: eventCategory,
+      event_category: eventCategory,
       // string - required - Type of interaction (e.g. 'play')
-      action: eventAction,
+      event_action: eventAction,
     }
     if (!!eventLabel) {
-      eventObj.label = eventLabel
+      eventObj.event_label = eventLabel
     }
     if (!!eventValue) {
       eventObj.value = eventValue
     }
 
     trackCustomEvent(eventObj)
-
-    // trackCustomEvent({
-    //         // string - required - The object that was interacted with (e.g.video)
-    //         category: "Special Button",
-    //         // string - required - Type of interaction (e.g. 'play')
-    //         action: "Click",
-    //         // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
-    //         label: "Gatsby Plugin Example Campaign",
-    //         // number - optional - Numeric value associated with the event. (e.g. A product ID)
-    //         value: 43
-    //       })
+    // https://developers.google.com/analytics/devguides/collection/upgrade/analyticsjs
+    // gtag.js parameters
+    // - event_action
+    // - event_category
+    // - event_label
+    // - value
   }
   // When twitter share counter changes, record the change.
   useEffect(() => {

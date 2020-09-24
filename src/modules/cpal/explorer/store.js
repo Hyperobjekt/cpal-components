@@ -192,12 +192,6 @@ const [useStore] = create((set, get) => ({
   setRunTour: newVal => set({ runTour: newVal }),
   tourStepIndex: 0,
   setTourStepIndex: a => set({ tourStepIndex: a }),
-  // google analytics handler, passed in from parent.
-  trackCustomEvent: obj => {
-    console.log('trackCustomEvent, ', obj)
-  },
-  setTrackCustomEvent: newVal =>
-    set({ trackCustomEvent: newVal }),
   // Do not track events before map is loaded, as these
   // are state settings based on hash and not user interactions.
   doTrackEvents: false,

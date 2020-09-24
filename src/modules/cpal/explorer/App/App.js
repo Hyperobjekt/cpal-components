@@ -43,17 +43,6 @@ const App = props => {
     state => state.setInteractionsMobile,
   )
 
-  // Assign tracking method passed in from parent.
-  const trackCustomEvent = useStore(
-    state => state.trackCustomEvent,
-  )
-  const setTrackCustomEvent = useStore(
-    state => state.setTrackCustomEvent,
-  )
-  if (!!props.gaTrackingHandler) {
-    setTrackCustomEvent(props.gaTrackingHandler)
-  }
-
   /**
    * Manage browser width and breakpoint for use in the app.
    */
