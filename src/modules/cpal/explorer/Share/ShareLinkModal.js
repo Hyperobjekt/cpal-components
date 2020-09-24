@@ -42,6 +42,20 @@ const ShareLinkModal = props => {
     setEventShareLink(eventShareLink + 1)
   }
 
+  const getShareLink = () => {
+    if (window) {
+      return !!shareHash
+        ? window.location.origin +
+            window.location.pathname +
+            shareHash
+        : window.location.origin +
+            window.location.pathname +
+            defaultRoute
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div>
       <Modal
@@ -59,18 +73,7 @@ const ShareLinkModal = props => {
           <p>{i18n.translate('MODAL_SHARE_LINK_INSTR')}</p>
           {i18n.translate('MODAL_SHARE_LINK_INPUT')}
           <InputGroup>
-            <Input
-              value={
-                !!shareHash
-                  ? window.location.origin +
-                    window.location.pathname +
-                    shareHash
-                  : window.location.origin +
-                    window.location.pathname +
-                    defaultRoute
-              }
-              readOnly={true}
-            />
+            <Input value={getShareLink()} readOnly={true} />
             <InputGroupAddon addonType="append">
               <Button color="secondary" onClick={onCopy}>
                 <FaCopy />
