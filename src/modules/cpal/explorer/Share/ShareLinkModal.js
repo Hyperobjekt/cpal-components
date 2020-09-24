@@ -54,7 +54,7 @@ const ShareLinkModal = props => {
             window.location.pathname +
             defaultRoute,
     )
-  }, [])
+  }, [shareHash])
 
   return (
     <div>
