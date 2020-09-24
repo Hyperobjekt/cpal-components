@@ -20,11 +20,20 @@ const PanelInfoView = ({ ...props }) => {
   const setActiveView = useStore(
     state => state.setActiveView,
   )
+  const defaultMetric = useStore(
+    state => state.defaultMetric,
+  )
+  const setActiveMetric = useStore(
+    state => state.setActiveMetric,
+  )
   const setActiveQuintiles = useStore(
     state => state.setActiveQuintiles,
   )
   const setSlideoutPanel = useStore(
     state => state.setSlideoutPanel,
+  )
+  const setShowPanelModal = useStore(
+    state => state.setShowPanelModal,
   )
 
   const getTourButton = () => {
@@ -53,6 +62,8 @@ const PanelInfoView = ({ ...props }) => {
     // console.log('handleStartTour()')
     // Return view to map.
     setActiveView('map')
+    // Reset metric
+    setActiveMetric(defaultMetric)
     // Reset quintiles.
     setActiveQuintiles([1, 1, 1, 1, 1])
     // Close the panel.
@@ -60,6 +71,8 @@ const PanelInfoView = ({ ...props }) => {
       active: false,
       panel: '',
     })
+    // Close modal if displayed
+    setShowPanelModal(false)
     // Run the tour.
     setRunTour(true)
   }
