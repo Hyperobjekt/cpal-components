@@ -163,7 +163,7 @@ const Tracking = ({ ...props }) => {
         eventAction = 'Select a feeder'
         const feeder = CPAL_FEEDERS.filter(el => {
           return Number(el.id) === Number(activeFeeder)
-        })
+        })[0]
         eventLabel = feeder.title
         eventValue = activeFeeder
         // code block
