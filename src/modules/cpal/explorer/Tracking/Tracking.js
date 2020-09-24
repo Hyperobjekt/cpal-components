@@ -96,22 +96,22 @@ const Tracking = ({ ...props }) => {
 
     switch (true) {
       case params.type === 'share_twitter':
-        eventCategory = 'share'
+        eventCategory = 'Share'
         eventAction = 'Share on Twitter'
         eventLabel = shareHash
         break
       case params.type === 'share_facebook':
-        eventCategory = 'share'
+        eventCategory = 'Share'
         eventAction = 'Share on Facebook'
         eventLabel = shareHash
         break
       case params.type === 'share_email':
-        eventCategory = 'share'
+        eventCategory = 'Share'
         eventAction = 'Share via email'
         eventLabel = shareHash
         break
       case params.type === 'share_link':
-        eventCategory = 'share'
+        eventCategory = 'Share'
         eventAction = 'Copy share link'
         eventLabel = shareHash
         break
