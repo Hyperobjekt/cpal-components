@@ -77,7 +77,7 @@ const Tracking = ({ ...props }) => {
         console.log(
           'window.gtag is available, sending data.',
         )
-        window.gtag('event', { ...data })
+        window.gtag('event', 'explorer', { ...data })
       }
     }
   }
