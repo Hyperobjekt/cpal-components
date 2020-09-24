@@ -72,17 +72,17 @@ const Tour = ({ ...props }) => {
     })
     // Timeout, and process next after.
     setTimeout(() => {
-      console.log('Timeout triggered, ', Date.now())
+      // console.log('Timeout triggered, ', Date.now())
       // If last one, start the tour again.
       if (index === querySelectors.length - 1) {
         // Last one.
-        console.log('Last one.')
+        // console.log('Last one.')
         setTourStepIndex(
           stepIndex + (incrementStep ? 1 : 0),
         )
         setRunTour(true)
       } else {
-        console.log('Not last one.')
+        // console.log('Not last one.')
         clickElements(
           querySelectors,
           index + 1,
@@ -94,9 +94,9 @@ const Tour = ({ ...props }) => {
   }
 
   const handleTourUpdate = data => {
-    console.log('handleTourUpdate, ', data)
+    // console.log('handleTourUpdate, ', data)
     const steps = getSteps()
-    console.log('steps = ', steps)
+    // console.log('steps = ', steps)
     const { action, index, status, type } = data
     if ([ACTIONS.CLOSE, ACTIONS.STOP].includes(action)) {
       setRunTour(false)

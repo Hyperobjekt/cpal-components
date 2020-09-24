@@ -35,6 +35,9 @@ const PanelInfoView = ({ ...props }) => {
   const setShowPanelModal = useStore(
     state => state.setShowPanelModal,
   )
+  const setTourStepIndex = useStore(
+    state => state.setTourStepIndex,
+  )
 
   const getTourButton = () => {
     if (!!enableTour) {
@@ -73,6 +76,8 @@ const PanelInfoView = ({ ...props }) => {
     })
     // Close modal if displayed
     setShowPanelModal(false)
+    // Return tour to 0.
+    setTourStepIndex(0)
     // Run the tour.
     setRunTour(true)
   }
