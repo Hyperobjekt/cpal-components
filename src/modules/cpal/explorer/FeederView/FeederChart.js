@@ -28,21 +28,16 @@ import {
 import { schools } from './../../../../data/schools'
 
 const FeederChart = ({ children, ...props }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
-  const setActiveFeeder = useStore(
-    state => state.setActiveFeeder,
-  )
   // Whether feeder is "locked" by click
   const feederLocked = useStore(state => state.feederLocked)
-  const setFeederLocked = useStore(
-    state => state.setFeederLocked,
-  )
-  // To clear highlighted school when a feeder bar is clicked
-  const setHighlightedSchool = useStore(
-    state => state.setHighlightedSchool,
-  )
   // Track whether mobile.
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
@@ -128,18 +123,18 @@ const FeederChart = ({ children, ...props }) => {
       '',
     )
     if (!feederLocked) {
-      setActiveFeeder(feeder)
+      setStoreValues({ activeFeeder: feeder })
     }
   }
   const onFeederMouseout = e => {
     // console.log('onFeederMouseout, ', e.currentTarget.id)
     if (!feederLocked) {
-      setActiveFeeder(null)
+      setStoreValues({ activeFeeder: null })
     }
   }
   const onFeederClick = e => {
     // console.log('onFeederClick, ', e.currentTarget.id)
-    setHighlightedSchool('')
+    setStoreValues({ highlightedSchool: '' })
     const feeder = String(e.currentTarget.id).replace(
       'feeder_bar_',
       '',
@@ -148,11 +143,15 @@ const FeederChart = ({ children, ...props }) => {
       !!feederLocked &&
       Number(activeFeeder) === Number(feeder)
     ) {
-      setActiveFeeder(null)
-      setFeederLocked(false)
+      setStoreValues({
+        activeFeeder: null,
+        feederLocked: false,
+      })
     } else {
-      setActiveFeeder(feeder)
-      setFeederLocked(true)
+      setStoreValues({
+        activeFeeder: feeder,
+        feederLocked: true,
+      })
     }
   }
   const feederChartReady = e => {

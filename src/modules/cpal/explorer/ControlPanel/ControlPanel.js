@@ -44,49 +44,30 @@ const ControlPanel = ({ children }) => {
   )
   // Active view, map or feeder
   const activeView = useStore(state => state.activeView)
-  // const setActiveView = useStore(
-  //   state => state.setActiveView,
-  // )
   // Array of objects, one for each select dropdown item
   const viewSelectItems = useStore(
     state => state.viewSelect,
   )
-  // const setViewSelect = useStore(
-  //   state => state.setViewSelect,
-  // )
   // Slideout panel
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
   )
-  // const setSlideoutPanel = useStore(
-  //   state => state.setSlideoutPanel,
-  // )
   const handleToggleMenu = useStore(
     state => state.handleToggleMenu,
   )
   const breakpoint = useStore(state => state.breakpoint)
   const browserWidth = useStore(state => state.browserWidth)
-
-  const [introModal, setIntroModal] = useState(false)
-
   const showIntroModal = useStore(
     state => state.showIntroModal,
   )
-  // const setShowIntroModal = useStore(
-  //   state => state.setShowIntroModal,
-  // )
   const toggleIntroModal = () =>
     setStoreValues({
       showIntroModal: !showIntroModal,
     })
-
   // Modal for small devices
   const showPanelModal = useStore(
     state => state.showPanelModal,
   )
-  // const setShowPanelModal = useStore(
-  //   state => state.setShowPanelModal,
-  // )
 
   // Handle clicks to any control panel button.
   const handleClick = e => {
@@ -107,11 +88,6 @@ const ControlPanel = ({ children }) => {
           panel: '',
         },
       })
-      // setActiveView(val)
-      // setSlideoutPanel({
-      //   active: false,
-      //   panel: '',
-      // })
     }
     if (e.currentTarget.id === 'button_toggle_menu') {
       // console.log('toggle menu clicked')
@@ -152,12 +128,6 @@ const ControlPanel = ({ children }) => {
       breakpoint === 'md'
     ) {
       // console.log('show the modal')
-      // Modal size, handle as a modal.
-      // setShowPanelModal(true)
-      // setSlideoutPanel({
-      //   active: false,
-      //   panel: clicked,
-      // })
       setStoreValues({
         showPanelModal: true,
         slideoutPanel: {
@@ -192,10 +162,6 @@ const ControlPanel = ({ children }) => {
           panel: clicked,
         },
       })
-      // setSlideoutPanel({
-      //   active: newActiveState,
-      //   panel: clicked,
-      // })
     }
   }
   // Handle select in dropdown
@@ -221,19 +187,6 @@ const ControlPanel = ({ children }) => {
         },
       ],
     })
-    // setActiveView(val)
-    // setViewSelect([
-    //   {
-    //     label: `SELECT_ITEM_MAP`,
-    //     id: `select_view_map`,
-    //     active: val === 'map' ? true : false,
-    //   },
-    //   {
-    //     label: `SELECT_ITEM_FEEDER`,
-    //     id: `select_view_feeder`,
-    //     active: val === 'feeder' ? true : false,
-    //   },
-    // ])
   }
 
   const shareHash = useStore(state => state.shareHash)
@@ -274,9 +227,6 @@ const ControlPanel = ({ children }) => {
   /**
    * Updates positioning for tooltips on buttons in control panel.
    */
-  // const [buttonPosition, setButtonPosition] = useState(
-  //   'auto',
-  // )
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
