@@ -11,6 +11,8 @@ import {
 } from './../../../constants/map'
 
 const [useStore] = create((set, get) => ({
+  // Set any store values by passing in an object of values to merge.
+  setStoreValues: obj => set({ ...obj }),
   route: '',
   defaultRoute: DEFAULT_ROUTE,
   siteHref: '/',
@@ -128,9 +130,9 @@ const [useStore] = create((set, get) => ({
   shareHash: null,
   setShareHash: newStr => set({ shareHash: newStr }),
   breakpoint: null,
-  setBreakpoint: newVal => set({ breakpoint: newVal }),
+  // setBreakpoint: newVal => set({ breakpoint: newVal }),
   browserWidth: null,
-  setBrowserWidth: newVal => set({ browserWidth: newVal }),
+  // setBrowserWidth: newVal => set({ browserWidth: newVal }),
   flyToSchoolSLN: null,
   setFlyToSchoolSLN: newVal =>
     set({ flyToSchoolSLN: newVal }),
@@ -183,11 +185,11 @@ const [useStore] = create((set, get) => ({
   showMobileLegend: false,
   setShowMobileLegend: newVal =>
     set({ showMobileLegend: newVal }),
-  isMobile: false,
-  setIsMobile: newVal => set({ isMobile: newVal }),
+  // isMobile: false,
+  // setIsMobile: newVal => set({ isMobile: newVal }),
   interactionsMobile: false,
-  setInteractionsMobile: newVal =>
-    set({ interactionsMobile: newVal }),
+  // setInteractionsMobile: newVal =>
+  //   set({ interactionsMobile: newVal }),
   runTour: false,
   setRunTour: newVal => set({ runTour: newVal }),
   tourStepIndex: 0,

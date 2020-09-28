@@ -21,10 +21,10 @@ const App = props => {
       en_US: en_US,
     },
   })
-  // Updates menu state and calls handler in parent component.
-  const handleToggleMenu = useStore(
-    state => state.handleToggleMenu,
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
   )
+  // Updates menu state and calls handler in parent component.
   const setHandleToggleMenu = useStore(
     state => state.setHandleToggleMenu,
   )
@@ -35,23 +35,7 @@ const App = props => {
     // )
     setHandleToggleMenu(props.toggleMenu)
   }
-  // Track and update renderForMobile
-  const interactionsMobile = useStore(
-    state => state.interactionsMobile,
-  )
-  const setInteractionsMobile = useStore(
-    state => state.setInteractionsMobile,
-  )
 
-  /**
-   * Manage browser width and breakpoint for use in the app.
-   */
-  const setBreakpoint = useStore(
-    state => state.setBreakpoint,
-  )
-  const setBrowserWidth = useStore(
-    state => state.setBrowserWidth,
-  )
   const setBrowserWidthAndBreakpoint = () => {
     // console.log('setBrowserWidthAndBreakpoint')
     const breakpoint = BREAKPOINTS.filter((el, i) => {
@@ -62,17 +46,18 @@ const App = props => {
       )
     })[0].id
     // console.log('breakpoint is, ', breakpoint)
-    setBreakpoint(breakpoint)
-    setBrowserWidth(window.innerWidth)
-    setInteractionsMobile(
-      !!(
+    setStoreValues({
+      breakpoint: breakpoint,
+      browserWidth: window.innerWidth,
+      interactionsMobile: !!(
         isMobile ||
         breakpoint === 'xs' ||
         breakpoint === 'sm' ||
         breakpoint === 'md'
       ),
-    )
+    })
   }
+
   useEffect(() => {
     // console.log('useEffect')
     setBrowserWidthAndBreakpoint()
@@ -82,13 +67,12 @@ const App = props => {
     })
   }, [])
 
-  const eventError = useStore(state => state.eventError)
   const setEventError = useStore(
     state => state.setEventError,
   )
   useEffect(() => {
     window.addEventListener('error', e => {
-      setEventError(e)
+      setStoreValues({ eventError: e })
     })
     // Test error logging by throwing an error after map loads.
     // setTimeout(() => {
