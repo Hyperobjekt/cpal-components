@@ -11,6 +11,11 @@ import useStore from './../../store'
  * Button to reset zoom and pan to default viewport settings
  */
 const MapResetButton = ({ ...props }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const resetViewport = props.resetViewport
   const viewport = useStore(state => state.viewport)
   const interactionsMobile = useStore(
@@ -18,9 +23,6 @@ const MapResetButton = ({ ...props }) => {
   )
   const eventMapReset = useStore(
     state => state.eventMapReset,
-  )
-  const setEventMapReset = useStore(
-    state => state.setEventMapReset,
   )
 
   const handleReset = e => {
@@ -30,7 +32,7 @@ const MapResetButton = ({ ...props }) => {
       viewport.longitude !== DEFAULT_VIEWPORT.longitude
     ) {
       resetViewport(e)
-      setEventMapReset(eventMapReset + 1)
+      setStoreValues({ eventMapReset: eventMapReset + 1 })
     }
   }
 

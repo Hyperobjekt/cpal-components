@@ -209,7 +209,7 @@ const [useStore] = create((set, get) => ({
   eventShareLink: 0,
   setEventShareLink: a => set({ eventShareLink: a }),
   eventMapReset: 0,
-  setEventMapReset: a => set({ eventMapReset: a }),
+  // setEventMapReset: a => set({ eventMapReset: a }),
   eventMapCapture: 0,
   setEventMapCapture: a => set({ eventMapCapture: a }),
   eventSchoolSearch: 0,
