@@ -138,7 +138,7 @@ const ControlPanel = ({ children }) => {
       breakpoint === 'sm' ||
       breakpoint === 'md'
     ) {
-      console.log('show the modal')
+      // console.log('show the modal')
       // Modal size, handle as a modal.
       setShowPanelModal(true)
       setSlideoutPanel({
