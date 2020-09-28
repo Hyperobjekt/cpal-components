@@ -17,6 +17,11 @@ import {
 } from './../utils'
 
 const FeederLegendContent = ({ ...props }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Currently active (hovered) feeder
   // Stores the SLN of the feeder
   const activeFeeder = useStore(state => state.activeFeeder)
@@ -26,20 +31,16 @@ const FeederLegendContent = ({ ...props }) => {
   const eventSchoolPage = useStore(
     state => state.eventSchoolPage,
   )
-  // For tracking access school page events.
-  const setEventSchoolPage = useStore(
-    state => state.setEventSchoolPage,
-  )
-  const setAccessedSchool = useStore(
-    state => state.setAccessedSchool,
-  )
+  // Track event when a school is accessed.
   const handleSchoolAccess = e => {
     const id = String(e.currentTarget.id).replace(
       'school_',
       '',
     )
-    setAccessedSchool(id)
-    setEventSchoolPage(eventSchoolPage + 1)
+    setStoreValues({
+      accessedSchool: id,
+      eventSchoolPage: eventSchoolPage + 1,
+    })
   }
 
   return (
