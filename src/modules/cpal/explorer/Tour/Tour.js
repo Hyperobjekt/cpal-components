@@ -67,7 +67,7 @@ const Tour = ({ ...props }) => {
       querySelectors[index],
     )
     targets.forEach(item => {
-      console.log(item)
+      // console.log(item)
       item.click()
     })
     // Timeout, and process next after.
@@ -100,6 +100,7 @@ const Tour = ({ ...props }) => {
     const { action, index, status, type } = data
     if ([ACTIONS.CLOSE, ACTIONS.STOP].includes(action)) {
       setRunTour(false)
+      return
     }
     if ([EVENTS.STEP_AFTER].includes(type)) {
       const increment = action === ACTIONS.PREV ? -1 : 1
@@ -134,16 +135,58 @@ const Tour = ({ ...props }) => {
   }
 
   // Styles
+  // const defaultOptions = {
+  //   arrowColor: '#fff',
+  //   backgroundColor: '#fff',
+  //   beaconSize: 42,
+  //   overlayColor: 'rgba(0, 0, 0, 0.75)',
+  //   primaryColor: '#e55934', // '#e94f34', // '#f04', // Button color.
+  //   spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
+  //   textColor: '#333',
+  //   width: undefined,
+  //   zIndex: 4000,
+  // }
+
   const defaultOptions = {
     arrowColor: '#fff',
     backgroundColor: '#fff',
     beaconSize: 42,
     overlayColor: 'rgba(0, 0, 0, 0.75)',
-    primaryColor: '#e94f34', // '#f04', // Button color.
+    primaryColor: '#e55934',
     spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
     textColor: '#333',
     width: undefined,
+    zIndex: 4001,
+  }
+  const tooltip = {
+    backgroundColor: defaultOptions.backgroundColor,
+    borderRadius: 0,
+    boxSizing: 'border-box',
+    color: defaultOptions.textColor,
+    fontSize: 16,
+    padding: 15,
+    position: 'relative',
+    fontWeight: 300,
+  }
+  const buttonNext = {
+    backgroundColor: '#e55934',
+    borderRadius: 0,
+    color: '#ffeee5',
+    outline: 0,
+  }
+  const spotlight = {
+    borderRadius: 0,
+  }
+  const overlay = {
     zIndex: 4000,
+  }
+  const floater = {
+    zIndex: 4001,
+    tooltip: {
+      zIndex: 4002,
+    },
+  }
+  const tooltipContainer = {
     textAlign: 'left',
   }
 
@@ -157,13 +200,15 @@ const Tour = ({ ...props }) => {
       debug={false}
       locale={localeStrings}
       showProgress={true}
-      styles={{ ...defaultOptions }}
-      floaterProps={{
-        styles: {
-          wrapper: {
-            zIndex: 4000,
-          },
-        },
+      styles={{
+        ...defaultOptions,
+        options: { zIndex: 4001 },
+        tooltip,
+        tooltipContainer,
+        buttonNext,
+        spotlight,
+        overlay,
+        floater,
       }}
       disableOverlay={false}
       disableScrolling={!!isMobile() ? false : true}

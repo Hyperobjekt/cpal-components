@@ -2,40 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import useStore from './../store.js'
 import i18n from '@pureartisan/simple-i18n'
-import {
-  FiFilter,
-  FiMap,
-  FiList,
-  FiMenu,
-} from 'react-icons/fi'
-import { MdCallSplit } from 'react-icons/md'
 
 import { CoreButton, TourIcon } from './../../../core'
 
 const PanelInfoView = ({ ...props }) => {
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const activeView = useStore(state => state.activeView)
   const enableTour = useStore(state => state.enableTour)
-  const setRunTour = useStore(state => state.setRunTour)
-  const setActiveView = useStore(
-    state => state.setActiveView,
-  )
   const defaultMetric = useStore(
     state => state.defaultMetric,
-  )
-  const setActiveMetric = useStore(
-    state => state.setActiveMetric,
-  )
-  const setActiveQuintiles = useStore(
-    state => state.setActiveQuintiles,
-  )
-  const setSlideoutPanel = useStore(
-    state => state.setSlideoutPanel,
-  )
-  const setShowPanelModal = useStore(
-    state => state.setShowPanelModal,
-  )
-  const setTourStepIndex = useStore(
-    state => state.setTourStepIndex,
   )
 
   const getTourButton = () => {
@@ -61,24 +38,26 @@ const PanelInfoView = ({ ...props }) => {
    * Close the intro panel and start the tour
    */
   const handleStartTour = () => {
-    // console.log('handleStartTour()')
-    // Return view to map.
-    setActiveView('map')
-    // Reset metric
-    setActiveMetric(defaultMetric)
-    // Reset quintiles.
-    setActiveQuintiles([1, 1, 1, 1, 1])
-    // Close the panel.
-    setSlideoutPanel({
-      active: false,
-      panel: '',
+    console.log('handleStartTour()')
+    setStoreValues({
+      // Return view to map.
+      activeView: 'map',
+      // Reset metric.
+      activeMetric: defaultMetric,
+      // Reset quintiles.
+      activeQuintiles: [1, 1, 1, 1, 1],
+      // Close the panel.
+      slideoutPanel: {
+        active: false,
+        panel: '',
+      },
+      // Close modal if displayed.
+      showPanelModal: false,
+      // Return tour to 0.
+      tourStepIndex: 0,
+      // Run the tour.
+      runTour: true,
     })
-    // Close modal if displayed
-    setShowPanelModal(false)
-    // Return tour to 0.
-    setTourStepIndex(0)
-    // Run the tour.
-    setRunTour(true)
   }
 
   const getContents = () => {
