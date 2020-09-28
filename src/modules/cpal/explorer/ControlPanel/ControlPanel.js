@@ -221,27 +221,24 @@ const ControlPanel = ({ children }) => {
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
-  const setButtonTooltipPosition = useStore(
-    state => state.setButtonTooltipPosition,
-  )
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
   )
   // Set tooltip position if browser width changes.
   useEffect(() => {
-    setButtonTooltipPosition(
-      !!interactionsMobile
+    setStoreValues({
+      buttonTooltipPosition: !!interactionsMobile
         ? ''
         : getPositionFromBreakpoint(breakpoint),
-    )
+    })
   }, [browserWidth])
   // Set tooltip position on load.
   useEffect(() => {
-    setButtonTooltipPosition(
-      !!interactionsMobile
+    setStoreValues({
+      buttonTooltipPosition: !!interactionsMobile
         ? ''
         : getPositionFromBreakpoint(breakpoint),
-    )
+    })
   }, [])
 
   return (

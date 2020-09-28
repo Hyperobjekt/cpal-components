@@ -180,11 +180,11 @@ const [useStore] = create((set, get) => ({
   },
   // Position of tooltips in control panel, changes with breakpoint
   buttonTooltipPosition: 'auto',
-  setButtonTooltipPosition: newVal =>
-    set({ buttonTooltipPosition: newVal }),
+  // setButtonTooltipPosition: newVal =>
+  //   set({ buttonTooltipPosition: newVal }),
   showMobileLegend: false,
-  setShowMobileLegend: newVal =>
-    set({ showMobileLegend: newVal }),
+  // setShowMobileLegend: newVal =>
+  //   set({ showMobileLegend: newVal }),
   // isMobile: false,
   // setIsMobile: newVal => set({ isMobile: newVal }),
   interactionsMobile: false,
