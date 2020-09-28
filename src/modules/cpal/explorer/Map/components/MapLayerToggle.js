@@ -13,17 +13,16 @@ import { CPAL_LAYERS } from './../../../../../constants/layers'
  * Provides toggle functionality for provided array of layer objects
  */
 const MapLayerToggle = ({ ...props }) => {
-  // if (!props.layers) {
-  //   return
-  // } else {
-  //   console.log('MapLayerToggle layers: ', props.layers)
-  // }
-
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const activeLayers = useStore(state => state.activeLayers)
   // console.log('activeLayers, ', activeLayers)
-  const setActiveLayers = useStore(
-    state => state.setActiveLayers,
-  )
+  // const setActiveLayers = useStore(
+  //   state => state.setActiveLayers,
+  // )
 
   const getLayerLabel = id => {
     const layer = CPAL_LAYERS.find(gr => gr.id === id)
@@ -58,11 +57,13 @@ const MapLayerToggle = ({ ...props }) => {
     if (!!e.currentTarget.checked) {
       // Checked.
       activeLayers[index] = 1
-      setActiveLayers(activeLayers)
+      // setActiveLayers(activeLayers)
+      setStoreValues({ activeLayers: activeLayers })
     } else {
       // Not checked.
       activeLayers[index] = 0
-      setActiveLayers(activeLayers)
+      // setActiveLayers(activeLayers)
+      setStoreValues({ activeLayers: activeLayers })
     }
     // console.log('activeLayers, ', activeLayers)
   }
@@ -140,20 +141,3 @@ const MapLayerToggle = ({ ...props }) => {
 }
 
 export default MapLayerToggle
-
-// <CoreButton
-//   id={'button_toggle_layer_info_' + el.id}
-//   label={i18n.translate(el.tooltip)}
-//   tooltip="top"
-//   tooltipAutoHide="false"
-//   onClick={null}
-//   color="none"
-//   styles={{ display: 'none' }}
-//   className={clsx('button-layer-info')}
-// >
-//   <FiInfo />
-//   <span className="sr-only">
-//     {i18n.translate(el.tooltip)}
-//   </span>
-// </CoreButton>
-//

@@ -24,6 +24,11 @@ import {
  * Legend for map
  */
 const MapLegend = ({ ...props }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Default affix for features in school zones layer
   const activeMetric = useStore(state => state.activeMetric)
   const activeQuintiles = useStore(
@@ -35,12 +40,13 @@ const MapLegend = ({ ...props }) => {
   const showMobileLegend = useStore(
     state => state.showMobileLegend,
   )
-  const setShowMobileLegend = useStore(
-    state => state.setShowMobileLegend,
-  )
+  // const setShowMobileLegend = useStore(
+  //   state => state.setShowMobileLegend,
+  // )
   const handleClose = () => {
     // console.log('handle close')
-    setShowMobileLegend(false)
+    setStoreValues({ showMobileLegend: false })
+    // setShowMobileLegend(false)
   }
   // Active layers
   const activeLayers = useStore(
@@ -68,30 +74,27 @@ const MapLegend = ({ ...props }) => {
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
   )
-  const setSlideoutPanel = useStore(
-    state => state.setSlideoutPanel,
-  )
-  // Update intro modal display
-  const setShowPanelModal = useStore(
-    state => state.setShowPanelModal,
-  )
   const toggleFilterPanel = () => {
     // console.log('toggleFilterPanel(), ', breakpoint)
     if (breakpoint === 'md') {
-      setSlideoutPanel({
-        active: false,
-        panel: 'filters', // filters or weights, presumably, possibly info
+      setStoreValues({
+        slideoutPanel: {
+          active: false,
+          panel: 'filters', // filters or weights, presumably, possibly info
+        },
+        showPanelModal: true,
       })
-      setShowPanelModal(true)
     } else {
-      setSlideoutPanel({
-        active: true,
-        panel: 'filters', // filters or weights, presumably, possibly info
+      setStoreValues({
+        slideoutPanel: {
+          active: true,
+          panel: 'filters', // filters or weights, presumably, possibly info
+        },
       })
     }
   }
 
-  const intl = useStore(state => state.intl)
+  // const intl = useStore(state => state.intl)
   const metricData = getMetric(activeMetric, CPAL_METRICS)
   const schoolStyle = {
     backgroundColor: metricData.colors[0],
