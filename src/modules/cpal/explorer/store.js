@@ -125,8 +125,8 @@ const [useStore] = create((set, get) => ({
   setUnifiedShareModal: newBool =>
     set({ unifiedShareModal: newBool }),
   handleToggleMenu: null,
-  setHandleToggleMenu: newFunc =>
-    set({ handleToggleMenu: newFunc }),
+  // setHandleToggleMenu: newFunc =>
+  //   set({ handleToggleMenu: newFunc }),
   shareHash: null,
   setShareHash: newStr => set({ shareHash: newStr }),
   breakpoint: null,
@@ -219,7 +219,7 @@ const [useStore] = create((set, get) => ({
   accessedSchool: null,
   setAccessedSchool: a => set({ accessedSchool: a }),
   eventError: 0,
-  setEventError: a => set({ eventError: a }),
+  // setEventError: a => set({ eventError: a }),
 }))
 
 export default useStore

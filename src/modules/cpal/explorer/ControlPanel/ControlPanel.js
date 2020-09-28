@@ -9,7 +9,6 @@ import {
   FiInfo,
   FiLayers,
 } from 'react-icons/fi'
-import { MdCallSplit } from 'react-icons/md'
 import { AiOutlineControl } from 'react-icons/ai'
 
 import useStore from './../store'
@@ -38,25 +37,30 @@ import {
  * @param Object children Child components
  */
 const ControlPanel = ({ children }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Active view, map or feeder
   const activeView = useStore(state => state.activeView)
-  const setActiveView = useStore(
-    state => state.setActiveView,
-  )
+  // const setActiveView = useStore(
+  //   state => state.setActiveView,
+  // )
   // Array of objects, one for each select dropdown item
   const viewSelectItems = useStore(
     state => state.viewSelect,
   )
-  const setViewSelect = useStore(
-    state => state.setViewSelect,
-  )
+  // const setViewSelect = useStore(
+  //   state => state.setViewSelect,
+  // )
   // Slideout panel
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
   )
-  const setSlideoutPanel = useStore(
-    state => state.setSlideoutPanel,
-  )
+  // const setSlideoutPanel = useStore(
+  //   state => state.setSlideoutPanel,
+  // )
   const handleToggleMenu = useStore(
     state => state.handleToggleMenu,
   )
@@ -68,19 +72,21 @@ const ControlPanel = ({ children }) => {
   const showIntroModal = useStore(
     state => state.showIntroModal,
   )
-  const setShowIntroModal = useStore(
-    state => state.setShowIntroModal,
-  )
+  // const setShowIntroModal = useStore(
+  //   state => state.setShowIntroModal,
+  // )
   const toggleIntroModal = () =>
-    setShowIntroModal(!showIntroModal)
+    setStoreValues({
+      showIntroModal: !showIntroModal,
+    })
 
   // Modal for small devices
   const showPanelModal = useStore(
     state => state.showPanelModal,
   )
-  const setShowPanelModal = useStore(
-    state => state.setShowPanelModal,
-  )
+  // const setShowPanelModal = useStore(
+  //   state => state.setShowPanelModal,
+  // )
 
   // Handle clicks to any control panel button.
   const handleClick = e => {
@@ -94,11 +100,18 @@ const ControlPanel = ({ children }) => {
         'button_view_',
         '',
       )
-      setActiveView(val)
-      setSlideoutPanel({
-        active: false,
-        panel: '',
+      setStoreValues({
+        activeView: val,
+        slideoutPanel: {
+          active: false,
+          panel: '',
+        },
       })
+      // setActiveView(val)
+      // setSlideoutPanel({
+      //   active: false,
+      //   panel: '',
+      // })
     }
     if (e.currentTarget.id === 'button_toggle_menu') {
       // console.log('toggle menu clicked')
@@ -140,10 +153,17 @@ const ControlPanel = ({ children }) => {
     ) {
       // console.log('show the modal')
       // Modal size, handle as a modal.
-      setShowPanelModal(true)
-      setSlideoutPanel({
-        active: false,
-        panel: clicked,
+      // setShowPanelModal(true)
+      // setSlideoutPanel({
+      //   active: false,
+      //   panel: clicked,
+      // })
+      setStoreValues({
+        showPanelModal: true,
+        slideoutPanel: {
+          active: false,
+          panel: clicked,
+        },
       })
     } else {
       // Slideout panel size, handle as slideout.
@@ -166,10 +186,16 @@ const ControlPanel = ({ children }) => {
         newActiveState = true
       }
       // Reset panel state
-      setSlideoutPanel({
-        active: newActiveState,
-        panel: clicked,
+      setStoreValues({
+        slideoutPanel: {
+          active: newActiveState,
+          panel: clicked,
+        },
       })
+      // setSlideoutPanel({
+      //   active: newActiveState,
+      //   panel: clicked,
+      // })
     }
   }
   // Handle select in dropdown
@@ -180,19 +206,34 @@ const ControlPanel = ({ children }) => {
       'select_view_',
       '',
     )
-    setActiveView(val)
-    setViewSelect([
-      {
-        label: `SELECT_ITEM_MAP`,
-        id: `select_view_map`,
-        active: val === 'map' ? true : false,
-      },
-      {
-        label: `SELECT_ITEM_FEEDER`,
-        id: `select_view_feeder`,
-        active: val === 'feeder' ? true : false,
-      },
-    ])
+    setStoreValues({
+      activeView: val,
+      viewSelect: [
+        {
+          label: `SELECT_ITEM_MAP`,
+          id: `select_view_map`,
+          active: val === 'map' ? true : false,
+        },
+        {
+          label: `SELECT_ITEM_FEEDER`,
+          id: `select_view_feeder`,
+          active: val === 'feeder' ? true : false,
+        },
+      ],
+    })
+    // setActiveView(val)
+    // setViewSelect([
+    //   {
+    //     label: `SELECT_ITEM_MAP`,
+    //     id: `select_view_map`,
+    //     active: val === 'map' ? true : false,
+    //   },
+    //   {
+    //     label: `SELECT_ITEM_FEEDER`,
+    //     id: `select_view_feeder`,
+    //     active: val === 'feeder' ? true : false,
+    //   },
+    // ])
   }
 
   const shareHash = useStore(state => state.shareHash)

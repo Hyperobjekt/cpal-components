@@ -25,15 +25,16 @@ const App = props => {
     state => state.setStoreValues,
   )
   // Updates menu state and calls handler in parent component.
-  const setHandleToggleMenu = useStore(
-    state => state.setHandleToggleMenu,
-  )
+  // const setHandleToggleMenu = useStore(
+  //   state => state.setHandleToggleMenu,
+  // )
   if (!!props.toggleMenu) {
     // console.log(
     //   'props.toggleMenu exists, ',
     //   props.toggleMenu,
     // )
-    setHandleToggleMenu(props.toggleMenu)
+    // setHandleToggleMenu(props.toggleMenu)
+    setStoreValues({ handleToggleMenu: props.toggleMenu })
   }
 
   const setBrowserWidthAndBreakpoint = () => {
@@ -67,9 +68,9 @@ const App = props => {
     })
   }, [])
 
-  const setEventError = useStore(
-    state => state.setEventError,
-  )
+  // const setEventError = useStore(
+  //   state => state.setEventError,
+  // )
   useEffect(() => {
     window.addEventListener('error', e => {
       setStoreValues({
