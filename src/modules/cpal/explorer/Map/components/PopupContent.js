@@ -22,22 +22,18 @@ const PopupContent = ({ ...props }) => {
   //   console.log('props.feature exists')
   //   console.log('props.feature, ', props.feature)
   // }
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
   )
   const breakpoint = useStore(state => state.breakpoint)
-  const setShowMapModal = useStore(
-    state => state.setShowMapModal,
-  )
   // For tracking access school page events.
   const eventSchoolPage = useStore(
     state => state.eventSchoolPage,
-  )
-  const setEventSchoolPage = useStore(
-    state => state.setEventSchoolPage,
-  )
-  const setAccessedSchool = useStore(
-    state => state.setAccessedSchool,
   )
 
   const metrics = []
@@ -65,8 +61,10 @@ const PopupContent = ({ ...props }) => {
         '/'
       // console.log('navigateToSchool() href is ', href)
       window.open(href, '_blank')
-      setEventSchoolPage(eventSchoolPage + 1)
-      setAccessedSchool(props.feature.properties.SLN)
+      setStoreValues({
+        eventSchoolPage: eventSchoolPage + 1,
+        accessedSchool: props.feature.properties.SLN,
+      })
     }
   }
 
@@ -150,7 +148,7 @@ const PopupContent = ({ ...props }) => {
       </div>
     )
   } else {
-    setShowMapModal(false)
+    setStoreValues({ showMapModal: false })
     return null
   }
 }
