@@ -34,8 +34,12 @@ import { ROUTE_SET } from './../../../../constants/metrics'
  * @param Object props    Props passed from parent
  */
 const Layout = ({ children, ...props }) => {
-  // const [tooltipOpen, setTooltipOpen] = useState(false)
-  // const toggle = () => setTooltipOpen(!tooltipOpen)
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
+  // Basic props for logo component.
   const logoProps = {
     siteName: i18n.translate(`SITE_TITLE`),
     siteHref: useStore(state => state.siteHref),
@@ -43,136 +47,22 @@ const Layout = ({ children, ...props }) => {
   }
   // Active view, map or feeder
   const activeView = useStore(state => state.activeView)
-  const setActiveView = useStore(
-    state => state.setActiveView,
-  )
-  // Array of objects, one for each select dropdown item
-  const viewSelectItems = useStore(
-    state => state.viewSelect,
-  )
-  const setViewSelect = useStore(
-    state => state.setViewSelect,
-  )
-  // Slideout panel
-  const slideoutPanel = useStore(
-    state => state.slideoutPanel,
-  )
-  const setSlideoutPanel = useStore(
-    state => state.setSlideoutPanel,
-  )
   const handleToggleMenu = useStore(
     state => state.handleToggleMenu,
   )
   const breakpoint = useStore(state => state.breakpoint)
   const browserWidth = useStore(state => state.browserWidth)
 
-  const [introModal, setIntroModal] = useState(false)
-
-  const showIntroModal = useStore(
-    state => state.showIntroModal,
-  )
-  const setShowIntroModal = useStore(
-    state => state.setShowIntroModal,
-  )
-  const toggleIntroModal = () =>
-    setShowIntroModal(!showIntroModal)
-
   // Handle clicks to any control panel button.
   const handleClick = e => {
     e.preventDefault()
     // console.log('Button clicked, ', e.currentTarget.id)
-    if (
-      e.currentTarget.id === 'button_view_feeder' ||
-      e.currentTarget.id === 'button_view_map'
-    ) {
-      const val = String(e.currentTarget.id).replace(
-        'button_view_',
-        '',
-      )
-      setActiveView(val)
-      setSlideoutPanel({
-        active: false,
-        panel: '',
-      })
-    }
     if (e.currentTarget.id === 'button_toggle_menu') {
-      console.log('toggle menu clicked')
+      // console.log('toggle menu clicked')
       if (!!handleToggleMenu) {
         handleToggleMenu()
       }
     }
-  }
-
-  /**
-   * Handles click to panel toggle buttons.
-   * @param  Object e Event object
-   */
-  const handlePanel = e => {
-    // console.log(
-    //   'handlePanel(), ',
-    //   e.currentTarget,
-    //   slideoutPanel,
-    // )
-    e.preventDefault()
-    if (
-      e.currentTarget.id !==
-        'button_toggle_panel_filters' &&
-      e.currentTarget.id !== 'button_toggle_panel_layers' &&
-      e.currentTarget.id !== 'button_toggle_panel_info'
-    )
-      return
-    // Retrieve clicked
-    let clicked = String(e.currentTarget.id).replace(
-      'button_toggle_panel_',
-      '',
-    )
-    // Conditionally adjust panel settings
-    let newActiveState = false
-    if (
-      !slideoutPanel.active &&
-      slideoutPanel.panel.length < 1
-    ) {
-      // If never opened
-      newActiveState = true
-    } else if (
-      !!slideoutPanel.active &&
-      slideoutPanel.panel.length > 0 &&
-      slideoutPanel.panel === clicked
-    ) {
-      // Selected existing open panel
-      newActiveState = false
-      clicked = ''
-    } else {
-      // Selected different panel
-      newActiveState = true
-    }
-    // Reset panel state
-    setSlideoutPanel({
-      active: newActiveState,
-      panel: clicked,
-    })
-  }
-  // Handle select in dropdown
-  const handleSelect = e => {
-    e.preventDefault()
-    // console.log('View selected, ', e.currentTarget.id)
-    const val = String(e.currentTarget.id).replace(
-      'select_view_',
-      '',
-    )
-    setActiveView(val)
-    setViewSelect([
-      {
-        label: `SELECT_ITEM_MAP`,
-        id: `select_view_map`,
-        active: val === 'map' ? true : false,
-      },
-      {
-        label: `SELECT_ITEM_FEEDER`,
-        id: `select_view_feeder`,
-        active: val === 'feeder' ? true : false,
-      },
-    ])
   }
 
   return (

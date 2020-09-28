@@ -52,9 +52,6 @@ const ControlPanel = ({ children }) => {
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
   )
-  const handleToggleMenu = useStore(
-    state => state.handleToggleMenu,
-  )
   const breakpoint = useStore(state => state.breakpoint)
   const browserWidth = useStore(state => state.browserWidth)
   const showIntroModal = useStore(
@@ -88,12 +85,6 @@ const ControlPanel = ({ children }) => {
           panel: '',
         },
       })
-    }
-    if (e.currentTarget.id === 'button_toggle_menu') {
-      // console.log('toggle menu clicked')
-      if (!!handleToggleMenu) {
-        handleToggleMenu()
-      }
     }
   }
 
