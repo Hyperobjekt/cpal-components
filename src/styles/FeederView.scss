@@ -72,7 +72,7 @@ $xl-legend-width: 435px;
               #fcfcf8 100%
             );
             z-index: 500;
-            font-family: Halyard;
+            font-family: halyard-text;
             font-size: 1.5rem;
             font-weight: 200;
             .scroll-prompt-text {
@@ -111,7 +111,7 @@ $xl-legend-width: 435px;
               flex: 0 0 60px;
               // flex: 0 0 140px; // md
               text-align: right;
-              font-family: Halyard;
+              font-family: halyard-text;
               font-size: 0.8rem;
               line-height: 1.5rem;
               padding-right: 0.5rem;
@@ -126,7 +126,7 @@ $xl-legend-width: 435px;
               flex: 0 1 auto;
               padding-left: 0.5rem;
               // line-height: 1.3rem;
-              font-family: Halyard;
+              font-family: halyard-text;
               font-size: 1.5rem;
               line-height: 1.6rem;
               font-weight: 300;
@@ -420,14 +420,14 @@ $xl-legend-width: 435px;
 .feeder-chart-legend,
 .feeder-modal .modal-body {
   font-size: 12px;
-  font-family: Halyard;
+  font-family: halyard-text;
   font-size: 1.4rem;
   line-height: 1.5rem;
   padding-right: 0.5rem;
   color: #606b44;
   p {
     margin: 1rem 0;
-    font-family: Halyard;
+    font-family: halyard-text;
     font-weight: 200;
     font-size: 15px;
     line-height: 22px;
@@ -459,7 +459,7 @@ $xl-legend-width: 435px;
     width: 100%;
   }
   h4 {
-    font-family: Halyard;
+    font-family: halyard-text;
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 2rem;
