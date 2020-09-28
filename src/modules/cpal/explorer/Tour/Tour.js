@@ -134,19 +134,6 @@ const Tour = ({ ...props }) => {
     skip: i18n.translate('TOUR_UI_ACTIONS_SKIP'),
   }
 
-  // Styles
-  // const defaultOptions = {
-  //   arrowColor: '#fff',
-  //   backgroundColor: '#fff',
-  //   beaconSize: 42,
-  //   overlayColor: 'rgba(0, 0, 0, 0.75)',
-  //   primaryColor: '#e55934', // '#e94f34', // '#f04', // Button color.
-  //   spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
-  //   textColor: '#333',
-  //   width: undefined,
-  //   zIndex: 4000,
-  // }
-
   const defaultOptions = {
     arrowColor: '#fff',
     backgroundColor: '#fff',

@@ -29,9 +29,6 @@ const MapView = props => {
   const breakpoint = useStore(state => state.breakpoint)
   // Manage display of map modal
   const showMapModal = useStore(state => state.showMapModal)
-  // const setShowMapModal = useStore(
-  //   state => state.setShowMapModal,
-  // )
   // Tracks whether to handle interactions as mobile
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
@@ -116,9 +113,6 @@ const MapView = props => {
   const eventSchoolPage = useStore(
     state => state.eventSchoolPage,
   )
-  // const setEventSchoolPage = useStore(
-  //   state => state.setEventSchoolPage,
-  // )
   const handleClick = (feature, coords, geoCoords) => {
     // console.log('handle click, ', feature)
     // If the item is hovered, navigate to the school.
