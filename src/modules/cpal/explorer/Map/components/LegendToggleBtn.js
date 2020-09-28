@@ -10,18 +10,20 @@ import useStore from './../../store'
  * Button to toggle map legend display if legend is hidden.
  */
 const LegendToggleBtn = ({ ...props }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const showMobileLegend = useStore(
     state => state.showMobileLegend,
-  )
-  const setShowMobileLegend = useStore(
-    state => state.setShowMobileLegend,
   )
   // Current breakpoint.
   const breakpoint = useStore(state => state.breakpoint)
 
   const updateLegend = () => {
-    console.log('updateLegend()')
-    setShowMobileLegend(true)
+    // console.log('updateLegend()')
+    setStoreValues({ showMobileLegend: true })
   }
 
   if (
