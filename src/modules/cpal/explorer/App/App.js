@@ -72,18 +72,6 @@ const App = props => {
   )
   useEffect(() => {
     window.addEventListener('error', e => {
-      console.log(
-        'error, ',
-        e.message +
-          ', in ' +
-          e.filename +
-          ', ' +
-          e.lineno +
-          ':' +
-          e.colno +
-          ', at' +
-          e.timeStamp,
-      )
       setStoreValues({
         eventError:
           e.message +
@@ -94,13 +82,14 @@ const App = props => {
           ':' +
           e.colno +
           ', at ' +
-          e.timeStamp,
+          e.timeStamp +
+          '.',
       })
     })
     // Test error logging by throwing an error after map loads.
-    setTimeout(() => {
-      console.log('trial var, ', mooMooMoo)
-    }, 3000)
+    // setTimeout(() => {
+    //   console.log('trial var, ', mooMooMoo)
+    // }, 3000)
   }, [])
 
   useEffect(() => {
