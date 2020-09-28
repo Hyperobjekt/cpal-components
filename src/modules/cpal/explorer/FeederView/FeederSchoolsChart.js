@@ -304,7 +304,7 @@ const FeederSchoolsChart = ({ ...props }) => {
     <ReactEcharts
       onEvents={schoolsEvents}
       onChartReady={schoolChartReady}
-      classNames={clsx('chart-schools')}
+      className={clsx('chart-schools')}
       style={{
         height: getHeight(),
         width: '100%',
