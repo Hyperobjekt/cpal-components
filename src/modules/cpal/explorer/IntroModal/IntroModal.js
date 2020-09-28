@@ -22,25 +22,26 @@ import SchoolSearch from './../SchoolSearch/SchoolSearch'
  * @param Object props    Props passed from parent
  */
 const IntroModal = ({ children, ...props }) => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Track and update intro modal display
   const showIntroModal = useStore(
     state => state.showIntroModal,
   )
-  const setShowIntroModal = useStore(
-    state => state.setShowIntroModal,
-  )
   const toggleIntroModal = () =>
-    setShowIntroModal(!showIntroModal)
-
+    setStoreValues({ showIntroModal: !showIntroModal })
+  // Whether or not the tour is enabled.
   const enableTour = useStore(state => state.enableTour)
-  const setRunTour = useStore(state => state.setRunTour)
   /**
    * Close the intro panel and start the tour
    */
   const handleStartTour = () => {
-    console.log('handleStartTour()')
+    // console.log('handleStartTour()')
     toggleIntroModal()
-    setRunTour(true)
+    setStoreValues({ runTour: true })
   }
 
   /**
