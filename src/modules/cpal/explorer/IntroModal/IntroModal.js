@@ -11,10 +11,9 @@ import {
 } from 'reactstrap'
 import { FiMap } from 'react-icons/fi'
 import { FaQuestion } from 'react-icons/fa'
-import { GiJourney } from 'react-icons/gi'
 
 import useStore from './../store'
-import { CoreButton } from './../../../core'
+import { CoreButton, TourIcon } from './../../../core'
 import SchoolSearch from './../SchoolSearch/SchoolSearch'
 
 /**
@@ -72,7 +71,7 @@ const IntroModal = ({ children, ...props }) => {
         <p>{i18n.translate('UI_MAP_INTRO_MODAL_INTRO')}</p>
         {!!enableTour && (
           <div className="intro-modal-option">
-            <p>
+            <p className="cta">
               {i18n.translate('UI_MAP_INTRO_MODAL_TOUR')}
             </p>
             <CoreButton
@@ -82,7 +81,7 @@ const IntroModal = ({ children, ...props }) => {
               )}
               onClick={handleStartTour}
             >
-              <GiJourney />
+              <TourIcon />
               {i18n.translate(
                 'UI_MAP_INTRO_MODAL_TOUR_BTN',
               )}
@@ -90,13 +89,15 @@ const IntroModal = ({ children, ...props }) => {
           </div>
         )}
         <div className="intro-modal-option">
-          <p>
+          <p className="cta">
             {i18n.translate('UI_MAP_INTRO_MODAL_SEARCH')}
           </p>
           <SchoolSearch />
         </div>
         <div className="intro-modal-option">
-          <p>{i18n.translate('UI_MAP_INTRO_MODAL_FAQ')}</p>
+          <p className="cta">
+            {i18n.translate('UI_MAP_INTRO_MODAL_FAQ')}
+          </p>
           <CoreButton
             color="light"
             label={i18n.translate(
@@ -109,7 +110,9 @@ const IntroModal = ({ children, ...props }) => {
           </CoreButton>
         </div>
         <div className="intro-modal-option">
-          <p>{i18n.translate('UI_MAP_INTRO_MODAL_MAP')}</p>
+          <p className="cta">
+            {i18n.translate('UI_MAP_INTRO_MODAL_MAP')}
+          </p>
           <CoreButton
             color="light"
             label={i18n.translate(

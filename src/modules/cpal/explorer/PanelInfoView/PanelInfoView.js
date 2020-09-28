@@ -9,9 +9,8 @@ import {
   FiMenu,
 } from 'react-icons/fi'
 import { MdCallSplit } from 'react-icons/md'
-import { GiJourney } from 'react-icons/gi'
 
-import { CoreButton } from './../../../core'
+import { CoreButton, TourIcon } from './../../../core'
 
 const PanelInfoView = ({ ...props }) => {
   const activeView = useStore(state => state.activeView)
@@ -49,7 +48,7 @@ const PanelInfoView = ({ ...props }) => {
           )}
           onClick={handleStartTour}
         >
-          <GiJourney />
+          <TourIcon />
           {i18n.translate('UI_MAP_INTRO_MODAL_TOUR_BTN')}
         </CoreButton>
       )
