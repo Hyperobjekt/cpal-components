@@ -55,48 +55,6 @@ const InteractiveScale = ({ ...props }) => {
     }
   }
 
-  // const updateQuintileButtons = () => {
-  //   // console.log(
-  //   //   'updateQuintileButtons(), ',
-  //   //   activeQuintiles,
-  //   // )
-  //   let quintileButtons = []
-  //   const count = 4
-  //   for (let i = 0; i <= count; i++) {
-  //     quintileButtons.push({
-  //       classes: clsx(
-  //         'quintile-button',
-  //         props.metric.id === activeMetric &&
-  //           activeQuintiles[i] == 1
-  //           ? 'active'
-  //           : '',
-  //         'quintile-' + i,
-  //       ),
-  //       styles: {
-  //         backgroundColor:
-  //           props.metric.id === activeMetric &&
-  //           !!activeQuintiles[i]
-  //             ? getBgColor(props.metric, i)
-  //             : DISABLED_COLORS[i],
-  //       },
-  //       key: 'quintile_button_' + i,
-  //       ariaLabel: getQuintileAriaLabel(i),
-  //     })
-  //   }
-  //   console.log(
-  //     'quintileButtons',
-  //     activeMetric,
-  //     props.metric.id,
-  //     quintileButtons,
-  //   )
-  //   return quintileButtons
-  // }
-
-  // useEffect(() => {
-  //   // console.log('isloaded or activequintiles changed')
-  //   updateQuintileButtons()
-  // }, [isLoaded, activeQuintiles])
-
   const handleScaleClick = e => {
     e.preventDefault()
     // console.log('handleScaleClick(), ', e.currentTarget)

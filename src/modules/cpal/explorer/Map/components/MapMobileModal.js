@@ -30,14 +30,16 @@ import PopupContent from './PopupContent'
  * @param Object props    Props passed from parent
  */
 const MapMobileModal = ({ children, ...props }) => {
-  // const breakpoint = useStore(state => state.breakpoint)
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Tracks whether or not to display map mobile modal
   const showMapModal = useStore(state => state.showMapModal)
-  const setShowMapModal = useStore(
-    state => state.setShowMapModal,
-  )
+  // Closes modal.
   const toggleMapModal = () => {
-    setShowMapModal(!showMapModal)
+    setStoreValues({ showMapModal: !showMapModal })
   }
 
   return (
