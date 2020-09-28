@@ -13,6 +13,11 @@ import {
 import useStore from './../store'
 
 const MapView = props => {
+  // Generic state updates for store.
+  // Accepts an object of values to update.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Currently active metric
   const metric = useStore(state => state.activeMetric)
   // Active quintiles
@@ -24,9 +29,9 @@ const MapView = props => {
   const breakpoint = useStore(state => state.breakpoint)
   // Manage display of map modal
   const showMapModal = useStore(state => state.showMapModal)
-  const setShowMapModal = useStore(
-    state => state.setShowMapModal,
-  )
+  // const setShowMapModal = useStore(
+  //   state => state.setShowMapModal,
+  // )
   // Tracks whether to handle interactions as mobile
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
@@ -103,15 +108,7 @@ const MapView = props => {
       id = getFeatureProperty(feature, 'TEA')
       // setHovered(id, type, geoCoords, feature)
     }
-
     // console.log('handleHover, ', id)
-    // if (id && id !== hoveredId) {
-    //   addFeatureData(feature.properties)
-    //   // add schools to the ID map
-    //   // id.length === REGION_TO_ID_LENGTH['schools'] &&
-    //   //   addToIdMap(feature.id, id)
-    // }
-    // setHovered(id, type, coords)
     setHovered(id, type, geoCoords, feature)
   }
 
@@ -119,9 +116,9 @@ const MapView = props => {
   const eventSchoolPage = useStore(
     state => state.eventSchoolPage,
   )
-  const setEventSchoolPage = useStore(
-    state => state.setEventSchoolPage,
-  )
+  // const setEventSchoolPage = useStore(
+  //   state => state.setEventSchoolPage,
+  // )
   const handleClick = (feature, coords, geoCoords) => {
     // console.log('handle click, ', feature)
     // If the item is hovered, navigate to the school.
@@ -137,7 +134,8 @@ const MapView = props => {
         const id = getFeatureProperty(feature, 'TEA')
         setHovered(id, type, geoCoords, feature)
         // Launch the map modal
-        setShowMapModal(true)
+        // setShowMapModal(true)
+        setStoreValues({ showMapModal: true })
         // console.log('showMapModal, ', showMapModal)
       } else {
         // If it is hovered, then navigate to new window.
@@ -149,7 +147,10 @@ const MapView = props => {
             '/'
           window.open(href, '_blank')
         }
-        setEventSchoolPage(eventSchoolPage + 1)
+        // setEventSchoolPage(eventSchoolPage + 1)
+        setStoreValues({
+          eventSchoolPage: eventSchoolPage + 1,
+        })
       }
     }
   }
