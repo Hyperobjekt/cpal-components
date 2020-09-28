@@ -114,7 +114,7 @@ const FeederSchoolsChart = ({ ...props }) => {
           'UI_FEEDER_TITLE_SCHOOLS_CHART',
         ),
         textStyle: {
-          fontFamily: 'Halyard',
+          fontFamily: 'halyard-text',
           fontSize: 18,
         },
         top: 20,
