@@ -34,7 +34,7 @@ const en_US = {
   BTN_CLOSE: `Close`,
   UI_MAP_FILTERS_INDICATORS: `Indicators`,
   UI_MAP_BUTTON_RESET_FILTER: `Reset active filter`,
-  UI_MAP_FILTER_INSTRUCTIONS: `<p>Click the buttons below to select metrics and filter by quintile(s). Clear filters by pressing the "reset" {icon} button above.</p>`,
+  UI_MAP_FILTER_INSTRUCTIONS: `<p>Click the color scale(s) below to activate metrics on the map. Once activated, the brackets within each color scale can be clicked on and off to filter the school communities on the map. Clear filters by pressing the "reset" {icon} button above.</p>`,
   SELECT_VIEW: `Select a view`,
   SELECT_ITEM_MAP: `Map view`,
   SELECT_ITEM_FEEDER: `Feeder view`,
