@@ -15,6 +15,10 @@ import { schools } from './../../../../data/schools'
  */
 const SchoolSearch = ({ ...props }) => {
   const isLoaded = useRef(false)
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Active view, different actions depending on this
   const activeView = useStore(state => state.activeView)
   // Use active metric to find the SD value for a school.
@@ -23,35 +27,12 @@ const SchoolSearch = ({ ...props }) => {
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
-  const setActiveQuintiles = useStore(
-    state => state.setActiveQuintiles,
-  )
-  // Active view, different actions depending on this
-  // const feederSchools = useStore(
-  //   state => state.feederSchools,
-  // )
-  // Sets active feeder
-  const setActiveFeeder = useStore(
-    state => state.setActiveFeeder,
-  )
-  // Lock feeder upon search
-  const setFeederLocked = useStore(
-    state => state.setFeederLocked,
-  )
-  // Set school for highlighting
-  const setHighlightedSchool = useStore(
-    state => state.setHighlightedSchool,
-  )
   // Reset viewport to zoom in to school
   const flyToSchool = useStore(state => state.flyToSchool)
   // Track intro modal display and update.
   const showIntroModal = useStore(
     state => state.showIntroModal,
   )
-  const setShowIntroModal = useStore(
-    state => state.setShowIntroModal,
-  )
-
   // Tracking autosuggest suggestions
   const [suggestions, setSuggestions] = useState([])
   const [value, setValue] = useState('')
@@ -62,12 +43,6 @@ const SchoolSearch = ({ ...props }) => {
   // Tracks school search events.
   const eventSchoolSearch = useStore(
     state => state.eventSchoolSearch,
-  )
-  const setEventSchoolSearch = useStore(
-    state => state.setEventSchoolSearch,
-  )
-  const setSearchedSchool = useStore(
-    state => state.setSearchedSchool,
   )
   // Update the UI according to the context.
   const updateUIWithResult = suggestion => {
@@ -80,7 +55,7 @@ const SchoolSearch = ({ ...props }) => {
         // School's quintile is disabled, re-enable that quintile.
         const quintiles = activeQuintiles.slice()
         quintiles[schoolSD] = 1
-        setActiveQuintiles(quintiles)
+        setStoreValues({ activeQuintiles: quintiles })
       }
       // Run fly-to animation.
       flyToSchool(
@@ -90,18 +65,22 @@ const SchoolSearch = ({ ...props }) => {
       setFlyToSchoolSLN(suggestion.suggestion.SLN)
       // If intro panel is idsplayed, hide it.
       if (!!showIntroModal) {
-        setShowIntroModal(false)
+        setStoreValues({ showIntroModal: false })
       }
       handleClear()
     }
     if (activeView === 'feeder') {
       // console.log('in feeder view, ', suggestion)
-      setActiveFeeder(suggestion.suggestion.HIGH_SLN)
-      setFeederLocked(true)
-      setHighlightedSchool(suggestion.suggestion.TEA)
+      setStoreValues({
+        activeFeeder: suggestion.suggestion.HIGH_SLN,
+        feederLocked: true,
+        highlightedSchool: suggestion.suggestion.TEA,
+      })
       handleClear()
     }
-    setEventSchoolSearch(eventSchoolSearch + 1)
+    setStoreValues({
+      eventSchoolSearch: eventSchoolSearch + 1,
+    })
   }
 
   const getSuggestions = value => {
