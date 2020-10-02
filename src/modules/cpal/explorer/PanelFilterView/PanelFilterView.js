@@ -19,16 +19,17 @@ import {
 import TabSeries from './TabSeries'
 
 const PanelFilterView = ({ ...props }) => {
-  // Active filter tab
+  // Generic state setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
+  // Default filter tab
   const defaultFilterTab = useStore(
     state => state.defaultFilterTab,
   )
+  // Active filter tab
   const activeFilterTab = useStore(
     state => state.activeFilterTab,
-  )
-  // console.log('activeFilterTab, ', activeFilterTab)
-  const setActiveFilterTab = useStore(
-    state => state.setActiveFilterTab,
   )
   // Default metric
   const defaultMetric = useStore(
@@ -36,12 +37,6 @@ const PanelFilterView = ({ ...props }) => {
   )
   // Active metric
   const activeMetric = useStore(state => state.activeMetric)
-  const setActiveMetric = useStore(
-    state => state.setActiveMetric,
-  )
-  const setActiveQuintiles = useStore(
-    state => state.setActiveQuintiles,
-  )
 
   // Generate tabs for every metric with tab_level set to 0
   const tabs = []
@@ -75,20 +70,24 @@ const PanelFilterView = ({ ...props }) => {
     const tabId = CPAL_METRICS.find(i => {
       return i.id === e.currentTarget.id
     }).tab
-    setActiveFilterTab(tabId)
     const default_metric = CPAL_FILTER_TABS.find(
       el => el.id === tabId,
     ).default_metric
     // console.log('default_metric, ', default_metric)
-    setActiveMetric(default_metric)
-    setActiveQuintiles([1, 1, 1, 1, 1])
+    setStoreValues({
+      activeFilterTab: tabId,
+      activeMetric: default_metric,
+      activeQuintiles: [1, 1, 1, 1, 1],
+    })
   }
 
   const handleResetClick = () => {
     // console.log('handleResetClick()')
-    setActiveFilterTab(defaultFilterTab)
-    setActiveMetric(defaultMetric)
-    setActiveQuintiles([1, 1, 1, 1, 1])
+    setStoreValues({
+      activeFilterTab: defaultFilterTab,
+      activeMetric: defaultMetric,
+      activeQuintiles: [1, 1, 1, 1, 1],
+    })
   }
 
   const getSelectLabel = () => {

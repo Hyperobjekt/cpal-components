@@ -17,18 +17,22 @@ import { getQuintileDesc } from './../utils'
 
 const InteractiveScale = ({ ...props }) => {
   const isLoaded = useRef(false)
+  // Generic state setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Active metric
   const activeMetric = useStore(state => state.activeMetric)
-  const setActiveMetric = useStore(
-    state => state.setActiveMetric,
-  )
+  // const setActiveMetric = useStore(
+  //   state => state.setActiveMetric,
+  // )
   // Active quintiles
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
-  const setActiveQuintiles = useStore(
-    state => state.setActiveQuintiles,
-  )
+  // const setActiveQuintiles = useStore(
+  //   state => state.setActiveQuintiles,
+  // )
 
   const getBgColor = (metric, quintile) => {
     // console.log('getBgColor')
@@ -67,8 +71,12 @@ const InteractiveScale = ({ ...props }) => {
         'metric_select_',
         '',
       )
-      setActiveMetric(metric)
-      setActiveQuintiles([1, 1, 1, 1, 1])
+      setStoreValues({
+        activeMetric: metric,
+        activeQuintiles: [1, 1, 1, 1, 1],
+      })
+      // setActiveMetric(metric)
+      // setActiveQuintiles([1, 1, 1, 1, 1])
     }
   }
 
@@ -102,7 +110,10 @@ const InteractiveScale = ({ ...props }) => {
       quintiles[quintile] =
         Number(quintiles[quintile]) === 1 ? 0 : 1
     }
-    setActiveQuintiles(quintiles)
+    // setActiveQuintiles(quintiles)
+    setStoreValues({
+      activeQuintiles: quintiles,
+    })
   }
 
   const getScaleAriaLabel = () => {

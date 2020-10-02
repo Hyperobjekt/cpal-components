@@ -13,17 +13,6 @@ const FilterSeries = ({ ...props }) => {
   // Alphabetize them by title
   filters.sort((a, b) => {
     return a.order - b.order
-    // Use toUpperCase() to ignore character casing
-    // const itemA = a.title.toUpperCase()
-    // const itemB = b.title.toUpperCase()
-    //
-    // let comparison = 0
-    // if (itemA > itemB) {
-    //   comparison = 1
-    // } else if (itemA < itemB) {
-    //   comparison = -1
-    // }
-    // return comparison
   })
   if (filters && filters.length > 0) {
     return (
