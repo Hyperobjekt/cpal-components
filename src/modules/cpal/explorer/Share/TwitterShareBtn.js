@@ -8,7 +8,7 @@ import useStore from './../store'
 import { CoreButton } from './../../../core'
 import { onTwitterShare, constructShareLink } from './Share'
 
-const TwitterShareBtn = ({ children, ...props }) => {
+const TourButton = ({ children, ...props }) => {
   // Generic store value setter.
   const setStoreValues = useStore(
     state => state.setStoreValues,
@@ -52,4 +52,4 @@ const TwitterShareBtn = ({ children, ...props }) => {
   )
 }
 
-export default TwitterShareBtn
+export default TourButton

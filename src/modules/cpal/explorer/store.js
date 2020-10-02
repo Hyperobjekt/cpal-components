@@ -139,6 +139,30 @@ const [useStore] = create((set, get) => ({
   interactionsMobile: false,
   runTour: false,
   tourStepIndex: 0,
+  // Set up for tour to run.
+  setUpTour: () => {
+    set(state => ({
+      // Return view to map.
+      activeView: 'map',
+      // Reset metric.
+      activeMetric: state.defaultMetric,
+      // Reset quintiles.
+      activeQuintiles: [1, 1, 1, 1, 1],
+      // Close the panel.
+      slideoutPanel: {
+        active: false,
+        panel: '',
+      },
+      // Active tab in slideout panel.
+      activeFilterTab: state.defaultFilterTab,
+      // Close modal if displayed.
+      showPanelModal: false,
+      // Return tour to 0.
+      tourStepIndex: 0,
+      // Run the tour.
+      runTour: true,
+    }))
+  },
   // Do not track events before map is loaded, as these
   // are state settings based on hash and not user interactions.
   doTrackEvents: false,

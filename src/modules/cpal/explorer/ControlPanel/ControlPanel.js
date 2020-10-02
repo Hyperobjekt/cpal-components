@@ -31,6 +31,7 @@ import {
   UnifiedShareBtn,
   DesktopUnifiedShareBtn,
 } from './../Share'
+import { TourButton } from './../Tour'
 
 /**
  * Control panel that contains selectors and filters which alter map display.
@@ -380,6 +381,7 @@ const ControlPanel = ({ children }) => {
           {i18n.translate(`BUTTON_TOGGLE_INFO`)}
         </span>
       </CoreButton>
+      <TourButton />
       <Divider />
       <UnifiedShareBtn className="d-block d-lg-none" />
       <DesktopUnifiedShareBtn className="d-none d-lg-block" />

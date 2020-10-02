@@ -6,9 +6,9 @@ import i18n from '@pureartisan/simple-i18n'
 import { CoreButton, TourIcon } from './../../../core'
 
 const PanelInfoView = ({ ...props }) => {
-  const setStoreValues = useStore(
-    state => state.setStoreValues,
-  )
+  // const setStoreValues = useStore(
+  //   state => state.setStoreValues,
+  // )
   const activeView = useStore(state => state.activeView)
   const enableTour = useStore(state => state.enableTour)
   const defaultMetric = useStore(
@@ -17,6 +17,7 @@ const PanelInfoView = ({ ...props }) => {
   const defaultFilterTab = useStore(
     state => state.defaultFilterTab,
   )
+  const setUpTour = useStore(state => state.setUpTour)
 
   const getTourButton = () => {
     if (!!enableTour) {
@@ -42,27 +43,28 @@ const PanelInfoView = ({ ...props }) => {
    */
   const handleStartTour = () => {
     console.log('handleStartTour()')
-    setStoreValues({
-      // Return view to map.
-      activeView: 'map',
-      // Reset metric.
-      activeMetric: defaultMetric,
-      // Reset quintiles.
-      activeQuintiles: [1, 1, 1, 1, 1],
-      // Close the panel.
-      slideoutPanel: {
-        active: false,
-        panel: '',
-      },
-      // Active tab in slideout panel.
-      activeFilterTab: defaultFilterTab,
-      // Close modal if displayed.
-      showPanelModal: false,
-      // Return tour to 0.
-      tourStepIndex: 0,
-      // Run the tour.
-      runTour: true,
-    })
+    setUpTour()
+    // setStoreValues({
+    //   // Return view to map.
+    //   activeView: 'map',
+    //   // Reset metric.
+    //   activeMetric: defaultMetric,
+    //   // Reset quintiles.
+    //   activeQuintiles: [1, 1, 1, 1, 1],
+    //   // Close the panel.
+    //   slideoutPanel: {
+    //     active: false,
+    //     panel: '',
+    //   },
+    //   // Active tab in slideout panel.
+    //   activeFilterTab: defaultFilterTab,
+    //   // Close modal if displayed.
+    //   showPanelModal: false,
+    //   // Return tour to 0.
+    //   tourStepIndex: 0,
+    //   // Run the tour.
+    //   runTour: true,
+    // })
   }
 
   const getContents = () => {
