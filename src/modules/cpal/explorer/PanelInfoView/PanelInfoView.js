@@ -14,6 +14,9 @@ const PanelInfoView = ({ ...props }) => {
   const defaultMetric = useStore(
     state => state.defaultMetric,
   )
+  const defaultFilterTab = useStore(
+    state => state.defaultFilterTab,
+  )
 
   const getTourButton = () => {
     if (!!enableTour) {
@@ -51,6 +54,8 @@ const PanelInfoView = ({ ...props }) => {
         active: false,
         panel: '',
       },
+      // Active tab in slideout panel.
+      activeFilterTab: defaultFilterTab,
       // Close modal if displayed.
       showPanelModal: false,
       // Return tour to 0.

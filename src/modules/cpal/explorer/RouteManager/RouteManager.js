@@ -247,6 +247,7 @@ const RouteManager = props => {
   )
   // Viewport.
   const viewport = useStore(state => state.viewport)
+  const setViewport = useStore(state => state.setViewport)
   // Feeder is locked.
   const feederLocked = useStore(state => state.feederLocked)
   // Track share hash and update when it changes
@@ -362,7 +363,7 @@ const RouteManager = props => {
       resetViewport = true
     }
     if (!!resetViewport) {
-      setStoreValues({ viewport: viewport })
+      setViewport(viewport)
     }
   }
 

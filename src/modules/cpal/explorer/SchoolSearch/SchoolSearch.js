@@ -36,10 +36,6 @@ const SchoolSearch = ({ ...props }) => {
   // Tracking autosuggest suggestions
   const [suggestions, setSuggestions] = useState([])
   const [value, setValue] = useState('')
-  // Set fly to sln so know to set hovered.
-  const setFlyToSchoolSLN = useStore(
-    state => state.setFlyToSchoolSLN,
-  )
   // Tracks school search events.
   const eventSchoolSearch = useStore(
     state => state.eventSchoolSearch,
@@ -62,7 +58,9 @@ const SchoolSearch = ({ ...props }) => {
         suggestion.suggestion.POINT_Y,
         suggestion.suggestion.POINT_X,
       )
-      setFlyToSchoolSLN(suggestion.suggestion.SLN)
+      setStoreValues({
+        flyToSchoolSLN: suggestion.suggestion.SLN,
+      })
       // If intro panel is idsplayed, hide it.
       if (!!showIntroModal) {
         setStoreValues({ showIntroModal: false })

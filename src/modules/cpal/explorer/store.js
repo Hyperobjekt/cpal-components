@@ -13,21 +13,14 @@ import {
 const [useStore] = create((set, get) => ({
   // Set any store values by passing in an object of values to merge.
   setStoreValues: obj => set({ ...obj }),
-  route: '',
   defaultRoute: DEFAULT_ROUTE,
   siteHref: '/',
-  setSiteHref: newHref => set({ siteHref: newHref }),
   logoSrc: `<svg width="150" height="50">
             <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />
             <text x="25" y="40" fill="white">LOGO</text>
           </svg>`,
-  colors: {
-    base: ``,
-    baseInverted: ``,
-  },
   activeLang: `en_us`,
   activeView: `map`, // Map or feeder
-  setActiveView: newVal => set({ activeView: newVal }),
   viewSelect: [
     {
       label: `SELECT_ITEM_MAP`,
@@ -40,8 +33,6 @@ const [useStore] = create((set, get) => ({
       active: false,
     },
   ],
-  setViewSelect: newArr => set({ viewSelect: newArr }),
-  displayDistricts: [`057905`, `057834`],
   viewport: {
     latitude: 32.7603525,
     longitude: -96.791731,
@@ -87,67 +78,31 @@ const [useStore] = create((set, get) => ({
   },
   schoolZonesAffix: `200`,
   activeLayers: [0, 0, 0, 0, 0, 0, 0],
-  setActiveLayers: newArr => set({ activeLayers: newArr }),
   defaultMetric: 'cri_weight',
   activeMetric: 'cri_weight',
-  setActiveMetric: newActiveMetric =>
-    set({ activeMetric: newActiveMetric }),
   activeQuintiles: [1, 1, 1, 1, 1],
-  setActiveQuintiles: newArr =>
-    set({ activeQuintiles: newArr }),
   slideoutPanel: {
     active: false,
     panel: '', // 'filters', 'layers', or 'info'
   },
-  setSlideoutPanel: newObj =>
-    set({ slideoutPanel: newObj }),
   defaultFilterTab: 'cri',
   activeFilterTab: 'cri',
-  setActiveFilterTab: newActiveFilterTab =>
-    set({ activeFilterTab: newActiveFilterTab }),
   feederSchools: [],
-  setFeederSchools: newArr =>
-    set({ feederSchools: newArr }),
   activeFeeder: null,
-  setActiveFeeder: newVal => set({ activeFeeder: newVal }),
-  justLoaded: true,
-  setJustLoaded: newBool => set({ justLoaded: newBool }),
   feederLocked: false,
-  setFeederLocked: newBool =>
-    set({ feederLocked: newBool }),
   highlightedSchool: '',
-  setHighlightedSchool: newStr =>
-    set({ highlightedSchool: newStr }),
   shareLinkModal: false,
-  setShareLinkModal: newBool =>
-    set({ shareLinkModal: newBool }),
   unifiedShareModal: false,
-  setUnifiedShareModal: newBool =>
-    set({ unifiedShareModal: newBool }),
   handleToggleMenu: null,
-  // setHandleToggleMenu: newFunc =>
-  //   set({ handleToggleMenu: newFunc }),
   shareHash: null,
-  setShareHash: newStr => set({ shareHash: newStr }),
   breakpoint: null,
-  // setBreakpoint: newVal => set({ breakpoint: newVal }),
   browserWidth: null,
-  // setBrowserWidth: newVal => set({ browserWidth: newVal }),
   flyToSchoolSLN: null,
-  setFlyToSchoolSLN: newVal =>
-    set({ flyToSchoolSLN: newVal }),
   schoolHint: null,
-  setSchoolHint: newVal => set({ schoolHint: newVal }),
   showIntroModal: false,
-  setShowIntroModal: newVal =>
-    set({ showIntroModal: newVal }),
   showPanelModal: false,
-  setShowPanelModal: newVal =>
-    set({ showPanelModal: newVal }),
   enableTour: true, // Set this true to show the launch tour button in intro modal.
-  setEnableTour: newVal => set({ enableTour: newVal }),
   showMapModal: false,
-  setShowMapModal: newVal => set({ showMapModal: newVal }),
   // Hovered feature ID
   hovered: null,
   // Hovered feature type.
@@ -180,46 +135,24 @@ const [useStore] = create((set, get) => ({
   },
   // Position of tooltips in control panel, changes with breakpoint
   buttonTooltipPosition: 'auto',
-  // setButtonTooltipPosition: newVal =>
-  //   set({ buttonTooltipPosition: newVal }),
   showMobileLegend: false,
-  // setShowMobileLegend: newVal =>
-  //   set({ showMobileLegend: newVal }),
-  // isMobile: false,
-  // setIsMobile: newVal => set({ isMobile: newVal }),
   interactionsMobile: false,
-  // setInteractionsMobile: newVal =>
-  //   set({ interactionsMobile: newVal }),
   runTour: false,
-  setRunTour: newVal => set({ runTour: newVal }),
   tourStepIndex: 0,
-  setTourStepIndex: a => set({ tourStepIndex: a }),
   // Do not track events before map is loaded, as these
   // are state settings based on hash and not user interactions.
   doTrackEvents: false,
-  setDoTrackEvents: a => set({ doTrackEvents: a }),
   // Counters for events that don't have clear state indicators.
   eventShareTwitter: 0,
-  setEventShareTwitter: a => set({ eventShareTwitter: a }),
   eventShareFacebook: 0,
-  setEventShareFacebook: a =>
-    set({ eventShareFacebook: a }),
   eventShareEmail: 0,
-  setEventShareEmail: a => set({ eventShareEmail: a }),
   eventShareLink: 0,
-  setEventShareLink: a => set({ eventShareLink: a }),
   eventMapReset: 0,
-  // setEventMapReset: a => set({ eventMapReset: a }),
   eventMapCapture: 0,
-  setEventMapCapture: a => set({ eventMapCapture: a }),
   eventSchoolSearch: 0,
-  setEventSchoolSearch: a => set({ eventSchoolSearch: a }),
   eventSchoolPage: 0,
-  setEventSchoolPage: a => set({ eventSchoolPage: a }),
   accessedSchool: null,
-  setAccessedSchool: a => set({ accessedSchool: a }),
   eventError: 0,
-  // setEventError: a => set({ eventError: a }),
 }))
 
 export default useStore

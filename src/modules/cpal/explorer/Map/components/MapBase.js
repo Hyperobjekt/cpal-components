@@ -98,6 +98,11 @@ const MapBase = ({
 
   const [resizeListener, sizes] = useResizeAware()
 
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
+
   // const [viewport, setViewport] = useMapViewport()
   const viewport = useStore(state => state.viewport)
   const setViewport = useStore(state => state.setViewport)
@@ -121,15 +126,9 @@ const MapBase = ({
   const flyToSchoolSLN = useStore(
     state => state.flyToSchoolSLN,
   )
-  const setFlyToSchoolSLN = useStore(
-    state => state.setFlyToSchoolSLN,
-  )
-
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
   )
-
-  // const flyToReset = useFlyToReset()
 
   // reference to map container DOM element
   const mapEl = useRef(null)
@@ -156,10 +155,10 @@ const MapBase = ({
     selectedIds,
   })
 
-  const justLoaded = useStore(state => state.justLoaded)
-  const setJustLoaded = useStore(
-    state => state.setJustLoaded,
-  )
+  // const justLoaded = useStore(state => state.justLoaded)
+  // const setJustLoaded = useStore(
+  //   state => state.setJustLoaded,
+  // )
 
   const setFeatureState = useCallback(
     (featureId, type, state) => {
@@ -240,14 +239,13 @@ const MapBase = ({
     }
   }, [ariaLabel, canvas])
 
-  // handler for map load
-  const setDoTrackEvents = useStore(
-    state => state.setDoTrackEvents,
-  )
+  // Handler for map load.
   const handleLoad = e => {
     // console.log('map loaded')
     // Enable event tracking once map is loaded.
-    setDoTrackEvents(true)
+    setStoreValues({
+      doTrackEvents: true,
+    })
     if (!loaded) {
       setLoaded(true)
       // HACK: remove tabindex from map div
@@ -429,15 +427,7 @@ const MapBase = ({
     // eslint-disable-next-line
   }, [hoveredId, loaded]) // update only when hovered id changes
 
-  //   var relatedFeatures = map.querySourceFeatures('counties', {
-  // sourceLayer: 'original',
-  // filter: ['in', 'COUNTY', feature.properties.COUNTY]
-  // });
-  //
   const schoolHint = useStore(state => state.schoolHint)
-  const setSchoolHint = useStore(
-    state => state.setSchoolHint,
-  )
   const handleFlyToSchool = () => {
     // console.log('handleFlyToSchool')
     if (!!flyToSchoolSLN) {
@@ -455,9 +445,9 @@ const MapBase = ({
         // console.log('hint = ', hint)
         setTimeout(() => {
           // console.log('calling onHover')
-          setSchoolHint(hint)
+          setStoreValues({ schoolHint: hint })
           setTimeout(() => {
-            setSchoolHint(null)
+            setStoreValues({ schoolHint: null })
           }, 4000)
         }, 2000)
       }
