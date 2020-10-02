@@ -24,18 +24,15 @@ const Tour = ({ ...props }) => {
     return el
   })
   const defaultTimeout = 600
-  const setHovered = useStore(state => state.setHovered)
-  const setShowMapModal = useStore(
-    state => state.setShowMapModal,
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
   )
+  const setHovered = useStore(state => state.setHovered)
   const runTour = useStore(state => state.runTour)
-  const setRunTour = useStore(state => state.setRunTour)
   const breakpoint = useStore(state => state.breakpoint)
   const tourStepIndex = useStore(
     state => state.tourStepIndex,
-  )
-  const setTourStepIndex = useStore(
-    state => state.setTourStepIndex,
   )
 
   const isMobile = () => {
@@ -77,10 +74,11 @@ const Tour = ({ ...props }) => {
       if (index === querySelectors.length - 1) {
         // Last one.
         // console.log('Last one.')
-        setTourStepIndex(
-          stepIndex + (incrementStep ? 1 : 0),
-        )
-        setRunTour(true)
+        setStoreValues({
+          tourStepIndex:
+            stepIndex + (incrementStep ? 1 : 0),
+          runTour: true,
+        })
       } else {
         // console.log('Not last one.')
         clickElements(
@@ -99,7 +97,9 @@ const Tour = ({ ...props }) => {
     // console.log('steps = ', steps)
     const { action, index, status, type } = data
     if ([ACTIONS.CLOSE, ACTIONS.STOP].includes(action)) {
-      setRunTour(false)
+      setStoreValues({
+        runTour: false,
+      })
       return
     }
     if ([EVENTS.STEP_AFTER].includes(type)) {
@@ -108,21 +108,27 @@ const Tour = ({ ...props }) => {
       if (next && next.clickOn) {
         if (next.clickOn.length !== 0) {
           // Stop the tour.
-          setRunTour(false)
+          setStoreValues({
+            runTour: false,
+          })
           // Call recursive timed function to handle all clicks.
           clickElements(next.clickOn, 0, data.index, true)
         }
       } else {
         // console.log('Nothin doin, moving on.')
-        setTourStepIndex(data.index + increment)
+        setStoreValues({
+          tourStepIndex: data.index + increment,
+        })
       }
     } else if (
       [STATUS.FINISHED, EVENTS.TARGET_NOT_FOUND].includes(
         status,
       )
     ) {
-      setTourStepIndex(0)
-      setRunTour(false)
+      setStoreValues({
+        tourStepIndex: 0,
+        runTour: false,
+      })
     }
   }
 
