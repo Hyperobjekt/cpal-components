@@ -11,18 +11,22 @@ import PanelInfoView from './../PanelInfoView/PanelInfoView'
 import { CoreButton } from './../../../core'
 
 const SlideoutPanel = ({ ...props }) => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
-  )
-  const setSlideoutPanel = useStore(
-    state => state.setSlideoutPanel,
   )
 
   const handleClose = () => {
     // console.log('handleClose')
     const panelState = slideoutPanel
     panelState.active = false
-    setSlideoutPanel({ ...panelState })
+    setStoreValues({
+      slideoutPanel: { ...panelState },
+    })
+    // setSlideoutPanel({ ...panelState })
   }
 
   return (
