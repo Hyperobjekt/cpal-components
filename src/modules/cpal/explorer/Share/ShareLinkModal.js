@@ -80,11 +80,6 @@ const ShareLinkModal = props => {
             </InputGroupAddon>
           </InputGroup>
         </ModalBody>
-        <ModalFooter>
-          <CoreButton color="secondary" onClick={toggle}>
-            {i18n.translate('BTN_CLOSE')}
-          </CoreButton>
-        </ModalFooter>
       </Modal>
     </div>
   )
