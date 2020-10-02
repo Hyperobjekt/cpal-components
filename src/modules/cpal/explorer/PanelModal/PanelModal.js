@@ -20,15 +20,21 @@ import PanelLayersView from './../PanelLayersView/PanelLayersView'
 import PanelInfoView from './../PanelInfoView/PanelInfoView'
 
 const PanelModal = ({ children, ...props }) => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Track and update intro modal display
   const showPanelModal = useStore(
     state => state.showPanelModal,
   )
-  const setShowPanelModal = useStore(
-    state => state.setShowPanelModal,
-  )
-  const togglePanelModal = () =>
-    setShowPanelModal(!showPanelModal)
+  // const setShowPanelModal = useStore(
+  //   state => state.setShowPanelModal,
+  // )
+  const togglePanelModal = () => {
+    setStoreValues({ showPanelModal: !showPanelModal })
+  }
+  // setShowPanelModal(!showPanelModal)
 
   const slideoutPanel = useStore(
     state => state.slideoutPanel,
