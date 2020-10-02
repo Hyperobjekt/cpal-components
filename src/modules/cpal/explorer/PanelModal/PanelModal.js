@@ -28,13 +28,10 @@ const PanelModal = ({ children, ...props }) => {
   const showPanelModal = useStore(
     state => state.showPanelModal,
   )
-  // const setShowPanelModal = useStore(
-  //   state => state.setShowPanelModal,
-  // )
+  // Toggle panel modal display state.
   const togglePanelModal = () => {
     setStoreValues({ showPanelModal: !showPanelModal })
   }
-  // setShowPanelModal(!showPanelModal)
 
   const slideoutPanel = useStore(
     state => state.slideoutPanel,

@@ -203,7 +203,7 @@ const isRouteValid = params => {
   ) {
     isValid = false
   }
-  // console.log('hash is valid = ', isValid)
+  console.log('hash is valid = ', isValid)
   return isValid
 }
 
@@ -220,67 +220,37 @@ const getLayersString = activeLayers => {
 const RouteManager = props => {
   // track if initial route has loaded
   const isLoaded = useRef(false)
-  const activeView = useStore(state => state.activeView)
-  const setActiveView = useStore(
-    state => state.setActiveView,
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
   )
-
+  // Active view.
+  const activeView = useStore(state => state.activeView)
   // Update view select control
   const viewSelect = useStore(state => state.viewSelect)
-  const setViewSelect = useStore(
-    state => state.setViewSelect,
-  )
-
+  // Active metric.
   const activeMetric = useStore(state => state.activeMetric)
-  const setActiveMetric = useStore(
-    state => state.setActiveMetric,
-  )
-  const setActiveFilterTab = useStore(
-    state => state.setActiveFilterTab,
-  )
-
+  // Active standard deviations.
   const activeQuintiles = useStore(
     state => state.activeQuintiles,
   )
-  const setActiveQuintiles = useStore(
-    state => state.setActiveQuintiles,
-  )
-
+  // Active feeder.
   const activeFeeder = useStore(state => state.activeFeeder)
-  const setActiveFeeder = useStore(
-    state => state.setActiveFeeder,
-  )
-
+  // Highlighted school.
   const highlightedSchool = useStore(
     state => state.highlightedSchool,
   )
-  const setHighlightedSchool = useStore(
-    state => state.setHighlightedSchool,
-  )
-
+  // Active layers.
   const activeLayers = useStore(
     state => [...state.activeLayers],
     shallow,
   )
-  const setActiveLayers = useStore(
-    state => state.setActiveLayers,
-  )
-
+  // Viewport.
   const viewport = useStore(state => state.viewport)
-  const setViewport = useStore(state => state.setViewport)
-
-  const setShowIntroModal = useStore(
-    state => state.setShowIntroModal,
-  )
-
+  // Feeder is locked.
   const feederLocked = useStore(state => state.feederLocked)
-  const setFeederLocked = useStore(
-    state => state.setFeederLocked,
-  )
-
   // Track share hash and update when it changes
   const shareHash = useStore(state => state.shareHash)
-  const setShareHash = useStore(state => state.setShareHash)
 
   /**
    * Returns a hash based on state
@@ -328,7 +298,7 @@ const RouteManager = props => {
     // console.log('setStateFromHash()')
 
     if (!!params.view) {
-      setActiveView(params.view)
+      // setActiveView(params.view)
       const newViewSelect = viewSelect.map(el => {
         if (String(el.id).indexOf(params.view) >= 0) {
           el.active = true
@@ -337,41 +307,48 @@ const RouteManager = props => {
         }
         return el
       })
-      setViewSelect(newViewSelect)
+      setStoreValues({
+        activeView: params.view,
+        viewSelect: newViewSelect,
+      })
     }
     if (!!params.metric) {
-      setActiveMetric(params.metric)
+      setStoreValues({ activeMetric: params.metric })
       const tab = CPAL_METRICS.filter(
         el => el.id === params.metric,
       )[0].tab
       if (!!tab) {
-        setActiveFilterTab(tab)
+        setStoreValues({ activeFilterTab: tab })
       }
       // console.log('setting metric, ', params.metric, tab)
     }
     if (params.quintiles && params.quintiles.length > 0) {
       const quintiles = params.quintiles.split(',')
-      setActiveQuintiles(
-        quintiles.map(el => {
+      setStoreValues({
+        activeQuintiles: quintiles.map(el => {
           return Number(el)
         }),
-      )
+      })
     }
     if (!!params.feeder) {
-      setActiveFeeder(params.feeder)
-      setFeederLocked(true)
+      setStoreValues({
+        activeFeeder: params.feeder,
+        feederLocked: true,
+      })
     }
     if (!!params.school) {
-      setHighlightedSchool(params.school)
-      setFeederLocked(true)
+      setStoreValues({
+        highlightedSchool: params.school,
+        feederLocked: true,
+      })
     }
     if (params.layers && params.layers.length > 0) {
       const getLayers = params.layers.split(',')
-      setActiveLayers(
-        getLayers.map(el => {
+      setStoreValues({
+        activeLayers: getLayers.map(el => {
           return Number(el)
         }),
-      )
+      })
     }
 
     let resetViewport = false
@@ -385,7 +362,7 @@ const RouteManager = props => {
       resetViewport = true
     }
     if (!!resetViewport) {
-      setViewport(viewport)
+      setStoreValues({ viewport: viewport })
     }
   }
 
@@ -406,9 +383,9 @@ const RouteManager = props => {
           path !== shareHash
         ) {
           // console.log('updating hash')
-          // Update state based on params
-          // setStateFromHash(params)
-          setShareHash(window.location.hash)
+          setStoreValues({
+            shareHash: window.location.hash,
+          })
         }
       })
     }
@@ -431,7 +408,7 @@ const RouteManager = props => {
         'cpal_hash',
         '#/' + debouncedRoute,
       )
-      setShareHash('#/' + debouncedRoute)
+      setStoreValues({ shareHash: '#/' + debouncedRoute })
     }
   }, [debouncedRoute])
 
@@ -447,17 +424,16 @@ const RouteManager = props => {
         path,
         props.routeSet,
       )
+      const localStorageHash = localStorage.getItem(
+        'cpal_hash',
+      )
       if (
         !isEmptyRoute(path) &&
         isRouteValid(params, props.routeSet)
       ) {
         // Update state based on params
         setStateFromHash(params)
-      }
-      const localStorageHash = localStorage.getItem(
-        'cpal_hash',
-      )
-      if (!!localStorageHash) {
+      } else if (!!localStorageHash) {
         if (localStorageHash.length > 0) {
           const lsparams = getParamsFromPathname(
             localStorageHash,
@@ -470,7 +446,7 @@ const RouteManager = props => {
       }
       if (isEmptyRoute(path) && !localStorageHash) {
         // console.log('showing intro modal')
-        setShowIntroModal(true)
+        setStoreValues({ showIntroModal: true })
       }
     }
     loadRoute()
