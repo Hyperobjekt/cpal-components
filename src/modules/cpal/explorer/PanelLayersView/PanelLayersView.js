@@ -20,14 +20,14 @@ import {
 } from './../../../../constants/layers'
 
 const PanelLayersView = ({ ...props }) => {
-  // const activeLayers = useStore(state => state.activeLayers)
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   // Active layers
   const activeLayers = useStore(
     state => [...state.activeLayers],
     shallow,
-  )
-  const setActiveLayers = useStore(
-    state => state.setActiveLayers,
   )
 
   const getLayerLabel = id => {
@@ -36,18 +36,11 @@ const PanelLayersView = ({ ...props }) => {
   }
 
   const updateLayers = e => {
-    // console.log(
-    //   'updateLayers, ',
-    //   e.currentTarget,
-    //   e.currentTarget.checked,
-    // )
     // If item is checked, if it's not in array, push it into array
     // If item is not checked, if it's in array, remove
     const index = Number(
       String(e.currentTarget.id).replace('layer_', ''),
     )
-    // console.log('index = ', index)
-    // document.querySelector('[data-only_one="true"]')
     // If the element is an only-one element, reset other only-ones of same name.
     const el = document.getElementById(e.currentTarget.id)
     const dataset = el.dataset
@@ -72,7 +65,9 @@ const PanelLayersView = ({ ...props }) => {
       })
     }
     newLayers[index] = newLayers[index] === 1 ? 0 : 1
-    setActiveLayers(newLayers)
+    setStoreValues({
+      activeLayers: newLayers,
+    })
     // console.log('activeLayers, ', activeLayers)
   }
 
