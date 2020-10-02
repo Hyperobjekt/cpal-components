@@ -9,6 +9,10 @@ import { CoreButton } from './../../../core'
 import { onTwitterShare, constructShareLink } from './Share'
 
 const TwitterShareBtn = ({ children, ...props }) => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -16,16 +20,15 @@ const TwitterShareBtn = ({ children, ...props }) => {
   const eventShareTwitter = useStore(
     state => state.eventShareTwitter,
   )
-  const setEventShareTwitter = useStore(
-    state => state.setEventShareTwitter,
-  )
 
   const handleShare = () => {
     onTwitterShare(
       encodeURIComponent(constructShareLink(shareHash)),
       i18n.translate('DIALOG_SHARE_TWITTER'),
     )
-    setEventShareTwitter(eventShareTwitter + 1)
+    setStoreValues({
+      eventShareTwitter: eventShareTwitter + 1,
+    })
   }
 
   return (

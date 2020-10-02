@@ -12,6 +12,10 @@ import {
 } from './Share'
 
 const FacebookShareBtn = ({ children, ...props }) => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -19,16 +23,15 @@ const FacebookShareBtn = ({ children, ...props }) => {
   const eventShareFacebook = useStore(
     state => state.eventShareFacebook,
   )
-  const setEventShareFacebook = useStore(
-    state => state.setEventShareFacebook,
-  )
 
   const handleShare = () => {
     onFacebookShare(
       encodeURIComponent(constructShareLink(shareHash)),
       i18n.translate('DIALOG_SHARE_FACEBOOK'),
     )
-    setEventShareFacebook(eventShareFacebook + 1)
+    setStoreValues({
+      eventShareFacebook: eventShareFacebook + 1,
+    })
   }
 
   return (

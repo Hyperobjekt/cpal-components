@@ -9,15 +9,16 @@ import { CoreButton } from './../../../core'
 import { onMailShare, constructShareLink } from './Share'
 
 const MailShareBtn = ({ children, ...props }) => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
   )
   const eventShareEmail = useStore(
     state => state.eventShareEmail,
-  )
-  const setEventShareEmail = useStore(
-    state => state.setEventShareEmail,
   )
 
   const handleShare = () => {
@@ -26,7 +27,9 @@ const MailShareBtn = ({ children, ...props }) => {
       i18n.translate('DIALOG_SHARE_TWITTER'),
       i18n.translate('DIALOG_SHARE_EMAIL_BODY'),
     )
-    setEventShareEmail(eventShareEmail + 1)
+    setStoreValues({
+      eventShareEmail: eventShareEmail + 1,
+    })
   }
 
   return (

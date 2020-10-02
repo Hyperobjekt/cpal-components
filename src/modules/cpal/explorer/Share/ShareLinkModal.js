@@ -19,27 +19,26 @@ import useStore from './../store'
 
 const ShareLinkModal = props => {
   const { className } = props
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const shareLinkModal = useStore(
     state => state.shareLinkModal,
   )
-  const setShareLinkModal = useStore(
-    state => state.setShareLinkModal,
-  )
-  const toggle = () => setShareLinkModal(!shareLinkModal)
-
+  const toggle = () => {
+    setStoreValues({ shareLinkModal: !shareLinkModal })
+  }
   const defaultRoute = useStore(state => state.defaultRoute)
   const shareHash = useStore(state => state.shareHash)
   const eventShareLink = useStore(
     state => state.eventShareLink,
   )
-  const setEventShareLink = useStore(
-    state => state.setEventShareLink,
-  )
 
   const onCopy = () => {
     // console.log('oncopy')
     copy(location)
-    setEventShareLink(eventShareLink + 1)
+    setStoreValues({ eventShareLink: eventShareLink + 1 })
   }
 
   // Update value for share link only when window object exists.

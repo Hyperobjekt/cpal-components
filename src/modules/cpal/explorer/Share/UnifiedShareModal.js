@@ -21,30 +21,31 @@ import FacebookShareBtn from './FacebookShareBtn'
 import MailShareBtn from './MailShareBtn'
 
 const UnifiedShareModal = props => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const { className } = props
   const unifiedShareModal = useStore(
     state => state.unifiedShareModal,
   )
-  // console.log('UnifiedShareModal, ', unifiedShareModal)
-  const setUnifiedShareModal = useStore(
-    state => state.setUnifiedShareModal,
-  )
-  const toggle = () =>
-    setUnifiedShareModal(!unifiedShareModal)
-
+  const toggle = () => {
+    setStoreValues({
+      unifiedShareModal: !unifiedShareModal,
+    })
+  }
   const defaultRoute = useStore(state => state.defaultRoute)
   const shareHash = useStore(state => state.shareHash)
   const eventShareLink = useStore(
     state => state.eventShareLink,
   )
-  const setEventShareLink = useStore(
-    state => state.setEventShareLink,
-  )
 
   const onCopy = () => {
     // console.log('oncopy')
     copy(location)
-    setEventShareLink(eventShareLink + 1)
+    setStoreValues({
+      eventShareLink: eventShareLink + 1,
+    })
   }
 
   // Update value for share link only when window object exists.

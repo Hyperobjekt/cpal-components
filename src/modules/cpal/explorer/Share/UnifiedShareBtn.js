@@ -8,6 +8,10 @@ import useStore from './../store'
 import { CoreButton } from './../../../core'
 
 const UnifiedShareBtn = ({ ...props }) => {
+  // Generic store value setter.
+  const setStoreValues = useStore(
+    state => state.setStoreValues,
+  )
   const shareHash = useStore(state => state.shareHash)
   const buttonTooltipPosition = useStore(
     state => state.buttonTooltipPosition,
@@ -15,11 +19,10 @@ const UnifiedShareBtn = ({ ...props }) => {
   const unifiedShareModal = useStore(
     state => state.unifiedShareModal,
   )
-  const setUnifiedShareModal = useStore(
-    state => state.setUnifiedShareModal,
-  )
   const handleShare = () => {
-    setUnifiedShareModal(!unifiedShareModal)
+    setStoreValues({
+      unifiedShareModal: !unifiedShareModal,
+    })
   }
 
   return (
