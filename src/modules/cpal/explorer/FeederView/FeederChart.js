@@ -157,6 +157,7 @@ const FeederChart = ({ children, ...props }) => {
   const feederChartReady = e => {
     // console.log('feeder chart ready')
   }
+
   let feederEvents = {
     mouseover: onFeederMouseover,
     mouseout: onFeederMouseout,

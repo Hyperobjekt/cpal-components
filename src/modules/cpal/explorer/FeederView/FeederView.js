@@ -42,6 +42,16 @@ const FeederView = () => {
     }
   }, [isLoaded, breakpoint, activeView])
 
+  /**
+   * If the list of feeders is scrolled, remove the scroll prompt.
+   */
+  const handleScroll = e => {
+    // console.log('handleScroll')
+    if (!!showScrollPrompt) {
+      setShowScrollPrompt(false)
+    }
+  }
+
   return (
     <div className="layout-view-feeder">
       <Row className="row-bar-chart">
@@ -50,7 +60,10 @@ const FeederView = () => {
           md={{ size: 12, order: 1, offset: 0 }}
           className="feeders-bar-chart"
         >
-          <div className="feeders-bar-chart-parent">
+          <div
+            className="feeders-bar-chart-parent"
+            onScroll={handleScroll}
+          >
             <FeederChart>
               <div
                 className="scroll-prompt"
