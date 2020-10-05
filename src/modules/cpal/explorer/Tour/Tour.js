@@ -34,6 +34,9 @@ const Tour = ({ ...props }) => {
   const tourStepIndex = useStore(
     state => state.tourStepIndex,
   )
+  const incrementCloseTour = useStore(
+    state => state.incrementCloseTour,
+  )
 
   const isMobile = () => {
     return (
@@ -97,6 +100,10 @@ const Tour = ({ ...props }) => {
     // console.log('steps = ', steps)
     const { action, index, status, type } = data
     if ([ACTIONS.CLOSE, ACTIONS.STOP].includes(action)) {
+      // Listen for close, since stop happens at every step.
+      if ([ACTIONS.CLOSE].includes(action)) {
+        incrementCloseTour()
+      }
       setStoreValues({
         runTour: false,
       })
@@ -125,6 +132,9 @@ const Tour = ({ ...props }) => {
         status,
       )
     ) {
+      if ([STATUS.FINISHED].includes(status)) {
+        incrementCloseTour()
+      }
       setStoreValues({
         tourStepIndex: 0,
         runTour: false,

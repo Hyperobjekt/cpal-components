@@ -16,30 +16,13 @@ const TourButton = ({ children, ...props }) => {
     state => state.buttonTooltipPosition,
   )
   const setUpTour = useStore(state => state.setUpTour)
+  const incrementLaunchTour = useStore(
+    state => state.incrementLaunchTour,
+  )
 
   const handleClick = () => {
+    incrementLaunchTour()
     setUpTour()
-    // setStoreValues({
-    //   // Return view to map.
-    //   activeView: 'map',
-    //   // Reset metric.
-    //   activeMetric: defaultMetric,
-    //   // Reset quintiles.
-    //   activeQuintiles: [1, 1, 1, 1, 1],
-    //   // Close the panel.
-    //   slideoutPanel: {
-    //     active: false,
-    //     panel: '',
-    //   },
-    //   // Active tab in slideout panel.
-    //   activeFilterTab: defaultFilterTab,
-    //   // Close modal if displayed.
-    //   showPanelModal: false,
-    //   // Return tour to 0.
-    //   tourStepIndex: 0,
-    //   // Run the tour.
-    //   runTour: true,
-    // })
   }
 
   return (

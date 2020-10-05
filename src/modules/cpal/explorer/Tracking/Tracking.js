@@ -56,6 +56,21 @@ const Tracking = ({ ...props }) => {
     state => state.accessedSchool,
   )
   const eventError = useStore(state => state.eventError)
+  // Tour is launched.
+  const eventLaunchTour = useStore(
+    state => state.eventLaunchTour,
+  )
+  // Tour is closed.
+  const eventCloseTour = useStore(
+    state => state.eventCloseTour,
+  )
+  // Step when tour is closed.
+  const eventCloseTourStep = useStore(
+    state => state.eventCloseTourStep,
+  )
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
   // Overall boolean preventing event tracking before
   // the map is loaded.
   const doTrackEvents = useStore(
@@ -217,6 +232,22 @@ const Tracking = ({ ...props }) => {
         eventLabel = eventError.message
         eventValue = navigator.userAgent
         break
+      case params.type === 'tour_start':
+        eventCategory = 'Use map controls'
+        eventAction =
+          'Launch tour, ' +
+          (!!interactionsMobile ? 'mobile' : 'desktop')
+        eventLabel = shareHash ? shareHash : null
+        break
+      case params.type === 'tour_stop':
+        eventCategory = 'Use map controls'
+        eventAction = eventAction =
+          'Close tour, ' +
+          (!!interactionsMobile ? 'mobile' : 'desktop')
+        eventValue = eventCloseTourStep
+          ? eventCloseTourStep
+          : 0 // Step tour was on when closed.
+        break
       default:
     }
 
@@ -344,6 +375,14 @@ const Tracking = ({ ...props }) => {
   useEffect(() => {
     trackEvent({ type: 'error' })
   }, [eventError])
+  // Detect that tour has been launched.
+  useEffect(() => {
+    trackEvent({ type: 'tour_start' })
+  }, [eventLaunchTour])
+  // Detect that tour has been closed.
+  useEffect(() => {
+    trackEvent({ type: 'tour_stop' })
+  }, [eventCloseTour])
 
   // Don't return anything. We just watch state for changes and
   // fire off events.

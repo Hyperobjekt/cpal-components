@@ -175,6 +175,21 @@ const [useStore] = create((set, get) => ({
   eventMapCapture: 0,
   eventSchoolSearch: 0,
   eventSchoolPage: 0,
+  eventLaunchTour: 0,
+  eventCloseTour: 0,
+  eventCloseTourStep: null,
+  incrementLaunchTour: () => {
+    set(state => ({
+      eventLaunchTour: state.eventLaunchTour + 1,
+    }))
+  },
+  incrementCloseTour: () => {
+    set(state => ({
+      eventCloseTour: state.eventCloseTour + 1,
+      eventCloseTourStep: state.tourStepIndex,
+    }))
+  },
+  // Not counters.
   accessedSchool: null,
   eventError: 0,
 }))

@@ -20,6 +20,9 @@ const TourButton = ({ children, ...props }) => {
   const eventShareTwitter = useStore(
     state => state.eventShareTwitter,
   )
+  const incrementCustomEvent = useStore(
+    state => state.incrementCustomEvent,
+  )
 
   const handleShare = () => {
     onTwitterShare(

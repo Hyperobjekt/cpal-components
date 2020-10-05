@@ -18,6 +18,9 @@ const PanelInfoView = ({ ...props }) => {
     state => state.defaultFilterTab,
   )
   const setUpTour = useStore(state => state.setUpTour)
+  const incrementLaunchTour = useStore(
+    state => state.incrementLaunchTour,
+  )
   const interactionsMobile = useStore(
     state => state.interactionsMobile,
   )
@@ -45,29 +48,9 @@ const PanelInfoView = ({ ...props }) => {
    * Close the intro panel and start the tour
    */
   const handleStartTour = () => {
-    console.log('handleStartTour()')
+    // console.log('handleStartTour()')
+    incrementLaunchTour()
     setUpTour()
-    // setStoreValues({
-    //   // Return view to map.
-    //   activeView: 'map',
-    //   // Reset metric.
-    //   activeMetric: defaultMetric,
-    //   // Reset quintiles.
-    //   activeQuintiles: [1, 1, 1, 1, 1],
-    //   // Close the panel.
-    //   slideoutPanel: {
-    //     active: false,
-    //     panel: '',
-    //   },
-    //   // Active tab in slideout panel.
-    //   activeFilterTab: defaultFilterTab,
-    //   // Close modal if displayed.
-    //   showPanelModal: false,
-    //   // Return tour to 0.
-    //   tourStepIndex: 0,
-    //   // Run the tour.
-    //   runTour: true,
-    // })
   }
 
   const getContents = () => {
