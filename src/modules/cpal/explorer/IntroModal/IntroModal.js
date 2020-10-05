@@ -67,6 +67,7 @@ const IntroModal = ({ children, ...props }) => {
       <ModalHeader toggle={toggleIntroModal}></ModalHeader>
       <ModalBody>
         <h2>
+          <div className="logo"></div>
           {i18n.translate('UI_MAP_INTRO_MODAL_HEADER')}
         </h2>
         <p>{i18n.translate('UI_MAP_INTRO_MODAL_INTRO')}</p>

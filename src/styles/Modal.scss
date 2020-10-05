@@ -1,10 +1,27 @@
-.modal-dialog.intro-modal {
+.modal-dialog {
   .modal-content {
+    border-radius: 0;
     font-family: Halyard;
     font-weight: 300;
     font-size: 1.4rem;
     line-height: 1.6rem;
     .modal-body {
+      padding: 0 24px 24px 24px;
+      h2 {
+        font-weight: 400;
+        font-size: 1.8rem;
+        .logo {
+          display: inline-block;
+          padding-right: 2.4rem;
+          margin-bottom: -10px;
+          width: 19.43px; // 17px;
+          height: 32px; // 28px;
+          background-image: url('./images/menu-logo.svg');
+          background-repeat: no-repeat;
+          background-size: 19.43px 32px; // 17px 28px;
+          margin-right: 4px;
+        }
+      }
       padding: 0 24px 24px 24px;
       .intro-modal-option {
         margin: 0 0 2rem 0;
@@ -25,48 +42,77 @@
         svg {
           margin-right: 1rem;
           margin-top: -3px;
+          transition: color 50ms ease-in-out;
+        }
+        &:hover,
+        &:focus {
+          border-color: transparent;
+          color: $cpal-orange;
+          background-color: $cpal-orange-light;
+          svg {
+            color: $cpal-orange;
+          }
         }
       }
     }
     .modal-header {
       border-bottom: none;
-    }
-  }
-}
-
-.modal-dialog {
-  .modal-content {
-    font-family: Halyard;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-    .modal-body {
-      padding: 0 24px 24px 24px;
-    }
-  }
-}
-
-.modal-dialog.map-modal {
-  .modal-content {
-    .popup-content {
-      width: auto !important;
-      .click-school-prompt {
-        margin: 1.5rem 0 0;
-        svg {
-          margin-right: 0.75rem;
-          margin-bottom: 4px;
+      padding-bottom: 0;
+      button.close {
+        font-size: 3.6rem;
+        font-weight: 300;
+        padding-top: 0.25rem;
+        &:hover,
+        &:focus {
+          color: $cpal-orange;
         }
       }
-      .n-i-scale {
-        .n-i-scale-quintiles {
-          .n-i-scale-quintile {
-            top: -3px;
+    }
+  }
+  &.intro-modal {
+    .modal-body {
+      p {
+        margin: 2rem 0;
+      }
+      .search-autosuggest {
+        max-width: 300px;
+        .icon-search {
+          top: 8px;
+        }
+        .btn.button-search-clear {
+          padding: 0;
+          top: 7px;
+          &:hover,
+          &:focus {
+            background-color: $white;
+            color: black;
           }
         }
       }
-      button {
-        border-radius: 0;
-        padding: 0.6rem 1.2rem;
+    }
+  }
+  &.map-modal {
+    .modal-content {
+      .popup-content {
+        width: auto !important;
+        .click-school-prompt {
+          margin: 1.5rem 0 0;
+          svg {
+            margin-right: 0.5rem;
+            // margin-bottom: 4px;
+          }
+        }
+        .n-i-scale {
+          .n-i-scale-quintiles {
+            .n-i-scale-quintile {
+              top: -3px;
+            }
+          }
+        }
+        button {
+          border-radius: 0;
+          padding: 0.6rem 1.2rem;
+        }
       }
     }
   }

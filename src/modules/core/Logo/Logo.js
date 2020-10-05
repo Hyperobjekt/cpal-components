@@ -12,7 +12,17 @@ const Logo = ({ ...props }) => {
   return (
     <h1>
       <a href={props.siteHref}>
-        <div className="logo"></div>
+        {!!props.logoSrc ? (
+          <div
+            className="logo"
+            dangerouslySetInnerHTML={{
+              __html: props.logoSrc,
+            }}
+          ></div>
+        ) : (
+          <div className="logo"></div>
+        )}
+
         <span className="logo-sitename">
           {props.siteName}
         </span>

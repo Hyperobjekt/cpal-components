@@ -62,7 +62,7 @@
           }
         }
         .react-autosuggest__suggestion--highlighted {
-          background-color: rgba(153, 192, 255, 0.6);
+          background-color: $cpal-orange-light; // rgba(153, 192, 255, 0.6);
         }
         .react-autosuggest__suggestions-container--open {
           top: auto;

@@ -1,43 +1,41 @@
-.modal-dialog.intro-modal,
+// .modal-dialog.intro-modal,
 .modal-dialog.modal-share-link,
 .modal-dialog.modal-u-share {
   .modal-content {
-    font-family: Halyard;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
+    // font-family: Halyard;
+    // font-weight: 300;
+    // font-size: 1.4rem;
+    // line-height: 1.6rem;
     .modal-body {
-      padding: 0 24px 24px 24px;
-      p {
-        margin: 2rem 0;
-      }
+      // padding: 0 24px 24px 24px;
+      // p {
+      //   margin: 2rem 0;
+      // }
       .input-group {
         margin: 0.5rem 0;
+        border-radius: 0;
         input {
-          min-height: 40px;
-          font-size: 1.4rem;
+          min-height: 3.2rem;
+          font-size: 1.2rem;
+          border-radius: 0;
+        }
+        .input-group-append {
+          button {
+            border-radius: 0;
+          }
         }
       }
     }
-    .modal-header {
-      border-bottom: none;
-    }
-    .btn.button-core {
-      border-radius: 0;
-      font-size: 1.4rem;
-      line-height: 1.4rem;
-      font-weight: 300;
-      padding: 1rem;
-      svg {
-        margin-right: 1rem;
-      }
-    }
-    button {
+    button.btn.button-core {
       &.button-share-twitter,
       &.button-share-facebook,
       &.button-share-email {
+        &:hover,
+        &:focus {
+          background-color: transparent !important;
+          color: $cpal-orange;
+        }
         svg {
-          margin: 2rem 0;
           font-size: 3rem;
         }
       }

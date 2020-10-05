@@ -15,10 +15,7 @@ const [useStore] = create((set, get) => ({
   setStoreValues: obj => set({ ...obj }),
   defaultRoute: DEFAULT_ROUTE,
   siteHref: '/',
-  logoSrc: `<svg width="150" height="50">
-            <rect width="150" height="50" style="fill:#545b62;stroke-width:3;stroke:#545b62" />
-            <text x="25" y="40" fill="white">LOGO</text>
-          </svg>`,
+  logoSrc: null,
   activeLang: `en_us`,
   activeView: `map`, // Map or feeder
   viewSelect: [

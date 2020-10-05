@@ -21,8 +21,12 @@
     svg {
       width: 24px;
       height: 24px;
-      fill: #606b44 !important;
+      // fill: #606b44 !important;
       margin-top: 4px;
+    }
+    &:hover,
+    &:focus {
+      color: $cpal-orange;
     }
   }
   .map-panel-slideout-filters,
