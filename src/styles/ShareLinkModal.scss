@@ -11,6 +11,9 @@
       // p {
       //   margin: 2rem 0;
       // }
+      h3 {
+        margin-bottom: 2rem;
+      }
       .input-group {
         margin: 0.5rem 0;
         border-radius: 0;
@@ -30,6 +33,7 @@
       &.button-share-twitter,
       &.button-share-facebook,
       &.button-share-email {
+        margin-bottom: 2rem;
         &:hover,
         &:focus {
           background-color: transparent !important;
