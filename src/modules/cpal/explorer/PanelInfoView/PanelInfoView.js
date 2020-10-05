@@ -18,9 +18,12 @@ const PanelInfoView = ({ ...props }) => {
     state => state.defaultFilterTab,
   )
   const setUpTour = useStore(state => state.setUpTour)
+  const interactionsMobile = useStore(
+    state => state.interactionsMobile,
+  )
 
   const getTourButton = () => {
-    if (!!enableTour) {
+    if (!!enableTour && !!interactionsMobile) {
       return (
         <CoreButton
           color="light"
