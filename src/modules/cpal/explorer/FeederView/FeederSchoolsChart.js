@@ -108,9 +108,9 @@ const FeederSchoolsChart = ({ ...props }) => {
 
   const getGridEdge = () => {
     // Set height differently depending upon the
-    let val = '90'
+    let val = '89'
     if (breakpoint === 'md') {
-      val = '90'
+      val = '89'
     }
     if (breakpoint === 'sm') {
       val = '30'
