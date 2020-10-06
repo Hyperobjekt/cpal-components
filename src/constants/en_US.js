@@ -20,7 +20,7 @@ const en_US = {
   CONTROL_PANEL_SHARE: `SHARE`,
   CONTROL_PANEL_SHARE_TC: `Share`,
   CONTROL_PANEL_VIEW: `VIEW`,
-  BUTTON_TOUR: `Launch tour`,
+  BUTTON_TOUR: `Tour the Explorer`,
   BUTTON_SHARE_TWITTER: `Share on Twitter`,
   DIALOG_SHARE_TWITTER: `All Dallas neighborhoods should have what they need to thrive.`,
   BUTTON_SHARE_FACEBOOK: `Share on Facebook`,

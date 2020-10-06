@@ -381,7 +381,10 @@ const ControlPanel = ({ children }) => {
           {i18n.translate(`BUTTON_TOGGLE_INFO`)}
         </span>
       </CoreButton>
-      <TourButton className="d-none d-lg-block" />
+      <TourButton
+        className="d-none d-lg-block"
+        tooltip={true}
+      />
       <Divider />
       <UnifiedShareBtn className="d-block d-lg-none" />
       <DesktopUnifiedShareBtn className="d-none d-lg-block" />
