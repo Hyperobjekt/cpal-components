@@ -98,6 +98,12 @@
       background-color: #ffeee5;
       color: #e55934;
     }
+    &.button-launch-tour {
+      svg {
+        width: 20px;
+        height: 24px;
+      }
+    }
   }
 
   @include media-breakpoint-up(md) {
