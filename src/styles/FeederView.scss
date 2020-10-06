@@ -381,7 +381,7 @@ $xl-legend-width: 435px;
       position: fixed;
       bottom: 0;
       background: #fff;
-      width: 100%;
+      width: calc(100% - 72px);
       height: $distrib-chart-height;
       .feeders-schools-scatter {
         background: #fff;

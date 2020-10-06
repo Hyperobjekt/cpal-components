@@ -121,7 +121,8 @@ const FeederSchoolsChart = ({ ...props }) => {
         left: '5%',
       },
       grid: {
-        show: false,
+        left: 72,
+        right: 24,
       },
       // title: i18n.translate('UI_FEEDER_SCHOOL_CHART_DESC'),
       aria: {
