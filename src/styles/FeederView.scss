@@ -280,13 +280,32 @@ $xl-legend-width: 435px;
     margin-right: 0;
     margin-left: 0;
     background-color: $feeder-background-color;
+    width: 100%;
     @include media-breakpoint-up(lg) {
       background-color: $white;
     }
+    .feeders-schools-scatter {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 2rem;
+      @include media-breakpoint-up(lg) {
+        padding-top: 4rem;
+      }
+    }
+    $distrib-chart-left: 90px;
+    $distrib-chart-left-sm: 30px;
     .distrib-chart-legend {
       position: absolute;
-      left: 20px;
-      top: 20px;
+      left: calc(#{$distrib-chart-left-sm} - 2px);
+      top: 10px;
+      padding: 0 1rem 1.5rem 0;
+      @include media-breakpoint-up(lg) {
+        background-image: linear-gradient(
+          to bottom,
+          $white 85%,
+          transparent 95%
+        );
+      }
       h3 {
         font-size: 1.4rem;
         line-height: 1.5rem;
@@ -317,11 +336,11 @@ $xl-legend-width: 435px;
         }
       }
       @include media-breakpoint-up(md) {
-        left: 40px;
+        left: calc(#{$distrib-chart-left} - 2px);
         top: 20px;
       }
       @include media-breakpoint-up(lg) {
-        left: 100px;
+        left: calc(#{$distrib-chart-left} - 3px);
         top: 40px;
         h3 {
           font-size: 1.5rem;
@@ -340,7 +359,7 @@ $xl-legend-width: 435px;
         }
       }
       @include media-breakpoint-up(xl) {
-        left: 120px;
+        left: calc(#{$distrib-chart-left} - 5px);
         top: 40px;
         h3 {
           font-size: 1.8rem;
@@ -381,11 +400,11 @@ $xl-legend-width: 435px;
       position: fixed;
       bottom: 0;
       background: #fff;
-      width: 100%;
+      width: calc(100vw - #{$control-panel-width}); // 100%;
       height: $distrib-chart-height;
       .feeders-schools-scatter {
         background: #fff;
-        padding-top: 2rem;
+        padding-top: 4rem;
         border-top: 0.5px solid #e8e8e8;
         .echarts-for-react {
           margin-bottom: -20px;

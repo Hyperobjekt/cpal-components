@@ -119,6 +119,7 @@ const FeederView = () => {
             'UI_FEEDER_TITLE_SCHOOLS_CHART',
           )}
         >
+          <FeederSchoolsChart />
           <div className="distrib-chart-legend">
             <h3>
               {i18n.translate(
@@ -142,7 +143,6 @@ const FeederView = () => {
               </span>
             </div>
           </div>
-          <FeederSchoolsChart />
         </Col>
       </Row>
       <FeederMobileModal />

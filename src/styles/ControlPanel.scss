@@ -132,7 +132,7 @@
   }
 
   @include media-breakpoint-up(lg) {
-    width: 72px;
+    width: $control-panel-width;
     height: calc(100vh - #{$navbar-height});
     flex-direction: column;
     align-items: center;

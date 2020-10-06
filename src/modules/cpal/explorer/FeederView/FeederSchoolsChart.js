@@ -106,6 +106,21 @@ const FeederSchoolsChart = ({ ...props }) => {
     return arr[0]
   }
 
+  const getGridEdge = () => {
+    // Set height differently depending upon the
+    let val = '90'
+    if (breakpoint === 'md') {
+      val = '90'
+    }
+    if (breakpoint === 'sm') {
+      val = '30'
+    }
+    if (breakpoint === 'xs') {
+      val = '10'
+    }
+    return val
+  }
+
   const getSchoolsOptions = () => {
     const options = {
       title: {
@@ -122,6 +137,10 @@ const FeederSchoolsChart = ({ ...props }) => {
       },
       grid: {
         show: false,
+        left: getGridEdge(),
+        right: getGridEdge(),
+        // bottom: 30,
+        // top: 60,
       },
       // title: i18n.translate('UI_FEEDER_SCHOOL_CHART_DESC'),
       aria: {
@@ -287,7 +306,7 @@ const FeederSchoolsChart = ({ ...props }) => {
 
   const getHeight = () => {
     // Set height differently depending upon the
-    let height = '260px'
+    let height = '240px'
     if (breakpoint === 'md') {
       height = '200px'
     }
