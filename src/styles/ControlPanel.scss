@@ -109,14 +109,18 @@
   @include media-breakpoint-up(md) {
     display: flex;
     flex-direction: row;
-    width: 500px;
+    justify-content: flex-start;
+    width: 376px;
+    &.display-feeder {
+      width: 272px;
+    }
 
     position: absolute;
     left: 16px;
     top: 16px;
 
-    .btn.btn-core {
-      margin-right: 0;
+    .btn.button-core {
+      margin-right: 1.4rem;
     }
     hr,
     .button-view-map,
@@ -125,14 +129,11 @@
     }
   }
 
-  @include media-breakpoint-only(md) {
-    &.display-feeder {
-      width: 272px;
-    }
-  }
-
   @include media-breakpoint-up(lg) {
     width: $control-panel-width;
+    &.display-feeder {
+      width: $control-panel-width;
+    }
     height: calc(100vh - #{$navbar-height});
     flex-direction: column;
     align-items: center;
