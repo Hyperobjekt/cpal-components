@@ -120,7 +120,10 @@
     top: 16px;
 
     .btn.button-core {
-      margin-right: 1.4rem;
+      margin-right: 1.6rem;
+      &.button-u-share-link {
+        margin-right: 0;
+      }
     }
     hr,
     .button-view-map,
