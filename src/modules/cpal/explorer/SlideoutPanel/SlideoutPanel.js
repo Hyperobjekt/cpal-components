@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import i18n from '@pureartisan/simple-i18n'
 import clsx from 'clsx'
@@ -23,11 +23,33 @@ const SlideoutPanel = ({ ...props }) => {
     // console.log('handleClose')
     const panelState = slideoutPanel
     panelState.active = false
+    // Set focus on the clicked button.
+    const panelBtnId =
+      'button_toggle_panel_' + slideoutPanel.panel
+    const panelBtn = document.getElementById(panelBtnId)
+    panelBtn.focus()
+    // Update store.
     setStoreValues({
       slideoutPanel: { ...panelState },
     })
-    // setSlideoutPanel({ ...panelState })
   }
+
+  // Toggle focus and tabindex on slideout panel when active.
+  useEffect(() => {
+    // console.log('Slideout panel active state changed.')
+    const closeBtn = document.getElementById(
+      'button_close_panel',
+    )
+    // console.log('closeBtn, ', closeBtn)
+    if (!!closeBtn) {
+      if (!!slideoutPanel.active) {
+        closeBtn.setAttribute('tabindex', '0')
+        closeBtn.focus()
+      } else {
+        closeBtn.setAttribute('tabindex', '-1')
+      }
+    }
+  }, [slideoutPanel.active])
 
   return (
     <div
@@ -48,6 +70,7 @@ const SlideoutPanel = ({ ...props }) => {
           'button-core',
           'button-close-panel',
         )}
+        tabIndex="-1"
       >
         <MdClose />
         <span className="sr-only">

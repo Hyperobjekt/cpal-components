@@ -102,9 +102,7 @@ const IntroModal = ({ children, ...props }) => {
           </p>
           <CoreButton
             color="light"
-            label={i18n.translate(
-              'UI_MAP_INTRO_MODAL_TOUR_BTN',
-            )}
+            label={i18n.translate('UI_MAP_INTRO_MODAL_FAQ')}
             onClick={handleGoToFAQ}
           >
             <FaQuestion />
