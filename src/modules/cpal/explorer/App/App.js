@@ -64,11 +64,9 @@ const App = props => {
     })
   }, [])
 
-  // const setEventError = useStore(
-  //   state => state.setEventError,
-  // )
   useEffect(() => {
     window.addEventListener('error', e => {
+      // console.log('error, ', e)
       setStoreValues({
         eventError:
           e.message +

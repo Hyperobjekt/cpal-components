@@ -229,7 +229,7 @@ const Tracking = ({ ...props }) => {
       case params.type === 'error':
         eventCategory = 'Error'
         eventAction = 'Window error'
-        eventLabel = eventError.message
+        eventLabel = eventError
         eventValue = navigator.userAgent
         break
       case params.type === 'tour_start':

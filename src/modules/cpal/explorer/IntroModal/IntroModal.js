@@ -27,6 +27,10 @@ const IntroModal = ({ children, ...props }) => {
   const setStoreValues = useStore(
     state => state.setStoreValues,
   )
+  // Increment launch tour for event tracking.
+  const incrementLaunchTour = useStore(
+    state => state.incrementLaunchTour,
+  )
   // Track and update intro modal display
   const showIntroModal = useStore(
     state => state.showIntroModal,
@@ -41,6 +45,7 @@ const IntroModal = ({ children, ...props }) => {
   const handleStartTour = () => {
     // console.log('handleStartTour()')
     toggleIntroModal()
+    incrementLaunchTour()
     setStoreValues({ runTour: true })
   }
 
