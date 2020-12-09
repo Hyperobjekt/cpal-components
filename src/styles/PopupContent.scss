@@ -1,5 +1,6 @@
 .popup-content {
   padding: 24px;
+  padding-bottom: 12px;
   margin: 0 !important;
   width: 252px;
   border-radius: 0;
@@ -73,6 +74,11 @@
     font-size: 1.4rem;
     line-height: 1.4;
     margin-bottom: 1.6rem;
+  }
+  p.click-school-prompt {
+    line-height: 1.25;
+    margin-top: 12px;
+    padding: 0;
   }
 }
 .mapboxgl-popup {

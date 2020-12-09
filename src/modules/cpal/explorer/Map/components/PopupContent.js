@@ -131,7 +131,7 @@ const PopupContent = ({ ...props }) => {
           breakpoint === 'sm' ||
           breakpoint === 'md' ||
           interactionsMobile
-        ) && (
+        ) ? (
           <CoreButton
             id="modal_access_school"
             className="click-school-prompt"
@@ -144,6 +144,10 @@ const PopupContent = ({ ...props }) => {
             <FaExternalLinkSquareAlt />
             {i18n.translate('UI_MAP_SCHOOL_ACCESS_LINK')}
           </CoreButton>
+        ) : (
+          <p className="click-school-prompt">
+            {i18n.translate('UI_MAP_CLICK_SCHOOL_PROMPT')}
+          </p>
         )}
       </div>
     )
